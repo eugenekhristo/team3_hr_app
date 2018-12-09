@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root {
+  --color-primary: #3f51b5;
+  --color-accent: #ff4080;
+  --color-warn: #f44336;
+  // --color-primary: #ffd426;
+  // --color-secondary: #ff2c45;
+  // --color-orangered: #e85800;
+  // --color-orange: #ffb703;
+  --color-blue: #009be3;
+  // --color-text: #472d07;
+  // --color-text-secondary: #794e0d;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  // background-image: url('./assets/images/pattern.svg'),
+  //   linear-gradient(135deg, var(--color-primary), rgba(253, 71, 95, 0.8));
+  // color: var(--color-text);
+  background-color: #f2f2f2;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  margin: 0;
+
+  // background-size: 300px, auto;
+  // background-attachment: fixed;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  background-color: #f5f5f5;
+  position: absolute;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 7px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #444;
+}
