@@ -8,8 +8,6 @@ import { map, tap, switchMap, mergeMap, bufferCount, delay, debounceTime } from 
 
 import { Interview, InterviewClient } from 'src/app/core/models/interview.model';
 
-
-
 @Injectable()
 export class InterviewService {
   private _interviewDates: string[];
@@ -21,20 +19,22 @@ export class InterviewService {
       map(interviews => {
         return interviews.map(interview => (interview.date));
       }),
-      tap(dates => this._interviewDates = dates)
+      tap(dates => this._interviewDates = dates )
     );
   }
 
   getInterviewsByDate(date: string): Observable<InterviewClient[]> {
-    if (this._interviewDates && !this._interviewDates.includes(date)) {
+     if (this._interviewDates && !this._interviewDates.includes(date)) {
       return of(null);
     }
 
-    let count = 0;
+    let interviewsCount = 0;
     const params = new HttpParams().set('date', date);
     return this.http.get<Interview[]>(`${BASE_URL}/interviews`, { params })
       .pipe(
-        tap(interviews => count = interviews.length),
+        tap(interviews => {
+          interviewsCount = interviews.length;
+        }),
         switchMap(interviews => from(interviews)),
         mergeMap(interview => {
           return forkJoin(
@@ -44,10 +44,9 @@ export class InterviewService {
             map(([candidate, vacancy]) => new InterviewClient(candidate, vacancy, interview.date, interview.id))
           );
         }),
-        bufferCount(count),
+        bufferCount(interviewsCount),
         delay(300)
       );
   }
-
 
 }

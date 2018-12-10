@@ -11,8 +11,11 @@ export class InterviewComponent implements OnInit {
   interviewDates: string[] = [];
   interviews: InterviewClient[] = [];
   isInterviewsLoaded = false;
-  //FIXME:
   activeDate: string;
+
+  // this variable to fix bug of the first loading of the calendar. If from service no response within 500 ms
+  // then specify manually that there are no interviews for today
+  firstLoadingResolved = false;
 
   constructor(private interviewService: InterviewService) {}
 
@@ -26,12 +29,21 @@ export class InterviewComponent implements OnInit {
 
   onDatePicked(date: string) {
     this.activeDate = date;
-
     this.isInterviewsLoaded = false;
     this.interviewService.getInterviewsByDate(date).subscribe(res => {
+      this.firstLoadingResolved = true;
       this.interviews = res;
       this.isInterviewsLoaded = true;
     });
+
+    if (!this.firstLoadingResolved) {
+      setTimeout(() => {
+        if (!this.firstLoadingResolved) {
+          this.interviews = null;
+          this.isInterviewsLoaded = true;
+        }
+      }, 500);
+    }
   }
 
   onAddInterview() {
