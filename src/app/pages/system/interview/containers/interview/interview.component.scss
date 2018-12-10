@@ -1,0 +1,10 @@
+.interviews__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.active__date {
+  font-size: 2rem;
+  font-weight: 700;
+}
