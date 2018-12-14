@@ -1,0 +1,10 @@
+<div id="hr-add-candidate">
+  <mat-list>
+    <mat-list-item>
+      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" style="width: 50px; height: 50px; border-radius: 25px; margin-right: 1%">
+      {{candidate.name}} {{candidate.surname}}<br>
+      {{candidate.position}}
+      <button (click)="add()" mat-button color="warn">ADD</button></mat-list-item>
+  </mat-list>
+  <button (click)="close()" class="close" mat-button color="warn">Cancel</button>
+</div>
