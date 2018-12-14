@@ -1,4 +1,3 @@
-<p *ngFor="let interview of interviews">
-  {{interview.candidate | json}}
-  {{interview.vacancy | json}}
-</p>
+<ng-container *ngFor="let interview of interviews">
+  <hr-interview-card [interview]="interview"></hr-interview-card>
+</ng-container>

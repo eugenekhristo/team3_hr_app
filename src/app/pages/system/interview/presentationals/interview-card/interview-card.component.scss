@@ -1,0 +1,46 @@
+.card {
+  background-color: #fff;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  display: flex;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.card__figure {
+  width: 30%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  height: 12rem;
+}
+
+.card__figure a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.card__img {
+  border-radius: 4px;
+  display: block;
+  height: inherit;
+  object-fit: cover;
+  width: 100%;
+}
+
+.cart__content {
+  padding: 5px 0 5px 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  font-size: 1.4rem;
+}
+
+.cart__time {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 2rem;
+}

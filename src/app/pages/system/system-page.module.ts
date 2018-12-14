@@ -10,10 +10,12 @@ import { InterviewService } from './shared/services/interview.service';
 import { SystemShellComponent } from './system-shell/system-shell.component';
 import { InterviewComponent } from './interview/containers/interview/interview.component';
 import { InterviewListComponent } from './interview/presentationals/interview-list/interview-list.component';
+import { AddInterviewDialogComponent } from './interview/containers/add-interview-dialog/add-interview-dialog.component';
+import { InterviewCardComponent } from './interview/presentationals/interview-card/interview-card.component';
 
 
 @NgModule({
-  declarations: [SystemShellComponent, InterviewComponent, InterviewListComponent],
+  declarations: [SystemShellComponent, InterviewComponent, InterviewListComponent, AddInterviewDialogComponent, InterviewCardComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,6 +25,7 @@ import { InterviewListComponent } from './interview/presentationals/interview-li
 
   ],
   exports: [SystemShellComponent],
-  providers: [InterviewService]
+  providers: [InterviewService],
+  entryComponents: [AddInterviewDialogComponent]
 })
 export class SystemPageModule {}

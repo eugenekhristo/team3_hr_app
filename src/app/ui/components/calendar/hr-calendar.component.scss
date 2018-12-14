@@ -101,19 +101,20 @@
   transform: translate(-50%, -50%);
 }
 
-.eug_calendar__td:hover::after {
-  content: '';
-  border-radius: 50%;
-  display: block;
-  position: absolute;
-  width: 80%;
-  height: 80%;
-  background-color: rgba(250, 66, 127, 0.07);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-}
+// FIXME: can add if it would be liked
+// .eug_calendar__td:hover::after {
+//   content: '';
+//   border-radius: 50%;
+//   display: block;
+//   position: absolute;
+//   width: 80%;
+//   height: 80%;
+//   background-color: rgba(250, 66, 127, 0.07);
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   z-index: -1;
+// }
 
 .eug_calendar__td.prev-month:hover::after,
 .eug_calendar__td.next-month:hover::after {

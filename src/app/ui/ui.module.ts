@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { MaterialModule } from './material/material.module';
 import { SnackMessageComponent } from './components/snack-message/snack-message.component';
@@ -12,10 +14,17 @@ import { SnackMessageService } from './services/snack-messgae.service';
   declarations: [SnackMessageComponent, HrCalendarComponent],
   imports: [
     CommonModule,
-    MaterialModule
+    FlexLayoutModule,
+    MaterialModule,
+    NgxMaterialTimepickerModule.forRoot()
   ],
   providers: [SnackMessagePbService, SnackMessageService],
   entryComponents: [SnackMessageComponent],
-  exports: [MaterialModule, HrCalendarComponent]
+  exports: [
+    MaterialModule,
+    FlexLayoutModule,
+    NgxMaterialTimepickerModule,
+    HrCalendarComponent
+  ]
 })
 export class UiModule {}

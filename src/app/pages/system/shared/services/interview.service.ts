@@ -3,34 +3,46 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 
 import { BASE_URL } from 'src/app/core/constants/base-url';
 
-import { Observable, from, forkJoin, of } from 'rxjs';
-import { map, tap, switchMap, mergeMap, bufferCount, delay, debounceTime } from 'rxjs/operators';
+import { Observable, from, forkJoin, of, Subject } from 'rxjs';
+import {
+  map,
+  tap,
+  switchMap,
+  mergeMap,
+  bufferCount,
+  delay
+} from 'rxjs/operators';
 
-import { Interview, InterviewClient } from 'src/app/core/models/interview.model';
+import {
+  Interview,
+  InterviewClient
+} from 'src/app/core/models/interview.model';
 
 @Injectable()
 export class InterviewService {
   private _interviewDates: string[];
+  interviewAdded$ = new Subject<InterviewClient>();
 
   constructor(private http: HttpClient) {}
 
   getInterviewsDates(): Observable<string[]> {
-   return this.http.get<Interview[]>(`${BASE_URL}/interviews`).pipe(
+    return this.http.get<Interview[]>(`${BASE_URL}/interviews`).pipe(
       map(interviews => {
-        return interviews.map(interview => (interview.date));
+        return interviews.map(interview => interview.date);
       }),
-      tap(dates => this._interviewDates = dates )
+      tap(dates => (this._interviewDates = dates))
     );
   }
 
   getInterviewsByDate(date: string): Observable<InterviewClient[]> {
-     if (this._interviewDates && !this._interviewDates.includes(date)) {
+    if (this._interviewDates && !this._interviewDates.includes(date)) {
       return of(null);
     }
 
     let interviewsCount = 0;
     const params = new HttpParams().set('date', date);
-    return this.http.get<Interview[]>(`${BASE_URL}/interviews`, { params })
+    return this.http
+      .get<Interview[]>(`${BASE_URL}/interviews`, { params })
       .pipe(
         tap(interviews => {
           interviewsCount = interviews.length;
@@ -41,12 +53,36 @@ export class InterviewService {
             this.http.get(`${BASE_URL}/candidates/${interview.candidateId}`),
             this.http.get(`${BASE_URL}/vacancies/${interview.vacancyId}`)
           ).pipe(
-            map(([candidate, vacancy]) => new InterviewClient(candidate, vacancy, interview.date, interview.id))
+            map(
+              ([candidate, vacancy]) =>
+                new InterviewClient(
+                  candidate,
+                  vacancy,
+                  interview.date,
+                  interview.time,
+                  interview.id
+                )
+            )
           );
         }),
         bufferCount(interviewsCount),
-        delay(300)
+        tap(interviews => interviews.sort((a, b) => a.time > b.time ? 1 : -1)),
+        delay(150)
       );
   }
 
+  addInterview(interview: InterviewClient) {
+    const backInterview: Interview = this.transformToBackendModel(interview);
+    this._interviewDates = [...this._interviewDates, interview.date];
+    return this.http.post(`${BASE_URL}/interviews`, backInterview);
+  }
+
+  private transformToBackendModel(interview: InterviewClient): Interview {
+    return new Interview(
+      interview.candidate['id'],
+      interview.vacancy['id'],
+      interview.date,
+      interview.time
+    );
+  }
 }

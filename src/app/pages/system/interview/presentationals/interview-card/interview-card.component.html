@@ -1,0 +1,30 @@
+<div class="card">
+  <figure class="card__figure">
+    <a href="https://www.tut.by/" [target]="interview.id" [title]="'Go to ' + interview.candidate['name'] + '\'s page'">
+      <img [src]="interview.candidate['photo']" class="card__img" />
+    </a>
+  </figure>
+  <section class="cart__content">
+    <span
+      ><i
+        >{{ interview.candidate['name'] }}
+        {{ interview.candidate['surname'] }}</i
+      >
+      on <i>{{ interview.vacancy['title'] }}</i></span
+    >
+
+    <span
+      >at <span class="cart__time"> {{ interview.time }}</span></span
+    >
+  </section>
+  <div class="card__action">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="after">
+      <a mat-menu-item title="Go to the interview page"> <span>Go</span> </a>
+      <a mat-menu-item> <span>Edit</span> </a>
+      <a mat-menu-item> <span style="color: var(--color-warn);">Delete</span> </a>
+    </mat-menu>
+  </div>
+</div>
