@@ -1,0 +1,26 @@
+/*.info{*/
+/*margin: auto;*/
+/*justify-content: center;*/
+/*display: flex;*/
+/*}*/
+#candidates {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+#candidates > mat-card {
+  width: 32%;
+  margin: 0.5%;
+}
+
+.example-chip-list {
+  width: 100%;
+  margin-top: 5%;
+}
+.listofskills{
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+input[type=checkbox] { pointer-events: none }
