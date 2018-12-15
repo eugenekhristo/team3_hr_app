@@ -21,6 +21,15 @@ import {
 @Injectable()
 export class InterviewService {
   private _interviewDates: string[];
+
+  get interviewDates() {
+    return this._interviewDates;
+  }
+
+  set interviewDates(dates: string[]) {
+    this._interviewDates = dates;
+  }
+
   interviewAdded$ = new Subject<InterviewClient>();
 
   constructor(private http: HttpClient) {}
@@ -36,7 +45,7 @@ export class InterviewService {
 
   getInterviewsByDate(date: string): Observable<InterviewClient[]> {
     if (this._interviewDates && !this._interviewDates.includes(date)) {
-      return of(null);
+      return of([]);
     }
 
     let interviewsCount = 0;
@@ -75,6 +84,11 @@ export class InterviewService {
     const backInterview: Interview = this.transformToBackendModel(interview);
     this._interviewDates = [...this._interviewDates, interview.date];
     return this.http.post(`${BASE_URL}/interviews`, backInterview);
+  }
+
+  deleteInterviewById(id: number): Observable<any> {
+    console.log(id);
+    return this.http.delete(`${BASE_URL}/interviews/${id}`);
   }
 
   private transformToBackendModel(interview: InterviewClient): Interview {

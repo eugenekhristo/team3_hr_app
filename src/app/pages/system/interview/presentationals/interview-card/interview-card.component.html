@@ -30,7 +30,7 @@
       <a mat-menu-item> <span>Edit</span> </a>
       <a
         mat-menu-item
-        (click)="onDeleteInterview()"
+        (click)="deleteInterview.emit(interview)"
       >
         <span style="color: var(--color-warn);">Delete</span>
       </a>
