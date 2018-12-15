@@ -1,0 +1,34 @@
+<div class="dialog">
+  <h2 mat-dialog-title class="dialog__title">Confirm</h2>
+
+  <p class="dialog__content">
+    {{data}}
+  </p>
+
+  <div
+    mat-dialog-actions
+    fxLayout="row nowrap"
+    fxLayoutGap="1rem"
+    class="dialog__actions"
+  >
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="false"
+      fxFlex="50"
+      cdkFocusInitial
+    >
+      NO
+    </button>
+    <button
+      type="button"
+      mat-raised-button
+      color="warn"
+      [mat-dialog-close]="true"
+      fxFlex="50"
+    >
+      YES
+    </button>
+  </div>
+</div>
