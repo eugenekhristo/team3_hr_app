@@ -9,6 +9,7 @@ import { HrCalendarComponent } from './components/calendar/hr-calendar.component
 
 import { SnackMessagePbService } from './services/snack-message-pb.service';
 import { SnackMessageService } from './services/snack-messgae.service';
+import { ReusableMatConfirmModule } from './modules/reusable-mat-confirm/reusable-mat-confirm.module';
 
 @NgModule({
   declarations: [SnackMessageComponent, HrCalendarComponent],
@@ -16,12 +17,14 @@ import { SnackMessageService } from './services/snack-messgae.service';
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
+    ReusableMatConfirmModule,
     NgxMaterialTimepickerModule.forRoot()
   ],
   providers: [SnackMessagePbService, SnackMessageService],
   entryComponents: [SnackMessageComponent],
   exports: [
     MaterialModule,
+    ReusableMatConfirmModule,
     FlexLayoutModule,
     NgxMaterialTimepickerModule,
     HrCalendarComponent

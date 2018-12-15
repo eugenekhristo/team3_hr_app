@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         if (password === user.password) {
           this.snackMessageService.openSnackBar('Login!');
         } else {
-          this.snackMessageService.openSnackBar(`Password doesn't match the email!`, 'error');
+          this.snackMessageService.openSnackBar(`Password doesn't correct for the email!`, 'error');
         }
       } else {
         this.snackMessageService.openSnackBar('No user with such an email!', 'error');
