@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-md">
     <hr-calendar
       [interviewDates]="interviewDates"
@@ -10,20 +9,16 @@
   </div>
 
   <div class="col-md interviews__container" style="margin-left: 2rem">
-    <h4 class="active__date">{{activeDate | date:'LLL dd, yyyy'}}</h4>
-    <ng-container *ngIf="!isInterviewsLoaded">
-      <mat-spinner></mat-spinner>
-    </ng-container>
+    <h4 class="active__date">{{ activeDate | date: 'LLL dd, yyyy' }}</h4>
 
-    <ng-container *ngIf="isInterviewsLoaded">
-      <p *ngIf="!interviews">Hooray! No interviews for today!</p>
-      <hr-interview-list
-        class="hr-interview-list"
-        [interviews]="interviews"
-        *ngIf="interviews"
-      >
-      </hr-interview-list>
-    </ng-container>
+    <mat-spinner *ngIf="!isInterviewsLoaded"></mat-spinner>
+
+    <hr-interview-list
+      *ngIf="isInterviewsLoaded"
+      class="hr-interview-list"
+      [interviews]="interviews"
+      (deleteInterview)="onDeleteInterview($event)"
+    >
+    </hr-interview-list>
   </div>
-
 </div>
