@@ -5,6 +5,8 @@ import { InterviewComponent } from './interview/containers/interview/interview.c
 import {VacancyListComponent} from './vacancy/containers/vacancy-list/vacancy-list.component';
 import {VacancyViewComponent} from './vacancy/containers/vacancy-view/vacancy-view.component';
 import {VacancyEditComponent} from './vacancy/containers/vacancy-edit/vacancy-edit.component';
+import {CandidateCardComponent} from './candidates/candidate-card/candidate-card.component';
+import {CandidatePageComponent} from './candidates/candidate-page/candidate-page.component';
 
 
 const routes: Routes = [
@@ -12,8 +14,11 @@ const routes: Routes = [
     {path: 'interview', component: InterviewComponent},
       {path: 'vacancy', component: VacancyListComponent},
       {path: 'vacancyView', component: VacancyViewComponent},
-      {path: 'vacancyEdit', component: VacancyEditComponent}
-  ]}
+      {path: 'vacancyEdit', component: VacancyEditComponent},
+      {path: 'candidates', component: CandidateCardComponent},
+      {path: 'candidates/new', component: CandidatePageComponent},
+      {path: 'candidates/:id', component: CandidatePageComponent}
+    ]}
 ];
 
 @NgModule({

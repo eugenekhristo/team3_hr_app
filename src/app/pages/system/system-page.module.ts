@@ -17,11 +17,34 @@ import {VacancyViewComponent} from './vacancy/containers/vacancy-view/vacancy-vi
 import {AddCandidateComponent} from './vacancy/containers/vacancy-edit/add-candidate/add-candidate.component';
 import {MaterialModule} from '../../ui/material/material.module';
 
+import {CandidateCardComponent} from './candidates/candidate-card/candidate-card.component';
+import {CandidatePageComponent} from './candidates/candidate-page/candidate-page.component';
+import {ShortInfoComponent} from './candidates/candidate-page/short-info/short-info.component';
+import {TimelineComponent} from './candidates/candidate-page/timeline/timeline.component';
+import {NewCvDialogComponent} from './candidates/candidate-page/timeline/new-cv-dialog/new-cv-dialog.component';
+import {NewExperienceDialogComponent} from './candidates/candidate-page/timeline/new-experience-dialog/new-experience-dialog.component';
+import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-notes-dialog/new-notes-dialog.component';
+
 
 @NgModule({
-  declarations: [SystemShellComponent, InterviewComponent,
-    InterviewListComponent, InterviewCardComponent,
-    VacancyListComponent, VacancyEditComponent, VacancyViewComponent, AddCandidateComponent],
+  declarations: [
+    SystemShellComponent,
+    InterviewComponent,
+    InterviewListComponent,
+    AddInterviewDialogComponent,
+    InterviewCardComponent,
+    VacancyListComponent,
+    VacancyEditComponent,
+    VacancyViewComponent,
+    AddCandidateComponent,
+    CandidateCardComponent,
+    CandidatePageComponent,
+    ShortInfoComponent,
+    TimelineComponent,
+    NewCvDialogComponent,
+    NewExperienceDialogComponent,
+    NewNotesDialogComponent],
+
   imports: [
     CommonModule,
     FormsModule,
@@ -31,7 +54,13 @@ import {MaterialModule} from '../../ui/material/material.module';
     MaterialModule
   ],
   exports: [SystemShellComponent],
-  providers: [InterviewService]
+  providers: [InterviewService],
+  entryComponents: [
+    AddInterviewDialogComponent,
+    NewExperienceDialogComponent,
+    NewNotesDialogComponent,
+    NewCvDialogComponent]
+
 })
 export class SystemPageModule {
 }

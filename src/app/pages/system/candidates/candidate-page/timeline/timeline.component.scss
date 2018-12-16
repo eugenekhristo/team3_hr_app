@@ -1,0 +1,50 @@
+mat-card {
+  margin-top: 20px;
+}
+
+table {
+  margin-left: 15px;
+}
+
+.timeLine{
+  background-color: #F5F5F5;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px 0 4px 0;
+  color: #3B3C3E;
+  font-size: 12px;
+  font-weight: bold;
+  left: -1px;
+  padding: 10px 7px 5px;
+}
+
+.timeLine{
+  height:480px;
+  overflow-y:auto;
+}
+
+table td {
+  padding: 13px 5px;
+}
+
+table td:first-child {
+  width:100px;
+}
+
+table td:last-child {
+  font-weight: bold;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}
+
+.icon {
+  max-height: 4vh;
+}
+
+.close {
+  position: absolute;
+  float: right;
+  right: 0px;
+  top: 0px;
+}

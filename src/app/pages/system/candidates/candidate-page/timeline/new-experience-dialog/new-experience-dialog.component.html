@@ -1,0 +1,86 @@
+<div class="dialog">
+  <h2 mat-dialog-title>New Experience</h2>
+
+  <div mat-dialog-content>
+    <form fxLayout="column" #form="ngForm">
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="data.companyName"
+          placeholder="Company name"
+          name="Company name"
+          required
+        />
+        <mat-error align="end">This field is required.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="data.position"
+          placeholder="Position"
+          name="Position"
+          required
+        />
+        <mat-error align="end">This field is required.</mat-error>
+      </mat-form-field>
+      <form>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="data.dateFrom"
+            name="Date from"
+            [matDatepicker]="picker1"
+            placeholder="Date from"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="data.dateTo"
+            name="Date to"
+            [matDatepicker]="picker2"
+            placeholder="Date to"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </form>
+  </div>
+
+  <div
+    mat-dialog-actions
+    fxLayout="row nowrap"
+    fxLayoutGap="10px"
+    class="actions"
+  >
+    <button
+      mat-raised-button
+      color="warn"
+      [mat-dialog-close]="false"
+      fxFlex="50"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="data"
+      cdkFocusInitial
+      fxFlex="50"
+      [disabled]="form.invalid"
+    >
+      Save
+    </button>
+  </div>
+</div>

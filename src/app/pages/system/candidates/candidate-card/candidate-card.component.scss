@@ -1,0 +1,50 @@
+.candidates-board {
+  flex-wrap: wrap;
+}
+
+.candidate-card {
+  margin: 0.4vh;
+}
+
+.candidate-figure {
+  border-radius: 4px;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+  margin: 1%;
+  max-width: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.candidate-figure:hover .overflow {
+  opacity: 1;
+  transition: opacity .2s ease-out 1.5s;
+}
+
+.overflow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
+  color: white;
+}
+
+.candidate-img {
+  display: block;
+  height: 25vh;
+  width: 25vh;
+}
+
+.centre {
+  text-align: center;
+}
+
+.add-button {
+  position: absolute;
+  float: right;
+  right: 4vh;
+  bottom: 4vh;
+}
