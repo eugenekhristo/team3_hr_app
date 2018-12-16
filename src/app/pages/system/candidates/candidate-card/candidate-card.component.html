@@ -1,0 +1,37 @@
+<div *ngIf="candidates$ | async as candidates; else loader">
+  <div class="candidates-board" fxLayout *ngIf="candidates.length !== 0; else empty">
+    <mat-card
+      class="candidate-card"
+      *ngFor="let candidate of candidates"
+    >
+      <a [routerLink]="['/candidates', candidate.id]">
+        <figure
+          class="candidate-figure"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          matRipple
+        >
+          <img class="candidate-img" [src]=candidate.photo />
+          <div class="overflow">Go to {{candidate.name}}'s page</div>
+        </figure>
+      </a>
+      <div class="centre">{{candidate.name}} {{candidate.surname}}</div>
+    </mat-card>
+  </div>
+  <div class="add-button">
+    <button
+      mat-fab
+      color="primary"
+      [routerLink]="['/candidates/new']"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <ng-template #empty>
+    <p>У вас нет ни одного кандидата</p>
+  </ng-template>
+</div>
+
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>

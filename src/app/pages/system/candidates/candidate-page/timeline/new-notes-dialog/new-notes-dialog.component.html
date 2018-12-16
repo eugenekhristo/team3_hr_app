@@ -1,0 +1,44 @@
+<div class="dialog">
+  <h2 mat-dialog-title>New Note</h2>
+
+  <div mat-dialog-content>
+    <form fxLayout="column" #form="ngForm">
+      <mat-form-field>
+        <textarea
+          matInput
+          [(ngModel)]="data.Note"
+          placeholder="Leave a comment"
+          name="Note"
+          required
+        ></textarea>
+        <mat-error align="end">This field is required.</mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div
+    mat-dialog-actions
+    fxLayout="row nowrap"
+    fxLayoutGap="10px"
+    class="actions"
+  >
+    <button
+      mat-raised-button
+      color="warn"
+      [mat-dialog-close]="false"
+      fxFlex="50"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="data"
+      cdkFocusInitial
+      fxFlex="50"
+      [disabled]="form.invalid"
+    >
+      Save
+    </button>
+  </div>
+</div>

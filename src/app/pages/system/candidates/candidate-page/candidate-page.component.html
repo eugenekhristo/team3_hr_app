@@ -1,0 +1,12 @@
+<mat-card fxLayout="row" class="main">
+  <div class="short-info">
+    <hr-short-info [candidate]="candidate"></hr-short-info>
+  </div>
+  <div class="timeLine-info">
+    <hr-timeline></hr-timeline>
+  </div>
+</mat-card>
+
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>
