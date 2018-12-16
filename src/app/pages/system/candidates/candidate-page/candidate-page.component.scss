@@ -1,0 +1,28 @@
+mat-panel-title {
+  font-size: 20px;
+}
+
+.contacts-info {
+  position: relative;
+}
+
+app-short-info{
+  width: 100%;
+  float: left;
+}
+
+app-timeline {
+  width: 100%;
+  float: left;
+}
+
+.short-info {
+  position: relative;
+  width: 32vh;
+}
+
+.timeLine-info {
+  position: relative;
+  width: 120vh;
+  margin-left: 6%;
+}

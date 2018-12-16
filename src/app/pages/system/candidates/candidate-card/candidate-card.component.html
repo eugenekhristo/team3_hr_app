@@ -1,5 +1,5 @@
 <div *ngIf="candidates$ | async as candidates; else loader">
-  <div class="candidates-board" fxLayout *ngIf="candidates.length !== 0">
+  <div class="candidates-board" fxLayout *ngIf="candidates.length !== 0; else empty">
     <mat-card
       class="candidate-card"
       *ngFor="let candidate of candidates"
@@ -27,6 +27,9 @@
       <mat-icon>add</mat-icon>
     </button>
   </div>
+  <ng-template #empty>
+    <p>У вас нет ни одного кандидата</p>
+  </ng-template>
 </div>
 
 <ng-template #loader>

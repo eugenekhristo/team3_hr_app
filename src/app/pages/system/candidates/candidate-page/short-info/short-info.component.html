@@ -1,0 +1,58 @@
+<div class="short-info"  fxLayout="column">
+  <figure
+    class="short-info-figure"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    matRipple
+  >
+    <img class="short-info-img" [src]="candidate.photo"/>
+    <div class="overflow">Click to update the image</div>
+    <input
+      type="file"
+      id="img-uploader"
+      style="display:none;"
+      (change)="onFileUpload($event)"
+    />
+    <label for="img-uploader" class="img-uploader"></label>
+  </figure>
+
+  <form fxLayout="column" #form="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="candidate.name"
+        placeholder="Name"
+        name="Name"
+        required
+      />
+      <mat-error align="end">This field is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="candidate.position"
+        placeholder="Position"
+        name="Position"
+      />
+    </mat-form-field>
+    <div *ngIf="candidate.contacts; else empty">
+      <p>Contacts:</p>
+      <div *ngFor="let contact of candidate.contacts; let i = index">
+        <mat-checkbox (change)="change(i)" class="checkbox">
+        </mat-checkbox>
+        <span *ngIf="!check[i]" class="contacts"> {{contact.name}}</span>
+        <mat-form-field *ngIf="check[i]">
+          <input
+            matInput
+            [(ngModel)]= " contact.value"
+            placeholder= {{contact.name}}
+            name= {{contact.name}}
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <ng-template #empty>
+      <p>No contacts!</p>
+    </ng-template>
+  </form>
+</div>

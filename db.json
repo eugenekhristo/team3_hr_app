@@ -12,12 +12,30 @@
       "id": 1,
       "name": "Till",
       "surname": "Lindemann",
+      "position": "Frontend developer",
+      "contacts": [
+        {
+          "name": "Telephone",
+          "value": "+375293569685"
+        }
+      ],
       "photo": "https://24smi.org/public/media/2018/7/26/3a7d5326675226a244c7b4f7a853bffe-till-rammstein-till-lindemann-hot.jpg"
     },
     {
       "id": 2,
       "name": "Lilliya",
       "surname": "Scarlett",
+      "position": "Frontend developer",
+      "contacts": [
+        {
+          "name": "Telephone",
+          "value": "+375295869574"
+        },
+        {
+          "name": "Email",
+          "value": "lilliya@gmail.com"
+        }
+      ],
       "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png"
     },
     {
