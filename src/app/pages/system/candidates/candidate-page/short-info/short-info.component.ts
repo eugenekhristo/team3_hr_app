@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Candidate} from '../../../../../core/models/candidate.model';
 
 @Component({
@@ -6,7 +6,7 @@ import {Candidate} from '../../../../../core/models/candidate.model';
   templateUrl: './short-info.component.html',
   styleUrls: ['./short-info.component.scss']
 })
-export class ShortInfoComponent implements OnInit {
+export class ShortInfoComponent implements OnInit, OnChanges {
   @Input() candidate: Candidate;
 
   check: Array<boolean> = [false, false, false];
@@ -15,6 +15,9 @@ export class ShortInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
   }
 
   onFileUpload(e: Event) {

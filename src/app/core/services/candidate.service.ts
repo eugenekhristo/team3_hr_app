@@ -29,4 +29,5 @@ export class CandidateService {
       switchMap(term => this.http.get<Candidate[]>(`${BASE_URL}/candidates?q=${term}`))
     );
   }
+
 }
