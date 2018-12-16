@@ -1,10 +1,49 @@
-<nav class="nav">
-  <a
-    routerLink="/vacancyView"
-    routerLinkActive="active"
-    mat-button
-    class="nav-item"
+<div *ngIf="vacancies$ | async as vacancies; else loader">
+  <div *ngIf="vacancies.length !== 0; else empty">
+    <mat-card
+      fxLayout="column"
+      *ngFor="let vacancy of vacancies"
+    >
+      <button
+        class="open-vacancy"
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/vacancies', vacancy.id]"
+        cdkFocusInitial
+      >
+        More info
+      </button>
+      <div>
+        Vacancy name: {{vacancy.title}}
+      </div>
+      <div *ngIf="vacancy.status;else emptyStatus">
+        Vacancy status: {{vacancy.status}}
+        <mat-icon *ngIf="vacancy.status == 'closed'" class="closed">lens</mat-icon>
+        <mat-icon *ngIf="vacancy.status == 'opened'" class="opened">lens</mat-icon>
+      </div>
+      <ng-template #emptyStatus>
+        Vacancy status: empty
+      </ng-template>
+    </mat-card>
+  </div>
+
+  <ng-template #empty>
+    <div>
+      Create vacancy.
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>
+
+<div class="add-button">
+  <button
+    mat-fab
+    color="primary"
+    [routerLink]="['/vacancies/new']"
   >
-    Vacancy1
-  </a>
-</nav>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
