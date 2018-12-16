@@ -1,0 +1,142 @@
+<div class="dialog">
+<h2
+  class="dialog__title"
+  mat-dialog-title>{{data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Edit'}} Interview
+</h2>
+
+  <div class="dialog__content">
+    <form #f="ngForm" fxLayout="column">
+      <mat-form-field fxFlex="100%">
+        <input
+          placeholder="Candidate"
+          type="text"
+          matInput
+          [matAutocomplete]="auto"
+          (input)="candidateSearchTerm$.next($event.target.value)"
+          name="candidate"
+          [(ngModel)]="data.interview.candidate"
+        />
+      </mat-form-field>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="matDisplayCandidateFn"
+      >
+        <mat-option
+          *ngFor="let candidate of candidates"
+          [value]="candidate"
+          class="mat-option-candidate"
+        >
+          <figure class="mat-option-candidate__figure">
+            <img [src]="candidate.photo" class="mat-option-candidate__img" />
+          </figure>
+          <span>{{ candidate.name }} {{ candidate.surname }}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <mat-form-field fxFlex="100%">
+        <input
+          placeholder="Vacancy"
+          type="text"
+          matInput
+          [matAutocomplete]="auto2"
+          (input)="vacancySearchTerm$.next($event.target.value)"
+          name="vacancy"
+          [(ngModel)]="data.interview.vacancy"
+        />
+      </mat-form-field>
+      <mat-autocomplete
+        #auto2="matAutocomplete"
+        [displayWith]="matDisplayVacancyFn"
+      >
+        <mat-option
+          *ngFor="let vacancy of vacancies"
+          [value]="vacancy"
+          class="mat-option-vacancy"
+        >
+          <span>{{ vacancy.title }}</span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <mat-form-field>
+        <input
+          matInput
+          name="date"
+          [matDatepicker]="picker"
+          placeholder="Date"
+          [(ngModel)]="date"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+          style="font-size: 2.1rem;"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          name="time"
+          placeholder="Time"
+          [(ngModel)]="data.interview.time"
+          [ngxTimepicker]="timePicker"
+          [format]="24"
+          readonly
+          [disableClick]="true"
+        />
+        <ngx-material-timepicker-toggle [for]="timePicker" matSuffix>
+          <mat-icon
+            ngxMaterialTimepickerToggleIcon
+            style="color: #757575; font-size: 2.1rem;"
+            >access_time</mat-icon
+          >
+        </ngx-material-timepicker-toggle>
+      </mat-form-field>
+
+      <div class="timepicker__dialog">
+        <ngx-material-timepicker
+          #timePicker
+          [enableKeyboardInput]="true"
+          [confirmBtnTmpl]="confirmBtn"
+          [cancelBtnTmpl]="cancelBtn"
+        ></ngx-material-timepicker>
+
+        <ng-template #confirmBtn>
+          <button mat-raised-button color="primary">OK</button>
+        </ng-template>
+        <ng-template #cancelBtn>
+          <button mat-raised-button color="warn">Cancel</button>
+        </ng-template>
+      </div>
+
+      <div
+        mat-dialog-actions
+        fxLayout="row nowrap"
+        fxLayoutGap="1rem"
+        class="dialog__actions"
+      >
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          [mat-dialog-close]="false"
+          fxFlex="50"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          cdkFocusInitial
+          [mat-dialog-close]="data.interview"
+          fxFlex="50"
+        >
+          Submit
+        </button>
+      </div>
+      <!-- END of dialog__actions -->
+    </form>
+  </div>
+  <!-- END of dialog__content -->
+</div>

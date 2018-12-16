@@ -16,8 +16,7 @@
       "contacts": [
         {
           "name": "Telephone",
-          "value": "+375293569685",
-          "preferred": true
+          "value": "+375293569685"
         },
         {
           "name": "Email",
@@ -32,7 +31,7 @@
       ],
       "notes": [
         {
-          "note": "Any note",
+          "note": "Any note update",
           "date": "2018-12-16T21:24:29.745Z",
           "type": "Note"
         }
@@ -47,16 +46,7 @@
           "type": "Experience"
         }
       ],
-      "cv": [
-        {
-          "name": "out.txt",
-          "size": 67,
-          "data": "data:text/plain;base64,c3VtID0gMiw1ODY5MDQ3NjE5MDQ3NiBtaW4gPSAwLDE0Mjg1NzE0Mjg1NzE0MyB6ID0gMSwwNTMzNTYwMjcwOTYyMg==",
-          "mime": "text/plain",
-          "date": "2018-12-16T23:36:48.608Z",
-          "type": "CV"
-        }
-      ],
+      "cv": [],
       "photo": "https://24smi.org/public/media/2018/7/26/3a7d5326675226a244c7b4f7a853bffe-till-rammstein-till-lindemann-hot.jpg"
     },
     {
@@ -105,27 +95,7 @@
       "id": 4,
       "name": "David",
       "surname": "Beckham",
-      "photo": "http://img-fotki.yandex.ru/get/5639/157185180.62/0_b98e2_a784197f_XL.jpg",
-      "contacts": [
-        {
-          "name": "Telephone",
-          "value": "+375336425526",
-          "preferred": true
-        },
-        {
-          "name": "Email",
-          "value": "",
-          "preferred": false
-        },
-        {
-          "name": "Skype",
-          "value": "",
-          "preferred": false
-        }
-      ],
-      "notes": [],
-      "experience": [],
-      "cv": []
+      "photo": "http://img-fotki.yandex.ru/get/5639/157185180.62/0_b98e2_a784197f_XL.jpg"
     },
     {
       "id": 5,
