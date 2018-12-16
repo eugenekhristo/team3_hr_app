@@ -7,8 +7,6 @@ import {Candidate} from '../../../../../core/models/candidate.model';
 import {CandidateService} from '../../../../../core/services/candidate.service';
 import {ActivatedRoute, Params} from '@angular/router';
 
-
-
 export interface CandidateNotes {
   Note: string;
   date: Date;

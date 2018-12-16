@@ -6,11 +6,9 @@ import {UiModule} from 'src/app/ui/ui.module';
 import {SystemRoutingModule} from './system-routing.module';
 
 import {InterviewService} from './shared/services/interview.service';
-
 import {SystemShellComponent} from './system-shell/system-shell.component';
 import {InterviewComponent} from './interview/containers/interview/interview.component';
 import {InterviewListComponent} from './interview/presentationals/interview-list/interview-list.component';
-import {AddInterviewDialogComponent} from './interview/containers/add-interview-dialog/add-interview-dialog.component';
 import {InterviewCardComponent} from './interview/presentationals/interview-card/interview-card.component';
 import {VacancyListComponent} from './vacancy/containers/vacancy-list/vacancy-list.component';
 import {VacancyEditComponent} from './vacancy/containers/vacancy-edit/vacancy-edit.component';
@@ -32,7 +30,6 @@ import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-
     SystemShellComponent,
     InterviewComponent,
     InterviewListComponent,
-    AddInterviewDialogComponent,
     InterviewCardComponent,
     VacancyListComponent,
     VacancyEditComponent,
@@ -56,7 +53,6 @@ import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-
   exports: [SystemShellComponent],
   providers: [InterviewService],
   entryComponents: [
-    AddInterviewDialogComponent,
     NewExperienceDialogComponent,
     NewNotesDialogComponent,
     NewCvDialogComponent]
