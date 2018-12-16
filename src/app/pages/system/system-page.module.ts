@@ -6,7 +6,6 @@ import {UiModule} from 'src/app/ui/ui.module';
 import {SystemRoutingModule} from './system-routing.module';
 
 import {InterviewService} from './shared/services/interview.service';
-
 import {SystemShellComponent} from './system-shell/system-shell.component';
 import {InterviewComponent} from './interview/containers/interview/interview.component';
 import {InterviewListComponent} from './interview/presentationals/interview-list/interview-list.component';
@@ -27,12 +26,10 @@ import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-
 
 
 @NgModule({
-
   declarations: [
     SystemShellComponent,
     InterviewComponent,
     InterviewListComponent,
-    AddInterviewDialogComponent,
     InterviewCardComponent,
     VacancyListComponent,
     VacancyEditComponent,
@@ -57,7 +54,6 @@ import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-
   exports: [SystemShellComponent],
   providers: [InterviewService],
   entryComponents: [
-    AddInterviewDialogComponent,
     NewExperienceDialogComponent,
     NewNotesDialogComponent,
     NewCvDialogComponent]
