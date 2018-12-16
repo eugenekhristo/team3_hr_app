@@ -1,40 +1,39 @@
 import * as moment from 'moment';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { Subject } from 'rxjs';
 import { CandidateService } from 'src/app/core/services/candidate.service';
 import { Vacancy } from 'src/app/core/models/vacancy.model';
 import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { InterviewClient } from 'src/app/core/models/interview.model';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { INTERVIEW_DIALOG_TYPES } from '../interview-dialog-types';
+
 
 @Component({
-  selector: 'hr-add-interview-dialog',
-  templateUrl: './add-interview-dialog.component.html',
-  styleUrls: ['./add-interview-dialog.component.scss']
+  selector: 'hr-interview-dialog',
+  templateUrl: './interview-dialog.component.html',
+  styleUrls: ['./interview-dialog.component.scss']
 })
-export class AddInterviewDialogComponent implements OnInit {
+export class InterviewDialogComponent implements OnInit {
+  INTERVIEW_DIALOG_TYPES = INTERVIEW_DIALOG_TYPES;
   candidates: Candidate[];
   vacancies: Vacancy[];
   candidateSearchTerm$ = new Subject<string>();
   vacancySearchTerm$ = new Subject<string>();
-  returnedInterview: InterviewClient = {
-    candidate: '',
-    vacancy: '',
-    date: '',
-    time: ''
-  };
 
   get date() {
-    return this.returnedInterview.date;
+    return this.data.interview.date;
   }
 
   set date(date) {
-    this.returnedInterview.date = moment(date).format('YYYY-MM-DD');
+    this.data.interview.date = moment(date).format('YYYY-MM-DD');
   }
 
   constructor(
     private candidateService: CandidateService,
     private vacancyService: VacancyService,
+    @Inject(MAT_DIALOG_DATA) public data: {interview: InterviewClient, type: INTERVIEW_DIALOG_TYPES}
   ) {}
 
   ngOnInit() {

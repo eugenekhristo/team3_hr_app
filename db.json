@@ -111,13 +111,6 @@
       "id": 2
     },
     {
-      "candidateId": 4,
-      "vacancyId": 2,
-      "date": "2018-12-19",
-      "time": "08:00",
-      "id": 3
-    },
-    {
       "candidateId": 1,
       "vacancyId": 1,
       "date": "2018-12-19",
@@ -125,10 +118,10 @@
       "id": 4
     },
     {
-      "candidateId": 3,
-      "vacancyId": 5,
+      "candidateId": 6,
+      "vacancyId": 3,
       "date": "2018-12-19",
-      "time": "08:30",
+      "time": "09:30",
       "id": 5
     }
   ]
