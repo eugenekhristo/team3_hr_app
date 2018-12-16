@@ -72,11 +72,13 @@
   "vacancies": [
     {
       "id": 1,
-      "title": "Java"
+      "title": "Java",
+      "status": "closed"
     },
     {
       "id": 2,
-      "title": "JS"
+      "title": "JS",
+      "status": "opened"
     },
     {
       "id": 3,
