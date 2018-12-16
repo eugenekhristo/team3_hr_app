@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Add skill</h1>
+<mat-dialog-actions>
+    <mat-form-field>
+      <input matInput [formControl]="name">
+    </mat-form-field>
+  <button mat-button (click)="onYesClick()">Yes</button>
+  <button mat-button [mat-dialog-close] = "true" (click)="onNoClick()">No </button>
+</mat-dialog-actions>
+

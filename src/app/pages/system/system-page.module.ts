@@ -15,6 +15,8 @@ import {VacancyEditComponent} from './vacancy/containers/vacancy-edit/vacancy-ed
 import {VacancyViewComponent} from './vacancy/containers/vacancy-view/vacancy-view.component';
 import {AddCandidateComponent} from './vacancy/containers/vacancy-edit/add-candidate/add-candidate.component';
 import {MaterialModule} from '../../ui/material/material.module';
+import { AddSkillComponent } from './vacancy/containers/vacancy-edit/add-skill/add-skill.component';
+import {VacancyService} from './vacancy/vacancy.service';
 
 import {CandidateCardComponent} from './candidates/candidate-card/candidate-card.component';
 import {CandidatePageComponent} from './candidates/candidate-page/candidate-page.component';
@@ -41,7 +43,8 @@ import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-
     TimelineComponent,
     NewCvDialogComponent,
     NewExperienceDialogComponent,
-    NewNotesDialogComponent],
+    NewNotesDialogComponent, 
+    AddSkillComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -51,11 +54,13 @@ import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-
     MaterialModule
   ],
   exports: [SystemShellComponent],
-  providers: [InterviewService],
+  providers: [InterviewService, VacancyService],
   entryComponents: [
     NewExperienceDialogComponent,
     NewNotesDialogComponent,
-    NewCvDialogComponent]
+    NewCvDialogComponent,
+    AddSkillComponent, 
+    AddCandidateComponent]
 })
 export class SystemPageModule {
 }
