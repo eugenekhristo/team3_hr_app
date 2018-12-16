@@ -1,5 +1,8 @@
 <div class="dialog">
-  <h2 class="dialog__title" mat-dialog-title>Add Interview</h2>
+<h2
+  class="dialog__title"
+  mat-dialog-title>{{data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Edit'}} Interview
+</h2>
 
   <div class="dialog__content">
     <form #f="ngForm" fxLayout="column">
@@ -11,7 +14,7 @@
           [matAutocomplete]="auto"
           (input)="candidateSearchTerm$.next($event.target.value)"
           name="candidate"
-          [(ngModel)]="returnedInterview.candidate"
+          [(ngModel)]="data.interview.candidate"
         />
       </mat-form-field>
       <mat-autocomplete
@@ -38,7 +41,7 @@
           [matAutocomplete]="auto2"
           (input)="vacancySearchTerm$.next($event.target.value)"
           name="vacancy"
-          [(ngModel)]="returnedInterview.vacancy"
+          [(ngModel)]="data.interview.vacancy"
         />
       </mat-form-field>
       <mat-autocomplete
@@ -75,7 +78,7 @@
           matInput
           name="time"
           placeholder="Time"
-          [(ngModel)]="returnedInterview.time"
+          [(ngModel)]="data.interview.time"
           [ngxTimepicker]="timePicker"
           [format]="24"
           readonly
@@ -126,7 +129,7 @@
           mat-raised-button
           color="primary"
           cdkFocusInitial
-          [mat-dialog-close]="returnedInterview"
+          [mat-dialog-close]="data.interview"
           fxFlex="50"
         >
           Submit
