@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VacancyEditComponent } from './vacancy-edit.component';
+import { AddSkillComponent } from './add-skill.component';
 
-describe('VacancyEditComponent', () => {
-  let component: VacancyEditComponent;
-  let fixture: ComponentFixture<VacancyEditComponent>;
+describe('AddSkillComponent', () => {
+  let component: AddSkillComponent;
+  let fixture: ComponentFixture<AddSkillComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VacancyEditComponent ]
+      declarations: [ AddSkillComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VacancyEditComponent);
+    fixture = TestBed.createComponent(AddSkillComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

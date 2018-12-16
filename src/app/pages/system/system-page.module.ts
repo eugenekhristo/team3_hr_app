@@ -17,12 +17,14 @@ import {VacancyEditComponent} from './vacancy/containers/vacancy-edit/vacancy-ed
 import {VacancyViewComponent} from './vacancy/containers/vacancy-view/vacancy-view.component';
 import {AddCandidateComponent} from './vacancy/containers/vacancy-edit/add-candidate/add-candidate.component';
 import {MaterialModule} from '../../ui/material/material.module';
+import { AddSkillComponent } from './vacancy/containers/vacancy-edit/add-skill/add-skill.component';
+import {VacancyService} from './vacancy/vacancy.service';
 
 
 @NgModule({
   declarations: [SystemShellComponent, InterviewComponent,
     InterviewListComponent, AddInterviewDialogComponent, InterviewCardComponent,
-    VacancyListComponent, VacancyEditComponent, VacancyViewComponent, AddCandidateComponent],
+    VacancyListComponent, VacancyEditComponent, VacancyViewComponent, AddCandidateComponent, AddSkillComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -32,8 +34,8 @@ import {MaterialModule} from '../../ui/material/material.module';
     MaterialModule
   ],
   exports: [SystemShellComponent],
-  providers: [InterviewService],
-  entryComponents: [AddInterviewDialogComponent]
+  providers: [InterviewService, VacancyService],
+  entryComponents: [AddInterviewDialogComponent, AddSkillComponent, AddCandidateComponent]
 })
 export class SystemPageModule {
 }
