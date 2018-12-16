@@ -7,7 +7,7 @@ import {Candidate} from '../../../../../core/models/candidate.model';
   styleUrls: ['./short-info.component.scss']
 })
 export class ShortInfoComponent implements OnInit {
-  @Input('candidate') candidate: Candidate;
+  @Input() candidate: Candidate;
 
   check: Array<boolean> = [false, false, false];
 

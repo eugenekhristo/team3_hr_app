@@ -18,15 +18,8 @@ export class CandidateService {
     return this.http.get<Candidate>(`${BASE_URL}/candidates/${id}`);
   }
 
-  update(id: string, name: string, image?: File): Observable<Candidate> {
-    const fd = new FormData();
-
-    if (image) {
-      fd.append('image', image, image.name);
-    }
-    fd.append('name', name);
-
-    return this.http.patch<Candidate>(`${BASE_URL}/candidates/${id}`, fd);
+  update(id: number, candidate: Candidate): Observable<Candidate> {
+    return this.http.patch<Candidate>(`${BASE_URL}/candidates/${id}`, candidate);
   }
 
   search(searchTerm: Observable<string>): Observable<Candidate[]> {

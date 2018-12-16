@@ -19,6 +19,42 @@
           "value": "+375293569685"
         }
       ],
+      "notes": [
+        {
+          "date": "2018-02-20T21:00:00.000Z",
+          "note": "He was very good on the interview",
+          "type": "Note"
+        },
+        {
+          "date": "2018-09-19T21:00:00.000Z",
+          "note": "We want to see him in our company",
+          "type": "Note"
+        },
+        {
+          "note": "We invited him to job",
+          "date": "2018-12-16T19:06:40.159Z",
+          "type": "Note"
+        }
+      ],
+      "experience": [
+        {
+          "date": "2017-04-20T21:00:00.000Z",
+          "companyName": "Epam",
+          "position": "Javist",
+          "dateFrom": "2013-02-11T21:00:00.000Z",
+          "dateTo": "2017-04-10T21:00:00.000Z",
+          "type": "Experience"
+        },
+        {
+          "companyName": "Mifort",
+          "position": "Angular2",
+          "dateFrom": "2018-11-30T21:00:00.000Z",
+          "dateTo": "2018-12-14T21:00:00.000Z",
+          "date": "2018-12-16T19:11:26.027Z",
+          "type": "Experience"
+        }
+      ],
+      "cv": [],
       "photo": "https://24smi.org/public/media/2018/7/26/3a7d5326675226a244c7b4f7a853bffe-till-rammstein-till-lindemann-hot.jpg"
     },
     {
@@ -36,7 +72,19 @@
           "value": "lilliya@gmail.com"
         }
       ],
-      "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png"
+      "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png",
+      "notes": [],
+      "experience": [],
+      "cv": [
+        {
+          "name": "out.txt",
+          "size": 67,
+          "data": "data:text/plain;base64,c3VtID0gMiw1ODY5MDQ3NjE5MDQ3NiBtaW4gPSAwLDE0Mjg1NzE0Mjg1NzE0MyB6ID0gMSwwNTMzNTYwMjcwOTYyMg==",
+          "mime": "text/plain",
+          "date": "2018-12-16T19:55:22.879Z",
+          "type": "CV"
+        }
+      ]
     },
     {
       "id": 3,

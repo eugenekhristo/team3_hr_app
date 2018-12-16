@@ -42,7 +42,6 @@ import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-
     NewCvDialogComponent,
     NewExperienceDialogComponent,
     NewNotesDialogComponent],
-
   imports: [
     CommonModule,
     FormsModule,
@@ -57,7 +56,6 @@ import {NewNotesDialogComponent} from './candidates/candidate-page/timeline/new-
     NewExperienceDialogComponent,
     NewNotesDialogComponent,
     NewCvDialogComponent]
-
 })
 export class SystemPageModule {
 }

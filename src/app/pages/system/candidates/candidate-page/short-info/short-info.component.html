@@ -20,7 +20,7 @@
     <mat-form-field>
       <input
         matInput
-        [(ngModel)]="candidate.name"
+        [value]=[candidate.name]
         placeholder="Name"
         name="Name"
         required
@@ -30,7 +30,7 @@
     <mat-form-field>
       <input
         matInput
-        [(ngModel)]="candidate.position"
+        [value]="candidate.position"
         placeholder="Position"
         name="Position"
       />

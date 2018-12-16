@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {NewNotesDialogComponent} from './new-notes-dialog/new-notes-dialog.component';
 import {NewExperienceDialogComponent} from './new-experience-dialog/new-experience-dialog.component';
 import {NewCvDialogComponent} from './new-cv-dialog/new-cv-dialog.component';
+import {Candidate} from '../../../../../core/models/candidate.model';
+import {CandidateService} from '../../../../../core/services/candidate.service';
+import {ActivatedRoute, Params} from '@angular/router';
 
 export interface CandidateNotes {
   Note: string;
@@ -22,7 +25,8 @@ export interface CandidateExperience {
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss']
 })
-export class TimelineComponent implements OnInit {
+export class TimelineComponent implements OnInit, OnChanges {
+  @Input() candidate: Candidate;
   interviewSrc = 'https://pp.userapi.com/c846124/v846124033/13c9f6/ObzTSC3ZsW0.jpg';
   cvSrc = 'https://pp.userapi.com/c846124/v846124033/13c9fd/d0YzLGHlF1o.jpg';
   experienceSrc = 'https://pp.userapi.com/c846124/v846124033/13c9ef/8bOFWRFc1P8.jpg';
@@ -32,9 +36,47 @@ export class TimelineComponent implements OnInit {
   notes: CandidateNotes[] = [];
   experiences: CandidateExperience[] = [];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+              private candidateService: CandidateService,
+              private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.candidate.notes) {
+      this.candidate.notes.forEach(element => {
+        element.type = 'Note';
+        element.date = new Date(element.date);
+        this.candidateInfo.push(element);
+      });
+    } else {
+      this.candidate.notes = [];
+    }
+    if (this.candidate.experience) {
+      this.candidate.experience.forEach(element => {
+        element.type = 'Experience';
+        element.date = new Date(element.date);
+        element.dateFrom = new Date(element.dateFrom);
+        element.dateTo = new Date(element.dateTo);
+        this.candidateInfo.push(element);
+      });
+    } else {
+      this.candidate.experience = [];
+    }
+    if (this.candidate.cv) {
+      this.candidate.cv.forEach(element => {
+        element.type = 'CV';
+        element.date = new Date(element.date);
+        this.candidateInfo.push(element);
+      });
+    } else {
+      this.candidate.cv = [];
+    }
+    console.log(this.candidateInfo);
+    this.sortData();
   }
 
   addCv() {
@@ -46,7 +88,9 @@ export class TimelineComponent implements OnInit {
         result.date = new Date();
         result.type = 'CV';
         this.candidateInfo.push(result);
+        this.candidate.cv.push(result);
         this.sortData();
+        this.saveToDb();
       }
     });
   }
@@ -76,7 +120,9 @@ export class TimelineComponent implements OnInit {
         result.date = new Date();
         result.type = 'Note';
         this.candidateInfo.push(result);
+        this.candidate.notes.push(result);
         this.sortData();
+        this.saveToDb();
       }
     });
   }
@@ -95,7 +141,9 @@ export class TimelineComponent implements OnInit {
         result.date = new Date();
         result.type = 'Experience';
         this.candidateInfo.push(result);
+        this.candidate.experience.push(result);
         this.sortData();
+        this.saveToDb();
       }
     });
   }
@@ -114,7 +162,15 @@ export class TimelineComponent implements OnInit {
 
   closeBlock(index: number) {
     this.candidateInfo.splice(index, 1);
+  }
 
+  saveToDb() {
+    console.log('try to save');
+    this.candidateService
+      .update(this.candidate.id, this.candidate)
+      .subscribe((res: any) => {
+        console.log(res);
+      });
   }
 
 }

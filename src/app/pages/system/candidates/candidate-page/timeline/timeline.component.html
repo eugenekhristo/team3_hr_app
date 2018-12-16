@@ -33,7 +33,7 @@
               <textarea
                 class="note-input"
                 matInput
-                [(ngModel)]="element.Note"
+                [(ngModel)]="element.note"
                 placeholder="Note"
                 name="Note"
                 required
@@ -45,7 +45,7 @@
             mat-raised-button
             (click)="saveNotes(i, element)"
             color="primary"
-            [disabled]="!element.Note"
+            [disabled]="!element.note"
           >Save</button>
         </table>
       </ng-container>
