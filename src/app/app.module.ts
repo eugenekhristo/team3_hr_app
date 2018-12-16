@@ -8,6 +8,7 @@ import { AuthPageModule } from './pages/auth/auth-page.module';
 
 import { AppComponent } from './app.component';
 import { SystemPageModule } from './pages/system/system-page.module';
+import {MaterialModule} from './ui/material/material.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { SystemPageModule } from './pages/system/system-page.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     AuthPageModule,
-    SystemPageModule
+    SystemPageModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

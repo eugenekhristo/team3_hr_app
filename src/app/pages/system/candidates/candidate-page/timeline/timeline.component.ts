@@ -193,7 +193,7 @@ export class TimelineComponent implements OnInit, OnChanges {
 
   saveToDb() {
     this.candidateService
-      .update(this.candidate.id, this.candidate)
+      .update(this.candidate)
       .subscribe((res: any) => {
         this.snackMessage.openSnackBar('Candidate was updated');
         console.log(res);

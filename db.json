@@ -16,12 +16,23 @@
       "contacts": [
         {
           "name": "Telephone",
-          "value": "+375293569685"
+          "value": "+375293569685",
+          "preferred": true
+        },
+        {
+          "name": "Email",
+          "value": "kastys1@yandex.ru",
+          "preferred": false
+        },
+        {
+          "name": "Skype",
+          "value": "",
+          "preferred": false
         }
       ],
       "notes": [
         {
-          "note": "Any note",
+          "note": "Any note update",
           "date": "2018-12-16T21:24:29.745Z",
           "type": "Note"
         }
@@ -47,22 +58,32 @@
       "contacts": [
         {
           "name": "Telephone",
-          "value": "+375295869574"
+          "value": "+375295869531",
+          "preferred": true
         },
         {
           "name": "Email",
-          "value": "lilliya@gmail.com"
+          "value": "lilliya@yandex.com",
+          "preferred": true
+        },
+        {
+          "name": "Skype",
+          "value": "",
+          "preferred": false
         }
       ],
       "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png",
-      "notes": [
+      "notes": [],
+      "experience": [
         {
-          "note": "Any note",
-          "date": "2018-12-16T21:10:37.326Z",
-          "type": "Note"
+          "companyName": "Epam",
+          "position": "Javist",
+          "date": "2018-12-16T22:59:35.405Z",
+          "type": "Experience",
+          "dateFrom": "1970-01-01T00:00:00.000Z",
+          "dateTo": "1970-01-01T00:00:00.000Z"
         }
       ],
-      "experience": [],
       "cv": []
     },
     {
@@ -75,7 +96,27 @@
       "id": 4,
       "name": "David",
       "surname": "Beckham",
-      "photo": "http://img-fotki.yandex.ru/get/5639/157185180.62/0_b98e2_a784197f_XL.jpg"
+      "photo": "http://img-fotki.yandex.ru/get/5639/157185180.62/0_b98e2_a784197f_XL.jpg",
+      "contacts": [
+        {
+          "name": "Telephone",
+          "value": "+375336425526",
+          "preferred": true
+        },
+        {
+          "name": "Email",
+          "value": "",
+          "preferred": false
+        },
+        {
+          "name": "Skype",
+          "value": "",
+          "preferred": false
+        }
+      ],
+      "notes": [],
+      "experience": [],
+      "cv": []
     },
     {
       "id": 5,
