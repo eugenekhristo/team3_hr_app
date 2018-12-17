@@ -1,15 +1,12 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
-import {VacancyService} from '../../../vacancy.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
-export interface Candidate {
+export interface Candidates {
   id: number;
   name: string;
   surname: string;
   position: string;
   salary: Salary;
 }
-
 export interface Salary {
   count: number;
   type: string;
@@ -20,21 +17,31 @@ export interface Salary {
   templateUrl: './add-candidate.component.html',
   styleUrls: ['./add-candidate.component.scss']
 })
-export class AddCandidateComponent {
-  candidates: Array<Candidate> = this.service.newCandidateList;
-  @Output('add') addCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
+export class AddCandidateComponent implements OnInit {
+  @Output('close')
+  closeEmitter: EventEmitter<null> = new EventEmitter();
+  candidate: Candidates = {
+    id: 0,
+    name: 'Sam',
+    surname: 'Scarlett ',
+    position: 'Front-end developer',
+    salary: {
+      count: 600,
+      type: '$',
+    }
+  };
+  @Output('add') addCandidate: EventEmitter<Candidates> = new EventEmitter<Candidates>();
 
-  constructor(public dialogRef: MatDialogRef<AddCandidateComponent>, public service: VacancyService) {
+  constructor() { }
+
+  ngOnInit() {
   }
-
   close() {
-    this.dialogRef.close();
+    this.closeEmitter.emit();
   }
 
-  add(candidate: Candidate, i: number) {
-    // working with service. LOOOK AND ENJOY
-    this.service.candidateList.push(...this.service.newCandidateList.splice(i, 1));
-    this.dialogRef.close();
+  add() {
+    this.addCandidate.emit(this.candidate);
   }
 
 }

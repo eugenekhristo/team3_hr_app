@@ -91,10 +91,6 @@ export class InterviewService {
     return this.http.delete(`${BASE_URL}/interviews/${id}`);
   }
 
-  updateInterview(interview: InterviewClient) {
-    return this.http.put(`${BASE_URL}/interviews/${interview.id}`, this.transformToBackendModel(interview));
-  }
-
   private transformToBackendModel(interview: InterviewClient): Interview {
     return new Interview(
       interview.candidate['id'],

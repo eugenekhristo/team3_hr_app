@@ -10,7 +10,6 @@ import { InterviewClient } from 'src/app/core/models/interview.model';
 export class InterviewListComponent implements OnInit {
   @Input() interviews: InterviewClient[] = [];
   @Output() deleteInterview = new EventEmitter<InterviewClient>();
-  @Output() editInterview = new EventEmitter<InterviewClient>();
 
   constructor() { }
 

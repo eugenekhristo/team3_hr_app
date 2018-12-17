@@ -18,8 +18,8 @@ export class CandidateService {
     return this.http.get<Candidate>(`${BASE_URL}/candidates/${id}`);
   }
 
-  update(id: number, candidate: Candidate): Observable<Candidate> {
-    return this.http.patch<Candidate>(`${BASE_URL}/candidates/${id}`, candidate);
+  update(candidate: Candidate): Observable<Candidate> {
+    return this.http.patch<Candidate>(`${BASE_URL}/candidates/${candidate.id}`, candidate);
   }
 
   search(searchTerm: Observable<string>): Observable<Candidate[]> {
@@ -29,4 +29,5 @@ export class CandidateService {
       switchMap(term => this.http.get<Candidate[]>(`${BASE_URL}/candidates?q=${term}`))
     );
   }
+
 }

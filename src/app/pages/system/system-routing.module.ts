@@ -12,9 +12,8 @@ import {CandidatePageComponent} from './candidates/candidate-page/candidate-page
 const routes: Routes = [
   {path: '', component: SystemShellComponent, children: [
     {path: 'interview', component: InterviewComponent},
-      {path: 'vacancies', component: VacancyListComponent},
-      {path: 'vacancies', component: VacancyListComponent},
-      {path: 'vacancies/:id', component: VacancyViewComponent},
+      {path: 'vacancy', component: VacancyListComponent},
+      {path: 'vacancyView', component: VacancyViewComponent},
       {path: 'vacancyEdit', component: VacancyEditComponent},
       {path: 'candidates', component: CandidateCardComponent},
       {path: 'candidates/new', component: CandidatePageComponent},

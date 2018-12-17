@@ -1,10 +1,10 @@
-<h1 mat-dialog-title>Add Candidate</h1>
-<mat-list>
-    <mat-list-item *ngFor="let candidate of candidates; let i=index">
-      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" style="width: 50px; height: 50px; border-radius: 25px; margin-right:1%">
+<div id="hr-add-candidate">
+  <mat-list>
+    <mat-list-item>
+      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" style="width: 50px; height: 50px; border-radius: 25px; margin-right: 1%">
       {{candidate.name}} {{candidate.surname}}<br>
       {{candidate.position}}
-      <button (click)="add(candidate, i)" mat-button color="warn">ADD</button>
-    </mat-list-item>
+      <button (click)="add()" mat-button color="warn">ADD</button></mat-list-item>
   </mat-list>
-  <button (click)="close()" class="close" mat-button color="warn" style="margin: auto; display: block; justify-content: center; margin-top: 5%">Cancel</button>
+  <button (click)="close()" class="close" mat-button color="warn">Cancel</button>
+</div>

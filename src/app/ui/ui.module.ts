@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { MaterialModule } from './material/material.module';
 import { SnackMessageComponent } from './components/snack-message/snack-message.component';
@@ -9,9 +10,6 @@ import { HrCalendarComponent } from './components/calendar/hr-calendar.component
 import { SnackMessagePbService } from './services/snack-message-pb.service';
 import { SnackMessageService } from './services/snack-messgae.service';
 import { ReusableMatConfirmModule } from './modules/reusable-mat-confirm/reusable-mat-confirm.module';
-import { InterviewDialogModule } from './modules/interview-dialog/interview-dialog.module';
-import { InterviewDialogComponent } from './modules/interview-dialog/interview-dialog/interview-dialog.component';
-import { InterviewDialogService } from './modules/interview-dialog/interview-dialog.service';
 
 @NgModule({
   declarations: [SnackMessageComponent, HrCalendarComponent],
@@ -20,16 +18,16 @@ import { InterviewDialogService } from './modules/interview-dialog/interview-dia
     FlexLayoutModule,
     MaterialModule,
     ReusableMatConfirmModule,
-    InterviewDialogModule
+    NgxMaterialTimepickerModule.forRoot()
   ],
-  providers: [SnackMessagePbService, SnackMessageService, InterviewDialogService],
-  entryComponents: [SnackMessageComponent, InterviewDialogComponent],
+  providers: [SnackMessagePbService, SnackMessageService],
+  entryComponents: [SnackMessageComponent],
   exports: [
     MaterialModule,
     ReusableMatConfirmModule,
     FlexLayoutModule,
-    HrCalendarComponent,
-    InterviewDialogModule
+    NgxMaterialTimepickerModule,
+    HrCalendarComponent
   ]
 })
 export class UiModule {}

@@ -9,7 +9,6 @@ import { InterviewClient } from 'src/app/core/models/interview.model';
 export class InterviewCardComponent implements OnInit {
   @Input() interview: InterviewClient;
   @Output() deleteInterview = new EventEmitter<InterviewClient>();
-  @Output() editInterview = new EventEmitter<InterviewClient>();
 
   constructor() { }
 

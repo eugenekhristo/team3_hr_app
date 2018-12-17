@@ -1,41 +1,42 @@
-<ng-container *ngIf="vacancy">
-  <mat-card class="info" fxLayout>
-    <mat-list style="width: 100%">
-      <label style="float: right">
-        <nav>
-          <a routerLink="/vacancyEdit"
-             routerLinkActive="active"
-             mat-button style="border:1px solid black; color: black">Edit</a>
-        </nav>
-      </label>
-      <mat-list-item>
-        <h1> {{ vacancy.name }}</h1>
-      </mat-list-item>
-      <mat-list-item>
-        Status: {{ vacancy.status}}
-      </mat-list-item>
-      <mat-list-item>
-        Description:{{ vacancy.description}}
-      </mat-list-item>
-      <mat-list-item>
-        Position: {{ vacancy.position}}
-      </mat-list-item>
-      <span style="margin-left: 1.5%">Requirments:</span>
-      <mat-list-item >
-        <ng-container *ngFor="let key of getSkillKeys()">
-          <div style="padding-right: 10px" *ngIf="skills[key]">{{key+';'}}</div>
-        </ng-container>
-      </mat-list-item>
-    </mat-list>
-  </mat-card>
-  <mat-list id="candidates">
-    <mat-card *ngFor="let candidate of candidateList; let i=index" style="background-color: white">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <h3>{{ candidate.name }} {{candidate.surname}}</h3>
-        <p>{{candidate.position}}: {{candidate.salary.count}}{{candidate.salary.type}} </p>
-      </mat-card-content>
-    </mat-card>
+<mat-card class="info" fxLayout>
+  <mat-list style="width: 100%">
+    <label style="float: right">
+      <nav>
+        <a routerLink="/vacancyEdit"
+           routerLinkActive="active"
+           mat-button style="border:1px solid black; color: black">Edit</a>
+      </nav>
+    </label>
+    <mat-list-item>
+      <h1> {{ vacancy.name }}</h1>
+    </mat-list-item>
+    <mat-list-item>
+      Status: {{ vacancy.status}}
+    </mat-list-item>
+    <mat-list-item>
+      Description:{{ vacancy.description}}
+    </mat-list-item>
+    <mat-list-item>
+      Position: {{ vacancy.position}}
+    </mat-list-item>
+    <span style="margin-left: 1.5%">Requirments:</span>
+    <mat-list-item class="listofskills">
+      <form [formGroup]="chooseSkills">
+        <div class="form-item" *ngFor="let key of Object.keys(chooseSkills.controls)">
+          <input type="checkbox" [formControl]="chooseSkills.get(key)">
+          <input type="checkbox" [formControl]="chooseSkills.get(key)">
+          <span>{{key}}</span>
+        </div>
+      </form>
+    </mat-list-item>
   </mat-list>
-
-</ng-container>
+</mat-card>
+<mat-list id="candidates">
+  <mat-card *ngFor="let candidate of candidateList; let i=index" style="background-color: white">
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <h3>{{ candidate.name }} {{candidate.surname}}</h3>
+      <p>{{candidate.position}}: {{candidate.salary.count}}{{candidate.salary.type}} </p>
+    </mat-card-content>
+  </mat-card>
+</mat-list>

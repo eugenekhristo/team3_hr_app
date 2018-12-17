@@ -27,12 +27,7 @@
     </button>
     <mat-menu #menu="matMenu" xPosition="after">
       <a mat-menu-item title="Go to the interview page"> <span>Go</span> </a>
-      <a
-        mat-menu-item
-        (click)="editInterview.emit(interview)"
-      >
-        <span>Edit</span>
-      </a>
+      <a mat-menu-item> <span>Edit</span> </a>
       <a
         mat-menu-item
         (click)="deleteInterview.emit(interview)"

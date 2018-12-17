@@ -1,0 +1,22 @@
+#hr-add-candidate {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  z-index: 100;
+  top: 50%;  /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+
+  transform: translate(-50%, -50%);
+
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.route{
+  text-decoration: none;
+  color: black;
+}
+.close{
+  margin-top: 25%;
+  margin-left: 40%;
+}

@@ -1,7 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Vacancy} from '../../../../../core/models/vacancy.model';
-import {VacancyService} from '../../../../../core/services/vacancy.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'hr-vacancy-list',
@@ -10,13 +7,9 @@ import {VacancyService} from '../../../../../core/services/vacancy.service';
 })
 export class VacancyListComponent implements OnInit {
 
-  vacancies$: Observable<Vacancy[]>;
-
-  constructor(private  vacanciesService: VacancyService) {
-  }
+  constructor() { }
 
   ngOnInit() {
-    this.vacancies$ = this.vacanciesService.fetch();
   }
 
 }

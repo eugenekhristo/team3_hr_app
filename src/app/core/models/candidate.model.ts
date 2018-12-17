@@ -3,7 +3,6 @@ import {Notes} from './notes.model';
 import {Experience} from './experience.model';
 import {CV} from './cv.model';
 
-
 export class Candidate {
   constructor(
     public name: string,
