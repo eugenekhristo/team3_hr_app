@@ -1,74 +1,68 @@
-<mat-card class="info" fxLayout>
-  <mat-list style="width: 100%">
-    <label style="float: right">
-      <nav>
-        <a routerLink="/vacancyView"
-           routerLinkActive="active"
-           mat-button style="border:1px solid black; color: black">SAVE</a>
-      </nav>
-    </label>
-    <label class="add" (click)="isShowAddCandidate = true">
-      ADD
-    </label>
-    <hr-add-candidate *ngIf="isShowAddCandidate"
-                      (add)="addCandidate($event)"
-                      (close)="isShowAddCandidate = false"></hr-add-candidate>
-    <mat-list-item>
-      <h1> {{ vacancy.name }}</h1>
-    </mat-list-item>
-    <mat-list-item>
-      Status:
-      <select id="status">
-      <option>{{vacancy.status}}</option>
-        <option>closed</option>
-        <option>canceled</option>
-    </select>
-    </mat-list-item>
-    <p style="margin-left: 1.5%">Description:</p>
-    <mat-list-item>
-      <textarea style="padding-right: 120px; padding-top: 40px; border-radius: 10px"></textarea>
-    </mat-list-item>
-    <mat-list-item>
-      Position: {{ vacancy.position}}
-    </mat-list-item>
-    <!--<mat-list-item>-->
-      <!--<mat-form-field class="example-form-field">-->
-        <!--<input #newSkillInput-->
-               <!--matInput type="text"-->
-               <!--placeholder="Skills"-->
-               <!--[matAutocomplete]="auto">-->
-        <!--<mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">-->
-          <!--<mat-option *ngFor="let skill of filteredSkills | async" [value]="skill">-->
-            <!--{{skill}}-->
-          <!--</mat-option>-->
-        <!--</mat-autocomplete>-->
-      <!--</mat-form-field>-->
-    <!--</mat-list-item>-->
-    <mat-list-item class="listofskills">
-      <div>
-        <button (click)="addNewSkill()" mat-raised-button>New</button>
-      </div>
-      <form [formGroup]="chooseSkills">
-        <div class="form-item" *ngFor="let key of Object.keys(chooseSkills.controls)">
-          <input type="checkbox" [formControl]="chooseSkills.get(key)">
-          <span>{{key}}</span>
+<form [formGroup]="vacancyForm">
+  <mat-card class="info" fxLayout>
+    <mat-list style="width: 100%">
+      <label style="float: right">
+        <nav>
+          <a routerLink="/vacancyView"
+             routerLinkActive="active"
+             mat-button style="border:1px solid black; color: black" (click)="saveVacancy()">SAVE</a>
+        </nav>
+      </label>
+      <label class="add" (click)="addCandidate($event)">
+        ADD
+      </label>
+      <mat-list-item>
+        <h2>
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </h2>
+      </mat-list-item>
+      <mat-list-item>
+        Status:
+        <select id="status" formControlName="status">
+          <option *ngFor="let status of vacancyStatuses">{{vacancyStatusEnum[status]}}</option>
+        </select>
+      </mat-list-item>
+      <p style="margin-left: 1.5%">Description:</p>
+      <mat-list-item>
+        <mat-form-field class="example-full-width">
+          <textarea formControlName="description" matInput></textarea>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        Position:
+        <mat-form-field class="example-full-width">
+          <input formControlName="position" matInput>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item class="listofskills">
+        <div>
+          <button (click)="addNewSkill()" mat-raised-button>New</button>
         </div>
-      </form>
-    </mat-list-item>
-  </mat-list>
-</mat-card>
-<mat-list id="candidates">
-  <mat-card *ngFor="let candidate of candidateList; let i=index" style="background-color: white">
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <h3>{{ candidate.name }} {{candidate.surname}}
-        <mat-card-actions style="float: right">
-          <button mat-button (click)="deleteCandidate(i)">
-            <mat-icon mat-list-icon>delete</mat-icon>
-          </button>
-        </mat-card-actions>
-      </h3>
-      <p>{{candidate.position}}: {{candidate.salary.count}}{{candidate.salary.type}} </p>
-    </mat-card-content>
+        <form [formGroup]="chooseSkills" >
+          <div class="form-item" *ngFor="let key of Object.keys(chooseSkills.controls)">
+            <input type="checkbox" [formControl]="chooseSkills.get(key)">
+            <span>{{key}}</span>
+          </div>
+        </form>
+      </mat-list-item>
+    </mat-list>
   </mat-card>
-</mat-list>
+  <mat-list id="candidates">
+    <mat-card *ngFor="let candidate of candidateList; let i=index" style="background-color: white">
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <h3>{{ candidate.name }} {{candidate.surname}}
+          <mat-card-actions style="float: right">
+            <button mat-button (click)="deleteCandidate(i)">
+              <mat-icon mat-list-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </h3>
+        <p>{{candidate.position}}: {{candidate.salary.count}}{{candidate.salary.type}} </p>
+      </mat-card-content>
+    </mat-card>
+  </mat-list>
+</form>
+{{vacancyForm.value | json}}

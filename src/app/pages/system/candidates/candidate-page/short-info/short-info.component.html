@@ -5,7 +5,7 @@
     fxLayoutAlign="center center"
     matRipple
   >
-    <img class="short-info-img" width="250" height="300"  [src]="candidate.photo"/>
+    <img class="short-info-img" [src]="candidate.photo"/>
     <div class="overflow">Click to update the image</div>
     <input
       type="file"
@@ -20,7 +20,7 @@
     <mat-form-field>
       <input
         matInput
-        [(ngModel)]="candidate.name"
+        [value]=[candidate.name]
         placeholder="Name"
         name="Name"
         required
@@ -30,17 +30,18 @@
     <mat-form-field>
       <input
         matInput
-        [(ngModel)]="candidate.position"
+        [value]="candidate.position"
         placeholder="Position"
         name="Position"
       />
     </mat-form-field>
-    <div>
+    <div *ngIf="candidate.contacts; else empty">
       <p>Contacts:</p>
       <div *ngFor="let contact of candidate.contacts; let i = index">
-        <mat-checkbox (change)="preferContact(i)" class="checkbox" [checked]="contact.preferred" title="Preferred contact">
+        <mat-checkbox (change)="change(i)" class="checkbox">
         </mat-checkbox>
-        <mat-form-field>
+        <span *ngIf="!check[i]" class="contacts"> {{contact.name}}</span>
+        <mat-form-field *ngIf="check[i]">
           <input
             matInput
             [(ngModel)]= " contact.value"
@@ -50,10 +51,8 @@
         </mat-form-field>
       </div>
     </div>
-    <button
-      mat-raised-button
-      (click)="saveToDb()"
-      color="primary"
-    >Save</button>
+    <ng-template #empty>
+      <p>No contacts!</p>
+    </ng-template>
   </form>
 </div>

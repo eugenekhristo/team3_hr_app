@@ -17,7 +17,7 @@ export class AddSkillComponent {
     this.dialogRef.close();
   }
   onYesClick() {
-    if (this.name.valid) {
+    if(this.name.valid) {
       (this.dialogRef as any).addSkill(this.name.value);
     }
 

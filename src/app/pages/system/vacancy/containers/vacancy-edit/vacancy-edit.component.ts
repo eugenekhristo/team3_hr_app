@@ -1,18 +1,15 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material';
+import {MatAutocomplete, MatDialog} from '@angular/material';
 import {map, startWith} from 'rxjs/operators';
-import {Candidates} from './add-candidate/add-candidate.component';
-
-export interface VacancyInfo {
-  id: number;
-  name: string;
-  description: string;
-  position: string;
-  status: string;
-}
+import {AddCandidateComponent, Candidate} from './add-candidate/add-candidate.component';
+import {MatConfirmService} from '../../../../../ui/modules/reusable-mat-confirm/mat-confirm-service';
+import {AddSkillComponent} from './add-skill/add-skill.component';
+import {SnackMessageService} from '../../../../../ui/services/snack-messgae.service';
+import {VacancyInfo, VacancyStatusEnum} from './add-candidate/vacancy-info.interface';
+import {VacancyService} from '../../vacancy.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'hr-vacancy-edit',
@@ -21,67 +18,24 @@ export interface VacancyInfo {
 })
 export class VacancyEditComponent {
   readonly Object = Object;
-  vacancy: VacancyInfo = {
-    id: 1,
-    name: 'Mifort developer ',
-    description: ' We are looking for a responsible, active employee with leadership qualities and meeting the following requirements:\n' +
-      'work experience: 3 years or more\n' +
-      'knowledge of English: B1 and above ',
-    position: 'Front-end developer',
-    status: 'opened',
-  };
-  candidateList = [
-    {
-      id: 1,
-      name: 'Sam',
-      surname: 'Scarlett ',
-      position: 'Front-end developer',
-      salary: {
-        count: 500,
-        type: '$',
-      }
-    },
-    {
-      id: 2,
-      name: 'Mac',
-      surname: 'Sam ',
-      position: 'Front-end developer',
-      salary: {
-        count: 550,
-        type: '$',
-      }
-    },
-    {
-      id: 2,
-      name: 'Lili',
-      surname: 'Mac ',
-      position: 'Front-end developer',
-      salary: {
-        count: 550,
-        type: '$'
-      }
-    }];
-  isShowAddCandidate = false;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  vacancy: VacancyInfo = this.service.vacancy;
+  candidateList = this.service.candidateList;
+  vacancyStatuses = Object.keys(VacancyStatusEnum);
+  vacancyStatusEnum = VacancyStatusEnum;
   skillsCtrl = new FormControl();
   filteredSkills: Observable<string[]>;
-  skills: string[] = ['Angular'];
   allSkills: string[] = ['TS', 'JS', 'Java', 'C#', 'C++', 'PHP', 'Python'];
 
   @ViewChild('newSkillInput') newSkillInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   chooseSkills: FormGroup;
-  newSkill: string;
+  vacancyForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    // Эт-форма. Она состоит изформ контролов. Таким образом данная форма состоит 6 форм контролов,
-    // Если нужно добавить еще один поункт в форму, то нам надо в нее динамически впихнутьформ контрол. Это делается так:
-    // this.chooseSkills.addControl('name', new FormControl(...))
-    // Это надо для того чтобы добавить в форму скилов
+  constructor(private fb: FormBuilder, private matConfirm: MatConfirmService,
+              private matDialog: MatDialog,
+              private snackMessage: SnackMessageService,
+              private service: VacancyService, private router: Router) {
     this.chooseSkills = fb.group({
       ts: [false],
       js: [false],
@@ -92,6 +46,13 @@ export class VacancyEditComponent {
       php: [false],
     });
 
+    this.vacancyForm = fb.group({
+      name: [this.vacancy.name, [Validators.required, Validators.minLength(3)]],
+      status: [this.vacancy.status, [Validators.required]],
+      description: [this.vacancy.description, [Validators.minLength(5), Validators.required]],
+      position: [this.vacancy.position, [Validators.minLength(2), Validators.required]]
+    });
+
     console.log(this.chooseSkills.controls);
 
     this.filteredSkills = this.skillsCtrl.valueChanges.pipe(
@@ -99,63 +60,47 @@ export class VacancyEditComponent {
       map((skill: string | null) => skill ? this._filter(skill) : this.allSkills.slice()));
   }
 
-  add(event: MatChipInputEvent): void {
-    // Add fruit only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our fruit
-      if ((value || '').trim()) {
-        this.skills.push(value.trim());
+  deleteCandidate(i: number) {
+    let dialogRef = this.matConfirm.open('Are you sure you wanna delete an interview?');
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.candidateList.splice(i, 1);
       }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-
-      this.skillsCtrl.setValue(null);
-    }
+      dialogRef = null;
+    });
   }
 
-  remove(skill: string): void {
-    const index = this.skills.indexOf(skill);
-
-    if (index >= 0) {
-      this.skills.splice(index, 1);
-    }
+  addCandidate(e: Candidate) {
+    const dialogRef = this.matDialog.open(AddCandidateComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.candidateList.push(e);
+      }
+    });
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.skills.push(event.option.viewValue);
-    this.skillsCtrl.setValue(null);
+  addNewSkill() {
+    const dialogRef = this.matDialog.open(AddSkillComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.allSkills.push(result);
+    });
+
+    (dialogRef as any).addSkill = (skill) => {
+      this.chooseSkills.addControl(skill, new FormControl(false));
+    };
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.allSkills.filter(skill => skill.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  deleteCandidate(i: number) {
-    this.candidateList.splice(i, 1);
+  saveVacancy() {
+    if (this.vacancyForm.valid && this.chooseSkills.valid) {
+        this.service.skills = this.chooseSkills.value;
+        this.service.vacancy = this.vacancyForm.value;
+
+      this.router.navigateByUrl('/vacancyView');
+    }
   }
-
-  addCandidate(e: Candidates) {
-    // this.candidateList.push(<CandidateInfo>e);
-
-    this.candidateList.push(e);
-  }
-
-  findCandidates() {
-    // get candidates
-  }
-
-  addNewSkill() {
-    const value = this.newSkillInput.nativeElement.value;
-    this.chooseSkills.addControl(value, new FormControl(false));
-  }
-
 }
