@@ -18,7 +18,7 @@
       <ng-container *ngSwitchCase="'Note'">
         <table fxFlex="1 1 auto" class="info-table">
           <tr>
-            <button class="close" mat-icon-button (click)="closeBlock(i)">
+            <button class="close" mat-icon-button (click)="closeBlock(i, element)">
               <mat-icon>close</mat-icon>
             </button>
             <h2>Note</h2>
@@ -51,7 +51,7 @@
       </ng-container>
       <ng-container *ngSwitchCase="'Experience'">
         <table fxFlex="1 1 auto" class="info-table">
-          <button class="close" mat-icon-button (click)="closeBlock(i)">
+          <button class="close" mat-icon-button (click)="closeBlock(i, element)">
             <mat-icon>close</mat-icon>
           </button>
           <h2>Experience</h2>
@@ -126,7 +126,7 @@
       </ng-container>
       <ng-container *ngSwitchCase="'CV'">
         <table fxFlex="1 1 auto" class="info-table">
-          <button class="close" mat-icon-button (click)="closeBlock(i)">
+          <button class="close" mat-icon-button (click)="closeBlock(i, element)">
             <mat-icon>close</mat-icon>
           </button>
           <h2>CV</h2>

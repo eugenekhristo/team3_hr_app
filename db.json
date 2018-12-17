@@ -65,16 +65,32 @@
       "contacts": [
         {
           "name": "Telephone",
-          "value": "+375295869574"
+          "value": "+375295869574",
+          "preferred": false
         },
         {
           "name": "Email",
-          "value": "lilliya@gmail.com"
+          "value": "lilliya@gmail.com",
+          "preferred": true
+        },
+        {
+          "name": "Skype",
+          "value": "",
+          "preferred": false
         }
       ],
       "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png",
       "notes": [],
-      "experience": [],
+      "experience": [
+        {
+          "companyName": "Epam",
+          "position": "Java",
+          "dateFrom": "2018-11-30T21:00:00.000Z",
+          "dateTo": "2018-12-15T21:00:00.000Z",
+          "date": "2018-12-17T10:14:53.135Z",
+          "type": "Experience"
+        }
+      ],
       "cv": [
         {
           "name": "out.txt",
