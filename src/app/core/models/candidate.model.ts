@@ -15,5 +15,21 @@ export class Candidate {
     public experience?: Experience[],
     public photo?: string,
     public id?: number
-  ) {}
+  ) {
+  }
+}
+
+export class CandidateClient {
+  constructor(
+    public name: string,
+    public surname?: string,
+    public position?: string,
+    public contacts?: Contact[],
+    public notes?: Notes[],
+    public cv?: CV[],
+    public experience?: Experience[],
+    public photo?: string,
+    public id?: number
+  ) {
+  }
 }
