@@ -15,7 +15,6 @@ import {InterviewService} from '../../../shared/services/interview.service';
 import {switchMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-
 export interface CandidateNotes {
   Note: string;
   date: Date;

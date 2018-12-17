@@ -90,7 +90,6 @@ export class InterviewService {
   }
 
   deleteInterviewById(id: number): Observable<any> {
-    console.log(id);
     return this.http.delete(`${BASE_URL}/interviews/${id}`);
   }
 
