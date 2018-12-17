@@ -120,7 +120,16 @@
       "name": "Kirill",
       "surname": "Savik",
       "position": "Js",
-      "id": 8
+      "id": 8,
+      "notes": [
+        {
+          "note": "New note",
+          "date": "2018-12-17T08:41:16.510Z",
+          "type": "Note"
+        }
+      ],
+      "experience": [],
+      "cv": []
     }
   ],
   "vacancies": [
