@@ -19,13 +19,13 @@
     </mat-card>
   </div>
   <div class="add-button">
-    <button
+    <a
       mat-fab
       color="primary"
-      [routerLink]="['/candidates/new']"
+      (click)="onAddCandidate()"
     >
       <mat-icon>add</mat-icon>
-    </button>
+    </a>
   </div>
   <ng-template #empty>
     <p>У вас нет ни одного кандидата</p>
