@@ -1,7 +1,7 @@
 <div class="card">
   <figure class="card__figure">
     <a
-      href="https://www.tut.by/"
+      [routerLink]="['/candidates/', interview.candidate['id']]"
       [target]="interview.id"
       [title]="'Go to ' + interview.candidate['name'] + '\'s page'"
     >
