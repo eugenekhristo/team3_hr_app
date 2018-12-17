@@ -4,7 +4,7 @@ export class CV {
     public data?: string,
     public mime?: string,
     public size?: number,
-    public date?: Date,
+    public curdate?: Date,
     public type?: string,
   ) {}
 }

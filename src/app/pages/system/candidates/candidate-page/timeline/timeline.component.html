@@ -26,7 +26,7 @@
 
           <tr>
             <td>
-              {{element.date | date}}
+              {{element.curdate | date}}
             </td>
             <td>
               <mat-form-field>
@@ -43,7 +43,7 @@
           </tr>
           <button
             mat-raised-button
-            (click)="saveNotes(i, element)"
+            (click)="saveEdits(i, element)"
             color="primary"
             [disabled]="!element.note"
           >Save</button>
@@ -57,7 +57,7 @@
           <h2>Experience</h2>
           <tr>
             <td>
-              {{element.date | date}}
+              {{element.curdate | date}}
             </td>
             <td>
               <p>
@@ -118,7 +118,7 @@
           </tr>
           <button
             mat-raised-button
-            (click)="saveExperience(i, element)"
+            (click)="saveEdits(i, element)"
             color="primary"
             [disabled]="!element.companyName"
           >Save</button>
@@ -132,13 +132,73 @@
           <h2>CV</h2>
           <tr>
             <td>
-              {{element.date | date}}
+              {{element.curdate | date}}
             </td>
             <td>
               <h4 mat-line><mat-icon mat-list-icon>note</mat-icon> {{element.name}}</h4>
               <button mat-raised-button (click)="downloadCv(element)" color="primary">Download</button>
             </td>
           </tr>
+        </table>
+      </ng-container>
+      <ng-container *ngSwitchCase="'Interview'">
+        <table fxFlex="1 1 auto" class="info-table">
+          <button class="close" mat-icon-button (click)="closeBlock(i, element)">
+            <mat-icon>close</mat-icon>
+          </button>
+          <h2>Interview</h2>
+          <tr>
+            <td>
+              {{element.curdate | date}}
+            </td>
+            <td>
+              <p>
+                <mat-form-field>
+                  <input
+                    matInput
+                    [(ngModel)]="element.date"
+                    name="Date"
+                    [matDatepicker]="picker1"
+                    placeholder="Date"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <input
+                    matInput
+                    [(ngModel)]="element.time"
+                    name="Time"
+                    placeholder="Time"
+                    required
+                  />
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <input
+                    matInput
+                    [(ngModel)]="element.vacancy.title"
+                    placeholder="Position"
+                    name="Position"
+                    required
+                  />
+                </mat-form-field>
+              </p>
+            </td>
+          </tr>
+          <button
+            mat-raised-button
+            (click)="saveEditInterview(element)"
+            color="primary"
+            [disabled]="!element.vacancy.title || !element.time || !element.date"
+          >Save</button>
         </table>
       </ng-container>
     </div>

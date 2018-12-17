@@ -7,7 +7,8 @@ export class Interview {
     public vacancyId?: number,
     public date?: string,
     public time?: string,
-    public id?: number
+    public curdate?: Date,
+    public id?: number,
   ) {}
 }
 
@@ -17,6 +18,7 @@ export class InterviewClient {
     public vacancy: Vacancy | Object,
     public date: string,
     public time?: string,
-    public id?: number
+    public curdate?: Date,
+    public id?: number,
   ) {}
 }

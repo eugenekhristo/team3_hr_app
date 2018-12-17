@@ -4,7 +4,7 @@ export class Experience {
     public position?: string,
     public dateFrom?: Date,
     public dateTo?: Date,
-    public date?: Date,
+    public curdate?: Date,
     public type?: string,
   ) {}
 }

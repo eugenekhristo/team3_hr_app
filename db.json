@@ -16,41 +16,34 @@
       "contacts": [
         {
           "name": "Telephone",
-          "value": "+375293569685"
+          "value": "+375293569685",
+          "preferred": true
+        },
+        {
+          "name": "Email",
+          "value": "",
+          "preferred": false
+        },
+        {
+          "name": "Skype",
+          "value": "",
+          "preferred": false
         }
       ],
       "notes": [
         {
-          "date": "2018-02-20T21:00:00.000Z",
-          "note": "He was very good on the interview",
-          "type": "Note"
-        },
-        {
-          "date": "2018-09-19T21:00:00.000Z",
           "note": "We want to see him in our company",
-          "type": "Note"
-        },
-        {
-          "note": "We invited him to job",
-          "date": "2018-12-16T19:06:40.159Z",
+          "curdate": "2018-12-17T12:58:24.484Z",
           "type": "Note"
         }
       ],
       "experience": [
         {
-          "date": "2017-04-20T21:00:00.000Z",
           "companyName": "Epam",
           "position": "Javist",
-          "dateFrom": "2013-02-11T21:00:00.000Z",
-          "dateTo": "2017-04-10T21:00:00.000Z",
-          "type": "Experience"
-        },
-        {
-          "companyName": "Mifort",
-          "position": "Angular2",
-          "dateFrom": "2018-11-30T21:00:00.000Z",
-          "dateTo": "2018-12-14T21:00:00.000Z",
-          "date": "2018-12-16T19:11:26.027Z",
+          "dateFrom": "2016-03-02T21:00:00.000Z",
+          "dateTo": "2018-12-01T21:00:00.000Z",
+          "curdate": "2018-12-17T12:58:45.342Z",
           "type": "Experience"
         }
       ],
@@ -87,7 +80,7 @@
           "position": "Java",
           "dateFrom": "2018-11-30T21:00:00.000Z",
           "dateTo": "2018-12-15T21:00:00.000Z",
-          "date": "2018-12-17T10:14:53.135Z",
+          "curdate": "2018-12-17T10:14:53.135Z",
           "type": "Experience"
         }
       ],
@@ -97,7 +90,7 @@
           "size": 67,
           "data": "data:text/plain;base64,c3VtID0gMiw1ODY5MDQ3NjE5MDQ3NiBtaW4gPSAwLDE0Mjg1NzE0Mjg1NzE0MyB6ID0gMSwwNTMzNTYwMjcwOTYyMg==",
           "mime": "text/plain",
-          "date": "2018-12-16T19:55:22.879Z",
+          "curdate": "2018-12-16T19:55:22.879Z",
           "type": "CV"
         }
       ]
@@ -165,8 +158,9 @@
     {
       "candidateId": 5,
       "vacancyId": 6,
-      "date": "2018-12-19",
-      "time": "10:40",
+      "date": "2018-12-19T00:00:00.000Z",
+      "time": "10:30",
+      "curdate": "2018-12-17T10:14:53.135Z",
       "id": 1
     },
     {
@@ -174,21 +168,24 @@
       "vacancyId": 1,
       "date": "2018-12-19",
       "time": "09:00",
+      "curdate": "2018-12-16T10:14:53.135Z",
       "id": 2
-    },
-    {
-      "candidateId": 1,
-      "vacancyId": 1,
-      "date": "2018-12-19",
-      "time": "07:00",
-      "id": 4
     },
     {
       "candidateId": 6,
       "vacancyId": 3,
       "date": "2018-12-19",
       "time": "09:30",
+      "curdate": "2018-12-17T10:12:53.135Z",
       "id": 5
+    },
+    {
+      "candidateId": 1,
+      "vacancyId": 5,
+      "date": "2018-12-21T00:00:00.000Z",
+      "time": "13:00",
+      "curdate": "2018-12-16T15:12:53.135Z",
+      "id": 6
     }
   ]
 }

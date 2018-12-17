@@ -4,6 +4,7 @@ import {CandidateService} from '../../../../core/services/candidate.service';
 import {switchMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Candidate} from '../../../../core/models/candidate.model';
+import {InterviewService} from '../../shared/services/interview.service';
 
 @Component({
   selector: 'hr-candidate-page',
@@ -11,12 +12,13 @@ import {Candidate} from '../../../../core/models/candidate.model';
   styleUrls: ['./candidate-page.component.scss']
 })
 export class CandidatePageComponent implements OnInit {
-
+  interviews = [];
   isNew = true;
   candidate: Candidate;
 
   constructor(private route: ActivatedRoute,
-              private candidatesService: CandidateService) {
+              private candidatesService: CandidateService,
+  ) {
   }
 
   ngOnInit() {

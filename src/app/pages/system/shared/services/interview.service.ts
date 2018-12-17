@@ -69,6 +69,7 @@ export class InterviewService {
                   vacancy,
                   interview.date,
                   interview.time,
+                  interview.curdate,
                   interview.id
                 )
             )
@@ -82,7 +83,9 @@ export class InterviewService {
 
   addInterview(interview: InterviewClient) {
     const backInterview: Interview = this.transformToBackendModel(interview);
-    this._interviewDates = [...this._interviewDates, interview.date];
+    if (this._interviewDates) {
+      this._interviewDates = [...this._interviewDates, interview.date];
+    }
     return this.http.post(`${BASE_URL}/interviews`, backInterview);
   }
 
@@ -95,12 +98,45 @@ export class InterviewService {
     return this.http.put(`${BASE_URL}/interviews/${interview.id}`, this.transformToBackendModel(interview));
   }
 
+  getInterviewsByCandidate(id: number) {
+    let interviewsCount = 0;
+    const params = new HttpParams().set('candidateId', String(id));
+    return this.http
+      .get<Interview[]>(`${BASE_URL}/interviews`, { params })
+      .pipe(
+        tap(interviews => {
+          interviewsCount = interviews.length;
+        }),
+        switchMap(interviews => from(interviews)),
+        mergeMap(interview => {
+          return forkJoin(
+            this.http.get(`${BASE_URL}/candidates/${interview.candidateId}`),
+            this.http.get(`${BASE_URL}/vacancies/${interview.vacancyId}`)
+          ).pipe(
+            map(
+              ([candidate, vacancy]) =>
+                new InterviewClient(
+                  candidate,
+                  vacancy,
+                  interview.date,
+                  interview.time,
+                  interview.curdate,
+                  interview.id
+                )
+            )
+          );
+        }),
+        bufferCount(interviewsCount)
+      );
+  }
+
   private transformToBackendModel(interview: InterviewClient): Interview {
     return new Interview(
       interview.candidate['id'],
       interview.vacancy['id'],
       interview.date,
-      interview.time
+      interview.time,
+      interview.curdate
     );
   }
 }
