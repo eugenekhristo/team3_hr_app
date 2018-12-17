@@ -63,7 +63,7 @@
         {
           "name": "Email",
           "value": "lilliya@yandex.com",
-          "preferred": true
+          "preferred": false
         },
         {
           "name": "Skype",
@@ -72,7 +72,13 @@
         }
       ],
       "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png",
-      "notes": [],
+      "notes": [
+        {
+          "note": "Any note",
+          "date": "2018-12-17T00:01:55.195Z",
+          "type": "Note"
+        }
+      ],
       "experience": [
         {
           "companyName": "Epam",
