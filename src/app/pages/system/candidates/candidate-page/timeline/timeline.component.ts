@@ -5,11 +5,7 @@ import {NewExperienceDialogComponent} from './new-experience-dialog/new-experien
 import {NewCvDialogComponent} from './new-cv-dialog/new-cv-dialog.component';
 import {Candidate} from '../../../../../core/models/candidate.model';
 import {CandidateService} from '../../../../../core/services/candidate.service';
-import {ActivatedRoute} from '@angular/router';
-import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
-import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
-
-
+import {ActivatedRoute, Params} from '@angular/router';
 
 export interface CandidateNotes {
   Note: string;
@@ -42,9 +38,7 @@ export class TimelineComponent implements OnInit, OnChanges {
 
   constructor(public dialog: MatDialog,
               private candidateService: CandidateService,
-              private route: ActivatedRoute,
-              private snackMessage: SnackMessageService,
-              private matConfirm: MatConfirmService,
+              private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -154,48 +148,27 @@ export class TimelineComponent implements OnInit, OnChanges {
     });
   }
 
-  saveNotes(i: number, element) {
-    this.candidateInfo[i] = element;
-    const index = this.candidate.notes.indexOf(element);
-    this.candidate.notes[index] = element;
-    this.saveToDb();
+  saveNotes(index: number, element) {
+    this.candidateInfo[index].Note = element.Note;
+    console.log(this.candidateInfo[index].Note);
   }
 
-  saveExperience(i: number, element) {
-    this.candidateInfo[i] = element;
-    const index = this.candidate.experience.indexOf(element);
-    this.candidate.experience[index] = element;
-    this.saveToDb();
+  saveExperience(index: number, element) {
+    this.candidateInfo[index].companyName = element.companyName;
+    this.candidateInfo[index].position = element.position;
+    this.candidateInfo[index].dateFrom = element.dateFrom;
+    this.candidateInfo[index].dateTo = element.dateTo;
   }
 
-  closeBlock(i: number, element: any) {
-    this.matConfirm
-      .open('Are you sure you want delete this block?')
-      .afterClosed()
-      .subscribe(res => {
-        if (res) {
-          this.candidateInfo.splice(i, 1);
-          let index: number;
-          if (element.type === 'Note') {
-            index = this.candidate.notes.indexOf(element);
-            this.candidate.notes.splice(index, 1);
-          } else if (element.type === 'Experience') {
-            index = this.candidate.experience.indexOf(element);
-            this.candidate.experience.splice(index, 1);
-          } else if (element.type === 'CV') {
-            index = this.candidate.cv.indexOf(element);
-            this.candidate.cv.splice(index, 1);
-          }
-          this.saveToDb();
-        }
-      });
+  closeBlock(index: number) {
+    this.candidateInfo.splice(index, 1);
   }
 
   saveToDb() {
+    console.log('try to save');
     this.candidateService
-      .update(this.candidate)
+      .update(this.candidate.id, this.candidate)
       .subscribe((res: any) => {
-        this.snackMessage.openSnackBar('Candidate was updated');
         console.log(res);
       });
   }
