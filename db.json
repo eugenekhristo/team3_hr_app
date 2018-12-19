@@ -165,30 +165,27 @@
     {
       "candidateId": 5,
       "vacancyId": 6,
-      "date": "2018-12-19",
-      "time": "10:40",
+      "start": "2018-12-21 09:00:00",
+      "end": "2018-12-21 10:00:00",
+      "place": "Minsk, Nemiga street, 6",
+      "title": "Millie Bobby Brown on UI/UX Designer",
       "id": 1
     },
     {
       "candidateId": 1,
       "vacancyId": 1,
-      "date": "2018-12-19",
-      "time": "07:00",
-      "id": 4
+      "start": "2018-12-25 09:00",
+      "end": "2018-12-25 10:00",
+      "title": "Till Lindemann on Java",
+      "id": 2
     },
     {
-      "candidateId": 6,
-      "vacancyId": 3,
-      "date": "2018-12-19",
-      "time": "09:30",
-      "id": 5
-    },
-    {
-      "candidateId": 2,
-      "vacancyId": 2,
-      "date": "2018-12-19",
-      "time": "08:00",
-      "id": 6
+      "candidateId": 3,
+      "vacancyId": 5,
+      "start": "2018-12-27 08:00",
+      "end": "2018-12-27 09:00",
+      "title": "Serj Tankian on NodeJS",
+      "id": 3
     }
   ]
 }

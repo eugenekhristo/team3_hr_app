@@ -1,8 +1,7 @@
 <div class="dialog">
-<h2
-  class="dialog__title"
-  mat-dialog-title>{{data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Edit'}} Interview
-</h2>
+  <h2 class="dialog__title" mat-dialog-title>
+    {{ data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Edit' }} Interview
+  </h2>
 
   <div class="dialog__content">
     <form #f="ngForm" fxLayout="column">
@@ -14,7 +13,7 @@
           [matAutocomplete]="auto"
           (input)="candidateSearchTerm$.next($event.target.value)"
           name="candidate"
-          [(ngModel)]="data.interview.candidate"
+          [(ngModel)]="candidate"
         />
       </mat-form-field>
       <mat-autocomplete
@@ -41,7 +40,7 @@
           [matAutocomplete]="auto2"
           (input)="vacancySearchTerm$.next($event.target.value)"
           name="vacancy"
-          [(ngModel)]="data.interview.vacancy"
+          [(ngModel)]="vacancy"
         />
       </mat-form-field>
       <mat-autocomplete
@@ -72,13 +71,13 @@
         ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-
+      <!------------------------------- start time ---------------------------------->
       <mat-form-field>
         <input
           matInput
           name="time"
-          placeholder="Time"
-          [(ngModel)]="data.interview.time"
+          placeholder="Start Time"
+          [(ngModel)]="startTime"
           [ngxTimepicker]="timePicker"
           [format]="24"
           readonly
@@ -108,6 +107,56 @@
           <button mat-raised-button color="warn">Cancel</button>
         </ng-template>
       </div>
+
+      <!------------------------------- end time ---------------------------------->
+
+      <mat-form-field>
+        <input
+          matInput
+          name="time"
+          placeholder="End Time"
+          [(ngModel)]="endTime"
+          [ngxTimepicker]="timePicker2"
+          [format]="24"
+          readonly
+          [disableClick]="true"
+        />
+        <ngx-material-timepicker-toggle [for]="timePicker2" matSuffix>
+          <mat-icon
+            ngxMaterialTimepickerToggleIcon
+            style="color: #757575; font-size: 2.1rem;"
+            >access_time</mat-icon
+          >
+        </ngx-material-timepicker-toggle>
+      </mat-form-field>
+
+      <div class="timepicker__dialog">
+        <ngx-material-timepicker
+          #timePicker2
+          [enableKeyboardInput]="true"
+          [confirmBtnTmpl]="confirmBtn2"
+          [cancelBtnTmpl]="cancelBtn"
+        ></ngx-material-timepicker>
+
+        <ng-template #confirmBtn2>
+          <button mat-raised-button color="primary">OK</button>
+        </ng-template>
+        <ng-template #cancelBtn>
+          <button mat-raised-button color="warn">Cancel</button>
+        </ng-template>
+      </div>
+
+      <!------------------------------- title ---------------------------------->
+
+      <mat-form-field fxFlex="100%">
+        <input
+          placeholder="Title"
+          type="text"
+          matInput
+          name="title"
+          [(ngModel)]="title"
+        />
+      </mat-form-field>
 
       <div
         mat-dialog-actions
