@@ -7,6 +7,7 @@ import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/inte
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
 import { InterviewService } from '../../../shared/services/interview.service';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'hr-interview',
@@ -23,16 +24,32 @@ export class InterviewComponent implements OnInit {
   constructor(
     private interviewDialog: InterviewDialogService,
     private interviewService: InterviewService,
-    private matSnack: SnackMessageService
+    private matSnack: SnackMessageService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.setCalendarOptions();
-    // FIXME: maybe this method is unnesesssary
-    this.clearEvents();
     this.interviewService.getAllInterviews().subscribe(interviews => {
       this.interviews = interviews;
       this.calendarOptions.events = this.interviews;
+    });
+
+    this.route.queryParams.subscribe(params => {
+      if (params['event']) {
+        switch (params['event']) {
+          case 'interviewDeleted':
+            window.setTimeout(
+              () =>
+                this.matSnack.openSnackBar(
+                  'The interview event was successfully deleted!'
+                ),
+              0
+            );
+            break;
+        }
+      }
     });
   }
 
@@ -61,11 +78,6 @@ export class InterviewComponent implements OnInit {
     };
   }
 
-  // FIXME: maybe this method is unnesesssary
-  private clearEvents() {
-    this.interviews = [];
-  }
-
   setSelectedDate(e: CustomEvent) {
     this.selectedDate = moment(e.detail.date._d).format('YYYY-MM-DD') as string;
   }
@@ -87,14 +99,15 @@ export class InterviewComponent implements OnInit {
   }
 
   onEventClick(e: CustomEvent) {
-    console.log(e);
+    const interviewId = e.detail.event.id;
+    this.router.navigate([interviewId], { relativeTo: this.route });
+    // console.log(e);
   }
 
   private renderInterviewEvent(interview: InterviewClient) {
     this.calendar.fullCalendar('renderEvent', interview);
   }
 }
-
 
 // FOR DB JSON interviews
 // {
