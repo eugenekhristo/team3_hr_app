@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { Subject } from 'rxjs';
 import { CandidateService } from 'src/app/core/services/candidate.service';
@@ -8,12 +8,12 @@ import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { InterviewClient } from 'src/app/core/models/interview.model';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { INTERVIEW_DIALOG_TYPES } from '../interview-dialog-types';
-import { join } from 'path';
 
 @Component({
   selector: 'hr-interview-dialog',
   templateUrl: './interview-dialog.component.html',
-  styleUrls: ['./interview-dialog.component.scss']
+  styleUrls: ['./interview-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InterviewDialogComponent implements OnInit {
   INTERVIEW_DIALOG_TYPES = INTERVIEW_DIALOG_TYPES;

@@ -17,12 +17,4 @@ export class SnackMessageComponent implements OnInit {
     this.message = this.snackMessagePbService.message;
     this.type = this.snackMessagePbService.type;
   }
-
-  // get message() {
-  //   return this._message;
-  // }
-
-  // set message(message: string) {
-  //   this._message = message;
-  // }
 }

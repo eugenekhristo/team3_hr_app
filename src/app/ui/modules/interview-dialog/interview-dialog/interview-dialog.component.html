@@ -75,7 +75,7 @@
       <mat-form-field>
         <input
           matInput
-          name="time"
+          name="starttime"
           placeholder="Start Time"
           [(ngModel)]="startTime"
           [ngxTimepicker]="timePicker"
@@ -113,7 +113,7 @@
       <mat-form-field>
         <input
           matInput
-          name="time"
+          name="endtime"
           placeholder="End Time"
           [(ngModel)]="endTime"
           [ngxTimepicker]="timePicker2"
@@ -181,7 +181,7 @@
           [mat-dialog-close]="data.interview"
           fxFlex="50"
         >
-          Submit
+        {{ data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Save' }}
         </button>
       </div>
       <!-- END of dialog__actions -->

@@ -10,7 +10,8 @@ import {
   switchMap,
   mergeMap,
   bufferCount,
-  delay
+  delay,
+  share
 } from 'rxjs/operators';
 
 import {
@@ -55,21 +56,49 @@ export class InterviewService {
     );
   }
 
+  getInterview(id: number): Observable<InterviewClient> {
+    return this.http.get<Interview>(`${BASE_URL}/interviews/${id}`).pipe(
+      switchMap(interview => {
+        return forkJoin(
+          this.http.get(`${BASE_URL}/candidates/${interview.candidateId}`),
+          this.http.get(`${BASE_URL}/vacancies/${interview.vacancyId}`)
+        ).pipe(
+          map(
+            ([candidate, vacancy]) =>
+              new InterviewClient(
+                candidate as Candidate,
+                vacancy as Vacancy,
+                interview.start,
+                interview.end,
+                interview.place,
+                interview.title,
+                interview.id
+              )
+          )
+        );
+      })
+    );
+  }
+
   addInterview(interview: InterviewClient): Observable<Interview> {
     const backInterview: Interview = this.transformToBackendModel(interview);
     return this.http.post<Interview>(`${BASE_URL}/interviews`, backInterview);
   }
 
-  // deleteInterviewById(id: number): Observable<any> {
-  //   return this.http.delete(`${BASE_URL}/interviews/${id}`);
-  // }
+  deleteInterview(id: number): Observable<any> {
+    return this.http.delete(`${BASE_URL}/interviews/${id}`);
+  }
 
-  // updateInterview(interview: InterviewClient) {
-  //   return this.http.put(
-  //     `${BASE_URL}/interviews/${interview.id}`,
-  //     this.transformToBackendModel(interview)
-  //   );
-  // }
+  updateInterview(interview: InterviewClient): Observable<Interview> {
+    return this.http
+      .put<Interview>(
+        `${BASE_URL}/interviews/${interview.id}`,
+        this.transformToBackendModel(interview)
+      )
+      .pipe(
+        share()
+      );
+  }
 
   private transformToBackendModel(interview: InterviewClient): Interview {
     return new Interview(

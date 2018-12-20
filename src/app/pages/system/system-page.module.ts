@@ -26,6 +26,8 @@ import { TimelineComponent } from './candidates/candidate-page/timeline/timeline
 import { NewCvDialogComponent } from './candidates/candidate-page/timeline/new-cv-dialog/new-cv-dialog.component';
 import { NewExperienceDialogComponent } from './candidates/candidate-page/timeline/new-experience-dialog/new-experience-dialog.component';
 import { NewNotesDialogComponent } from './candidates/candidate-page/timeline/new-notes-dialog/new-notes-dialog.component';
+import { InterviewingComponent } from './interview/containers/interviewing/interviewing.component';
+import { InterviewStore } from './shared/services/interview-store.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { NewNotesDialogComponent } from './candidates/candidate-page/timeline/ne
     NewCvDialogComponent,
     NewExperienceDialogComponent,
     NewNotesDialogComponent,
-    AddSkillComponent
+    AddSkillComponent,
+    InterviewingComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +59,7 @@ import { NewNotesDialogComponent } from './candidates/candidate-page/timeline/ne
     FullCalendarModule
   ],
   exports: [SystemShellComponent],
-  providers: [InterviewService, VacancyService],
+  providers: [InterviewService, InterviewStore, VacancyService],
   entryComponents: [
     NewExperienceDialogComponent,
     NewNotesDialogComponent,
