@@ -69,13 +69,15 @@
 /deep/.fc-icon.fc-icon-left-single-arrow,
 /deep/.fc-icon.fc-icon-right-single-arrow {
   display: block;
-  width: 5rem;
-  height: 5rem;
+  width: 6.5rem;
+  height: 6.5rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: .4s;
+  position: relative;
+  top: -1rem !important;
 }
 
 /deep/.fc-prev-button.fc-state-down /deep/.fc-icon.fc-icon-left-single-arrow,
