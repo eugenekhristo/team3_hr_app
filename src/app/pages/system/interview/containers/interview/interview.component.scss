@@ -30,12 +30,11 @@
 	border-radius: 3px;
   border: 1px solid #3f51b5; /* default BORDER color */
   cursor: pointer;
-  transition: .3s;
   font-size: 1rem;
+  color: #fff;
 
   &:hover {
     background-color: #303d86;
-    transform: translateY(-1px);
     backface-visibility: hidden;
   }
 }
@@ -44,7 +43,6 @@
 /deep/.fc-event-dot {
   background-color: #3f51b5; /* default BACKGROUND color */
   cursor: pointer;
-  transition: .3s;
 }
 
 /deep/.fc-prev-button,

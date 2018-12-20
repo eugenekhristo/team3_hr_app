@@ -5,11 +5,7 @@
     [options]="calendarOptions"
     (dayClick)="setSelectedDate($event); openAddInterviewDialog()"
     (eventClick)="onEventClick($event)"
+    (eventDrop)="onChangeDateTime($event)"
+    (eventResize)="onTimeChange($event)"
   ></ng-fullcalendar>
 </div>
-
-<!--
-  (dayClick)="onDayClick($event)"
-  (eventClick)="onEventClick($event)"
-  (eventMouseOver)="onMouseOver($event)"
--->
