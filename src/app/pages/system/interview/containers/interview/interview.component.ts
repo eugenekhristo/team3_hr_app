@@ -74,7 +74,9 @@ export class InterviewComponent implements OnInit {
       height: 'parent',
       weekends: false,
       eventLimit: true,
-      events: []
+      events: [],
+
+      editable: true
     };
   }
 
@@ -101,37 +103,43 @@ export class InterviewComponent implements OnInit {
   onEventClick(e: CustomEvent) {
     const interviewId = e.detail.event.id;
     this.router.navigate([interviewId], { relativeTo: this.route });
-    // console.log(e);
+  }
+
+  onChangeDateTime(e: CustomEvent) {
+     this.interviewService
+      .updateInterview(this.getInterviewClientFromEvent(e))
+      .subscribe(() =>
+        this.matSnack.openSnackBar('The timestamp of the interview is updated')
+      );
+  }
+
+  onTimeChange(e: CustomEvent) {
+    this.interviewService
+      .updateInterview(this.getInterviewClientFromEvent(e))
+      .subscribe(() =>
+        this.matSnack.openSnackBar('The time of the interview is updated')
+      );
   }
 
   private renderInterviewEvent(interview: InterviewClient) {
     this.calendar.fullCalendar('renderEvent', interview);
   }
-}
 
-// FOR DB JSON interviews
-// {
-//   "candidateId": 5,
-//   "vacancyId": 6,
-//   "start": "2018-12-21 09:00:00",
-//   "end": "2018-12-21 10:00:00",
-//   "place": "Minsk, Nemiga street, 6",
-//   "title": "Millie Bobby Brown on UI/UX Designer",
-//   "id": 1
-// },
-// {
-//   "candidateId": 1,
-//   "vacancyId": 1,
-//   "start": "2018-12-25 09:00",
-//   "end": "2018-12-25 10:00",
-//   "title": "Till Lindemann on Java",
-//   "id": 2
-// },
-// {
-//   "candidateId": 3,
-//   "vacancyId": 5,
-//   "start": "2018-12-27 08:00",
-//   "end": "2018-12-27 09:00",
-//   "title": "Serj Tankian on NodeJS",
-//   "id": 3
-// }
+  private getInterviewClientFromEvent(e: CustomEvent): InterviewClient {
+    const { id, candidate, vacancy, start, end, title, place } = e.detail.event;
+    const newStart = start.format('YYYY-MM-DD HH:mm:ss');
+    const newEnd = end.format('YYYY-MM-DD HH:mm:ss');
+
+    const interviewClient = new InterviewClient(
+      candidate,
+      vacancy,
+      newStart,
+      newEnd,
+      place,
+      title,
+      id
+    );
+
+    return interviewClient;
+  }
+}
