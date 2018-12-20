@@ -1,25 +1,15 @@
-<div class="row">
-  <div class="col-md">
-    <hr-calendar
-      [interviewDates]="interviewDates"
-      (datePicked)="onDatePicked($event)"
-      (addEvent)="onAddInterview()"
-    >
-    </hr-calendar>
-  </div>
-
-  <div class="col-md interviews__container" style="margin-left: 2rem">
-    <h4 class="active__date">{{ activeDate | date: 'LLL dd, yyyy' }}</h4>
-
-    <mat-spinner *ngIf="!isInterviewsLoaded"></mat-spinner>
-
-    <hr-interview-list
-      *ngIf="isInterviewsLoaded"
-      class="hr-interview-list"
-      [interviews]="interviews"
-      (deleteInterview)="onDeleteInterview($event)"
-      (editInterview)="onEditInterview($event)"
-    >
-    </hr-interview-list>
-  </div>
+<div *ngIf="calendarOptions" class="calendar__container">
+  <ng-fullcalendar
+    #calendar
+    [(eventsModel)]="interviews"
+    [options]="calendarOptions"
+    (dayClick)="setSelectedDate($event); openAddInterviewDialog()"
+    (eventClick)="onEventClick($event)"
+  ></ng-fullcalendar>
 </div>
+
+<!--
+  (dayClick)="onDayClick($event)"
+  (eventClick)="onEventClick($event)"
+  (eventMouseOver)="onMouseOver($event)"
+-->

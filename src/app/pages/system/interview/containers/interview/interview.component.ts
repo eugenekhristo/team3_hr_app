@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { InterviewService } from '../../../shared/services/interview.service';
-import {
-  InterviewClient, Interview
-} from 'src/app/core/models/interview.model';
-import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
-import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
+import * as moment from 'moment';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { InterviewClient } from 'src/app/core/models/interview.model';
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Options } from 'fullcalendar';
 import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/interview-dialog.service';
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
+import { InterviewService } from '../../../shared/services/interview.service';
+import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'hr-interview',
@@ -14,136 +15,123 @@ import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/inte
   styleUrls: ['./interview.component.scss']
 })
 export class InterviewComponent implements OnInit {
-  interviewDates: string[] = [];
-  interviews: InterviewClient[] = [];
-  isInterviewsLoaded = false;
-  activeDate: string;
-  // this variable to fix bug of the first loading of the calendar.
-  // If from service no response within 500 ms
-  // then specify manually that there are no interviews for today
-  firstLoadingResolved = false;
+  calendarOptions: Options;
+  interviews: object[] = [];
+  selectedDate: string;
+
+  @ViewChild(CalendarComponent) calendar: CalendarComponent;
 
   constructor(
-    private interviewService: InterviewService,
     private interviewDialog: InterviewDialogService,
-    private snackMessage: SnackMessageService,
-    private matConfirm: MatConfirmService
+    private interviewService: InterviewService,
+    private matSnack: SnackMessageService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.interviewService.getInterviewsDates().subscribe(dates => {
-      this.interviewDates = dates;
+    this.setCalendarOptions();
+    this.interviewService.getAllInterviews().subscribe(interviews => {
+      this.interviews = interviews;
+      this.calendarOptions.events = this.interviews;
     });
 
-    this.interviewService.interviewAdded$.subscribe(
-      (interview: InterviewClient) => {
-        this.interviewDates = [...this.interviewDates, interview.date];
-      }
-    );
-
-    this.interviewService.interviewAdded$.subscribe(
-      (interview: InterviewClient) => {
-        if (this.interviews) {
-          this.interviews = [...this.interviews, interview].sort((a, b) =>
-            a.time > b.time ? 1 : -1
-          );
+    this.route.queryParams.subscribe(params => {
+      if (params['event']) {
+        switch (params['event']) {
+          case 'interviewDeleted':
+            window.setTimeout(
+              () =>
+                this.matSnack.openSnackBar(
+                  'The interview event was successfully deleted!'
+                ),
+              0
+            );
+            break;
         }
       }
-    );
-  }
-
-  onDatePicked(date: string) {
-    this.activeDate = date;
-    this.isInterviewsLoaded = false;
-    this.interviewService.getInterviewsByDate(date).subscribe(res => {
-      this.firstLoadingResolved = true;
-      this.interviews = res;
-      this.isInterviewsLoaded = true;
     });
-
-    if (!this.firstLoadingResolved) {
-      setTimeout(() => {
-        if (!this.firstLoadingResolved) {
-          this.interviews = [];
-          this.isInterviewsLoaded = true;
-        }
-      }, 500);
-    }
   }
 
-  onAddInterview() {
+  private setCalendarOptions() {
+    this.calendarOptions = {
+      minTime: '07:00:00',
+      maxTime: '20:00:00',
+      timezone: 'local',
+      buttonText: {
+        month: 'Month',
+        week: 'Week',
+        day: 'Day',
+        list: 'List',
+        today: 'Today'
+      },
+      header: {
+        left: 'today',
+        right: 'month,agendaWeek,agendaDay,list',
+        center: 'prev, title, next'
+      },
+      firstDay: 1,
+      height: 'parent',
+      weekends: false,
+      eventLimit: true,
+      events: []
+    };
+  }
+
+  setSelectedDate(e: CustomEvent) {
+    this.selectedDate = moment(e.detail.date._d).format('YYYY-MM-DD') as string;
+  }
+
+  openAddInterviewDialog() {
     const dialogRef = this.interviewDialog.open(
-      new InterviewClient(null, null, this.activeDate, ''),
+      new InterviewClient(null, null, this.selectedDate, this.selectedDate),
       INTERVIEW_DIALOG_TYPES.add
     );
 
-    dialogRef.afterClosed().subscribe((interview: InterviewClient) => {
+    dialogRef.afterClosed().subscribe(interview => {
       if (interview) {
-        this.interviewService
-          .addInterview(interview)
-          .subscribe((res: InterviewClient) => {
-            this.interviewService.interviewAdded$.next({
-              ...interview,
-              id: res.id
-            });
-            this.snackMessage.openSnackBar(`An interview event is added!`);
-          });
-      }
-    });
-  }
-
-  onDeleteInterview(interview: InterviewClient) {
-    this.matConfirm
-      .open('Are you sure you wanna delete the interview event?')
-      .afterClosed()
-      .subscribe(res => {
-        if (res) {
-          this.interviewService
-            .deleteInterviewById(interview.id)
-            .subscribe(() => {
-              this.snackMessage.openSnackBar(
-                'The interview event is successfully deleted!'
-              );
-              this.interviews = this.interviews.filter(
-                _interview => _interview.id !== interview.id
-              );
-              // TODO: if no interviews left for today - delete appropriate date from interviewDates[]
-              if (this.interviews.length === 0) {
-                this.interviewDates = this.interviewDates.filter(
-                  date => interview.date !== date
-                );
-                this.interviewService.interviewDates = this.interviewDates;
-              }
-            });
-        }
-      });
-  }
-
-  onEditInterview(prevInterview: InterviewClient) {
-    const dialogRef = this.interviewDialog.open(prevInterview, INTERVIEW_DIALOG_TYPES.edit);
-    const PREV_DATE = prevInterview.date;
-
-    dialogRef.afterClosed().subscribe((editedInterview: InterviewClient) => {
-      if (editedInterview) {
-        this.interviewService.updateInterview(editedInterview).subscribe((interviewRes: Interview) => {
-          this.snackMessage.openSnackBar(`An interview event with ${editedInterview.candidate['name']} is updated!`);
-
-          if (PREV_DATE === editedInterview.date) {
-            this.interviews = this.interviews.filter(intervew => intervew.id !== editedInterview.id);
-            this.interviews = [...this.interviews, editedInterview].sort((a, b) =>
-              a.time > b.time ? 1 : -1
-            );
-          } else {
-            this.interviews = this.interviews.filter(intervew => intervew.id !== editedInterview.id);
-            if (this.interviews.length === 0) {
-              this.interviewDates = this.interviewDates .filter(date => date !== PREV_DATE);
-            }
-            this.interviewDates = [...this.interviewDates, editedInterview.date];
-            this.interviewService.interviewDates = this.interviewDates;
-          }
-
+        this.interviewService.addInterview(interview).subscribe(res => {
+          this.matSnack.openSnackBar('Interview event is added');
+          this.renderInterviewEvent({ ...interview, id: res.id });
         });
       }
     });
   }
+
+  onEventClick(e: CustomEvent) {
+    const interviewId = e.detail.event.id;
+    this.router.navigate([interviewId], { relativeTo: this.route });
+    // console.log(e);
+  }
+
+  private renderInterviewEvent(interview: InterviewClient) {
+    this.calendar.fullCalendar('renderEvent', interview);
+  }
 }
+
+// FOR DB JSON interviews
+// {
+//   "candidateId": 5,
+//   "vacancyId": 6,
+//   "start": "2018-12-21 09:00:00",
+//   "end": "2018-12-21 10:00:00",
+//   "place": "Minsk, Nemiga street, 6",
+//   "title": "Millie Bobby Brown on UI/UX Designer",
+//   "id": 1
+// },
+// {
+//   "candidateId": 1,
+//   "vacancyId": 1,
+//   "start": "2018-12-25 09:00",
+//   "end": "2018-12-25 10:00",
+//   "title": "Till Lindemann on Java",
+//   "id": 2
+// },
+// {
+//   "candidateId": 3,
+//   "vacancyId": 5,
+//   "start": "2018-12-27 08:00",
+//   "end": "2018-12-27 09:00",
+//   "title": "Serj Tankian on NodeJS",
+//   "id": 3
+// }

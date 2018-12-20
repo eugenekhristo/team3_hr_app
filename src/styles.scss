@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import './app/ui/components/calendar/hr-calendar.component.scss';
+@import '../node_modules/fullcalendar/dist/fullcalendar.css';
 
 :root {
   --color-primary: #3f51b5;
@@ -37,7 +37,6 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
   margin: 0;
-
   background-size: 300px, auto;
   // background-attachment: fixed;
 }
