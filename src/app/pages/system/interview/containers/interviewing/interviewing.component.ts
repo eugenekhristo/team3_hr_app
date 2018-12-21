@@ -7,6 +7,13 @@ import { InterviewClient } from 'src/app/core/models/interview.model';
 import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/interview-dialog.service';
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
+import { Contact } from 'src/app/core/models/contact.model';
+
+interface ContactsHash {
+  'Telephone': Contact[];
+  'Email': Contact[];
+  'Skype': Contact[];
+}
 
 @Component({
   selector: 'hr-interviewing',
@@ -17,6 +24,13 @@ import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 export class InterviewingComponent implements OnInit {
   interviewId: number;
   interview: InterviewClient;
+
+  // for easier templaterendering
+  contacts: ContactsHash = {
+    'Telephone': [],
+    'Email': [],
+    'Skype': [],
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +45,15 @@ export class InterviewingComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => (this.interviewId = +params['id']));
     this.interviewStore.interview$.subscribe(
-      interview => (this.interview = interview)
+      interview => {
+        this.interview = interview;
+        this.interview.candidate.contacts.forEach(contact => {
+          if (contact.value) {
+            this.contacts[contact.name].push(contact);
+          }
+        });
+        console.log(this.contacts);
+      }
     );
   }
 

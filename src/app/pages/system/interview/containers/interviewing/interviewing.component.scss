@@ -1,0 +1,167 @@
+a {
+  color: #2a5885;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+.go_back {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+}
+
+.mat-big-card {
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  margin: 4px;
+  padding: 2rem 3rem;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fafafa;
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.mat-card {
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  padding: 16px;
+  border-radius: 4px;
+  background: #fff;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.controls {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+
+.table td:first-child {
+  color: #828282;
+  font-size: 1.4rem;
+}
+
+.description__table td:last-child {
+  padding: 1rem 2rem;
+}
+
+.description__time {
+  font-style: italic;
+  font-size: 1.8rem;
+}
+
+// candidate
+// ------------------------------------------------------------------------------
+
+.candidate {
+  display: flex;
+
+  & > :last-child {
+    padding-left: 1.5rem;
+    flex: 1;
+  }
+
+  & > :nth-child(2) {
+    padding-right: 7%;
+  }
+
+  // & > *:not(:first-child) {
+  //   padding-top: 1rem;
+  // }
+
+  &__figure {
+    height: 20rem;
+    width: 18rem;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0;
+    margin-right: 1.5rem;
+  }
+
+  &__img {
+    display: block;
+    height: 20rem;
+    position: absolute;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__short-info {
+    border-right: 1px solid #e0e0e0;
+  }
+
+  &__short-info,
+  &__contacts {
+    border-bottom: 1px solid #e0e0e0;
+  }
+}
+
+.short-info__table tr:first-child th,
+.contacts__table tr:first-child th {
+  padding-bottom: 1rem;
+  font-style: italic;
+  padding-left: 5px;
+}
+
+.short-info__table td:last-child,
+.contacts__table td:last-child {
+  padding: .7rem 1.5rem;
+}
+
+.contacts__table .preferred {
+  position: relative;
+}
+
+.preferred::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  top: 0;
+  right: -1.5rem;
+  cursor: pointer
+}
+
+.preferred::before {
+  position: absolute;
+  content: 'Preferred contact';
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+  right: -1.5rem;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 1rem;
+  transform: translate(100%, -100%) scale(0.4);
+  opacity: 0;
+  transform-origin: 0 100%;
+  backface-visibility: hidden;
+}
+
+// .table.contacts__table .preferred:hover::before {
+//   transition: .2s ease-out;
+//   transform: translate(100%, -100%) scale(1);
+//   opacity: 1;
+// }
+
+.table.contacts__table:hover .preferred::before {
+  transition: .2s ease-out;
+  transform: translate(100%, -100%) scale(1);
+  opacity: 1;
+}
