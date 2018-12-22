@@ -1,6 +1,125 @@
-<button (click)="onDeleteInterview()">Delete</button>
-<button (click)="onUpdateInterview()">update</button>
+<ng-container *ngIf="interview">
+    <section class="description mat-big-card">
+        <a
+          mat-icon-button
+          matTooltip="Go back"
+          class="go_back"
+          routerLink="/interview"
+        >
+          <mat-icon>arrow_back_ios</mat-icon>
+        </a>
+        <div class="controls">
+          <button
+            mat-mini-fab
+            (click)="onUpdateInterview()"
+            color="primary"
+            matTooltip="Edit the interview event"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+          mat-mini-fab
+          matTooltip="Delete the interview event"
+          (click)="onDeleteInterview()"
+          color="warn"
+          style="margin-left: 1rem;">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
 
-<p>
-  {{interview | json}}
-</p>
+        <h1>{{ interview.title }}</h1>
+
+        <table class="table description__table">
+          <tr>
+            <td>Vacancy:</td>
+            <td>
+              <a
+                [routerLink]="['/vacancies', interview.vacancy.id]"
+                matTooltip="Go to the vacancy page"
+                matTooltipPosition="right"
+              >
+                {{ interview.vacancy.title }}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Place:</td>
+            <td>{{ interview.place }}</td>
+          </tr>
+          <tr>
+            <td>Date:</td>
+            <td>
+              {{ interview.start | date }}. From
+              <span class="description__time"
+                >{{ interview.start | date: 'HH:mm' }} -
+                {{ interview.end | date: 'HH:mm' }}</span
+              >
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="candidate mat-big-card">
+        <figure
+          class="candidate__figure"
+          [matTooltip]="'Go to ' + interview.candidate['name'] + '\'s page'"
+          matTooltipPosition="right"
+        >
+            <a [routerLink]="['/candidates', interview.candidate.id]">
+              <img [src]="interview.candidate.photo" class="candidate__img">
+            </a>
+        </figure>
+        <div class="candidate__short-info">
+            <table class="table short-info__table">
+                <tr>
+                  <th>Short Info</th>
+                </tr>
+                <tr>
+                  <td>Name:</td>
+                  <td>
+                    {{ interview.candidate.name }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Surname:</td>
+                  <td>{{ interview.candidate.surname }}</td>
+                </tr>
+                <tr>
+                  <td>Position:</td>
+                  <td>{{ interview.candidate.position }}</td>
+                </tr>
+              </table>
+        </div>
+        <div class="candidate__contacts">
+            <table class="table contacts__table">
+                <tr>
+                  <th>Contacts</th>
+                </tr>
+                <tr *ngIf="contacts.Telephone.length > 0">
+                  <td>Telephone:</td>
+                  <td>
+                    <span *ngFor="let c of contacts.Telephone" [ngClass]="{'preferred': c.preferred}">
+                      {{c.value}} <br>
+                    </span>
+                  </td>
+                </tr>
+                <tr *ngIf="contacts.Email.length > 0">
+                  <td>Email:</td>
+                  <td>
+                    <span *ngFor="let c of contacts.Email" [ngClass]="{'preferred': c.preferred}">
+                      {{c.value}} <br>
+                    </span>
+                  </td>
+                </tr>
+                <tr *ngIf="contacts.Skype.length > 0">
+                  <td>Skype:</td>
+                  <td>
+                    <span *ngFor="let c of contacts.Skype" [ngClass]="{'preferred': c.preferred}">
+                      {{c.value}} <br>
+                    </span>
+                  </td>
+                </tr>
+              </table>
+        </div>
+      </section>
+</ng-container>

@@ -85,6 +85,14 @@ export class InterviewDialogComponent implements OnInit {
       this.data.interview.end.substr(0, 10) + ` ${time}`;
   }
 
+  get place() {
+    return this.interview.place;
+  }
+
+  set place(value: string) {
+    this.interview.place = value;
+  }
+
   constructor(
     private candidateService: CandidateService,
     private vacancyService: VacancyService,

@@ -5,33 +5,7 @@
 
   <div class="dialog__content">
     <form #f="ngForm" fxLayout="column">
-      <mat-form-field fxFlex="100%">
-        <input
-          placeholder="Candidate"
-          type="text"
-          matInput
-          [matAutocomplete]="auto"
-          (input)="candidateSearchTerm$.next($event.target.value)"
-          name="candidate"
-          [(ngModel)]="candidate"
-        />
-      </mat-form-field>
-      <mat-autocomplete
-        #auto="matAutocomplete"
-        [displayWith]="matDisplayCandidateFn"
-      >
-        <mat-option
-          *ngFor="let candidate of candidates"
-          [value]="candidate"
-          class="mat-option-candidate"
-        >
-          <figure class="mat-option-candidate__figure">
-            <img [src]="candidate.photo" class="mat-option-candidate__img" />
-          </figure>
-          <span>{{ candidate.name }} {{ candidate.surname }}</span>
-        </mat-option>
-      </mat-autocomplete>
-
+      <!------------------------------- vacancy ---------------------------------->
       <mat-form-field fxFlex="100%">
         <input
           placeholder="Vacancy"
@@ -55,7 +29,18 @@
           <span>{{ vacancy.title }}</span>
         </mat-option>
       </mat-autocomplete>
+      <!------------------------------- place ---------------------------------->
+      <mat-form-field fxFlex="100%">
+          <input
+            placeholder="Place"
+            type="text"
+            matInput
+            name="place"
+            [(ngModel)]="place"
+          />
+        </mat-form-field>
 
+      <!------------------------------- date---------------------------------->
       <mat-form-field>
         <input
           matInput
@@ -145,9 +130,34 @@
           <button mat-raised-button color="warn">Cancel</button>
         </ng-template>
       </div>
-
+      <!------------------------------- candidate ---------------------------------->
+      <mat-form-field fxFlex="100%">
+        <input
+          placeholder="Candidate"
+          type="text"
+          matInput
+          [matAutocomplete]="auto"
+          (input)="candidateSearchTerm$.next($event.target.value)"
+          name="candidate"
+          [(ngModel)]="candidate"
+        />
+      </mat-form-field>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="matDisplayCandidateFn"
+      >
+        <mat-option
+          *ngFor="let candidate of candidates"
+          [value]="candidate"
+          class="mat-option-candidate"
+        >
+          <figure class="mat-option-candidate__figure">
+            <img [src]="candidate.photo" class="mat-option-candidate__img" />
+          </figure>
+          <span>{{ candidate.name }} {{ candidate.surname }}</span>
+        </mat-option>
+      </mat-autocomplete>
       <!------------------------------- title ---------------------------------->
-
       <mat-form-field fxFlex="100%">
         <input
           placeholder="Title"
@@ -181,7 +191,7 @@
           [mat-dialog-close]="data.interview"
           fxFlex="50"
         >
-        {{ data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Save' }}
+          {{ data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Save' }}
         </button>
       </div>
       <!-- END of dialog__actions -->

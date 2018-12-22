@@ -16,7 +16,18 @@
       "contacts": [
         {
           "name": "Telephone",
-          "value": "+375293569685"
+          "value": "+375293569685",
+          "preferred": false
+        },
+        {
+          "name": "Email",
+          "value": "",
+          "preferred": false
+        },
+        {
+          "name": "Skype",
+          "value": "",
+          "preferred": false
         }
       ],
       "notes": [
@@ -31,7 +42,7 @@
           "type": "Note"
         },
         {
-          "note": "We invited him to job",
+          "note": "We invited him to job DA!!!!!",
           "date": "2018-12-16T19:06:40.159Z",
           "type": "Note"
         }
@@ -106,7 +117,27 @@
       "id": 3,
       "name": "Serj",
       "surname": "Tankian",
-      "photo": "http://www.metalsucks.net/wp-content/uploads/2018/04/serj_tankian.jpg"
+      "photo": "http://www.metalsucks.net/wp-content/uploads/2018/04/serj_tankian.jpg",
+      "contacts": [
+        {
+          "name": "Telephone",
+          "value": "",
+          "preferred": false
+        },
+        {
+          "name": "Email",
+          "value": "",
+          "preferred": false
+        },
+        {
+          "name": "Skype",
+          "value": "",
+          "preferred": false
+        }
+      ],
+      "notes": [],
+      "experience": [],
+      "cv": []
     },
     {
       "id": 4,
@@ -118,7 +149,53 @@
       "id": 5,
       "name": "Millie Bobby",
       "surname": "Brown",
-      "photo": "http://sistema.gthoy.com/uploads/articulo/147667_a2e68beea4be9131fc9b62330818783bjpg180528121043.jpg"
+      "photo": "http://sistema.gthoy.com/uploads/articulo/147667_a2e68beea4be9131fc9b62330818783bjpg180528121043.jpg",
+      "contacts": [
+        {
+          "name": "Telephone",
+          "value": "+375029-555-44-33",
+          "preferred": true
+        },
+        {
+          "name": "Email",
+          "value": "millie@gmail.com",
+          "preferred": true
+        },
+        {
+          "name": "Skype",
+          "value": "just_millie",
+          "preferred": false
+        }
+      ],
+      "notes": [
+        {
+          "note": "Cool girl.",
+          "date": "2018-12-21T09:08:02.240Z",
+          "type": "Note"
+        },
+        {
+          "note": "Not so cool girl!",
+          "date": "2018-12-21T09:08:35.823Z",
+          "type": "Note"
+        },
+        {
+          "note": "Absolutely bad girl!",
+          "date": "2018-12-21T09:08:45.774Z",
+          "type": "Note"
+        }
+      ],
+      "experience": [],
+      "cv": [
+        {
+          "name": "CV-Millie.txt",
+          "size": 14,
+          "data": "data:text/plain;base64,SnVzdCBhIGdpcmwhDQo=",
+          "mime": "text/plain",
+          "date": "2018-12-21T09:07:26.435Z",
+          "type": "CV"
+        }
+      ],
+      "position": "UI/UX Designer"
     },
     {
       "id": 6,
@@ -165,9 +242,9 @@
     {
       "candidateId": 5,
       "vacancyId": 6,
-      "start": "2018-12-19 10:00:00",
-      "end": "2018-12-19 11:00:00",
-      "place": "Minsk, Nemiga street, 6",
+      "start": "2018-12-19 09:30:00",
+      "end": "2018-12-19 10:30",
+      "place": "Minsk, Pobeditelei street, 6",
       "title": "Millie Bobby Brown on UI/UX Designer",
       "id": 1
     },
@@ -176,22 +253,16 @@
       "vacancyId": 1,
       "start": "2018-12-27 09:10:00",
       "end": "2018-12-27 11:00:00",
+      "place": "Germany, Berlin",
       "title": "Till Lindemann on Java",
       "id": 2
-    },
-    {
-      "candidateId": 3,
-      "vacancyId": 5,
-      "start": "2018-12-27 08:00",
-      "end": "2018-12-27 09:00",
-      "title": "Serj Tankian on NodeJS",
-      "id": 3
     },
     {
       "candidateId": 2,
       "vacancyId": 6,
       "start": "2018-12-31 08:00",
       "end": "2018-12-31 08:30",
+      "place": "Minsk, Whatever",
       "title": "Lilliya Scarlett on UI/UX Designer",
       "id": 4
     }
