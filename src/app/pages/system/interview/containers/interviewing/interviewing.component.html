@@ -84,10 +84,6 @@
                   <td>Surname:</td>
                   <td>{{ interview.candidate.surname }}</td>
                 </tr>
-                <tr>
-                  <td>Position:</td>
-                  <td>{{ interview.candidate.position }}</td>
-                </tr>
               </table>
         </div>
         <div class="candidate__contacts">
@@ -95,26 +91,26 @@
                 <tr>
                   <th>Contacts</th>
                 </tr>
-                <tr *ngIf="contacts.Telephone.length > 0">
-                  <td>Telephone:</td>
+                <tr *ngIf="contacts.phone.length > 0">
+                  <td>Phone:</td>
                   <td>
-                    <span *ngFor="let c of contacts.Telephone" [ngClass]="{'preferred': c.preferred}">
+                    <span *ngFor="let c of contacts.phone" [ngClass]="{'preferred': c.preferred}">
                       {{c.value}} <br>
                     </span>
                   </td>
                 </tr>
-                <tr *ngIf="contacts.Email.length > 0">
+                <tr *ngIf="contacts.email.length > 0">
                   <td>Email:</td>
                   <td>
-                    <span *ngFor="let c of contacts.Email" [ngClass]="{'preferred': c.preferred}">
+                    <span *ngFor="let c of contacts.email" [ngClass]="{'preferred': c.preferred}">
                       {{c.value}} <br>
                     </span>
                   </td>
                 </tr>
-                <tr *ngIf="contacts.Skype.length > 0">
+                <tr *ngIf="contacts.skype.length > 0">
                   <td>Skype:</td>
                   <td>
-                    <span *ngFor="let c of contacts.Skype" [ngClass]="{'preferred': c.preferred}">
+                    <span *ngFor="let c of contacts.skype" [ngClass]="{'preferred': c.preferred}">
                       {{c.value}} <br>
                     </span>
                   </td>

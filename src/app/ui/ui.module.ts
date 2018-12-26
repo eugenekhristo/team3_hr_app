@@ -11,9 +11,6 @@ import { ReusableMatConfirmModule } from './modules/reusable-mat-confirm/reusabl
 import { InterviewDialogModule } from './modules/interview-dialog/interview-dialog.module';
 import { InterviewDialogComponent } from './modules/interview-dialog/interview-dialog/interview-dialog.component';
 import { InterviewDialogService } from './modules/interview-dialog/interview-dialog.service';
-import { NewCandidateDialogComponent } from './modules/new-candidate-dialog/new-candidate-dialog/new-candidate-dialog.component';
-import { NewCandidateDialogModule } from './modules/new-candidate-dialog/new-candidate-dialog.module';
-import { NewCandidateDialogService } from './modules/new-candidate-dialog/new-candidate-dialog.service';
 
 @NgModule({
   declarations: [SnackMessageComponent],
@@ -22,26 +19,22 @@ import { NewCandidateDialogService } from './modules/new-candidate-dialog/new-ca
     FlexLayoutModule,
     MaterialModule,
     ReusableMatConfirmModule,
-    InterviewDialogModule,
-    NewCandidateDialogModule
+    InterviewDialogModule
   ],
   providers: [
     SnackMessagePbService,
     SnackMessageService,
-    InterviewDialogService,
-    NewCandidateDialogService
+    InterviewDialogService
   ],
   entryComponents: [
     SnackMessageComponent,
-    InterviewDialogComponent,
-    NewCandidateDialogComponent
+    InterviewDialogComponent
   ],
   exports: [
     MaterialModule,
     ReusableMatConfirmModule,
     FlexLayoutModule,
-    InterviewDialogModule,
-    NewCandidateDialogModule
+    InterviewDialogModule
   ]
 })
 export class UiModule {}

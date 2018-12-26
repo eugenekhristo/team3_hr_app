@@ -10,9 +10,9 @@ import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Contact } from 'src/app/core/models/contact.model';
 
 interface ContactsHash {
-  'Telephone': Contact[];
-  'Email': Contact[];
-  'Skype': Contact[];
+  'phone': Contact[];
+  'email': Contact[];
+  'skype': Contact[];
 }
 
 @Component({
@@ -25,11 +25,11 @@ export class InterviewingComponent implements OnInit {
   interviewId: number;
   interview: InterviewClient;
 
-  // for easier templaterendering
+  // for easier template rendering
   contacts: ContactsHash = {
-    'Telephone': [],
-    'Email': [],
-    'Skype': [],
+    'phone': [],
+    'email': [],
+    'skype': []
   };
 
   constructor(
@@ -49,10 +49,9 @@ export class InterviewingComponent implements OnInit {
         this.interview = interview;
         this.interview.candidate.contacts.forEach(contact => {
           if (contact.value) {
-            this.contacts[contact.name].push(contact);
+            this.contacts[contact.type].push(contact);
           }
         });
-        console.log(this.contacts);
       }
     );
   }

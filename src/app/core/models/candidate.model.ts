@@ -1,34 +1,19 @@
-import {Contact} from './contact.model';
-import {Notes} from './notes.model';
-import {Experience} from './experience.model';
-import {CV} from './cv.model';
+enum CONTACT_TYPES {phone = 'phone', email = 'email', skype = 'skype'}
 
+export class Contact {
+  constructor(
+    public type: CONTACT_TYPES,
+    public value: string,
+    public preferred: boolean
+  ) {}
+}
 
 export class Candidate {
   constructor(
     public name: string,
     public surname?: string,
-    public position?: string,
-    public contacts?: Contact[],
-    public notes?: Notes[],
-    public cv?: CV[],
-    public experience?: Experience[],
     public photo?: string,
-    public id?: number
-  ) {
-  }
-}
-
-export class CandidateClient {
-  constructor(
-    public name: string,
-    public surname?: string,
-    public position?: string,
     public contacts?: Contact[],
-    public notes?: Notes[],
-    public cv?: CV[],
-    public experience?: Experience[],
-    public photo?: string,
     public id?: number
   ) {
   }

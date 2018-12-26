@@ -1,0 +1,88 @@
+<div class="short">
+  <div class="short__info mat-big-card ">
+    <figure class="short__figure">
+      <img [src]="candidate?.photo" class="short__img" />
+    </figure>
+    <div class="short__biography">
+      <table class="table table__biography">
+        <tr>
+          <td>Name:</td>
+          <td>{{ candidate?.name }}</td>
+        </tr>
+        <tr>
+          <td>Surname:</td>
+          <td>{{ candidate?.surname }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="short__contacts mat-big-card">
+    <h3 class="short__heading">Contacts:</h3>
+    <p
+      class="no-contacts"
+      *ngIf="
+        candidate?.contacts && candidate?.contacts.length === 0;
+        else contacts_table
+      "
+    >
+      No contacts!
+    </p>
+    <ng-template #contacts_table>
+      <table class="table table__contacts">
+        <tr *ngIf="contacts.phone.length > 0">
+          <td>Phone:</td>
+          <td>
+            <span
+              *ngFor="let c of contacts.phone"
+              [ngClass]="{ preferred: c.preferred }"
+            >
+              {{ c.value }} <br />
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="contacts.email.length > 0">
+          <td>Email:</td>
+          <td>
+            <span
+              *ngFor="let c of contacts.email"
+              [ngClass]="{ preferred: c.preferred }"
+            >
+              {{ c.value }} <br />
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="contacts.skype.length > 0">
+          <td>Skype:</td>
+          <td>
+            <span
+              *ngFor="let c of contacts.skype"
+              [ngClass]="{ preferred: c.preferred }"
+            >
+              {{ c.value }} <br />
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="contacts.other.length > 0">
+          <td>Other:</td>
+          <td>
+            <span
+              *ngFor="let c of contacts.other"
+              [ngClass]="{ preferred: c.preferred }"
+            >
+              {{ c.value }} <br />
+            </span>
+          </td>
+        </tr>
+      </table>
+    </ng-template>
+    <div class="contacts__action">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="after">
+        <a mat-menu-item (click)="editContacts()"> <span>Edit</span> </a>
+      </mat-menu>
+    </div>
+  </div>
+</div>

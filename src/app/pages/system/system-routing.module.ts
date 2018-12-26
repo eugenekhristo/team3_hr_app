@@ -12,7 +12,8 @@ const routes: Routes = [
       { path: 'interview', children: [
         {path: '', component: InterviewComponent, pathMatch: 'full'},
         {path: ':id', component: InterviewingComponent}
-      ] }
+      ]},
+      {path: 'candidates', loadChildren: './candidates/candidates.module#CandidatesModule'}
     ]
   }
 ];
