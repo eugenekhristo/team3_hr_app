@@ -1,2 +1,8 @@
-<hr-short-info [candidate$]="candidateStore.candidate$"></hr-short-info>
-<div class="timeline"></div>
+<hr-short-info
+  [candidate$]="candidateStore.candidate$"
+  (candidateChanged)="onCandidateChanged($event)"
+></hr-short-info>
+<div class="timeline">
+  <hr-timeline [candidate$]="candidateStore.candidate$">
+  </hr-timeline>
+</div>

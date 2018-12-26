@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpParams, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { BASE_URL } from 'src/app/core/constants/base-url';
 
-import { Observable, from, forkJoin, of, Subject } from 'rxjs';
+import { Observable, from, forkJoin } from 'rxjs';
 import {
   map,
   tap,
   switchMap,
   mergeMap,
   bufferCount,
-  delay,
   share
 } from 'rxjs/operators';
 
@@ -18,7 +17,7 @@ import {
   Interview,
   InterviewClient
 } from 'src/app/core/models/interview.model';
-import { Candidate } from 'src/app/core/models/candidate.model';
+import { Candidate, TIMELINE_ITEM_TYPE } from 'src/app/core/models/candidate.model';
 import { Vacancy } from 'src/app/core/models/vacancy.model';
 
 @Injectable()
@@ -47,7 +46,9 @@ export class InterviewService {
                 interview.end,
                 interview.place,
                 interview.title,
-                interview.id
+                interview.id,
+                interview.timestamp,
+                TIMELINE_ITEM_TYPE.interview
               )
           )
         );

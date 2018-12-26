@@ -7,6 +7,9 @@ import { CandidatesComponent } from './containers/candidates/candidates.componen
 import { CandiatesRoutingModule } from './candidates-routing.module';
 import { CandidateComponent } from './containers/candidate/candidate.component';
 import { ShortInfoComponent } from './presentationals/short-info/short-info.component';
+import { EditContactsDialogComponent } from './presentationals/edit-contacts-dialog/edit-contacts-dialog.component';
+import { TimelineComponent } from './presentationals/timeline/timeline.component';
+import { TimelineNoteComponent } from './presentationals/timeline-note/timeline-note.component';
 
 @NgModule({
   imports: [
@@ -15,6 +18,7 @@ import { ShortInfoComponent } from './presentationals/short-info/short-info.comp
     ReactiveFormsModule,
     CandiatesRoutingModule
   ],
-  declarations: [CandidatesComponent, CandidateComponent, ShortInfoComponent]
+  declarations: [CandidatesComponent, CandidateComponent, ShortInfoComponent, EditContactsDialogComponent, TimelineComponent, TimelineNoteComponent],
+  entryComponents: [EditContactsDialogComponent]
 })
 export class CandidatesModule { }

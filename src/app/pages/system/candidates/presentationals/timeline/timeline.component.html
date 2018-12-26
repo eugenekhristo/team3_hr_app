@@ -1,0 +1,22 @@
+<div class="controls">
+  <button mat-mini-fab color="primary" matTooltip="Assign an interview">
+    <mat-icon>calendar_today</mat-icon>
+  </button>
+  <button mat-mini-fab matTooltip="Add a cv" color="primary">
+    <mat-icon>assignment</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" matTooltip="Add an experience">
+    <mat-icon>contacts</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" matTooltip="Add a note">
+    <mat-icon>note_add</mat-icon>
+  </button>
+</div>
+
+<div *ngFor="let item of timeline">
+  <div [ngSwitch]="item['type']">
+    <hr-timeline-note *ngSwitchCase="TIMELINE_ITEM_TYPE.note" [note]="item">
+    </hr-timeline-note>
+    <h2 *ngSwitchCase="TIMELINE_ITEM_TYPE.interview">Interview</h2>
+  </div>
+</div>

@@ -1,4 +1,27 @@
-enum CONTACT_TYPES {phone = 'phone', email = 'email', skype = 'skype'}
+export enum CONTACT_TYPES {
+  phone = 'phone',
+  email = 'email',
+  skype = 'skype',
+  other = 'other'
+}
+export enum TIMELINE_ITEM_TYPE {
+  note = 'note',
+  interview = 'interview',
+  feedback = 'feedback'
+}
+
+export interface TimelineItem {
+  type?: TIMELINE_ITEM_TYPE;
+  timestamp?: number;
+}
+
+export class TimelineNote implements TimelineItem {
+  constructor(
+    public type: TIMELINE_ITEM_TYPE.note,
+    public timestamp: number,
+    public body: string
+  ) {}
+}
 
 export class Contact {
   constructor(
@@ -14,7 +37,7 @@ export class Candidate {
     public surname?: string,
     public photo?: string,
     public contacts?: Contact[],
+    public timeline?: object[],
     public id?: number
-  ) {
-  }
+  ) {}
 }

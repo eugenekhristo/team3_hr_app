@@ -15,6 +15,7 @@ import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { InterviewingComponent } from './interview/containers/interviewing/interviewing.component';
 import { InterviewStore } from './shared/services/interview-store.service';
+import { EditContactsDialogComponent } from './candidates/presentationals/edit-contacts-dialog/edit-contacts-dialog.component';
 
 @NgModule({
   declarations: [

@@ -16,18 +16,8 @@
       "contacts": [
         {
           "type": "phone",
-          "value": "+375293569685",
+          "value": "+375293569686",
           "preferred": true
-        },
-        {
-          "type": "email",
-          "value": "",
-          "preferred": false
-        },
-        {
-          "type": "skype",
-          "value": "",
-          "preferred": false
         }
       ],
       "photo": "https://24smi.org/public/media/2018/7/26/3a7d5326675226a244c7b4f7a853bffe-till-rammstein-till-lindemann-hot.jpg"
@@ -37,19 +27,40 @@
       "name": "Lilliya",
       "surname": "Scarlett",
       "position": "Frontend developer",
-      "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png"
+      "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
+        }
+      ]
     },
     {
       "id": 3,
       "name": "Serj",
       "surname": "Tankian",
-      "photo": "http://www.metalsucks.net/wp-content/uploads/2018/04/serj_tankian.jpg"
+      "photo": "http://www.metalsucks.net/wp-content/uploads/2018/04/serj_tankian.jpg",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
+        }
+      ]
     },
     {
       "id": 4,
       "name": "David",
       "surname": "Beckham",
-      "photo": "http://img-fotki.yandex.ru/get/5639/157185180.62/0_b98e2_a784197f_XL.jpg"
+      "photo": "http://img-fotki.yandex.ru/get/5639/157185180.62/0_b98e2_a784197f_XL.jpg",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
+        }
+      ]
     },
     {
       "id": 5,
@@ -59,20 +70,35 @@
       "contacts": [
         {
           "type": "phone",
-          "value": "+375293569685",
+          "value": "+375295680956",
           "preferred": true
         },
         {
-          "type": "phone",
-          "value": "+375295680909"
-        },
-        {
           "type": "email",
-          "value": "milliebrown@gmail.com"
+          "value": "millie@gmail.com",
+          "preferred": false
         },
         {
           "type": "skype",
-          "value": "millie03"
+          "value": "millie17",
+          "preferred": false
+        }
+      ],
+      "timeline": [
+        {
+          "type": "note",
+          "timestamp": 1545812825347,
+          "body": "Hello niec hahahah daaaaa!"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545812827347,
+          "body": "Hello Milli cool!"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545812827347,
+          "body": "Hello Milli cool!"
         }
       ]
     },
@@ -80,13 +106,32 @@
       "id": 6,
       "name": "Daron",
       "surname": "Malakian",
-      "photo": "https://i.pinimg.com/736x/37/4a/cf/374acf8c39f182edec60f93b56e16fac--secret-crush-music-rock.jpg"
+      "photo": "https://i.pinimg.com/736x/37/4a/cf/374acf8c39f182edec60f93b56e16fac--secret-crush-music-rock.jpg",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
+        }
+      ]
     },
     {
       "id": 7,
       "name": "Cristiano",
       "surname": "Ronaldo",
-      "photo": "https://menhairstylesworld.com/wp-content/uploads/2017/08/Casual-Cristiano-Ronaldo-Hairstyles.jpg"
+      "photo": "https://menhairstylesworld.com/wp-content/uploads/2017/08/Casual-Cristiano-Ronaldo-Hairstyles.jpg",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
+        },
+        {
+          "type": "other",
+          "value": "(instagram) /cristiano",
+          "preferred": false
+        }
+      ]
     }
   ],
   "vacancies": [
@@ -125,25 +170,31 @@
       "end": "2018-12-19 11:00:00",
       "place": "Minsk, Pobeditelei street, 6",
       "title": "Millie Bobby Brown on UI/UX Designer",
-      "id": 1
+      "id": 1,
+      "type": "interview",
+      "timestamp": 1545829233396
     },
     {
       "candidateId": 1,
       "vacancyId": 1,
-      "start": "2018-12-27 09:10:00",
-      "end": "2018-12-27 11:00:00",
+      "start": "2018-12-27 08:40:00",
+      "end": "2018-12-27 10:00:00",
       "place": "Germany, Berlin",
       "title": "Till Lindemann on Java",
-      "id": 2
+      "id": 2,
+      "type": "interview",
+      "timestamp": 1545829233396
     },
     {
-      "candidateId": 2,
-      "vacancyId": 6,
-      "start": "2018-12-31 08:00",
-      "end": "2018-12-31 08:30",
-      "place": "Minsk, Whatever",
-      "title": "Lilliya Scarlett on UI/UX Designer",
-      "id": 4
+      "candidateId": 7,
+      "vacancyId": 3,
+      "start": "2018-12-25 09:00:00",
+      "end": "2018-12-25 11:00:00",
+      "place": "Minsk, Belarus",
+      "title": "Cristiano Ronaldo on SQL",
+      "id": 3,
+      "type": "interview",
+      "timestamp": 1545829233396
     }
   ]
 }
