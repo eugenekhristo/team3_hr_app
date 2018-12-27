@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TimelineNote } from 'src/app/core/models/candidate.model';
 
 @Component({
@@ -8,10 +8,15 @@ import { TimelineNote } from 'src/app/core/models/candidate.model';
 })
 export class TimelineNoteComponent implements OnInit {
   @Input() note: TimelineNote;
+  @Output() deleteNote = new EventEmitter<TimelineNote>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDelete() {
+    this.deleteNote.emit(this.note);
   }
 
 }

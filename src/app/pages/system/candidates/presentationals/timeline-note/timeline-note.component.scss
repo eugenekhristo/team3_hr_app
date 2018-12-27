@@ -28,4 +28,10 @@ p {
     font-size: 1.4rem;
     margin: 0;
   }
+
+  &__action {
+    position: absolute;
+    top: .5rem;
+    right: 0;
+  }
 }
