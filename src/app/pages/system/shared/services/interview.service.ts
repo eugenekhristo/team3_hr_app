@@ -85,7 +85,7 @@ export class InterviewService {
 
   addInterview(interview: InterviewClient): Observable<Interview> {
     const backInterview: Interview = this.transformToBackendModel(interview);
-    return this.http.post<Interview>(`${BASE_URL}/interviews`, backInterview);
+    return this.http.post<Interview>(`${BASE_URL}/interviews`, backInterview).pipe(share());
   }
 
   deleteInterview(id: number): Observable<any> {

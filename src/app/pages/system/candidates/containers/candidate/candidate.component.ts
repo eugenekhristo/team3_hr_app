@@ -22,8 +22,7 @@ export class CandidateComponent implements OnInit {
     private matSnack: SnackMessageService,
     private matConfirm: MatConfirmService,
     private matDialog: MatDialog,
-    private interviewDialog: InterviewDialogService,
-    private interviewService: InterviewService
+    private interviewDialog: InterviewDialogService
   ) {}
 
   ngOnInit() {}
@@ -56,9 +55,7 @@ export class CandidateComponent implements OnInit {
         const note = new TimelineNote(body);
         this.candidateStore
           .addNote(note)
-          .subscribe(() =>
-            this.matSnack.openSnackBar('The note was added!')
-          );
+          .subscribe(() => this.matSnack.openSnackBar('The note was added!'));
       }
     });
   }
@@ -71,9 +68,11 @@ export class CandidateComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(interview => {
       if (interview) {
-        this.interviewService.addInterview(interview).subscribe(res => {
-          this.matSnack.openSnackBar('Interview event is added');
-        });
+        this.candidateStore
+          .addInterview(interview)
+          .subscribe(() =>
+            this.matSnack.openSnackBar('The interview was added!')
+          );
       }
     });
   }

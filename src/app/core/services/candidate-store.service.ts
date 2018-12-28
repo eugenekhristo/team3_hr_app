@@ -5,7 +5,7 @@ import { CandidateService } from './candidate.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
-import { InterviewClient } from '../models/interview.model';
+import { InterviewClient, Interview } from '../models/interview.model';
 
 @Injectable()
 export class CandidatesStore {
@@ -25,7 +25,8 @@ export class CandidatesStore {
   constructor(
     private candidateService: CandidateService,
     private interviewSerivce: InterviewService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private interviewService: InterviewService
   ) {
     this.bootstrapCandidate();
   }
@@ -46,6 +47,16 @@ export class CandidatesStore {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = [...candidate.timeline, note];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
+  addInterview(interview: InterviewClient): Observable<Interview> {
+    const obs$ = this.interviewService.addInterview(interview);
+    obs$.subscribe(res => {
+      const candidate = this._candidate.getValue();
+      candidate.timeline.push(interview);
+      this._candidate.next(candidate);
+    });
+    return obs$;
   }
 
   private processTimelineInteraction(candidate: Candidate, updatedTimelineClient?: object[]) {
