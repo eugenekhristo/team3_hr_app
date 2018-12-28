@@ -20,7 +20,24 @@
           "preferred": true
         }
       ],
-      "photo": "https://24smi.org/public/media/2018/7/26/3a7d5326675226a244c7b4f7a853bffe-till-rammstein-till-lindemann-hot.jpg"
+      "photo": "https://24smi.org/public/media/2018/7/26/3a7d5326675226a244c7b4f7a853bffe-till-rammstein-till-lindemann-hot.jpg",
+      "timeline": [
+        {
+          "type": "note",
+          "timestamp": 1545812825347,
+          "body": "Hello niec hahahah daaaaa!"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545812837347,
+          "body": "Hello Milli cool!"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545829233397,
+          "body": "Hello Milli cool!!!!!!!!!!!!!!!"
+        }
+      ]
     },
     {
       "id": 2,
@@ -82,23 +99,18 @@
           "type": "skype",
           "value": "millie17",
           "preferred": false
+        },
+        {
+          "type": "phone",
+          "value": "+375295680957",
+          "preferred": false
         }
       ],
       "timeline": [
         {
+          "body": "Just a note!",
           "type": "note",
-          "timestamp": 1545812825347,
-          "body": "Hello niec hahahah daaaaa!"
-        },
-        {
-          "type": "note",
-          "timestamp": 1545812827347,
-          "body": "Hello Milli cool!"
-        },
-        {
-          "type": "note",
-          "timestamp": 1545812827347,
-          "body": "Hello Milli cool!"
+          "timestamp": 1545900318808
         }
       ]
     },
@@ -130,6 +142,23 @@
           "type": "other",
           "value": "(instagram) /cristiano",
           "preferred": false
+        }
+      ],
+      "timeline": [
+        {
+          "type": "note",
+          "timestamp": 1545812825347,
+          "body": "Hello niec hahahah daaaaa!"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545812827347,
+          "body": "Hello Milli cool!"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545829233397,
+          "body": "Hello Milli cool!!!!!!!!!!!!!!!"
         }
       ]
     }
@@ -166,24 +195,24 @@
     {
       "candidateId": 5,
       "vacancyId": 6,
-      "start": "2018-12-19 10:00:00",
-      "end": "2018-12-19 11:00:00",
+      "start": "2018-12-27 10:00:00",
+      "end": "2018-12-27 12:00:00",
       "place": "Minsk, Pobeditelei street, 6",
       "title": "Millie Bobby Brown on UI/UX Designer",
-      "id": 1,
+      "timestamp": 1545829233396,
       "type": "interview",
-      "timestamp": 1545829233396
+      "id": 1
     },
     {
       "candidateId": 1,
       "vacancyId": 1,
-      "start": "2018-12-27 08:40:00",
-      "end": "2018-12-27 10:00:00",
+      "start": "2018-12-28 08:40:00",
+      "end": "2018-12-28 10:00:00",
       "place": "Germany, Berlin",
       "title": "Till Lindemann on Java",
-      "id": 2,
+      "timestamp": 1545829233396,
       "type": "interview",
-      "timestamp": 1545829233396
+      "id": 2
     },
     {
       "candidateId": 7,
@@ -195,6 +224,28 @@
       "id": 3,
       "type": "interview",
       "timestamp": 1545829233396
+    },
+    {
+      "candidateId": 5,
+      "vacancyId": 5,
+      "start": "2018-12-31 08:00",
+      "end": "2018-12-31 09:00",
+      "place": "Belarus",
+      "title": "Millie Bobby Brown on NodeJS",
+      "timestamp": 1545902815291,
+      "type": "interview",
+      "id": 4
+    },
+    {
+      "candidateId": 5,
+      "vacancyId": 3,
+      "start": "2018-12-28 10:00:00",
+      "end": "2018-12-28 12:00:00",
+      "place": "Minsk",
+      "title": "Millie Bobby Brown on SQL",
+      "timestamp": 1545979092538,
+      "type": "interview",
+      "id": 5
     }
   ]
 }

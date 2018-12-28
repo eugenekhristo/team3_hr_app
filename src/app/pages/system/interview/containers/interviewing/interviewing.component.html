@@ -115,6 +115,14 @@
                     </span>
                   </td>
                 </tr>
+                <tr *ngIf="contacts.other.length > 0">
+                  <td>Other:</td>
+                  <td>
+                    <span *ngFor="let c of contacts.other" [ngClass]="{'preferred': c.preferred}">
+                      {{c.value}} <br>
+                    </span>
+                  </td>
+                </tr>
               </table>
         </div>
       </section>

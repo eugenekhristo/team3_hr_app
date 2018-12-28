@@ -9,8 +9,9 @@ export class Interview {
     public end: string,
     public place?: string,
     public title?: string,
-    public id?: number,
-    public timestamp?: number
+    public timestamp?: number,
+    public type?: TIMELINE_ITEM_TYPE,
+    public id?: number
   ) {}
 }
 
@@ -22,8 +23,13 @@ export class InterviewClient implements TimelineItem {
     public end: string,
     public place?: string,
     public title?: string,
-    public id?: number,
     public timestamp?: number,
-    public type?: TIMELINE_ITEM_TYPE.interview
-  ) {}
+    public type?: TIMELINE_ITEM_TYPE,
+    public id?: number
+  ) {
+    if (!this.id) {
+      this.timestamp = Date.now();
+      this.type = TIMELINE_ITEM_TYPE.interview;
+    }
+  }
 }

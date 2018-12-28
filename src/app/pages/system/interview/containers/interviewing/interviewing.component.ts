@@ -13,6 +13,7 @@ interface ContactsHash {
   'phone': Contact[];
   'email': Contact[];
   'skype': Contact[];
+  'other': Contact[];
 }
 
 @Component({
@@ -29,7 +30,8 @@ export class InterviewingComponent implements OnInit {
   contacts: ContactsHash = {
     'phone': [],
     'email': [],
-    'skype': []
+    'skype': [],
+    'other': []
   };
 
   constructor(

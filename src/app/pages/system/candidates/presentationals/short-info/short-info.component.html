@@ -33,45 +33,49 @@
         <tr *ngIf="contacts.phone.length > 0">
           <td>Phone:</td>
           <td>
-            <span
-              *ngFor="let c of contacts.phone"
-              [ngClass]="{ preferred: c.preferred }"
-            >
-              {{ c.value }} <br />
-            </span>
+            <ng-container *ngFor="let c of contacts.phone">
+              <span
+                [ngClass]="{ preferred: c.preferred }"
+              >
+                {{ c.value }}
+              </span><br>
+            </ng-container>
           </td>
         </tr>
         <tr *ngIf="contacts.email.length > 0">
           <td>Email:</td>
           <td>
-            <span
-              *ngFor="let c of contacts.email"
-              [ngClass]="{ preferred: c.preferred }"
-            >
-              {{ c.value }} <br />
-            </span>
+            <ng-container *ngFor="let c of contacts.email">
+              <span
+                [ngClass]="{ preferred: c.preferred }"
+              >
+                {{ c.value }}
+              </span><br>
+            </ng-container>
           </td>
         </tr>
         <tr *ngIf="contacts.skype.length > 0">
           <td>Skype:</td>
           <td>
-            <span
-              *ngFor="let c of contacts.skype"
-              [ngClass]="{ preferred: c.preferred }"
-            >
-              {{ c.value }} <br />
-            </span>
+            <ng-container *ngFor="let c of contacts.skype">
+              <span
+                [ngClass]="{ preferred: c.preferred }"
+              >
+                {{ c.value }}
+              </span><br>
+            </ng-container>
           </td>
         </tr>
         <tr *ngIf="contacts.other.length > 0">
           <td>Other:</td>
           <td>
-            <span
-              *ngFor="let c of contacts.other"
-              [ngClass]="{ preferred: c.preferred }"
-            >
-              {{ c.value }} <br />
-            </span>
+            <ng-container *ngFor="let c of contacts.other">
+              <span
+                [ngClass]="{ preferred: c.preferred }"
+              >
+                {{ c.value }}
+              </span><br>
+            </ng-container>
           </td>
         </tr>
       </table>

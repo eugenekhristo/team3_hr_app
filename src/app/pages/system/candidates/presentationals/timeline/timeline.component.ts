@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   Candidate,
-  TIMELINE_ITEM_TYPE
+  TIMELINE_ITEM_TYPE,
+  TimelineNote
 } from 'src/app/core/models/candidate.model';
 
 @Component({
@@ -12,7 +13,12 @@ import {
 })
 export class TimelineComponent implements OnInit {
   @Input() candidate$: Observable<Candidate>;
+  @Output() deleteNote = new EventEmitter<TimelineNote>();
+  @Output() addNote = new EventEmitter<void>();
+  @Output() addInterview = new EventEmitter<Candidate>();
+
   timeline: object[];
+  candidate: Candidate;
   TIMELINE_ITEM_TYPE = TIMELINE_ITEM_TYPE;
 
   constructor() {}
@@ -20,10 +26,24 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.candidate$.subscribe(
       candidate => {
-        this.timeline = candidate.timeline;
-        console.log(this.timeline);
+        if (candidate) {
+          this.candidate = candidate;
+          this.timeline = candidate.timeline;
+        }
       }
     );
+  }
+
+  onDeleteNote(note: TimelineNote) {
+    this.deleteNote.emit(note);
+  }
+
+  onAddNote() {
+    this.addNote.emit();
+  }
+
+  onAddInterview() {
+    this.addInterview.emit(this.candidate);
   }
 }
 

@@ -17,7 +17,7 @@ import {
   Interview,
   InterviewClient
 } from 'src/app/core/models/interview.model';
-import { Candidate, TIMELINE_ITEM_TYPE } from 'src/app/core/models/candidate.model';
+import { Candidate } from 'src/app/core/models/candidate.model';
 import { Vacancy } from 'src/app/core/models/vacancy.model';
 
 @Injectable()
@@ -46,9 +46,9 @@ export class InterviewService {
                 interview.end,
                 interview.place,
                 interview.title,
-                interview.id,
                 interview.timestamp,
-                TIMELINE_ITEM_TYPE.interview
+                interview.type,
+                interview.id
               )
           )
         );
@@ -73,6 +73,8 @@ export class InterviewService {
                 interview.end,
                 interview.place,
                 interview.title,
+                interview.timestamp,
+                interview.type,
                 interview.id
               )
           )
@@ -108,7 +110,9 @@ export class InterviewService {
       interview.start,
       interview.end,
       interview.place,
-      interview.title
+      interview.title,
+      interview.timestamp,
+      interview.type
     );
   }
 }

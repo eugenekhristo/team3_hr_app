@@ -3,6 +3,11 @@
   (candidateChanged)="onCandidateChanged($event)"
 ></hr-short-info>
 <div class="timeline">
-  <hr-timeline [candidate$]="candidateStore.candidate$">
+  <hr-timeline
+    [candidate$]="candidateStore.candidate$"
+    (deleteNote)="onDeleteNote($event)"
+    (addNote)="onAddNote()"
+    (addInterview)="onAddInterview($event)"
+  >
   </hr-timeline>
 </div>

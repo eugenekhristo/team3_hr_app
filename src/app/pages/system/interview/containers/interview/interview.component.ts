@@ -126,7 +126,7 @@ export class InterviewComponent implements OnInit {
   }
 
   private getInterviewClientFromEvent(e: CustomEvent): InterviewClient {
-    const { id, candidate, vacancy, start, end, title, place } = e.detail.event;
+    const { id, candidate, vacancy, start, end, title, place, timestamp, type } = e.detail.event;
     const newStart = start.format('YYYY-MM-DD HH:mm:ss');
     const newEnd = end.format('YYYY-MM-DD HH:mm:ss');
 
@@ -137,6 +137,8 @@ export class InterviewComponent implements OnInit {
       newEnd,
       place,
       title,
+      timestamp,
+      type,
       id
     );
 

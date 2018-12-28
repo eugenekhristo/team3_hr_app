@@ -1,0 +1,59 @@
+a.go {
+  color: #2a5885;
+  text-decoration: none;
+}
+
+a.go:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin: 0;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  margin: 4px;
+  padding: .5rem .8rem;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fafafa;
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding: 0 3rem 2rem;
+
+  &__header {
+    margin-bottom: 1.5rem;
+  }
+
+  &__heading {
+    margin-bottom: 5px;
+    font-size: 2rem;
+    font-style: italic;
+  }
+
+  &__timestamp {
+    color: #828282;
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  &__action {
+    position: absolute;
+    top: .5rem;
+    right: 0;
+  }
+}
+
+.table td:first-child {
+  color: #828282;
+  font-size: 1.4rem;
+}
+
+.description__table td:last-child {
+  padding: .5rem 1rem;
+}
+
+.description__time {
+  font-style: italic;
+}

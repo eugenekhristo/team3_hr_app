@@ -1,6 +1,6 @@
 <div class="dialog">
   <h2 class="dialog__title" mat-dialog-title>
-    {{ data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Edit' }} Interview
+    {{ data.type === INTERVIEW_DIALOG_TYPES.add || INTERVIEW_DIALOG_TYPES.add_timeline ? 'Add' : 'Edit' }} Interview
   </h2>
 
   <div class="dialog__content">
@@ -140,6 +140,7 @@
           (input)="candidateSearchTerm$.next($event.target.value)"
           name="candidate"
           [(ngModel)]="candidate"
+          [disabled]="data.type === INTERVIEW_DIALOG_TYPES.add_timeline"
         />
       </mat-form-field>
       <mat-autocomplete
@@ -191,7 +192,7 @@
           [mat-dialog-close]="data.interview"
           fxFlex="50"
         >
-          {{ data.type === INTERVIEW_DIALOG_TYPES.add ? 'Add' : 'Save' }}
+          {{ data.type === INTERVIEW_DIALOG_TYPES.add || INTERVIEW_DIALOG_TYPES.add_timeline ? 'Add' : 'Save' }}
         </button>
       </div>
       <!-- END of dialog__actions -->

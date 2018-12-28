@@ -17,10 +17,13 @@ export interface TimelineItem {
 
 export class TimelineNote implements TimelineItem {
   constructor(
-    public type: TIMELINE_ITEM_TYPE.note,
-    public timestamp: number,
-    public body: string
-  ) {}
+    public body: string,
+    public type?: TIMELINE_ITEM_TYPE,
+    public timestamp?: number
+  ) {
+    this.type = TIMELINE_ITEM_TYPE.note;
+    this.timestamp = Date.now();
+  }
 }
 
 export class Contact {

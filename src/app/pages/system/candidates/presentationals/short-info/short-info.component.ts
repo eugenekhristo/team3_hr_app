@@ -39,13 +39,15 @@ export class ShortInfoComponent implements OnInit {
       this.contacts.skype = [];
       this.contacts.other = [];
 
-      this.candidate = candidate;
-      if (this.candidate.contacts) {
-        this.candidate.contacts.forEach(contact => {
-          if (contact.value) {
-            this.contacts[contact.type].push(contact);
-          }
-        });
+      if (candidate) {
+        this.candidate = candidate;
+        if (this.candidate.contacts) {
+          this.candidate.contacts.forEach(contact => {
+            if (contact.value) {
+              this.contacts[contact.type].push(contact);
+            }
+          });
+        }
       }
     });
   }
@@ -57,7 +59,7 @@ export class ShortInfoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(contacts => {
       if (contacts) {
-        this.candidate = {...this.candidate, contacts};
+        this.candidate = { ...this.candidate, contacts };
         this.candidateChanged.emit(this.candidate);
       }
     });
