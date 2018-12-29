@@ -11,9 +11,10 @@ import { ReusableMatConfirmModule } from './modules/reusable-mat-confirm/reusabl
 import { InterviewDialogModule } from './modules/interview-dialog/interview-dialog.module';
 import { InterviewDialogComponent } from './modules/interview-dialog/interview-dialog/interview-dialog.component';
 import { InterviewDialogService } from './modules/interview-dialog/interview-dialog.service';
+import { PasteProfileImgDirective } from './directives/paste_profile_img.directive';
 
 @NgModule({
-  declarations: [SnackMessageComponent],
+  declarations: [SnackMessageComponent, PasteProfileImgDirective],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -26,15 +27,13 @@ import { InterviewDialogService } from './modules/interview-dialog/interview-dia
     SnackMessageService,
     InterviewDialogService
   ],
-  entryComponents: [
-    SnackMessageComponent,
-    InterviewDialogComponent
-  ],
+  entryComponents: [SnackMessageComponent, InterviewDialogComponent],
   exports: [
     MaterialModule,
     ReusableMatConfirmModule,
     FlexLayoutModule,
-    InterviewDialogModule
+    InterviewDialogModule,
+    PasteProfileImgDirective
   ]
 })
 export class UiModule {}
