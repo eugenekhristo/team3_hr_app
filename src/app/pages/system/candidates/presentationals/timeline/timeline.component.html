@@ -1,6 +1,7 @@
 <div class="controls">
   <button
-    mat-mini-fab color="primary"
+    mat-mini-fab
+    color="primary"
     matTooltip="Assign an interview"
     (click)="onAddInterview()"
   >
@@ -13,7 +14,8 @@
     <mat-icon>contacts</mat-icon>
   </button>
   <button
-    mat-mini-fab color="primary"
+    mat-mini-fab
+    color="primary"
     matTooltip="Add a note"
     (click)="onAddNote()"
   >
@@ -23,13 +25,24 @@
 
 <div *ngFor="let item of timeline">
   <div [ngSwitch]="item['type']">
+
     <hr-timeline-note
       *ngSwitchCase="TIMELINE_ITEM_TYPE.note"
       [note]="item"
       (deleteNote)="onDeleteNote($event)"
     >
     </hr-timeline-note>
-    <hr-timeline-interview *ngSwitchCase="TIMELINE_ITEM_TYPE.interview" [interview]="item">
-  </hr-timeline-interview>
+
+    <hr-timeline-interview
+      *ngSwitchCase="TIMELINE_ITEM_TYPE.interview"
+      [interview]="item"
+    >
+    </hr-timeline-interview>
+
+    <hr-timeline-feedback
+      *ngSwitchCase="TIMELINE_ITEM_TYPE.feedback"
+      [feedback]="item"
+    >
+    </hr-timeline-feedback>
   </div>
 </div>

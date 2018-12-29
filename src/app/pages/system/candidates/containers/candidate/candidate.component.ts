@@ -8,7 +8,7 @@ import { AddNoteDialogComponent } from '../../presentationals/timeline-note/add-
 import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/interview-dialog.service';
 import { InterviewClient } from 'src/app/core/models/interview.model';
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
-import { InterviewService } from '../../../shared/services/interview.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'hr-candidate',
@@ -22,10 +22,15 @@ export class CandidateComponent implements OnInit {
     private matSnack: SnackMessageService,
     private matConfirm: MatConfirmService,
     private matDialog: MatDialog,
-    private interviewDialog: InterviewDialogService
+    private interviewDialog: InterviewDialogService,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.route.snapshot.queryParams['feedbackAdded']) {
+      window.setTimeout(() => this.matSnack.openSnackBar('Feedback for the candidate is added 🤘'), 0);
+    }
+  }
 
   onCandidateChanged(candidate: Candidate): void {
     this.candidateStore

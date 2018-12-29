@@ -102,7 +102,9 @@ export class InterviewComponent implements OnInit {
 
   onEventClick(e: CustomEvent) {
     const interviewId = e.detail.event.id;
-    this.router.navigate([interviewId], { relativeTo: this.route });
+    this.router.navigate([interviewId], { relativeTo: this.route, queryParams: {
+      candidateId: e.detail.event.candidate.id
+    } });
   }
 
   onChangeDateTime(e: CustomEvent) {

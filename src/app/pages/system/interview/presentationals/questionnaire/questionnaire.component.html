@@ -1,3 +1,66 @@
-<p>
-  questionnaire works!
-</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Not Require</h2>
+  <h3>Public</h3>
+  <div
+    formArrayName="notReqPub"
+    *ngFor="let f of notReqPub.controls; let i = index"
+  >
+    <div [formGroupName]="i">
+      <mat-form-field style="width: 100%">
+        <textarea
+          matInput
+          [placeholder]="f.get('requirement').value"
+          formControlName="response"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <h3>Private</h3>
+  <div
+    formArrayName="notReqPriv"
+    *ngFor="let f of notReqPriv.controls; let i = index"
+  >
+    <div [formGroupName]="i">
+      <mat-form-field style="width: 100%">
+        <textarea
+          matInput
+          [placeholder]="f.get('requirement').value"
+          formControlName="response"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <h2>Require</h2>
+  <h3>Public</h3>
+  <div formArrayName="reqPub" *ngFor="let f of reqPub.controls; let i = index">
+    <div [formGroupName]="i">
+      <mat-form-field style="width: 100%">
+        <textarea
+          matInput
+          [placeholder]="f.get('requirement').value"
+          formControlName="response"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <h3>Private</h3>
+  <div
+    formArrayName="reqPriv"
+    *ngFor="let f of reqPriv.controls; let i = index"
+  >
+    <div [formGroupName]="i">
+      <mat-form-field style="width: 100%">
+        <textarea
+          matInput
+          [placeholder]="f.get('requirement').value"
+          formControlName="response"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" [disabled]="form.invalid">
+    Publish
+  </button>
+</form>

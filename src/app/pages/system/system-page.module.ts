@@ -8,22 +8,19 @@ import { SystemRoutingModule } from './system-routing.module';
 import { InterviewService } from './shared/services/interview.service';
 import { SystemShellComponent } from './system-shell/system-shell.component';
 import { InterviewComponent } from './interview/containers/interview/interview.component';
-import { InterviewListComponent } from './interview/presentationals/interview-list/interview-list.component';
-import { InterviewCardComponent } from './interview/presentationals/interview-card/interview-card.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
 
 
 import { InterviewingComponent } from './interview/containers/interviewing/interviewing.component';
 import { InterviewStore } from './shared/services/interview-store.service';
-import { EditContactsDialogComponent } from './candidates/presentationals/edit-contacts-dialog/edit-contacts-dialog.component';
+import { QuestionnaireComponent } from './interview/presentationals/questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
     SystemShellComponent,
     InterviewComponent,
-    InterviewListComponent,
-    InterviewCardComponent,
-    InterviewingComponent
+    InterviewingComponent,
+    QuestionnaireComponent
   ],
   imports: [
     CommonModule,

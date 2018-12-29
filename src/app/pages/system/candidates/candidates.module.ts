@@ -12,6 +12,7 @@ import { TimelineComponent } from './presentationals/timeline/timeline.component
 import { TimelineNoteComponent } from './presentationals/timeline-note/timeline-note.component';
 import { TimelineInterviewComponent } from './presentationals/timeline-interview/timeline-interview.component';
 import { AddNoteDialogComponent } from './presentationals/timeline-note/add-note-dialog/add-note-dialog.component';
+import { TimelineFeedbackComponent } from './presentationals/timeline-feedback/timeline-feedback.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { AddNoteDialogComponent } from './presentationals/timeline-note/add-note
     TimelineComponent,
     TimelineNoteComponent,
     TimelineInterviewComponent,
-    AddNoteDialogComponent
+    AddNoteDialogComponent,
+    TimelineFeedbackComponent
   ],
   entryComponents: [EditContactsDialogComponent, AddNoteDialogComponent]
 })

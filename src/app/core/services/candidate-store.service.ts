@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
 import { InterviewClient, Interview } from '../models/interview.model';
+import { Feedback } from 'src/app/pages/system/interview/presentationals/questionnaire/questionnaire.component';
 
 @Injectable()
 export class CandidatesStore {
@@ -49,6 +50,12 @@ export class CandidatesStore {
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
+  addFeedback(feedback: Feedback): Observable<Candidate>  {
+    const candidate = this._candidate.getValue();
+    const updatedTimelineClient = [...candidate.timeline, feedback];
+    return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
   addInterview(interview: InterviewClient): Observable<Interview> {
     const obs$ = this.interviewService.addInterview(interview);
     obs$.subscribe(res => {
@@ -69,7 +76,11 @@ export class CandidatesStore {
   }
 
   private bootstrapCandidate(): void {
-    const id = +this.route.snapshot.params['id'];
+    let id = +this.route.snapshot.params['id'];
+
+    if (!id) {
+      id = +this.route.snapshot.queryParams['candidateId'];
+    }
 
     forkJoin(
       this.candidateService.getCandidate(id),

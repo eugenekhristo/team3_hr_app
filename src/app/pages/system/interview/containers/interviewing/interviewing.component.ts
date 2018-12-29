@@ -8,6 +8,8 @@ import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/inte
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Contact } from 'src/app/core/models/contact.model';
+import { Feedback } from '../../presentationals/questionnaire/questionnaire.component';
+import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 
 interface ContactsHash {
   'phone': Contact[];
@@ -41,7 +43,8 @@ export class InterviewingComponent implements OnInit {
     private interviewService: InterviewService,
     private interviewStore: InterviewStore,
     private interviewDialog: InterviewDialogService,
-    private matSnack: SnackMessageService
+    private matSnack: SnackMessageService,
+    private candidateStore: CandidatesStore
   ) {}
 
   ngOnInit() {
@@ -91,6 +94,16 @@ export class InterviewingComponent implements OnInit {
             this.matSnack.openSnackBar('The interview event is updated!')
           );
       }
+    });
+  }
+
+  onAddFeedback(feedback: Feedback) {
+    this.candidateStore.addFeedback(feedback).subscribe(candidate => {
+      this.interviewService.deleteInterview(this.interviewId).subscribe(() => {
+        this.router.navigate(['/candidates', candidate.id], {queryParams: {
+          feedbackAdded: true
+        }});
+      });
     });
   }
 
