@@ -33,7 +33,6 @@ export class InterviewComponent implements OnInit {
     this.setCalendarOptions();
     this.interviewService.getAllInterviews().subscribe(interviews => {
       this.interviews = interviews;
-      console.log(interviews);
       this.calendarOptions.events = this.interviews;
     });
 

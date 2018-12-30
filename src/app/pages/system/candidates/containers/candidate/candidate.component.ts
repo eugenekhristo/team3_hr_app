@@ -13,8 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'hr-candidate',
   templateUrl: './candidate.component.html',
-  styleUrls: ['./candidate.component.scss'],
-  providers: [CandidatesStore]
+  styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit {
   constructor(
@@ -27,6 +26,8 @@ export class CandidateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.candidateStore.bootstrapCandidate(this.route.snapshot.params['id']);
+
     if (this.route.snapshot.queryParams['feedbackAdded']) {
       window.setTimeout(() => this.matSnack.openSnackBar('Feedback for the candidate is added 🤘'), 0);
     }

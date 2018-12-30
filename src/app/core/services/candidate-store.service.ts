@@ -29,7 +29,7 @@ export class CandidatesStore {
     private route: ActivatedRoute,
     private interviewService: InterviewService
   ) {
-    this.bootstrapCandidate();
+    // this.bootstrapCandidate();
   }
 
   updateCandidate(candidate: Candidate) {
@@ -52,7 +52,6 @@ export class CandidatesStore {
 
   addFeedback(feedback: Feedback): Observable<Candidate>  {
     const candidate = this._candidate.getValue();
-    console.log('------>>>>>>', candidate);
     const updatedTimelineClient = [...candidate.timeline, feedback];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
@@ -71,23 +70,15 @@ export class CandidatesStore {
     const updatedTimelineBack = updatedTimelineClient.filter(item => item['type'] !== 'interview');
     const updateadCandidateBack = { ...candidate, timeline: updatedTimelineBack };
     const updateadCandidateClient = { ...candidate, timeline: updatedTimelineClient };
-    console.log(updateadCandidateClient);
     const obs$ = this.candidateService.updateCandidate(updateadCandidateBack);
     obs$.subscribe(() => {
       this._candidate.next(updateadCandidateClient);
-      console.log(this._candidate.getValue());
     });
 
     return obs$;
   }
 
-  private bootstrapCandidate(): void {
-    let id = +this.route.snapshot.params['id'];
-
-    if (!id) {
-      id = +this.route.snapshot.queryParams['candidateId'];
-    }
-
+  bootstrapCandidate(id: number): void {
     forkJoin(
       this.candidateService.getCandidate(id),
       this.interviewSerivce.getAllInterviews()
