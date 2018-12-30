@@ -52,6 +52,7 @@ export class CandidatesStore {
 
   addFeedback(feedback: Feedback): Observable<Candidate>  {
     const candidate = this._candidate.getValue();
+    console.log('------>>>>>>', candidate);
     const updatedTimelineClient = [...candidate.timeline, feedback];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
@@ -70,8 +71,13 @@ export class CandidatesStore {
     const updatedTimelineBack = updatedTimelineClient.filter(item => item['type'] !== 'interview');
     const updateadCandidateBack = { ...candidate, timeline: updatedTimelineBack };
     const updateadCandidateClient = { ...candidate, timeline: updatedTimelineClient };
+    console.log(updateadCandidateClient);
     const obs$ = this.candidateService.updateCandidate(updateadCandidateBack);
-    obs$.subscribe(() => this._candidate.next(updateadCandidateClient));
+    obs$.subscribe(() => {
+      this._candidate.next(updateadCandidateClient);
+      console.log(this._candidate.getValue());
+    });
+
     return obs$;
   }
 

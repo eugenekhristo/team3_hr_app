@@ -12,7 +12,7 @@ export class PasteProfileImgDirective implements OnInit {
 
   constructor(
     private elementRef: ElementRef,
-    private candidateService: CandidatesStore,
+    private candidateStore: CandidatesStore,
     private matSNack: SnackMessageService
   ) {}
 
@@ -30,7 +30,7 @@ export class PasteProfileImgDirective implements OnInit {
       if (mouseOverImg) {
         const newSrc = e['clipboardData'].getData('Text');
         this.hrPasteImg.photo = newSrc;
-        this.candidateService.updateCandidate(this.hrPasteImg).subscribe(() => {
+        this.candidateStore.updateCandidate(this.hrPasteImg).subscribe(() => {
           targetImg.src = newSrc;
           this.matSNack.openSnackBar('Profile picture is updated!');
         });

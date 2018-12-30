@@ -52,6 +52,7 @@ export class InterviewingComponent implements OnInit {
     this.interviewStore.interview$.subscribe(
       interview => {
         this.interview = interview;
+        console.log(interview);
         this.interview.candidate.contacts.forEach(contact => {
           if (contact.value) {
             this.contacts[contact.type].push(contact);
@@ -88,6 +89,10 @@ export class InterviewingComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(interview => {
       if (interview) {
+        this.contacts.phone = [];
+        this.contacts.email = [];
+        this.contacts.skype = [];
+        this.contacts.other = [];
         this.interviewStore
           .updateInterview(interview)
           .subscribe(() =>
@@ -99,6 +104,7 @@ export class InterviewingComponent implements OnInit {
 
   onAddFeedback(feedback: Feedback) {
     this.candidateStore.addFeedback(feedback).subscribe(candidate => {
+      console.log(candidate.photo);
       this.interviewService.deleteInterview(this.interviewId).subscribe(() => {
         this.router.navigate(['/candidates', candidate.id], {queryParams: {
           feedbackAdded: true
