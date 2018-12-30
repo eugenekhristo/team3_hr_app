@@ -1,0 +1,29 @@
+mat-card {
+  margin-bottom: 10px;
+}
+
+.open-vacancy {
+  position: absolute;
+  float: right;
+  right: 0.7vh;
+  top: 0.7vh;
+}
+
+.add-button {
+  position: absolute;
+  float: right;
+  right: 4vh;
+  bottom: 4vh;
+}
+
+.closed {
+  color: red;
+}
+
+.opened {
+  color: green;
+}
+
+img {
+  max-width: 150px;
+}
