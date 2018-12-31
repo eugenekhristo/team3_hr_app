@@ -31,7 +31,7 @@
 
         <table class="table description__table">
           <tr>
-            <td>Vacancy:</td>
+            <td>{{'Name' | translate}}:</td>
             <td>
               <a
                 [routerLink]="['/vacancies', interview.vacancy.id]"
@@ -43,13 +43,13 @@
             </td>
           </tr>
           <tr>
-            <td>Place:</td>
+            <td>{{'Place' | translate}}:</td>
             <td>{{ interview.place }}</td>
           </tr>
           <tr>
-            <td>Date:</td>
+            <td>{{'Date' | translate}}:</td>
             <td>
-              {{ interview.start | date }}. From
+              {{ interview.start | date }}. {{'From' | translate}}
               <span class="description__time"
                 >{{ interview.start | date: 'HH:mm' }} -
                 {{ interview.end | date: 'HH:mm' }}</span
@@ -75,13 +75,13 @@
                   <th>Short Info</th>
                 </tr>
                 <tr>
-                  <td>Name:</td>
+                  <td>{{'Name' | translate}}:</td>
                   <td>
                     {{ interview.candidate.name }}
                   </td>
                 </tr>
                 <tr>
-                  <td>Surname:</td>
+                  <td>{{'Surname' | translate}}:</td>
                   <td>{{ interview.candidate.surname }}</td>
                 </tr>
               </table>
