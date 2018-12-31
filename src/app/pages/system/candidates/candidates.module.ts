@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { UiModule } from 'src/app/ui/ui.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+
 import { CandidatesComponent } from './containers/candidates/candidates.component';
 import { CandiatesRoutingModule } from './candidates-routing.module';
 import { CandidateComponent } from './containers/candidate/candidate.component';
@@ -20,7 +24,14 @@ import { TimelineFeedbackComponent } from './presentationals/timeline-feedback/t
     UiModule,
     FormsModule,
     ReactiveFormsModule,
-    CandiatesRoutingModule
+    CandiatesRoutingModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     CandidatesComponent,
