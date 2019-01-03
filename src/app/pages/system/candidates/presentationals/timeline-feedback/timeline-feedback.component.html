@@ -1,19 +1,46 @@
 <div class="card">
-    <header class="card__header">
-      <h2 class="card__heading">Feedback</h2>
-      <p class="card__timestamp">
-        {{ feedback.timestamp | date }} at {{ feedback.timestamp | date: 'HH:mm' }}
-      </p>
-    </header>
+  <header class="card__header">
+    <h2 class="card__heading">
+      <mat-icon class="card__icon">feedback</mat-icon>
+      <span>Feedback</span>
+    </h2>
+    <p class="card__timestamp">
+      {{ feedback.timestamp | date }} at
+      {{ feedback.timestamp | date: 'HH:mm' }}
+    </p>
+  </header>
 
-    <!-- <p>{{ note.body }}</p> -->
+  <section class="card__content">
+    <ul class="card__list">
+      <li *ngFor="let f of feedback.reqPub">
+        <span class="card__requirement ">{{ f.requirement }} </span> &mdash;
+        <span class="card__response">{{ f.response }}</span
+        >;
+      </li>
+      <li *ngFor="let f of feedback.reqPriv">
+        <span class="card__requirement">{{ f.requirement }} </span> &mdash;
+        <span class="card__response">{{ f.response }}</span
+        >;
+      </li>
+      <li *ngFor="let f of feedback.notReqPub">
+        <span class="card__requirement">{{ f.requirement }} </span> &mdash;
+        <span class="card__response">{{ f.response }}</span
+        >;
+      </li>
+      <li *ngFor="let f of feedback.notReqPriv">
+        <span class="card__requirement">{{ f.requirement }} </span> &mdash;
+        <span class="card__response">{{ f.response }}</span
+        >;
+      </li>
+    </ul>
+  </section>
 
-    <div class="card__action">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu" xPosition="before">
-        <a mat-menu-item> <span>Edit</span> </a>
-      </mat-menu>
-    </div>
+  <div class="card__action">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <a mat-menu-item (click)="onOpenDialog()"> <span>Edit</span> </a>
+    </mat-menu>
   </div>
+</div>
