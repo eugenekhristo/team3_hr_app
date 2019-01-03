@@ -1,0 +1,26 @@
+<div class="card">
+  <header class="card__header">
+    <h2 class="card__heading">Note</h2>
+    <p class="card__timestamp">
+      {{ note.timestamp | date }} at {{ note.timestamp | date: 'HH:mm' }}
+    </p>
+  </header>
+
+  <p>{{ note.body }}</p>
+
+  <div class="card__action">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <a mat-menu-item> <span>Edit</span> </a>
+      <a mat-menu-item (click)="onDelete()">
+        <span
+          style="color: var(--color-warn);"
+        >
+          Delete
+        </span>
+      </a>
+    </mat-menu>
+  </div>
+</div>

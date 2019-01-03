@@ -15,101 +15,82 @@
       "position": "Frontend developer",
       "contacts": [
         {
-          "name": "Telephone",
-          "value": "+375293569685",
-          "preferred": false
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
         },
         {
-          "name": "Email",
-          "value": "",
-          "preferred": false
-        },
-        {
-          "name": "Skype",
-          "value": "",
+          "type": "email",
+          "value": "till@gmail.com",
           "preferred": false
         }
       ],
-      "notes": [
+      "photo": "https://frostsnow.com/uploads/biography/2016/08/14/xtill-lindemann.jpg.pagespeed.ic.KcFdExq6oy.jpg",
+      "timeline": [
         {
-          "date": "2018-02-20T21:00:00.000Z",
-          "note": "He was very good on the interview",
-          "type": "Note"
+          "type": "note",
+          "timestamp": 1545829233397,
+          "body": "Hello Milli cool!!!!!!!!!!!!!!!"
         },
         {
-          "date": "2018-09-19T21:00:00.000Z",
-          "note": "We want to see him in our company",
-          "type": "Note"
+          "type": "note",
+          "timestamp": 1545812837347,
+          "body": "Hello Milli cool!"
         },
         {
-          "note": "We invited him to job DA!!!!!",
-          "date": "2018-12-16T19:06:40.159Z",
-          "type": "Note"
+          "type": "note",
+          "timestamp": 1545812825347,
+          "body": "Hello niec hahahah daaaaa!"
+        },
+        {
+          "notReqPub": [
+            {
+              "requirement": "Sociable",
+              "response": "",
+              "require": false,
+              "public_": true
+            }
+          ],
+          "notReqPriv": [
+            {
+              "requirement": "Children under 3 y.o.",
+              "response": "",
+              "require": false,
+              "public_": false
+            }
+          ],
+          "reqPub": [
+            {
+              "requirement": "Responsible",
+              "response": "sdf",
+              "require": true,
+              "public_": true
+            }
+          ],
+          "reqPriv": [
+            {
+              "requirement": "Not pregnant",
+              "response": "sdf",
+              "require": true,
+              "public_": false
+            }
+          ],
+          "timestamp": 1546162377348,
+          "type": "feedback"
         }
-      ],
-      "experience": [
-        {
-          "date": "2017-04-20T21:00:00.000Z",
-          "companyName": "Epam",
-          "position": "Javist",
-          "dateFrom": "2013-02-11T21:00:00.000Z",
-          "dateTo": "2017-04-10T21:00:00.000Z",
-          "type": "Experience"
-        },
-        {
-          "companyName": "Mifort",
-          "position": "Angular2",
-          "dateFrom": "2018-11-30T21:00:00.000Z",
-          "dateTo": "2018-12-14T21:00:00.000Z",
-          "date": "2018-12-16T19:11:26.027Z",
-          "type": "Experience"
-        }
-      ],
-      "cv": [],
-      "photo": "https://24smi.org/public/media/2018/7/26/3a7d5326675226a244c7b4f7a853bffe-till-rammstein-till-lindemann-hot.jpg"
+      ]
     },
     {
       "id": 2,
       "name": "Lilliya",
       "surname": "Scarlett",
       "position": "Frontend developer",
+      "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png",
       "contacts": [
         {
-          "name": "Telephone",
-          "value": "+375295869574",
-          "preferred": false
-        },
-        {
-          "name": "Email",
-          "value": "lilliya@gmail.com",
+          "type": "phone",
+          "value": "+375293569686",
           "preferred": true
-        },
-        {
-          "name": "Skype",
-          "value": "",
-          "preferred": false
-        }
-      ],
-      "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png",
-      "notes": [],
-      "experience": [
-        {
-          "companyName": "Epam",
-          "position": "Java",
-          "dateFrom": "2018-11-30T21:00:00.000Z",
-          "dateTo": "2018-12-15T21:00:00.000Z",
-          "date": "2018-12-17T10:14:53.135Z",
-          "type": "Experience"
-        }
-      ],
-      "cv": [
-        {
-          "name": "out.txt",
-          "size": 67,
-          "data": "data:text/plain;base64,c3VtID0gMiw1ODY5MDQ3NjE5MDQ3NiBtaW4gPSAwLDE0Mjg1NzE0Mjg1NzE0MyB6ID0gMSwwNTMzNTYwMjcwOTYyMg==",
-          "mime": "text/plain",
-          "date": "2018-12-16T19:55:22.879Z",
-          "type": "CV"
         }
       ]
     },
@@ -120,94 +101,194 @@
       "photo": "http://www.metalsucks.net/wp-content/uploads/2018/04/serj_tankian.jpg",
       "contacts": [
         {
-          "name": "Telephone",
-          "value": "",
-          "preferred": false
-        },
-        {
-          "name": "Email",
-          "value": "",
-          "preferred": false
-        },
-        {
-          "name": "Skype",
-          "value": "",
-          "preferred": false
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
         }
-      ],
-      "notes": [],
-      "experience": [],
-      "cv": []
+      ]
     },
     {
       "id": 4,
       "name": "David",
       "surname": "Beckham",
-      "photo": "http://img-fotki.yandex.ru/get/5639/157185180.62/0_b98e2_a784197f_XL.jpg"
+      "photo": "http://img-fotki.yandex.ru/get/5639/157185180.62/0_b98e2_a784197f_XL.jpg",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
+        }
+      ]
     },
     {
       "id": 5,
       "name": "Millie Bobby",
       "surname": "Brown",
-      "photo": "http://sistema.gthoy.com/uploads/articulo/147667_a2e68beea4be9131fc9b62330818783bjpg180528121043.jpg",
+      "photo": "https://ugc.reveliststatic.com/gen/constrain/640/640/80/2018/09/21/11/8m/m8/poaqrk7cco18i.jpg",
       "contacts": [
         {
-          "name": "Telephone",
-          "value": "+375029-555-44-33",
+          "type": "phone",
+          "value": "+375295680956",
           "preferred": true
         },
         {
-          "name": "Email",
+          "type": "email",
           "value": "millie@gmail.com",
-          "preferred": true
+          "preferred": false
         },
         {
-          "name": "Skype",
-          "value": "just_millie",
+          "type": "skype",
+          "value": "millie17",
+          "preferred": false
+        },
+        {
+          "type": "phone",
+          "value": "+375295680957",
           "preferred": false
         }
       ],
-      "notes": [
+      "timeline": [
         {
-          "note": "Cool girl.",
-          "date": "2018-12-21T09:08:02.240Z",
-          "type": "Note"
+          "body": "Not so bad!\n",
+          "type": "note",
+          "timestamp": 1545979932950
         },
         {
-          "note": "Not so cool girl!",
-          "date": "2018-12-21T09:08:35.823Z",
-          "type": "Note"
+          "body": "One more!",
+          "type": "note",
+          "timestamp": 1545979923652
         },
         {
-          "note": "Absolutely bad girl!",
-          "date": "2018-12-21T09:08:45.774Z",
-          "type": "Note"
-        }
-      ],
-      "experience": [],
-      "cv": [
+          "body": "IDK what to write!!!!",
+          "type": "note",
+          "timestamp": 1545979905615
+        },
         {
-          "name": "CV-Millie.txt",
-          "size": 14,
-          "data": "data:text/plain;base64,SnVzdCBhIGdpcmwhDQo=",
-          "mime": "text/plain",
-          "date": "2018-12-21T09:07:26.435Z",
-          "type": "CV"
+          "body": "Just a note!",
+          "type": "note",
+          "timestamp": 1545900318808
+        },
+        {
+          "notReqPub": [
+            {
+              "requirement": "Sociable",
+              "response": "",
+              "require": false,
+              "public_": true
+            }
+          ],
+          "notReqPriv": [
+            {
+              "requirement": "Children under 3 y.o.",
+              "response": "",
+              "require": false,
+              "public_": false
+            }
+          ],
+          "reqPub": [
+            {
+              "requirement": "Responsible",
+              "response": "sdfs",
+              "require": true,
+              "public_": true
+            }
+          ],
+          "reqPriv": [
+            {
+              "requirement": "Not pregnant",
+              "response": "sdf",
+              "require": true,
+              "public_": false
+            }
+          ],
+          "timestamp": 1546166314226,
+          "type": "feedback"
         }
-      ],
-      "position": "UI/UX Designer"
+      ]
     },
     {
       "id": 6,
       "name": "Daron",
       "surname": "Malakian",
-      "photo": "https://i.pinimg.com/736x/37/4a/cf/374acf8c39f182edec60f93b56e16fac--secret-crush-music-rock.jpg"
+      "photo": "https://i.pinimg.com/736x/37/4a/cf/374acf8c39f182edec60f93b56e16fac--secret-crush-music-rock.jpg",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
+        }
+      ]
     },
     {
       "id": 7,
       "name": "Cristiano",
       "surname": "Ronaldo",
-      "photo": "https://menhairstylesworld.com/wp-content/uploads/2017/08/Casual-Cristiano-Ronaldo-Hairstyles.jpg"
+      "photo": "https://img2.thejournal.ie/inline/3795407/original/?width=630&version=3795407",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375293569686",
+          "preferred": true
+        },
+        {
+          "type": "other",
+          "value": "(instagram) /cristiano",
+          "preferred": false
+        }
+      ],
+      "timeline": [
+        {
+          "notReqPub": [
+            {
+              "requirement": "Sociable",
+              "response": "",
+              "require": false,
+              "public_": true
+            }
+          ],
+          "notReqPriv": [
+            {
+              "requirement": "Children under 3 y.o.",
+              "response": "",
+              "require": false,
+              "public_": false
+            }
+          ],
+          "reqPub": [
+            {
+              "requirement": "Responsible",
+              "response": "sdf",
+              "require": true,
+              "public_": true
+            }
+          ],
+          "reqPriv": [
+            {
+              "requirement": "Not pregnant",
+              "response": "sdf",
+              "require": true,
+              "public_": false
+            }
+          ],
+          "timestamp": 1546164424276,
+          "type": "feedback"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545829233397,
+          "body": "Hello Milli cool!!!!!!!!!!!!!!!"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545812827347,
+          "body": "Hello Milli cool!"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545812825347,
+          "body": "Hello niec hahahah daaaaa!"
+        }
+      ]
     }
   ],
   "vacancies": [
@@ -242,29 +323,13 @@
     {
       "candidateId": 5,
       "vacancyId": 6,
-      "start": "2018-12-19 09:30:00",
-      "end": "2018-12-19 10:30",
+      "start": "2019-01-10 10:00:00",
+      "end": "2019-01-10 12:00:00",
       "place": "Minsk, Pobeditelei street, 6",
       "title": "Millie Bobby Brown on UI/UX Designer",
+      "timestamp": 1545829233396,
+      "type": "interview",
       "id": 1
-    },
-    {
-      "candidateId": 1,
-      "vacancyId": 1,
-      "start": "2018-12-27 09:10:00",
-      "end": "2018-12-27 11:00:00",
-      "place": "Germany, Berlin",
-      "title": "Till Lindemann on Java",
-      "id": 2
-    },
-    {
-      "candidateId": 2,
-      "vacancyId": 6,
-      "start": "2018-12-31 08:00",
-      "end": "2018-12-31 08:30",
-      "place": "Minsk, Whatever",
-      "title": "Lilliya Scarlett on UI/UX Designer",
-      "id": 4
     }
   ]
 }

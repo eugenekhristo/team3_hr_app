@@ -1,8 +1,20 @@
 .nav {
   background: var(--color-primary);
   box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
-  padding: 1rem 2.6rem;
+  padding: 1rem 3.6rem;
   margin-bottom: 2.5rem;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+
+  &_lang {
+    color: #fff;
+  }
 }
 
 .nav-logo {

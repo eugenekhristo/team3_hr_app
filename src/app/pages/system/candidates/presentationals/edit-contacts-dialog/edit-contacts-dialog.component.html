@@ -1,0 +1,83 @@
+<div class="dialog">
+  <h2>Edit Contacts</h2>
+
+  <p
+    *ngIf="contacts.length === 0; else contacts_form"
+    style="text-align: center; font-style: italic;"
+  >
+    No Contacts Provided!
+  </p>
+
+  <ng-template #contacts_form>
+    <form [formGroup]="this.form">
+      <div
+        formArrayName="contacts"
+        *ngFor="let c of contacts.controls; let i = index"
+      >
+        <div
+          fxLayout
+          fxLayoutGap="7px"
+          fxLayoutAlign="space-between center"
+          class="form_group"
+          [formGroupName]="i"
+        >
+          <mat-form-field fxFlex="20">
+            <mat-select placeholder="Type" formControlName="type">
+              <mat-option *ngFor="let type of contactTypes" [value]="type">
+                {{ type | titlecase }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="1 1 auto" style="min-width: 20rem;">
+            <input matInput placeholder="Value" formControlName="value" />
+          </mat-form-field>
+
+          <mat-checkbox
+            matTooltip="Preferred?"
+            matTooltipPosition="above"
+            formControlName="preferred"
+          >
+          </mat-checkbox>
+
+          <mat-icon
+            class="contact_delete"
+            matTooltip="Delete?"
+            matTooltipPosition="above"
+            (click)="deleteContact(i)"
+            >delete
+          </mat-icon>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  <button mat-button color="primary" class="add_contact" (click)="addContact()">
+    Add Contact
+  </button>
+
+  <div
+    mat-dialog-actions
+    fxLayout="row nowrap"
+    fxLayoutGap="10px"
+    class="actions"
+  >
+    <button
+      mat-raised-button
+      color="warn"
+      [mat-dialog-close]="false"
+      fxFlex="50"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="contacts.value"
+      cdkFocusInitial
+      fxFlex="50"
+    >
+      Save
+    </button>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="card">
+  <header class="card__header">
+    <h2 class="card__heading">Interview</h2>
+    <p class="card__timestamp">
+      {{ interview.timestamp | date }} at
+      {{ interview.timestamp | date: 'HH:mm' }}
+    </p>
+  </header>
+
+  <table class="table description__table">
+    <tr>
+      <td>Vacancy:</td>
+      <td>
+        <a
+          [routerLink]="['/vacancies', interview.vacancy.id]"
+          matTooltip="Go to the vacancy page"
+          matTooltipPosition="right"
+          class="go"
+        >
+          {{ interview.vacancy.title }}
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Place:</td>
+      <td>{{ interview.place }}</td>
+    </tr>
+    <tr>
+      <td>Date:</td>
+      <td>
+        {{ interview.start | date }}. From
+        <span class="description__time"
+          >{{ interview.start | date: 'HH:mm' }} -
+          {{ interview.end | date: 'HH:mm' }}</span
+        >
+      </td>
+    </tr>
+  </table>
+
+  <div class="card__action">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <a mat-menu-item> <span>Edit</span> </a>
+      <a mat-menu-item>
+        <span style="color: var(--color-warn);">Delete</span>
+      </a>
+    </mat-menu>
+  </div>
+</div>

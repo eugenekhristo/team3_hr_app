@@ -1,0 +1,115 @@
+.mat-big-card {
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  margin: 4px;
+  padding: .5rem .8rem;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fafafa;
+  position: relative;
+}
+
+.short {
+  position: fixed;
+  width: 30rem;
+
+  &__info {
+    margin-bottom: 1.4rem;
+  }
+
+  &__figure {
+    height: 29rem;
+    overflow: hidden;
+    border-radius: 4px;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  &__img {
+    display: block;
+    height: 29rem;
+    width: 100%;
+    object-fit: cover;
+  }
+  &__heading {
+    margin: .7rem 0;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.6rem;
+  }
+}
+
+.table  {
+  td {
+    padding: .5rem .8rem;
+  }
+  td:first-child {
+    color: #828282;
+    font-size: 1.4rem;
+    padding: 0;
+  }
+
+}
+
+.table__contacts td:first-child {
+  vertical-align: top;
+  padding-top: 4px;
+}
+
+.table__contacts td:last-child {
+  font-size: 1.4rem;
+  padding: .4rem;
+
+  span {
+    margin-bottom: .5rem;
+    display: inline-block;
+  }
+}
+
+.table__contacts .preferred {
+  position: relative;
+}
+
+.preferred::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  top: 0;
+  right: -1rem;
+  cursor: pointer
+}
+
+.preferred::before {
+  position: absolute;
+  content: 'Preferred contact';
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+  right: -1rem;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 1rem;
+  transform: translate(100%, -100%) scale(0.4);
+  opacity: 0;
+  transform-origin: 0 100%;
+  backface-visibility: hidden;
+}
+
+.table.table__contacts:hover .preferred::before {
+  transition: .2s ease-out;
+  transform: translate(100%, -100%) scale(1);
+  opacity: 1;
+}
+
+.short__contacts {
+  position: relative;
+}
+
+.contacts__action {
+  position: absolute;
+  top: .5rem;
+  right: 0;
+}

@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpParams, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { BASE_URL } from 'src/app/core/constants/base-url';
 
-import { Observable, from, forkJoin, of, Subject } from 'rxjs';
+import { Observable, from, forkJoin } from 'rxjs';
 import {
   map,
   tap,
   switchMap,
   mergeMap,
   bufferCount,
-  delay,
   share
 } from 'rxjs/operators';
 
@@ -47,6 +46,8 @@ export class InterviewService {
                 interview.end,
                 interview.place,
                 interview.title,
+                interview.timestamp,
+                interview.type,
                 interview.id
               )
           )
@@ -72,6 +73,8 @@ export class InterviewService {
                 interview.end,
                 interview.place,
                 interview.title,
+                interview.timestamp,
+                interview.type,
                 interview.id
               )
           )
@@ -82,7 +85,7 @@ export class InterviewService {
 
   addInterview(interview: InterviewClient): Observable<Interview> {
     const backInterview: Interview = this.transformToBackendModel(interview);
-    return this.http.post<Interview>(`${BASE_URL}/interviews`, backInterview);
+    return this.http.post<Interview>(`${BASE_URL}/interviews`, backInterview).pipe(share());
   }
 
   deleteInterview(id: number): Observable<any> {
@@ -107,7 +110,9 @@ export class InterviewService {
       interview.start,
       interview.end,
       interview.place,
-      interview.title
+      interview.title,
+      interview.timestamp,
+      interview.type
     );
   }
 }

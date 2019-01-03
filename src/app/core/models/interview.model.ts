@@ -1,4 +1,4 @@
-import { Candidate } from './candidate.model';
+import { Candidate, TIMELINE_ITEM_TYPE, TimelineItem } from './candidate.model';
 import { Vacancy } from './vacancy.model';
 
 export class Interview {
@@ -9,11 +9,13 @@ export class Interview {
     public end: string,
     public place?: string,
     public title?: string,
+    public timestamp?: number,
+    public type?: TIMELINE_ITEM_TYPE,
     public id?: number
   ) {}
 }
 
-export class InterviewClient {
+export class InterviewClient implements TimelineItem {
   constructor(
     public candidate: Candidate,
     public vacancy: Vacancy,
@@ -21,6 +23,13 @@ export class InterviewClient {
     public end: string,
     public place?: string,
     public title?: string,
+    public timestamp?: number,
+    public type?: TIMELINE_ITEM_TYPE,
     public id?: number
-  ) {}
+  ) {
+    if (!this.id) {
+      this.timestamp = Date.now();
+      this.type = TIMELINE_ITEM_TYPE.interview;
+    }
+  }
 }

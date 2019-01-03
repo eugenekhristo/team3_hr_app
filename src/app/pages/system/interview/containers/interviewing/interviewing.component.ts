@@ -8,11 +8,14 @@ import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/inte
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Contact } from 'src/app/core/models/contact.model';
+import { Feedback } from '../../presentationals/questionnaire/questionnaire.component';
+import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 
 interface ContactsHash {
-  'Telephone': Contact[];
-  'Email': Contact[];
-  'Skype': Contact[];
+  'phone': Contact[];
+  'email': Contact[];
+  'skype': Contact[];
+  'other': Contact[];
 }
 
 @Component({
@@ -25,11 +28,12 @@ export class InterviewingComponent implements OnInit {
   interviewId: number;
   interview: InterviewClient;
 
-  // for easier templaterendering
+  // for easier template rendering
   contacts: ContactsHash = {
-    'Telephone': [],
-    'Email': [],
-    'Skype': [],
+    'phone': [],
+    'email': [],
+    'skype': [],
+    'other': []
   };
 
   constructor(
@@ -39,7 +43,8 @@ export class InterviewingComponent implements OnInit {
     private interviewService: InterviewService,
     private interviewStore: InterviewStore,
     private interviewDialog: InterviewDialogService,
-    private matSnack: SnackMessageService
+    private matSnack: SnackMessageService,
+    private candidateStore: CandidatesStore
   ) {}
 
   ngOnInit() {
@@ -49,10 +54,9 @@ export class InterviewingComponent implements OnInit {
         this.interview = interview;
         this.interview.candidate.contacts.forEach(contact => {
           if (contact.value) {
-            this.contacts[contact.name].push(contact);
+            this.contacts[contact.type].push(contact);
           }
         });
-        console.log(this.contacts);
       }
     );
   }
@@ -84,12 +88,26 @@ export class InterviewingComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(interview => {
       if (interview) {
+        this.contacts.phone = [];
+        this.contacts.email = [];
+        this.contacts.skype = [];
+        this.contacts.other = [];
         this.interviewStore
           .updateInterview(interview)
           .subscribe(() =>
             this.matSnack.openSnackBar('The interview event is updated!')
           );
       }
+    });
+  }
+
+  onAddFeedback(feedback: Feedback) {
+    this.candidateStore.addFeedback(feedback).subscribe(candidate => {
+      this.interviewService.deleteInterview(this.interviewId).subscribe(() => {
+        this.router.navigate(['/candidates', candidate.id], {queryParams: {
+          feedbackAdded: true
+        }});
+      });
     });
   }
 

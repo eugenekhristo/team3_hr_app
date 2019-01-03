@@ -1,32 +1,43 @@
 <nav class="nav">
-  <span class="nav-logo">HR APP</span>
-  <a
-    routerLink="/candidates"
-    routerLinkActive="active"
-    mat-button
-    class="nav-item"
-  >
-    Candidates
-  </a>
-  <a
-    routerLink="/vacancies"
-    routerLinkActive="active"
-    mat-button
-    class="nav-item"
-  >
-    Vacancies
-  </a>
-  <a
-    routerLink="/interview"
-    routerLinkActive="active"
-    mat-button
-    class="nav-item"
-  >
-    Interview
-  </a>
+  <div class="nav_left">
+    <span class="nav-logo">HR APP</span>
+    <a
+      routerLink="/interview"
+      routerLinkActive="active"
+      mat-button
+      class="nav-item"
+    >
+      {{ 'Interview' | translate }}
+    </a>
+    <a
+      routerLink="/candidates"
+      routerLinkActive="active"
+      mat-button
+      class="nav-item"
+    >
+      {{ 'Candidates' | translate }}
+    </a>
+    <a
+      routerLink="/vacancies"
+      routerLinkActive="active"
+      mat-button
+      class="nav-item"
+    >
+      {{ 'Vacancies' | translate }}
+    </a>
+  </div>
+
+  <div class="nav_right">
+    <a [matMenuTriggerFor]="menu" mat-button class="nav_lang">
+      <img [src]="'/assets/images/icons/' + choosenLang + '.png'" height=20 style="margin-right: .7rem;">
+      {{choosenLang | uppercase}}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </a>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <a mat-menu-item (click)="switchLang('en')"> <span>English</span> </a>
+      <a mat-menu-item (click)="switchLang('ru')"> <span>Russian</span> </a>
+    </mat-menu>
+  </div>
 </nav>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
-
+<div class="container"><router-outlet></router-outlet></div>

@@ -7,13 +7,7 @@
   --color-primary: #3f51b5;
   --color-accent: #ff4080;
   --color-warn: #f44336;
-  // --color-primary: #ffd426;
-  // --color-secondary: #ff2c45;
-  // --color-orangered: #e85800;
-  // --color-orange: #ffb703;
   --color-blue: #009be3;
-  // --color-text: #472d07;
-  // --color-text-secondary: #794e0d;
 }
 
 html {
@@ -28,9 +22,6 @@ html {
 }
 
 body {
-  // background-image: url('./assets/images/pattern.svg'),
-  //   linear-gradient(135deg, var(--color-primary), rgba(253, 71, 95, 0.8));
-  // color: var(--color-text);
   background-image: url('./assets/images/pattern.svg');
   background-color: #f2f2f2;
   min-height: 100vh;
@@ -38,7 +29,7 @@ body {
   font-size: 1.6rem;
   margin: 0;
   background-size: 300px, auto;
-  // background-attachment: fixed;
+  padding-top: 8rem;
 }
 
 ::-webkit-scrollbar {

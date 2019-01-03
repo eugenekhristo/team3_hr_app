@@ -31,7 +31,7 @@
 
         <table class="table description__table">
           <tr>
-            <td>Vacancy:</td>
+            <td>{{'Name' | translate}}:</td>
             <td>
               <a
                 [routerLink]="['/vacancies', interview.vacancy.id]"
@@ -43,13 +43,13 @@
             </td>
           </tr>
           <tr>
-            <td>Place:</td>
+            <td>{{'Place' | translate}}:</td>
             <td>{{ interview.place }}</td>
           </tr>
           <tr>
-            <td>Date:</td>
+            <td>{{'Date' | translate}}:</td>
             <td>
-              {{ interview.start | date }}. From
+              {{ interview.start | date }}. {{'From' | translate}}
               <span class="description__time"
                 >{{ interview.start | date: 'HH:mm' }} -
                 {{ interview.end | date: 'HH:mm' }}</span
@@ -75,18 +75,14 @@
                   <th>Short Info</th>
                 </tr>
                 <tr>
-                  <td>Name:</td>
+                  <td>{{'Name' | translate}}:</td>
                   <td>
                     {{ interview.candidate.name }}
                   </td>
                 </tr>
                 <tr>
-                  <td>Surname:</td>
+                  <td>{{'Surname' | translate}}:</td>
                   <td>{{ interview.candidate.surname }}</td>
-                </tr>
-                <tr>
-                  <td>Position:</td>
-                  <td>{{ interview.candidate.position }}</td>
                 </tr>
               </table>
         </div>
@@ -95,26 +91,34 @@
                 <tr>
                   <th>Contacts</th>
                 </tr>
-                <tr *ngIf="contacts.Telephone.length > 0">
-                  <td>Telephone:</td>
+                <tr *ngIf="contacts.phone.length > 0">
+                  <td>Phone:</td>
                   <td>
-                    <span *ngFor="let c of contacts.Telephone" [ngClass]="{'preferred': c.preferred}">
+                    <span *ngFor="let c of contacts.phone" [ngClass]="{'preferred': c.preferred}">
                       {{c.value}} <br>
                     </span>
                   </td>
                 </tr>
-                <tr *ngIf="contacts.Email.length > 0">
+                <tr *ngIf="contacts.email.length > 0">
                   <td>Email:</td>
                   <td>
-                    <span *ngFor="let c of contacts.Email" [ngClass]="{'preferred': c.preferred}">
+                    <span *ngFor="let c of contacts.email" [ngClass]="{'preferred': c.preferred}">
                       {{c.value}} <br>
                     </span>
                   </td>
                 </tr>
-                <tr *ngIf="contacts.Skype.length > 0">
+                <tr *ngIf="contacts.skype.length > 0">
                   <td>Skype:</td>
                   <td>
-                    <span *ngFor="let c of contacts.Skype" [ngClass]="{'preferred': c.preferred}">
+                    <span *ngFor="let c of contacts.skype" [ngClass]="{'preferred': c.preferred}">
+                      {{c.value}} <br>
+                    </span>
+                  </td>
+                </tr>
+                <tr *ngIf="contacts.other.length > 0">
+                  <td>Other:</td>
+                  <td>
+                    <span *ngFor="let c of contacts.other" [ngClass]="{'preferred': c.preferred}">
                       {{c.value}} <br>
                     </span>
                   </td>
@@ -122,4 +126,7 @@
               </table>
         </div>
       </section>
+
+      <hr-questionnaire (feedbackCreated)="onAddFeedback($event)">
+     </hr-questionnaire>
 </ng-container>
