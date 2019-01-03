@@ -42,6 +42,7 @@
     <hr-timeline-feedback
       *ngSwitchCase="TIMELINE_ITEM_TYPE.feedback"
       [feedback]="item"
+      (feedbackChanged)="changeFeedback.emit($event)"
     >
     </hr-timeline-feedback>
   </div>

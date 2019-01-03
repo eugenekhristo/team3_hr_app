@@ -1,37 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import {
-  TimelineItem,
   TIMELINE_ITEM_TYPE
 } from 'src/app/core/models/candidate.model';
-
-export class Requirement {
-  constructor(
-    public name: string,
-    public require: boolean,
-    public public_: boolean
-  ) {}
-}
-
-export class FeedbackItem {
-  constructor(
-    public requirement: string,
-    public response: string,
-    public require: boolean,
-    public public_: boolean
-  ) {}
-}
-
-export class Feedback implements TimelineItem {
-  constructor(
-    public notReqPub: FeedbackItem[],
-    public notReqPriv: FeedbackItem[],
-    public reqPub: FeedbackItem[],
-    public reqPriv: FeedbackItem[],
-    public timestamp: number,
-    public type: TIMELINE_ITEM_TYPE.feedback
-  ) {}
-}
+import { Requirement } from 'src/app/core/models/vacancy.model';
+import { Feedback, FeedbackItem } from 'src/app/core/models/feedback.model';
 
 @Component({
   selector: 'hr-questionnaire',
@@ -39,14 +12,18 @@ export class Feedback implements TimelineItem {
   styleUrls: ['./questionnaire.component.scss']
 })
 export class QuestionnaireComponent implements OnInit {
+  // @Input() requirements: Requirement [] = [];
+  @Input() feedback: Feedback;
   @Output() feedbackCreated = new EventEmitter<Feedback>();
 
+  // FIXME: supposed to be as @Input()
   requirements: Requirement[] = [
     new Requirement('Responsible', true, true),
     new Requirement('Sociable', false, true),
     new Requirement('Not pregnant', true, false),
     new Requirement('Children under 3 y.o.', false, false)
   ];
+  feedbacksArray: FeedbackItem[] = [];
 
   form: FormGroup;
 
@@ -76,16 +53,32 @@ export class QuestionnaireComponent implements OnInit {
       reqPriv: this.fb.array([])
     });
 
-    this.requirements.forEach(requirement =>
-      this.addFeedbackItem(
-        this.createFeedbackItem(
-          requirement.name,
-          '',
-          requirement.require,
-          requirement.public_
+    if (this.feedback) {
+      this.feedbacksArray = this.feedbackIntoSingleArray(this.feedback);
+
+      this.feedbacksArray.forEach(requirement =>
+        this.addFeedbackItem(
+          this.createFeedbackItem(
+            requirement.requirement,
+            requirement.response,
+            requirement.require,
+            requirement.public_
+          )
         )
-      )
-    );
+      );
+    } else {
+      this.requirements.forEach(requirement =>
+        this.addFeedbackItem(
+          this.createFeedbackItem(
+            requirement.name,
+            '',
+            requirement.require,
+            requirement.public_
+          )
+        )
+      );
+    }
+
   }
 
   onSubmit() {
@@ -123,5 +116,10 @@ export class QuestionnaireComponent implements OnInit {
     } else {
       this.reqPriv.push(formGroup);
     }
+  }
+
+  private feedbackIntoSingleArray(feedback: Feedback) {
+    const {notReqPriv, notReqPub, reqPriv, reqPub} = feedback;
+    return [...notReqPriv, ...notReqPub, ...reqPriv, ...reqPub];
   }
 }

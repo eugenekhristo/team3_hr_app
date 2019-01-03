@@ -149,6 +149,47 @@
       ],
       "timeline": [
         {
+          "body": "I've seen her today. I guess this is a pretty good applicant for UI/UX designer position.",
+          "type": "note",
+          "timestamp": 1546503464945
+        },
+        {
+          "notReqPub": [
+            {
+              "requirement": "Sociable",
+              "response": "Yeah. She is actually quire sociable. I've never seen anybody as sociable as her",
+              "require": false,
+              "public_": true
+            }
+          ],
+          "notReqPriv": [
+            {
+              "requirement": "Children under 3 y.o.",
+              "response": "Nope! Not any children at all",
+              "require": false,
+              "public_": false
+            }
+          ],
+          "reqPub": [
+            {
+              "requirement": "Responsible",
+              "response": "I can't say for sure, but it looks like she is",
+              "require": true,
+              "public_": true
+            }
+          ],
+          "reqPriv": [
+            {
+              "requirement": "Not pregnant",
+              "response": "Nope! She said that she's not going to get children in the near future",
+              "require": true,
+              "public_": false
+            }
+          ],
+          "timestamp": 1546166314226,
+          "type": "feedback"
+        },
+        {
           "body": "Not so bad!\n",
           "type": "note",
           "timestamp": 1545979932950
@@ -162,47 +203,6 @@
           "body": "IDK what to write!!!!",
           "type": "note",
           "timestamp": 1545979905615
-        },
-        {
-          "body": "Just a note!",
-          "type": "note",
-          "timestamp": 1545900318808
-        },
-        {
-          "notReqPub": [
-            {
-              "requirement": "Sociable",
-              "response": "",
-              "require": false,
-              "public_": true
-            }
-          ],
-          "notReqPriv": [
-            {
-              "requirement": "Children under 3 y.o.",
-              "response": "",
-              "require": false,
-              "public_": false
-            }
-          ],
-          "reqPub": [
-            {
-              "requirement": "Responsible",
-              "response": "sdfs",
-              "require": true,
-              "public_": true
-            }
-          ],
-          "reqPriv": [
-            {
-              "requirement": "Not pregnant",
-              "response": "sdf",
-              "require": true,
-              "public_": false
-            }
-          ],
-          "timestamp": 1546166314226,
-          "type": "feedback"
         }
       ]
     },

@@ -8,8 +8,8 @@ import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/inte
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Contact } from 'src/app/core/models/contact.model';
-import { Feedback } from '../../presentationals/questionnaire/questionnaire.component';
 import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
+import { Feedback } from 'src/app/core/models/feedback.model';
 
 interface ContactsHash {
   'phone': Contact[];

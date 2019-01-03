@@ -1,6 +1,9 @@
 <div class="card">
   <header class="card__header">
-    <h2 class="card__heading">Note</h2>
+    <h2 class="card__heading">
+      <mat-icon class="card__icon">notes</mat-icon>
+      Note
+    </h2>
     <p class="card__timestamp">
       {{ note.timestamp | date }} at {{ note.timestamp | date: 'HH:mm' }}
     </p>

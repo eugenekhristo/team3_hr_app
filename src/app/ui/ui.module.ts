@@ -12,15 +12,18 @@ import { InterviewDialogModule } from './modules/interview-dialog/interview-dial
 import { InterviewDialogComponent } from './modules/interview-dialog/interview-dialog/interview-dialog.component';
 import { InterviewDialogService } from './modules/interview-dialog/interview-dialog.service';
 import { PasteProfileImgDirective } from './directives/paste_profile_img.directive';
+import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [SnackMessageComponent, PasteProfileImgDirective],
+  declarations: [SnackMessageComponent, PasteProfileImgDirective, QuestionnaireComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
     ReusableMatConfirmModule,
-    InterviewDialogModule
+    InterviewDialogModule,
+    ReactiveFormsModule
   ],
   providers: [
     SnackMessagePbService,
@@ -33,7 +36,8 @@ import { PasteProfileImgDirective } from './directives/paste_profile_img.directi
     ReusableMatConfirmModule,
     FlexLayoutModule,
     InterviewDialogModule,
-    PasteProfileImgDirective
+    PasteProfileImgDirective,
+    QuestionnaireComponent
   ]
 })
 export class UiModule {}
