@@ -17,6 +17,7 @@ import { TimelineNoteComponent } from './presentationals/timeline-note/timeline-
 import { TimelineInterviewComponent } from './presentationals/timeline-interview/timeline-interview.component';
 import { AddNoteDialogComponent } from './presentationals/timeline-note/add-note-dialog/add-note-dialog.component';
 import { TimelineFeedbackComponent } from './presentationals/timeline-feedback/timeline-feedback.component';
+import { FeedbackEditDialogComponent } from './presentationals/timeline-feedback/feedback-edit-dialog/feedback-edit-dialog.component';
 
 @NgModule({
   imports: [
@@ -42,8 +43,13 @@ import { TimelineFeedbackComponent } from './presentationals/timeline-feedback/t
     TimelineNoteComponent,
     TimelineInterviewComponent,
     AddNoteDialogComponent,
-    TimelineFeedbackComponent
+    TimelineFeedbackComponent,
+    FeedbackEditDialogComponent
   ],
-  entryComponents: [EditContactsDialogComponent, AddNoteDialogComponent]
+  entryComponents: [
+    EditContactsDialogComponent,
+    AddNoteDialogComponent,
+    FeedbackEditDialogComponent
+  ]
 })
 export class CandidatesModule {}

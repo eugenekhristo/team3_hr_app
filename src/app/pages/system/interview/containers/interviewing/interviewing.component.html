@@ -1,132 +1,146 @@
 <ng-container *ngIf="interview">
-    <section class="description mat-big-card">
-        <a
-          mat-icon-button
-          matTooltip="Go back"
-          class="go_back"
-          routerLink="/interview"
-        >
-          <mat-icon>arrow_back_ios</mat-icon>
-        </a>
-        <div class="controls">
-          <button
-            mat-mini-fab
-            (click)="onUpdateInterview()"
-            color="primary"
-            matTooltip="Edit the interview event"
+  <section class="description mat-big-card">
+    <a
+      mat-icon-button
+      matTooltip="Go back"
+      class="go_back"
+      routerLink="/interview"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+    </a>
+    <div class="controls">
+      <button
+        mat-mini-fab
+        (click)="onUpdateInterview()"
+        color="primary"
+        matTooltip="Edit the interview event"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-mini-fab
+        matTooltip="Delete the interview event"
+        (click)="onDeleteInterview()"
+        color="warn"
+        style="margin-left: 1rem;"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+    <h1>{{ interview.title }}</h1>
+
+    <table class="table description__table">
+      <tr>
+        <td>{{ 'Name' | translate }}:</td>
+        <td>
+          <a
+            [routerLink]="['/vacancies', interview.vacancy.id]"
+            matTooltip="Go to the vacancy page"
+            matTooltipPosition="right"
           >
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button
-          mat-mini-fab
-          matTooltip="Delete the interview event"
-          (click)="onDeleteInterview()"
-          color="warn"
-          style="margin-left: 1rem;">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
+            {{ interview.vacancy.title }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ 'Place' | translate }}:</td>
+        <td>{{ interview.place }}</td>
+      </tr>
+      <tr>
+        <td>{{ 'Date' | translate }}:</td>
+        <td>
+          {{ interview.start | date }}. {{ 'From' | translate }}
+          <span class="description__time"
+            >{{ interview.start | date: 'HH:mm' }} -
+            {{ interview.end | date: 'HH:mm' }}</span
+          >
+        </td>
+      </tr>
+    </table>
+  </section>
 
-        <h1>{{ interview.title }}</h1>
+  <section class="candidate mat-big-card">
+    <figure
+      class="candidate__figure"
+      [matTooltip]="'Go to ' + interview.candidate['name'] + '\'s page'"
+      matTooltipPosition="right"
+    >
+      <a [routerLink]="['/candidates', interview.candidate.id]">
+        <img [src]="interview.candidate.photo" class="candidate__img" />
+      </a>
+    </figure>
+    <div class="candidate__short-info">
+      <table class="table short-info__table">
+        <tr>
+          <th>Short Info</th>
+        </tr>
+        <tr>
+          <td>{{ 'Name' | translate }}:</td>
+          <td>{{ interview.candidate.name }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'Surname' | translate }}:</td>
+          <td>{{ interview.candidate.surname }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="candidate__contacts">
+      <table class="table contacts__table">
+        <tr>
+          <th>Contacts</th>
+        </tr>
+        <tr *ngIf="contacts.phone.length > 0">
+          <td>Phone:</td>
+          <td>
+            <span
+              *ngFor="let c of contacts.phone"
+              [ngClass]="{ preferred: c.preferred }"
+            >
+              {{ c.value }} <br />
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="contacts.email.length > 0">
+          <td>Email:</td>
+          <td>
+            <span
+              *ngFor="let c of contacts.email"
+              [ngClass]="{ preferred: c.preferred }"
+            >
+              {{ c.value }} <br />
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="contacts.skype.length > 0">
+          <td>Skype:</td>
+          <td>
+            <span
+              *ngFor="let c of contacts.skype"
+              [ngClass]="{ preferred: c.preferred }"
+            >
+              {{ c.value }} <br />
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="contacts.other.length > 0">
+          <td>Other:</td>
+          <td>
+            <span
+              *ngFor="let c of contacts.other"
+              [ngClass]="{ preferred: c.preferred }"
+            >
+              {{ c.value }} <br />
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
 
-        <table class="table description__table">
-          <tr>
-            <td>{{'Name' | translate}}:</td>
-            <td>
-              <a
-                [routerLink]="['/vacancies', interview.vacancy.id]"
-                matTooltip="Go to the vacancy page"
-                matTooltipPosition="right"
-              >
-                {{ interview.vacancy.title }}
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>{{'Place' | translate}}:</td>
-            <td>{{ interview.place }}</td>
-          </tr>
-          <tr>
-            <td>{{'Date' | translate}}:</td>
-            <td>
-              {{ interview.start | date }}. {{'From' | translate}}
-              <span class="description__time"
-                >{{ interview.start | date: 'HH:mm' }} -
-                {{ interview.end | date: 'HH:mm' }}</span
-              >
-            </td>
-          </tr>
-        </table>
-      </section>
-
-      <section class="candidate mat-big-card">
-        <figure
-          class="candidate__figure"
-          [matTooltip]="'Go to ' + interview.candidate['name'] + '\'s page'"
-          matTooltipPosition="right"
-        >
-            <a [routerLink]="['/candidates', interview.candidate.id]">
-              <img [src]="interview.candidate.photo" class="candidate__img">
-            </a>
-        </figure>
-        <div class="candidate__short-info">
-            <table class="table short-info__table">
-                <tr>
-                  <th>Short Info</th>
-                </tr>
-                <tr>
-                  <td>{{'Name' | translate}}:</td>
-                  <td>
-                    {{ interview.candidate.name }}
-                  </td>
-                </tr>
-                <tr>
-                  <td>{{'Surname' | translate}}:</td>
-                  <td>{{ interview.candidate.surname }}</td>
-                </tr>
-              </table>
-        </div>
-        <div class="candidate__contacts">
-            <table class="table contacts__table">
-                <tr>
-                  <th>Contacts</th>
-                </tr>
-                <tr *ngIf="contacts.phone.length > 0">
-                  <td>Phone:</td>
-                  <td>
-                    <span *ngFor="let c of contacts.phone" [ngClass]="{'preferred': c.preferred}">
-                      {{c.value}} <br>
-                    </span>
-                  </td>
-                </tr>
-                <tr *ngIf="contacts.email.length > 0">
-                  <td>Email:</td>
-                  <td>
-                    <span *ngFor="let c of contacts.email" [ngClass]="{'preferred': c.preferred}">
-                      {{c.value}} <br>
-                    </span>
-                  </td>
-                </tr>
-                <tr *ngIf="contacts.skype.length > 0">
-                  <td>Skype:</td>
-                  <td>
-                    <span *ngFor="let c of contacts.skype" [ngClass]="{'preferred': c.preferred}">
-                      {{c.value}} <br>
-                    </span>
-                  </td>
-                </tr>
-                <tr *ngIf="contacts.other.length > 0">
-                  <td>Other:</td>
-                  <td>
-                    <span *ngFor="let c of contacts.other" [ngClass]="{'preferred': c.preferred}">
-                      {{c.value}} <br>
-                    </span>
-                  </td>
-                </tr>
-              </table>
-        </div>
-      </section>
-
-      <hr-questionnaire (feedbackCreated)="onAddFeedback($event)">
-     </hr-questionnaire>
+  <section class="questionnaire mat-big-card">
+    <h2 class="questionnaire__heading"><mat-icon>question_answer</mat-icon> Questionnaire</h2>
+    <hr-questionnaire (feedbackCreated)="onAddFeedback($event)">
+    </hr-questionnaire>
+  </section>
 </ng-container>

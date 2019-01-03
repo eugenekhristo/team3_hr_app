@@ -9,6 +9,7 @@ import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/inte
 import { InterviewClient } from 'src/app/core/models/interview.model';
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
 import { ActivatedRoute } from '@angular/router';
+import { Feedback } from 'src/app/core/models/feedback.model';
 
 @Component({
   selector: 'hr-candidate',
@@ -81,5 +82,11 @@ export class CandidateComponent implements OnInit {
           );
       }
     });
+  }
+
+  onChangeFeedback(feedback: Feedback): void {
+    this.candidateStore
+      .updateFeedback(feedback)
+      .subscribe(() => this.matSnack.openSnackBar('Feedback is updated!'));
   }
 }

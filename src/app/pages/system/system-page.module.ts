@@ -16,16 +16,12 @@ import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { InterviewingComponent } from './interview/containers/interviewing/interviewing.component';
 import { InterviewStore } from './shared/services/interview-store.service';
-import { QuestionnaireComponent } from './interview/presentationals/questionnaire/questionnaire.component';
-
-
 
 @NgModule({
   declarations: [
     SystemShellComponent,
     InterviewComponent,
-    InterviewingComponent,
-    QuestionnaireComponent
+    InterviewingComponent
   ],
   imports: [
     CommonModule,

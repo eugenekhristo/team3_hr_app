@@ -1,6 +1,4 @@
-<div class="mat-big-card">
-  <h2><mat-icon>question_answer</mat-icon> Questionnaire</h2>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h3>Not Required</h3>
     <h4>Public</h4>
     <div
@@ -21,7 +19,7 @@
     <h4>Private</h4>
     <div
       formArrayName="notReqPriv"
-      *ngFor="let f of notReqPriv.controls; let i = index"h4
+      *ngFor="let f of notReqPriv.controls; let i = index"
     >
       <div [formGroupName]="i">
         <mat-form-field style="width: 100%">
@@ -62,10 +60,7 @@
       </div>
     </div>
 
-    <button mat-raised-button color="primary" [disabled]="form.invalid">
+    <button mat-raised-button color="primary" [disabled]="form.invalid" [mat-dialog-close]="form.value">
       Publish
     </button>
   </form>
-</div>
-
-

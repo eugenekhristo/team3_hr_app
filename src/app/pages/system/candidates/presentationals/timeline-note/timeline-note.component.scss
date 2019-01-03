@@ -21,12 +21,19 @@ p {
     margin-bottom: 5px;
     font-size: 2rem;
     font-style: italic;
+    display: flex;
+    align-items: center;
   }
 
   &__timestamp {
     color: #828282;
     font-size: 1.4rem;
     margin: 0;
+  }
+
+  &__icon {
+    margin-right: 1rem;
+    color: var(--color-primary);
   }
 
   &__action {

@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
 import { InterviewClient, Interview } from '../models/interview.model';
-import { Feedback } from 'src/app/pages/system/interview/presentationals/questionnaire/questionnaire.component';
+import { Feedback } from '../models/feedback.model';
 
 @Injectable()
 export class CandidatesStore {
@@ -64,6 +64,18 @@ export class CandidatesStore {
       this._candidate.next(candidate);
     });
     return obs$;
+  }
+
+  updateFeedback(feedback: Feedback): Observable<Candidate> {
+    const candidate = this._candidate.getValue();
+    const updatedTimelineClient = candidate.timeline.map(item => {
+      if (item['type'] === feedback.type && feedback.timestamp === item['timestamp']) {
+        return feedback;
+      } else {
+        return item;
+      }
+    });
+    return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
   private processTimelineInteraction(candidate: Candidate, updatedTimelineClient?: object[]) {

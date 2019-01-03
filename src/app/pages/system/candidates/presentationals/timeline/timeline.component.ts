@@ -5,6 +5,7 @@ import {
   TIMELINE_ITEM_TYPE,
   TimelineNote
 } from 'src/app/core/models/candidate.model';
+import { Feedback } from 'src/app/core/models/feedback.model';
 
 @Component({
   selector: 'hr-timeline',
@@ -16,6 +17,7 @@ export class TimelineComponent implements OnInit {
   @Output() deleteNote = new EventEmitter<TimelineNote>();
   @Output() addNote = new EventEmitter<void>();
   @Output() addInterview = new EventEmitter<Candidate>();
+  @Output() changeFeedback = new EventEmitter<Feedback>();
 
   timeline: object[];
   candidate: Candidate;
@@ -46,9 +48,3 @@ export class TimelineComponent implements OnInit {
     this.addInterview.emit(this.candidate);
   }
 }
-
-// window.addEventListener('paste', e => {
-//   targetImg.src = e.clipboardData.getData('Text');
-//     // console.log(e.clipboardData.getData('Text'));
-
-// });
