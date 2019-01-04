@@ -111,7 +111,6 @@ export class InterviewComponent implements OnInit, OnDestroy {
 
   onEventClick(e: CustomEvent) {
     const interviewId = e.detail.event.id;
-    this.interviewStore.bootstrapInterview(interviewId);
     this.router.navigate([interviewId], { relativeTo: this.route });
   }
 

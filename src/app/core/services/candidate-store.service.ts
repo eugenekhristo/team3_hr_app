@@ -113,6 +113,7 @@ export class CandidatesStore {
       })
     )
     .subscribe(candidate => {
+      console.log(candidate);
       this._candidate.next(candidate);
     });
   }

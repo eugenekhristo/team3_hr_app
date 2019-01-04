@@ -49,6 +49,8 @@ export class InterviewingComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.interviewStore.bootstrapInterview(+this.route.snapshot.params['id']);
+
     this.route.params.subscribe(params => (this.interviewId = +params['id']));
     const interviewSub = this.interviewStore.interview$.subscribe(
       interview => {
@@ -116,6 +118,13 @@ export class InterviewingComponent implements OnInit, OnDestroy {
       });
     });
   }
+
+  // FIXME: unused method
+  // goToCandidatePage() {
+  //   const candidateId = this.interview.candidate.id;
+  //   this.candidateStore.bootstrapCandidate(candidateId);
+  //   this.candidateStore.candidate$.subscribe(() => this.router.navigate(['/candidates', candidateId]));
+  // }
 
   private deepCopy<T>(obj: T): T {
     return JSON.parse(JSON.stringify(obj));
