@@ -1,14 +1,16 @@
-import { Directive, OnInit, ElementRef, Input } from '@angular/core';
+import { Directive, OnInit, ElementRef, Input, OnDestroy } from '@angular/core';
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { SnackMessageService } from '../services/snack-messgae.service';
 import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[hrPasteImg]'
 })
-export class PasteProfileImgDirective implements OnInit {
+export class PasteProfileImgDirective implements OnInit, OnDestroy {
   // hrPasteImg - it's actually as candidate paste from template
   @Input() hrPasteImg: Candidate;
+  subscriptionContainer = new Subscription();
 
   constructor(
     private elementRef: ElementRef,
@@ -30,11 +32,16 @@ export class PasteProfileImgDirective implements OnInit {
       if (mouseOverImg) {
         const newSrc = e['clipboardData'].getData('Text');
         this.hrPasteImg.photo = newSrc;
-        this.candidateStore.updateCandidate(this.hrPasteImg).subscribe(() => {
+        const updCanSub = this.candidateStore.updateCandidate(this.hrPasteImg).subscribe(() => {
           targetImg.src = newSrc;
           this.matSNack.openSnackBar('Profile picture is updated!');
+          this.subscriptionContainer.add(updCanSub);
         });
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptionContainer.unsubscribe();
   }
 }

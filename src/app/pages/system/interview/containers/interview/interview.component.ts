@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { InterviewClient } from 'src/app/core/models/interview.model';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
@@ -9,16 +9,18 @@ import { InterviewService } from '../../../shared/services/interview.service';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InterviewStore } from '../../../shared/services/interview-store.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'hr-interview',
   templateUrl: './interview.component.html',
   styleUrls: ['./interview.component.scss']
 })
-export class InterviewComponent implements OnInit {
+export class InterviewComponent implements OnInit, OnDestroy {
   calendarOptions: Options;
   interviews: object[] = [];
   selectedDate: string;
+  subscriptionContainer = new Subscription();
 
   @ViewChild(CalendarComponent) calendar: CalendarComponent;
 
@@ -33,9 +35,10 @@ export class InterviewComponent implements OnInit {
 
   ngOnInit() {
     this.setCalendarOptions();
-    this.interviewService.getAllInterviews().subscribe(interviews => {
+    const getAllIntSub = this.interviewService.getAllInterviews().subscribe(interviews => {
       this.interviews = interviews;
       this.calendarOptions.events = this.interviews;
+      this.subscriptionContainer.add(getAllIntSub);
     });
 
     this.route.queryParams.subscribe(params => {
@@ -53,6 +56,10 @@ export class InterviewComponent implements OnInit {
         }
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptionContainer.unsubscribe();
   }
 
   private setCalendarOptions() {

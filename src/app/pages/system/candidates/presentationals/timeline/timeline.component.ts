@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import {
   Candidate,
   TIMELINE_ITEM_TYPE,
@@ -12,13 +12,14 @@ import { Feedback } from 'src/app/core/models/feedback.model';
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss']
 })
-export class TimelineComponent implements OnInit {
+export class TimelineComponent implements OnInit, OnDestroy {
   @Input() candidate$: Observable<Candidate>;
   @Output() deleteNote = new EventEmitter<TimelineNote>();
   @Output() changeNote = new EventEmitter<TimelineNote>();
   @Output() addNote = new EventEmitter<void>();
   @Output() addInterview = new EventEmitter<Candidate>();
   @Output() changeFeedback = new EventEmitter<Feedback>();
+  subscriptionContainer = new Subscription();
 
   timeline: object[];
   candidate: Candidate;
@@ -35,6 +36,10 @@ export class TimelineComponent implements OnInit {
         }
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.subscriptionContainer.unsubscribe();
   }
 
   onDeleteNote(note: TimelineNote) {

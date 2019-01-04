@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 import { Candidate, TimelineNote } from 'src/app/core/models/candidate.model';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
@@ -10,13 +10,16 @@ import { InterviewClient } from 'src/app/core/models/interview.model';
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
 import { ActivatedRoute } from '@angular/router';
 import { Feedback } from 'src/app/core/models/feedback.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'hr-candidate',
   templateUrl: './candidate.component.html',
   styleUrls: ['./candidate.component.scss']
 })
-export class CandidateComponent implements OnInit {
+export class CandidateComponent implements OnInit, OnDestroy {
+  subscriptionContainer = new Subscription();
+
   constructor(
     public candidateStore: CandidatesStore,
     private matSnack: SnackMessageService,
@@ -32,6 +35,10 @@ export class CandidateComponent implements OnInit {
     if (this.route.snapshot.queryParams['feedbackAdded']) {
       window.setTimeout(() => this.matSnack.openSnackBar('Feedback for the candidate is added 🤘'), 0);
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptionContainer.unsubscribe();
   }
 
   onCandidateChanged(candidate: Candidate): void {

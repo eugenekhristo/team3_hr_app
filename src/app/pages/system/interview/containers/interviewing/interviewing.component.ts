@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
 import { InterviewService } from '../../../shared/services/interview.service';
@@ -10,6 +10,7 @@ import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Contact } from 'src/app/core/models/contact.model';
 import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 import { Feedback } from 'src/app/core/models/feedback.model';
+import { Subscription } from 'rxjs';
 
 interface ContactsHash {
   'phone': Contact[];
@@ -23,9 +24,10 @@ interface ContactsHash {
   templateUrl: './interviewing.component.html',
   styleUrls: ['./interviewing.component.scss']
 })
-export class InterviewingComponent implements OnInit {
+export class InterviewingComponent implements OnInit, OnDestroy {
   interviewId: number;
   interview: InterviewClient;
+  subscriptionContainer = new Subscription();
 
   // for easier template rendering
   contacts: ContactsHash = {
@@ -48,7 +50,7 @@ export class InterviewingComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => (this.interviewId = +params['id']));
-    this.interviewStore.interview$.subscribe(
+    const interviewSub = this.interviewStore.interview$.subscribe(
       interview => {
         this.interview = interview;
         this.interview.candidate.contacts.forEach(contact => {
@@ -58,6 +60,11 @@ export class InterviewingComponent implements OnInit {
         });
       }
     );
+    this.subscriptionContainer.add(interviewSub);
+  }
+
+  ngOnDestroy() {
+    this.subscriptionContainer.unsubscribe();
   }
 
   onDeleteInterview() {

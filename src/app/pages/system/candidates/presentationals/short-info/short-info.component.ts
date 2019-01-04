@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { Contact } from 'src/app/core/models/contact.model';
 import { MatDialog } from '@angular/material';
@@ -17,10 +17,11 @@ interface ContactsHash {
   templateUrl: './short-info.component.html',
   styleUrls: ['./short-info.component.scss']
 })
-export class ShortInfoComponent implements OnInit {
+export class ShortInfoComponent implements OnInit, OnDestroy {
   @Input() candidate$: Observable<Candidate>;
   @Output() candidateChanged = new EventEmitter<Candidate>();
   candidate: Candidate;
+  subscriptionContainer = new Subscription();
 
   // for easier template rendering
   contacts: ContactsHash = {
@@ -33,7 +34,7 @@ export class ShortInfoComponent implements OnInit {
   constructor(private matDialog: MatDialog) {}
 
   ngOnInit() {
-    this.candidate$.subscribe(candidate => {
+    const canSub = this.candidate$.subscribe(candidate => {
       this.contacts.phone = [];
       this.contacts.email = [];
       this.contacts.skype = [];
@@ -49,7 +50,13 @@ export class ShortInfoComponent implements OnInit {
           });
         }
       }
+
+      this.subscriptionContainer.add(canSub);
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptionContainer.unsubscribe();
   }
 
   editContacts() {
@@ -57,11 +64,13 @@ export class ShortInfoComponent implements OnInit {
       data: this.candidate.contacts
     });
 
-    dialogRef.afterClosed().subscribe(contacts => {
+    const afSub = dialogRef.afterClosed().subscribe(contacts => {
       if (contacts) {
         this.candidate = { ...this.candidate, contacts };
         this.candidateChanged.emit(this.candidate);
       }
+
+      this.subscriptionContainer.add(afSub);
     });
   }
 }
