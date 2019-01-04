@@ -28,21 +28,6 @@
       "photo": "https://frostsnow.com/uploads/biography/2016/08/14/xtill-lindemann.jpg.pagespeed.ic.KcFdExq6oy.jpg",
       "timeline": [
         {
-          "type": "note",
-          "timestamp": 1545829233397,
-          "body": "Hello Milli cool!!!!!!!!!!!!!!!"
-        },
-        {
-          "type": "note",
-          "timestamp": 1545812837347,
-          "body": "Hello Milli cool!"
-        },
-        {
-          "type": "note",
-          "timestamp": 1545812825347,
-          "body": "Hello niec hahahah daaaaa!"
-        },
-        {
           "notReqPub": [
             {
               "requirement": "Sociable",
@@ -77,6 +62,11 @@
           ],
           "timestamp": 1546162377348,
           "type": "feedback"
+        },
+        {
+          "type": "note",
+          "timestamp": 1545829233397,
+          "body": "Hello New Cruel World!"
         }
       ]
     },
@@ -325,6 +315,17 @@
       "timestamp": 1545829233396,
       "type": "interview",
       "id": 1
+    },
+    {
+      "candidateId": 1,
+      "vacancyId": 1,
+      "start": "2019-01-08 12:00",
+      "end": "2019-01-08 13:00",
+      "place": "Belarus",
+      "title": "Till Lindemann on Java",
+      "timestamp": 1546590394479,
+      "type": "interview",
+      "id": 3
     }
   ]
 }

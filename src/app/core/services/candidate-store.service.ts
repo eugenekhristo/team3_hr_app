@@ -103,19 +103,18 @@ export class CandidatesStore {
       this.candidateService.getCandidate(id),
       this.interviewSerivce.getAllInterviews()
     )
-      .pipe(
-        map(resArr => {
-          const candidate: Candidate = resArr[0];
-          const filteredInterviews: InterviewClient[] = resArr[1].filter(
-            interview => interview.candidate.id === id
-          );
-          const newTimeline = [...candidate.timeline, ...filteredInterviews];
-          return { ...candidate, timeline: newTimeline };
-        })
-      )
-      .subscribe(candidate => {
-        this._candidate.next(candidate);
-      });
+    .pipe(
+      map(resArr => {
+        const candidate: Candidate = resArr[0];
+        const allInterviews = resArr[1];
+        const filteredInterviews: InterviewClient[] = allInterviews.filter(interview => interview.candidate.id === id);
+        const newTimeline = [...candidate.timeline, ...filteredInterviews];
+        return { ...candidate, timeline: newTimeline };
+      })
+    )
+    .subscribe(candidate => {
+      this._candidate.next(candidate);
+    });
   }
 
 }
