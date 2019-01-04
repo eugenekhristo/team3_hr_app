@@ -66,7 +66,7 @@
       [matTooltip]="'Go to ' + interview.candidate['name'] + '\'s page'"
       matTooltipPosition="right"
     >
-      <a [routerLink]="['/candidates', interview.candidate.id]">
+      <a (click)="goToCandidatePage()">
         <img [src]="interview.candidate.photo" class="candidate__img" />
       </a>
     </figure>

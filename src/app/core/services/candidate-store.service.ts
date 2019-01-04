@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
 import { Candidate, TimelineNote } from '../models/candidate.model';
 import { CandidateService } from './candidate.service';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, share } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
 import { InterviewClient, Interview } from '../models/interview.model';
 import { Feedback } from '../models/feedback.model';
@@ -98,23 +98,25 @@ export class CandidatesStore {
     return obs$;
   }
 
-  bootstrapCandidate(id: number): void {
-    forkJoin(
-      this.candidateService.getCandidate(id),
-      this.interviewSerivce.getAllInterviews()
-    )
-    .pipe(
-      map(resArr => {
-        const candidate: Candidate = resArr[0];
-        const allInterviews = resArr[1];
-        const filteredInterviews: InterviewClient[] = allInterviews.filter(interview => interview.candidate.id === id);
-        const newTimeline = [...candidate.timeline, ...filteredInterviews];
-        return { ...candidate, timeline: newTimeline };
-      })
-    )
-    .subscribe(candidate => {
-      console.log(candidate);
-      this._candidate.next(candidate);
+  bootstrapCandidate(id: number): Promise<any> {
+    return new Promise(resolve => {
+      forkJoin(
+        this.candidateService.getCandidate(id),
+        this.interviewSerivce.getAllInterviews()
+      )
+      .pipe(
+        map(resArr => {
+          const candidate: Candidate = resArr[0];
+          const allInterviews = resArr[1];
+          const filteredInterviews: InterviewClient[] = allInterviews.filter(interview => interview.candidate.id === id);
+          const newTimeline = [...candidate.timeline, ...filteredInterviews];
+          return { ...candidate, timeline: newTimeline };
+        })
+      )
+      .subscribe(candidate => {
+        this._candidate.next(candidate);
+        resolve();
+      });
     });
   }
 

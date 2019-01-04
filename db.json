@@ -82,6 +82,8 @@
           "value": "+375293569686",
           "preferred": true
         }
+      ],
+      "timeline": [
       ]
     },
     {
@@ -95,6 +97,8 @@
           "value": "+375293569686",
           "preferred": true
         }
+      ],
+      "timeline": [
       ]
     },
     {
@@ -108,13 +112,15 @@
           "value": "+375293569686",
           "preferred": true
         }
+      ],
+      "timeline": [
       ]
     },
     {
       "id": 5,
       "name": "Millie Bobby",
       "surname": "Brown",
-      "photo": "https://img2.thejournal.ie/inline/3795407/original/?width=630&version=3795407",
+      "photo": "https://ugc.reveliststatic.com/gen/constrain/640/640/80/2018/09/21/11/8m/m8/poaqrk7cco18i.jpg",
       "contacts": [
         {
           "type": "phone",
@@ -202,13 +208,15 @@
           "value": "+375293569686",
           "preferred": true
         }
+      ],
+      "timeline": [
       ]
     },
     {
       "id": 7,
       "name": "Cristiano",
       "surname": "Ronaldo",
-      "photo": "https://img2.thejournal.ie/inline/3795407/original/?width=630&version=3795407",
+      "photo": "https://amp.businessinsider.com/images/5b2a54001ae6621e008b54be-750-375.jpg",
       "contacts": [
         {
           "type": "phone",
@@ -222,57 +230,6 @@
         }
       ],
       "timeline": [
-        {
-          "notReqPub": [
-            {
-              "requirement": "Sociable",
-              "response": "",
-              "require": false,
-              "public_": true
-            }
-          ],
-          "notReqPriv": [
-            {
-              "requirement": "Children under 3 y.o.",
-              "response": "",
-              "require": false,
-              "public_": false
-            }
-          ],
-          "reqPub": [
-            {
-              "requirement": "Responsible",
-              "response": "sdf",
-              "require": true,
-              "public_": true
-            }
-          ],
-          "reqPriv": [
-            {
-              "requirement": "Not pregnant",
-              "response": "sdf",
-              "require": true,
-              "public_": false
-            }
-          ],
-          "timestamp": 1546164424276,
-          "type": "feedback"
-        },
-        {
-          "type": "note",
-          "timestamp": 1545829233397,
-          "body": "Hello Milli cool!!!!!!!!!!!!!!!"
-        },
-        {
-          "type": "note",
-          "timestamp": 1545812827347,
-          "body": "Hello Milli cool!"
-        },
-        {
-          "type": "note",
-          "timestamp": 1545812825347,
-          "body": "Hello niec hahahah daaaaa!"
-        }
       ]
     }
   ],

@@ -13,10 +13,10 @@ import { Feedback } from 'src/app/core/models/feedback.model';
 import { Subscription } from 'rxjs';
 
 interface ContactsHash {
-  'phone': Contact[];
-  'email': Contact[];
-  'skype': Contact[];
-  'other': Contact[];
+  phone: Contact[];
+  email: Contact[];
+  skype: Contact[];
+  other: Contact[];
 }
 
 @Component({
@@ -31,10 +31,10 @@ export class InterviewingComponent implements OnInit, OnDestroy {
 
   // for easier template rendering
   contacts: ContactsHash = {
-    'phone': [],
-    'email': [],
-    'skype': [],
-    'other': []
+    phone: [],
+    email: [],
+    skype: [],
+    other: []
   };
 
   constructor(
@@ -52,16 +52,14 @@ export class InterviewingComponent implements OnInit, OnDestroy {
     this.interviewStore.bootstrapInterview(+this.route.snapshot.params['id']);
 
     this.route.params.subscribe(params => (this.interviewId = +params['id']));
-    const interviewSub = this.interviewStore.interview$.subscribe(
-      interview => {
-        this.interview = interview;
-        this.interview.candidate.contacts.forEach(contact => {
-          if (contact.value) {
-            this.contacts[contact.type].push(contact);
-          }
-        });
-      }
-    );
+    const interviewSub = this.interviewStore.interview$.subscribe(interview => {
+      this.interview = interview;
+      this.interview.candidate.contacts.forEach(contact => {
+        if (contact.value) {
+          this.contacts[contact.type].push(contact);
+        }
+      });
+    });
     this.subscriptionContainer.add(interviewSub);
   }
 
@@ -112,19 +110,21 @@ export class InterviewingComponent implements OnInit, OnDestroy {
   onAddFeedback(feedback: Feedback) {
     this.candidateStore.addFeedback(feedback).subscribe(candidate => {
       this.interviewService.deleteInterview(this.interviewId).subscribe(() => {
-        this.router.navigate(['/candidates', candidate.id], {queryParams: {
-          feedbackAdded: true
-        }});
+        this.router.navigate(['/candidates', candidate.id], {
+          queryParams: {
+            feedbackAdded: true
+          }
+        });
       });
     });
   }
 
-  // FIXME: unused method
-  // goToCandidatePage() {
-  //   const candidateId = this.interview.candidate.id;
-  //   this.candidateStore.bootstrapCandidate(candidateId);
-  //   this.candidateStore.candidate$.subscribe(() => this.router.navigate(['/candidates', candidateId]));
-  // }
+  goToCandidatePage() {
+    const candidateId = this.interview.candidate.id;
+    this.candidateStore
+      .bootstrapCandidate(candidateId)
+      .then(() => this.router.navigate(['/candidates', candidateId]));
+  }
 
   private deepCopy<T>(obj: T): T {
     return JSON.parse(JSON.stringify(obj));
