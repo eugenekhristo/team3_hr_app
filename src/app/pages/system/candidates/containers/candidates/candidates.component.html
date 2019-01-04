@@ -1,3 +1,48 @@
-<p>
-  candidates works!
-</p>
+<div *ngIf="candidates$ | async; else loader">
+  <section class="candidates-board" fxLayout *ngIf="candidates.length !== 0; else empty">
+    <div class="candidate mat-big-card" *ngFor="let candidate of candidates">
+      <figure
+        class="candidate__figure"
+        [matTooltip]="'Go to ' + candidate['name'] + '\'s page'"
+        matTooltipPosition="right"
+      >
+        <a [routerLink]="['/candidates', candidate.id]">
+          <img [src]="candidate.photo" class="candidate__img" />
+        </a>
+      </figure>
+      <div class="candidate__short-info">
+        <table class="table short-info__table">
+          <tr>
+            <th>Short Info</th>
+          </tr>
+          <tr>
+            <td>{{ 'Name' | translate }}:</td>
+            <td>{{ candidate.name }}</td>
+          </tr>
+          <tr>
+            <td>{{ 'Surname' | translate }}:</td>
+            <td>{{ candidate.surname }}</td>
+          </tr>
+          <tr>
+            <th>Contacts</th>
+          </tr>
+          <tr *ngFor="let contact of candidate.contacts" >
+            <td *ngIf="contact.type !== 'other'; else other">{{ contact.type }}:</td>
+            <td>{{ contact.value }}</td>
+            <ng-template #other>
+              <td></td>
+            </ng-template>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <ng-template #empty>
+    <p>У вас нет ни одного кандидата</p>
+  </ng-template>
+</div>
+
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>

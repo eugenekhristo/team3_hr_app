@@ -7,7 +7,10 @@ import {BASE_URL} from '../constants/base-url';
 
 @Injectable()
 export class CandidateService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
+
+  getAllCandidates(): Observable<Candidate[]> {
+    return this.http.get<Candidate[]>(`${BASE_URL}/candidates`);
   }
 
   getCandidate(id: number): Observable<Candidate> {
