@@ -11,6 +11,8 @@ export class PasteProfileImgDirective implements OnInit, OnDestroy {
   // hrPasteImg - it's actually as candidate paste from template
   @Input() hrPasteImg: Candidate;
   subscriptionContainer = new Subscription();
+  mouseoverHandler: (this: Window, ev: MouseEvent) => void;
+  pasteImgHandler: EventListenerOrEventListenerObject;
 
   constructor(
     private elementRef: ElementRef,
@@ -20,28 +22,36 @@ export class PasteProfileImgDirective implements OnInit, OnDestroy {
 
   ngOnInit() {
     let mouseOverImg = false;
-    window.addEventListener('mouseover', e => {
+    this.mouseoverHandler = e => {
       if (e.target['classList'].contains('short__img')) {
         mouseOverImg = true;
       } else {
         mouseOverImg = false;
       }
-    });
+    };
+    window.addEventListener('mouseover', this.mouseoverHandler);
+
     const targetImg = this.elementRef.nativeElement as HTMLImageElement;
-    window.addEventListener('paste', e => {
+
+    this.pasteImgHandler = e => {
       if (mouseOverImg) {
         const newSrc = e['clipboardData'].getData('Text');
         this.hrPasteImg.photo = newSrc;
+        console.log(this.hrPasteImg);
         const updCanSub = this.candidateStore.updateCandidate(this.hrPasteImg).subscribe(() => {
           targetImg.src = newSrc;
           this.matSNack.openSnackBar('Profile picture is updated!');
           this.subscriptionContainer.add(updCanSub);
         });
       }
-    });
+    };
+
+    window.addEventListener('paste', this.pasteImgHandler);
   }
 
   ngOnDestroy() {
     this.subscriptionContainer.unsubscribe();
+    window.removeEventListener('mouseover', this.mouseoverHandler);
+    window.removeEventListener('paste', this.pasteImgHandler);
   }
 }

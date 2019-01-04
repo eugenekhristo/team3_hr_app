@@ -25,13 +25,13 @@
           "preferred": false
         }
       ],
-      "photo": "https://frostsnow.com/uploads/biography/2016/08/14/xtill-lindemann.jpg.pagespeed.ic.KcFdExq6oy.jpg",
+      "photo": "https://pbs.twimg.com/profile_images/802744294553636864/IlFm3UwO_400x400.jpg",
       "timeline": [
         {
           "notReqPub": [
             {
               "requirement": "Sociable",
-              "response": "",
+              "response": "Only when a bit boozed!",
               "require": false,
               "public_": true
             }
@@ -39,7 +39,7 @@
           "notReqPriv": [
             {
               "requirement": "Children under 3 y.o.",
-              "response": "",
+              "response": "Nope!",
               "require": false,
               "public_": false
             }
@@ -47,7 +47,7 @@
           "reqPub": [
             {
               "requirement": "Responsible",
-              "response": "sdf",
+              "response": "I don't really think so!",
               "require": true,
               "public_": true
             }
@@ -55,7 +55,7 @@
           "reqPriv": [
             {
               "requirement": "Not pregnant",
-              "response": "sdf",
+              "response": "😱😹Funny if it would be true!",
               "require": true,
               "public_": false
             }
@@ -114,7 +114,7 @@
       "id": 5,
       "name": "Millie Bobby",
       "surname": "Brown",
-      "photo": "https://ugc.reveliststatic.com/gen/constrain/640/640/80/2018/09/21/11/8m/m8/poaqrk7cco18i.jpg",
+      "photo": "https://img2.thejournal.ie/inline/3795407/original/?width=630&version=3795407",
       "contacts": [
         {
           "type": "phone",
