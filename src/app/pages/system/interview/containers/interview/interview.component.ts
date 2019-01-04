@@ -8,6 +8,7 @@ import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/inte
 import { InterviewService } from '../../../shared/services/interview.service';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { InterviewStore } from '../../../shared/services/interview-store.service';
 
 @Component({
   selector: 'hr-interview',
@@ -24,6 +25,7 @@ export class InterviewComponent implements OnInit {
   constructor(
     private interviewDialog: InterviewDialogService,
     private interviewService: InterviewService,
+    private interviewStore: InterviewStore,
     private matSnack: SnackMessageService,
     private router: Router,
     private route: ActivatedRoute
@@ -102,9 +104,8 @@ export class InterviewComponent implements OnInit {
 
   onEventClick(e: CustomEvent) {
     const interviewId = e.detail.event.id;
-    this.router.navigate([interviewId], { relativeTo: this.route, queryParams: {
-      candidateId: e.detail.event.candidate.id
-    } });
+    this.interviewStore.bootstrapInterview(interviewId);
+    this.router.navigate([interviewId], { relativeTo: this.route });
   }
 
   onChangeDateTime(e: CustomEvent) {

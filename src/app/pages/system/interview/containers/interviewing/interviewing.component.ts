@@ -21,8 +21,7 @@ interface ContactsHash {
 @Component({
   selector: 'hr-interviewing',
   templateUrl: './interviewing.component.html',
-  styleUrls: ['./interviewing.component.scss'],
-  providers: [InterviewStore]
+  styleUrls: ['./interviewing.component.scss']
 })
 export class InterviewingComponent implements OnInit {
   interviewId: number;
