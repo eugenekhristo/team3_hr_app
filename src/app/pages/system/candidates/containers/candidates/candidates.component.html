@@ -10,21 +10,13 @@
           <img [src]="candidate.photo" class="candidate__img" />
         </a>
       </figure>
-      <div class="candidate__short-info">
-        <table class="table short-info__table">
+      <div>
+        <table>
           <tr>
-            <th>Short Info</th>
+            <th>{{ candidate.name }} {{ candidate.surname }}</th>
           </tr>
           <tr>
-            <td>{{ 'Name' | translate }}:</td>
-            <td>{{ candidate.name }}</td>
-          </tr>
-          <tr>
-            <td>{{ 'Surname' | translate }}:</td>
-            <td>{{ candidate.surname }}</td>
-          </tr>
-          <tr>
-            <th>Contacts</th>
+            <td>Contacts</td>
           </tr>
           <tr *ngFor="let contact of candidate.contacts" >
             <td *ngIf="contact.type !== 'other'; else other">{{ contact.type }}:</td>
