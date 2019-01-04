@@ -16,7 +16,11 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" xPosition="before">
-      <a mat-menu-item> <span>Edit</span> </a>
+      <a mat-menu-item
+        (click)="onChange()"
+      >
+        <span>Edit</span>
+      </a>
       <a mat-menu-item (click)="onDelete()">
         <span
           style="color: var(--color-warn);"

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
 import { Candidate, TimelineNote } from '../models/candidate.model';
 import { CandidateService } from './candidate.service';
-import { ActivatedRoute } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
 import { InterviewClient, Interview } from '../models/interview.model';
@@ -26,11 +25,8 @@ export class CandidatesStore {
   constructor(
     private candidateService: CandidateService,
     private interviewSerivce: InterviewService,
-    private route: ActivatedRoute,
     private interviewService: InterviewService
-  ) {
-    // this.bootstrapCandidate();
-  }
+  ) {}
 
   updateCandidate(candidate: Candidate) {
     const _candidate = this._candidate.getValue();
@@ -47,6 +43,18 @@ export class CandidatesStore {
   addNote(note: TimelineNote): Observable<Candidate>  {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = [...candidate.timeline, note];
+    return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
+  updateNote(note: TimelineNote): Observable<Candidate>  {
+    const candidate = this._candidate.getValue();
+    const updatedTimelineClient = candidate.timeline.map(item => {
+      if (item['type'] === note.type && note.timestamp === item['timestamp']) {
+        return note;
+      } else {
+        return item;
+      }
+    });
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 

@@ -6,6 +6,7 @@
   <hr-timeline
     [candidate$]="candidateStore.candidate$"
     (deleteNote)="onDeleteNote($event)"
+    (changeNote)="onChangeNote($event)"
     (addNote)="onAddNote()"
     (addInterview)="onAddInterview($event)"
     (changeFeedback)="onChangeFeedback($event)"

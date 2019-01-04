@@ -9,6 +9,7 @@ import { TimelineNote } from 'src/app/core/models/candidate.model';
 export class TimelineNoteComponent implements OnInit {
   @Input() note: TimelineNote;
   @Output() deleteNote = new EventEmitter<TimelineNote>();
+  @Output() changeNote = new EventEmitter<TimelineNote>();
 
   constructor() { }
 
@@ -19,4 +20,7 @@ export class TimelineNoteComponent implements OnInit {
     this.deleteNote.emit(this.note);
   }
 
+  onChange() {
+    this.changeNote.emit(this.note);
+  }
 }

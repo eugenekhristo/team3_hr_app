@@ -1,5 +1,5 @@
 <div class="dialog">
-  <h2>Add Note</h2>
+  <h2>{{data ? 'Edit' : 'Add'}} Note</h2>
 
   <mat-form-field class="full_width">
     <textarea
@@ -8,6 +8,7 @@
       name="body"
       [(ngModel)]="body"
     >
+      {{body}}
     </textarea>
   </mat-form-field>
 

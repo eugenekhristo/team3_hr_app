@@ -15,6 +15,7 @@ import { Feedback } from 'src/app/core/models/feedback.model';
 export class TimelineComponent implements OnInit {
   @Input() candidate$: Observable<Candidate>;
   @Output() deleteNote = new EventEmitter<TimelineNote>();
+  @Output() changeNote = new EventEmitter<TimelineNote>();
   @Output() addNote = new EventEmitter<void>();
   @Output() addInterview = new EventEmitter<Candidate>();
   @Output() changeFeedback = new EventEmitter<Feedback>();
@@ -38,6 +39,10 @@ export class TimelineComponent implements OnInit {
 
   onDeleteNote(note: TimelineNote) {
     this.deleteNote.emit(note);
+  }
+
+  onChangeNote(note: TimelineNote) {
+    this.changeNote.emit(note);
   }
 
   onAddNote() {

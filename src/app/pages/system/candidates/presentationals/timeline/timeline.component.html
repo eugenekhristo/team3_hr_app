@@ -30,6 +30,7 @@
       *ngSwitchCase="TIMELINE_ITEM_TYPE.note"
       [note]="item"
       (deleteNote)="onDeleteNote($event)"
+      (changeNote)="onChangeNote($event)"
     >
     </hr-timeline-note>
 

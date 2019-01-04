@@ -55,6 +55,18 @@ export class CandidateComponent implements OnInit {
       });
   }
 
+  onChangeNote(note: TimelineNote) {
+    const dialogRef = this.matDialog.open(AddNoteDialogComponent, {data: note});
+    dialogRef.afterClosed().subscribe(body => {
+      if (body) {
+        note = {...note, body};
+        this.candidateStore
+          .updateNote(note)
+          .subscribe(() => this.matSnack.openSnackBar('The note was updated!'));
+      }
+    });
+  }
+
   onAddNote() {
     const dialogRef = this.matDialog.open(AddNoteDialogComponent);
     dialogRef.afterClosed().subscribe(body => {
