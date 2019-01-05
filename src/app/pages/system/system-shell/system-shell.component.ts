@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'hr-system-shell',
@@ -9,7 +10,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class SystemShellComponent implements OnInit {
   choosenLang = 'en';
 
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService,
+    private authService: AuthService
+  ) {
     translate.setDefaultLang('en');
   }
 
@@ -20,4 +24,7 @@ export class SystemShellComponent implements OnInit {
     this.translate.use(lang);
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }

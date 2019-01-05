@@ -28,16 +28,24 @@
   </div>
 
   <div class="nav_right">
-    <a [matMenuTriggerFor]="menu" mat-button class="nav_lang">
-      <img [src]="'/assets/images/icons/' + choosenLang + '.png'" height=20 style="margin-right: .7rem;">
-      {{choosenLang | uppercase}}
-      <mat-icon>arrow_drop_down</mat-icon>
-    </a>
-    <mat-menu #menu="matMenu" xPosition="before">
-      <a mat-menu-item (click)="switchLang('en')"> <span>English</span> </a>
-      <a mat-menu-item (click)="switchLang('ru')"> <span>Russian</span> </a>
-    </mat-menu>
+    <div class="lang_switch">
+      <a [matMenuTriggerFor]="menu" mat-button class="nav_lang">
+        <img
+          [src]="'/assets/images/icons/' + choosenLang + '.png'"
+          height="20"
+          style="margin-right: .7rem;"
+        />
+        {{ choosenLang | uppercase }}
+        <mat-icon>arrow_drop_down</mat-icon>
+      </a>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <a mat-menu-item (click)="switchLang('en')"> <span>English</span> </a>
+        <a mat-menu-item (click)="switchLang('ru')"> <span>Russian</span> </a>
+      </mat-menu>
+    </div>
+    <a (click)="logout()" mat-button class="nav-item"> Logout </a>
   </div>
+
 </nav>
 
 <div class="container"><router-outlet></router-outlet></div>
