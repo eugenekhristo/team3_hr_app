@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { Subject } from 'rxjs';
 import { CandidateService } from 'src/app/core/services/candidate.service';
@@ -8,12 +8,12 @@ import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { InterviewClient } from 'src/app/core/models/interview.model';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { INTERVIEW_DIALOG_TYPES } from '../interview-dialog-types';
+import { NgModel, AbstractControl, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'hr-interview-dialog',
   templateUrl: './interview-dialog.component.html',
-  styleUrls: ['./interview-dialog.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./interview-dialog.component.scss']
 })
 export class InterviewDialogComponent implements OnInit {
   INTERVIEW_DIALOG_TYPES = INTERVIEW_DIALOG_TYPES;
@@ -21,6 +21,10 @@ export class InterviewDialogComponent implements OnInit {
   vacancies: Vacancy[];
   candidateSearchTerm$ = new Subject<string>();
   vacancySearchTerm$ = new Subject<string>();
+  @ViewChild('vacanyInput') vacanyInput: NgModel;
+  @ViewChild('candidateInput') candidateInput: NgModel;
+  @ViewChild('timeStart') timeStartInpit: NgModel;
+  @ViewChild('timeEnd') timeEndInput: NgModel;
 
   get interview() {
     return this.data.interview;
@@ -105,9 +109,13 @@ export class InterviewDialogComponent implements OnInit {
       .search(this.candidateSearchTerm$)
       .subscribe(candidates => (this.candidates = candidates));
 
-    this.vacancyService
-      .search(this.vacancySearchTerm$)
-      .subscribe(vacancies => (this.vacancies = vacancies));
+    this.vacancyService.search(this.vacancySearchTerm$).subscribe(vacancies => {
+      this.vacancies = vacancies;
+    });
+
+    this.setCustomValidator(this.vacanyInput);
+    this.setCustomValidator(this.candidateInput);
+    this.setEndTimeValidator();
   }
 
   matDisplayCandidateFn(candidate?: Candidate): string | undefined {
@@ -118,11 +126,40 @@ export class InterviewDialogComponent implements OnInit {
     return vacancy ? vacancy.title : undefined;
   }
 
+  private setCustomValidator(inp: NgModel) {
+    const input = inp.control;
+    input.setValidators(
+      (control: AbstractControl): { [key: string]: any } | null => {
+        if (control.value && control.value.id) {
+          return null;
+        } else {
+          return { notChoosen: true };
+        }
+      }
+    );
+  }
+
+  private setEndTimeValidator() {
+    const endInput = this.timeEndInput.control;
+
+    endInput.setValidators(
+      (control: AbstractControl): { [key: string]: any } | null => {
+        if (this.timeStartInpit.value < control.value) {
+          return null;
+        } else {
+          return { wrongEndTime: true };
+        }
+      }
+    );
+  }
+
   private predictTitle() {
     const titleArr = [];
 
     if (this.interview.candidate && this.interview.candidate.name) {
-      titleArr[0] = `${this.interview.candidate.name} ${this.interview.candidate.surname}`;
+      titleArr[0] = `${this.interview.candidate.name} ${
+        this.interview.candidate.surname
+      }`;
     }
 
     if (this.interview.vacancy && this.interview.vacancy.title) {
@@ -132,6 +169,5 @@ export class InterviewDialogComponent implements OnInit {
     const title = titleArr.join(' ');
 
     this.interview.title = title;
-
   }
 }

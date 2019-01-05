@@ -1,6 +1,12 @@
 <div class="dialog">
   <h2 class="dialog__title" mat-dialog-title>
-    {{ data.type === INTERVIEW_DIALOG_TYPES.add || INTERVIEW_DIALOG_TYPES.add_timeline ? 'Add' : 'Edit' }} Interview
+    {{
+      data.type === INTERVIEW_DIALOG_TYPES.add ||
+      INTERVIEW_DIALOG_TYPES.add_timeline
+        ? 'Add'
+        : 'Edit'
+    }}
+    Interview
   </h2>
 
   <div class="dialog__content">
@@ -13,9 +19,21 @@
           matInput
           [matAutocomplete]="auto2"
           (input)="vacancySearchTerm$.next($event.target.value)"
+          (focus)="vacancySearchTerm$.next($event.target.value)"
           name="vacancy"
           [(ngModel)]="vacancy"
+          #vacanyInput="ngModel"
+          required
         />
+        <mat-error *ngIf="vacanyInput.hasError('required'); else customError">
+          Vacancy is <strong>required</strong>
+        </mat-error>
+        <ng-template #customError>
+          <mat-error *ngIf="vacanyInput.hasError('notChoosen')">
+            You have to <strong>choose</strong> a vacancy from the list below when
+            typing</mat-error
+          >
+        </ng-template>
       </mat-form-field>
       <mat-autocomplete
         #auto2="matAutocomplete"
@@ -31,14 +49,14 @@
       </mat-autocomplete>
       <!------------------------------- place ---------------------------------->
       <mat-form-field fxFlex="100%">
-          <input
-            placeholder="Place"
-            type="text"
-            matInput
-            name="place"
-            [(ngModel)]="place"
-          />
-        </mat-form-field>
+        <input
+          placeholder="Place"
+          type="text"
+          matInput
+          name="place"
+          [(ngModel)]="place"
+        />
+      </mat-form-field>
 
       <!------------------------------- date---------------------------------->
       <mat-form-field>
@@ -48,6 +66,7 @@
           [matDatepicker]="picker"
           placeholder="Date"
           [(ngModel)]="date"
+          required
         />
         <mat-datepicker-toggle
           matSuffix
@@ -55,6 +74,9 @@
           style="font-size: 2.1rem;"
         ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+          Date is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
       <!------------------------------- start time ---------------------------------->
       <mat-form-field>
@@ -67,6 +89,8 @@
           [format]="24"
           readonly
           [disableClick]="true"
+          required
+          #timeStart="ngModel"
         />
         <ngx-material-timepicker-toggle [for]="timePicker" matSuffix>
           <mat-icon
@@ -75,21 +99,24 @@
             >access_time</mat-icon
           >
         </ngx-material-timepicker-toggle>
+
+        <mat-error>
+          Start time is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
 
       <div class="timepicker__dialog">
         <ngx-material-timepicker
           #timePicker
-          [enableKeyboardInput]="true"
           [confirmBtnTmpl]="confirmBtn"
           [cancelBtnTmpl]="cancelBtn"
         ></ngx-material-timepicker>
 
         <ng-template #confirmBtn>
-          <button mat-raised-button color="primary">OK</button>
+          <button mat-raised-button color="primary" type="button">OK</button>
         </ng-template>
         <ng-template #cancelBtn>
-          <button mat-raised-button color="warn">Cancel</button>
+          <button mat-raised-button color="warn" type="button">Cancel</button>
         </ng-template>
       </div>
 
@@ -105,6 +132,8 @@
           [format]="24"
           readonly
           [disableClick]="true"
+          required
+          #timeEnd="ngModel"
         />
         <ngx-material-timepicker-toggle [for]="timePicker2" matSuffix>
           <mat-icon
@@ -113,6 +142,15 @@
             >access_time</mat-icon
           >
         </ngx-material-timepicker-toggle>
+        <mat-error *ngIf="timeEnd.hasError('required'); else customErrorEndTime">
+          End time is <strong>required</strong>
+        </mat-error>
+        <ng-template #customErrorEndTime>
+          <mat-error *ngIf="timeEnd.hasError('wrongEndTime')">
+            End time <strong>cannot be less or equal</strong> to start time
+          </mat-error
+          >
+        </ng-template>
       </mat-form-field>
 
       <div class="timepicker__dialog">
@@ -124,10 +162,10 @@
         ></ngx-material-timepicker>
 
         <ng-template #confirmBtn2>
-          <button mat-raised-button color="primary">OK</button>
+          <button mat-raised-button color="primary" type="button">OK</button>
         </ng-template>
         <ng-template #cancelBtn>
-          <button mat-raised-button color="warn">Cancel</button>
+          <button mat-raised-button color="warn" type="button">Cancel</button>
         </ng-template>
       </div>
       <!------------------------------- candidate ---------------------------------->
@@ -138,10 +176,22 @@
           matInput
           [matAutocomplete]="auto"
           (input)="candidateSearchTerm$.next($event.target.value)"
+          (focus)="candidateSearchTerm$.next($event.target.value)"
           name="candidate"
           [(ngModel)]="candidate"
           [disabled]="data.type === INTERVIEW_DIALOG_TYPES.add_timeline"
+          #candidateInput="ngModel"
+          required
         />
+        <mat-error *ngIf="candidateInput.hasError('required'); else customError2">
+          Vacancy is <strong>required</strong>
+        </mat-error>
+        <ng-template #customError2>
+          <mat-error *ngIf="candidateInput.hasError('notChoosen')">
+            You have to <strong>choose</strong> a candidate from the list below when
+            typing</mat-error
+          >
+        </ng-template>
       </mat-form-field>
       <mat-autocomplete
         #auto="matAutocomplete"
@@ -166,7 +216,11 @@
           matInput
           name="title"
           [(ngModel)]="title"
+          required
         />
+        <mat-error>
+          Title is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
 
       <div
@@ -191,8 +245,14 @@
           cdkFocusInitial
           [mat-dialog-close]="data.interview"
           fxFlex="50"
+          [disabled]="f.invalid"
         >
-          {{ data.type === INTERVIEW_DIALOG_TYPES.add || INTERVIEW_DIALOG_TYPES.add_timeline ? 'Add' : 'Save' }}
+          {{
+            data.type === INTERVIEW_DIALOG_TYPES.add ||
+            INTERVIEW_DIALOG_TYPES.add_timeline
+              ? 'Add'
+              : 'Save'
+          }}
         </button>
       </div>
       <!-- END of dialog__actions -->
