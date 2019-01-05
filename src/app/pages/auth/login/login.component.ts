@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/core/models/user.model';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'hr-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private snackMessageService: SnackMessageService
+    private snackMessageService: SnackMessageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.userService.getUserByEmail(email).subscribe((user: User) => {
       if (user) {
         if (password === user.password) {
-          this.snackMessageService.openSnackBar('Login!');
+          this.authService.login(user);
         } else {
           this.snackMessageService.openSnackBar(`Password doesn't correct for the email!`, 'error');
         }
