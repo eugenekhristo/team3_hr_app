@@ -39,6 +39,7 @@ export class Candidate {
     public name: string,
     public surname?: string,
     public photo?: string,
+    public position?: string,
     public contacts?: Contact[],
     public timeline?: object[],
     public id?: number

@@ -1,8 +1,10 @@
+import { Component, OnInit } from '@angular/core';
+import { CandidateService } from '../../../../../core/services/candidate.service';
+import { Candidate } from '../../../../../core/models/candidate.model';
+import { Observable } from 'rxjs';
+import {MatConfirmService} from '../../../../../ui/modules/reusable-mat-confirm/mat-confirm-service';
+import {Router} from '@angular/router';
 
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {CandidateService} from '../../../../../core/services/candidate.service';
-import {Candidate} from '../../../../../core/models/candidate.model';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'hr-candidates',
@@ -14,7 +16,9 @@ export class CandidatesComponent implements OnInit {
   candidates$: Observable<Candidate[]>;
 
   constructor(
-    private candidateService: CandidateService
+    private router: Router,
+    private candidateService: CandidateService,
+    private confirm: MatConfirmService
   ) { }
 
   ngOnInit() {
@@ -24,4 +28,23 @@ export class CandidatesComponent implements OnInit {
     });
   }
 
+  onDeleteCandidate(candidateId: number) {
+    console.log(candidateId);
+    const confirmRef = this.confirm.open(
+      'Are you really wanna delete this candidate? 😱'
+    );
+    confirmRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.candidateService
+          .deleteCandidate(candidateId)
+          .subscribe(() => {
+            this.router.navigate(['candidate'], {
+              queryParams: {
+                event: 'candidateDeleted'
+              }
+            });
+          });
+      }
+    });
+  }
 }

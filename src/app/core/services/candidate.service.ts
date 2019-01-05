@@ -29,4 +29,7 @@ export class CandidateService {
     );
   }
 
+  deleteCandidate(id: number): Observable<any> {
+    return this.http.delete(`${BASE_URL}/candidates/${id}`);
+  }
 }

@@ -83,13 +83,13 @@
           "preferred": true
         }
       ],
-      "timeline": [
-      ]
+      "timeline": []
     },
     {
       "id": 3,
       "name": "Serj",
       "surname": "Tankian",
+      "position": "Frontend developer",
       "photo": "http://www.metalsucks.net/wp-content/uploads/2018/04/serj_tankian.jpg",
       "contacts": [
         {
@@ -98,8 +98,7 @@
           "preferred": true
         }
       ],
-      "timeline": [
-      ]
+      "timeline": []
     },
     {
       "id": 4,
@@ -113,8 +112,7 @@
           "preferred": true
         }
       ],
-      "timeline": [
-      ]
+      "timeline": []
     },
     {
       "id": 5,
@@ -209,8 +207,7 @@
           "preferred": true
         }
       ],
-      "timeline": [
-      ]
+      "timeline": []
     },
     {
       "id": 7,
@@ -229,8 +226,7 @@
           "preferred": false
         }
       ],
-      "timeline": [
-      ]
+      "timeline": []
     }
   ],
   "vacancies": [

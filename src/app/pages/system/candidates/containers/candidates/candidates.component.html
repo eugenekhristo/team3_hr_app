@@ -1,38 +1,56 @@
 <div *ngIf="candidates$ | async; else loader">
   <section class="candidates-board" fxLayout *ngIf="candidates.length !== 0; else empty">
-    <div class="candidate mat-big-card" *ngFor="let candidate of candidates">
+    <section class="candidate mat-big-card" *ngFor="let candidate of candidates">
+      <div class="controls">
+        <button
+          mat-mini-fab
+          matTooltip="Delete candidate"
+          (click)="onDeleteCandidate(candidate.id)"
+          color="warn"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
       <figure
         class="candidate__figure"
         [matTooltip]="'Go to ' + candidate['name'] + '\'s page'"
         matTooltipPosition="right"
       >
         <a [routerLink]="['/candidates', candidate.id]">
-          <img [src]="candidate.photo" class="candidate__img" />
+          <img [src]="candidate.photo" class="candidate__img"/>
         </a>
       </figure>
       <div>
-        <table>
+        <h4 class="name">{{ candidate.name }} {{ candidate.surname }}</h4>
+        <table class="table table__contacts">
           <tr>
-            <th>{{ candidate.name }} {{ candidate.surname }}</th>
+            <td *ngIf="candidate.position">position:</td>
+            <td>{{ candidate.position }}</td>
           </tr>
-          <tr>
-            <td>Contacts</td>
-          </tr>
-          <tr *ngFor="let contact of candidate.contacts" >
-            <td *ngIf="contact.type !== 'other'; else other">{{ contact.type }}:</td>
-            <td>{{ contact.value }}</td>
-            <ng-template #other>
-              <td></td>
-            </ng-template>
+          <tr *ngFor="let contact of candidate.contacts">
+            <td>{{ contact.type }}:</td>
+            <td>
+              <ng-container>
+                <span
+                  [ngClass]="{ preferred: contact.preferred }"
+                >
+                {{ contact.value }}
+              </span><br>
+              </ng-container>
+            </td>
           </tr>
         </table>
       </div>
-    </div>
+    </section>
   </section>
 
   <ng-template #empty>
     <p>У вас нет ни одного кандидата</p>
   </ng-template>
+</div>
+
+<div>
+
 </div>
 
 <ng-template #loader>

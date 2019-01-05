@@ -34,3 +34,64 @@
   background-color: #fafafa;
   position: relative;
 }
+.name {
+  text-align: center;
+}
+
+.table  {
+  td {
+    padding: .5rem .8rem;
+  }
+  td:first-child {
+    color: #828282;
+    font-size: 1.4rem;
+    padding: 0;
+  }
+
+}
+
+.table__contacts .preferred {
+  position: relative;
+}
+
+.preferred::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  top: 0;
+  right: -1rem;
+  cursor: pointer
+}
+
+.preferred::before {
+  position: absolute;
+  content: 'Preferred contact';
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+  left: -1.5rem;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 1rem;
+  transform: translate(100%, -100%) scale(0.4);
+  opacity: 0;
+  transform-origin: 0 100%;
+  backface-visibility: hidden;
+}
+
+.table.table__contacts:hover .preferred::before {
+  transition: .2s ease-out;
+  transform: translate(100%, -100%) scale(1);
+  opacity: 1;
+}
+
+.controls {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+
+}
