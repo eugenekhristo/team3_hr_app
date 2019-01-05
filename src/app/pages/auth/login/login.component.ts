@@ -5,6 +5,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/core/models/user.model';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'hr-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private snackMessageService: SnackMessageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -26,6 +28,10 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+    if (this.route.snapshot.queryParams['accessDenied']) {
+      this.snackMessageService.openSnackBar(`To work with the app you need to login first! 😠`, 'error');
+    }
   }
 
   onSubmit() {

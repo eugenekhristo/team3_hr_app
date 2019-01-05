@@ -12,6 +12,7 @@ import { AuthPageModule } from './pages/auth/auth-page.module';
 import { SystemPageModule } from './pages/system/system-page.module';
 
 import { AppComponent } from './app.component';
+import { AuthGuard } from './core/services/auth.guard';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,7 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
