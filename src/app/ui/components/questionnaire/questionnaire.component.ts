@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import {
   TIMELINE_ITEM_TYPE
 } from 'src/app/core/models/candidate.model';
-import { Requirement } from 'src/app/core/models/vacancy.model';
+import { Requirement, Vacancy } from 'src/app/core/models/vacancy.model';
 import { Feedback, FeedbackItem } from 'src/app/core/models/feedback.model';
+import { User } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'hr-questionnaire',
@@ -14,6 +15,8 @@ import { Feedback, FeedbackItem } from 'src/app/core/models/feedback.model';
 export class QuestionnaireComponent implements OnInit {
   // @Input() requirements: Requirement [] = [];
   @Input() feedback: Feedback;
+  @Input() vacancy: Vacancy;
+  @Input() interviewer: User;
   @Output() feedbackCreated = new EventEmitter<Feedback>();
 
   // FIXME: supposed to be as @Input()
@@ -85,7 +88,9 @@ export class QuestionnaireComponent implements OnInit {
     this.feedbackCreated.emit({
       ...this.form.value,
       timestamp: Date.now(),
-      type: TIMELINE_ITEM_TYPE.feedback
+      type: TIMELINE_ITEM_TYPE.feedback,
+      vacancy: this.vacancy,
+      interviewer: this.interviewer
     });
   }
 

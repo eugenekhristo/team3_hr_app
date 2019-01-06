@@ -10,6 +10,13 @@
     </p>
   </header>
 
+  <p class="by_vac">Written by
+    <span class="by_vac--special">{{feedback.interviewer.name}} {{feedback.interviewer.surname}}</span>
+    for
+    <span class="by_vac--special">{{feedback.vacancy.title}} </span>
+    vacancy:
+  </p>
+
   <section class="card__content">
     <ul class="card__list">
       <li *ngFor="let f of feedback.reqPub">

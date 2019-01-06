@@ -6,6 +6,13 @@
       "name": "Eugene",
       "surname": "Khristo",
       "id": 1
+    },
+    {
+      "email": "test@test",
+      "password": "qwe123",
+      "name": "John",
+      "surname": "Doe",
+      "id": 2
     }
   ],
   "candidates": [
@@ -62,7 +69,19 @@
             }
           ],
           "timestamp": 1546162377348,
-          "type": "feedback"
+          "type": "feedback",
+          "vacancy": {
+            "id": 1,
+            "title": "Java",
+            "status": "closed"
+          },
+          "interviewer": {
+            "email": "qwe@qwe",
+            "password": "qwe123",
+            "name": "Eugene",
+            "surname": "Khristo",
+            "id": 1
+          }
         },
         {
           "type": "note",
@@ -181,7 +200,19 @@
             }
           ],
           "timestamp": 1546166314226,
-          "type": "feedback"
+          "type": "feedback",
+          "vacancy": {
+            "id": 1,
+            "title": "Java",
+            "status": "closed"
+          },
+          "interviewer": {
+            "email": "qwe@qwe",
+            "password": "qwe123",
+            "name": "Eugene",
+            "surname": "Khristo",
+            "id": 1
+          }
         },
         {
           "body": "Я умею писать на русском! Я могу писать на русском! Oh jeez, this is incredible!\n",
@@ -207,7 +238,56 @@
           "preferred": true
         }
       ],
-      "timeline": []
+      "timeline": [
+        {
+          "notReqPub": [
+            {
+              "requirement": "Sociable",
+              "response": "",
+              "require": false,
+              "public_": true
+            }
+          ],
+          "notReqPriv": [
+            {
+              "requirement": "Children under 3 y.o.",
+              "response": "",
+              "require": false,
+              "public_": false
+            }
+          ],
+          "reqPub": [
+            {
+              "requirement": "Responsible",
+              "response": "dfgdfg",
+              "require": true,
+              "public_": true
+            }
+          ],
+          "reqPriv": [
+            {
+              "requirement": "Not pregnant",
+              "response": "dfgdfg",
+              "require": true,
+              "public_": false
+            }
+          ],
+          "timestamp": 1546762188957,
+          "type": "feedback",
+          "vacancy": {
+            "id": 1,
+            "title": "Java",
+            "status": "closed"
+          },
+          "interviewer": {
+            "email": "qwe@qwe",
+            "password": "qwe123",
+            "name": "Eugene",
+            "surname": "Khristo",
+            "id": 1
+          }
+        }
+      ]
     },
     {
       "id": 7,
@@ -267,6 +347,13 @@
       "title": "Millie Bobby Brown on UI/UX Designer",
       "timestamp": 1545829233396,
       "type": "interview",
+      "interviewer": {
+        "email": "qwe@qwe",
+        "password": "qwe123",
+        "name": "Eugene",
+        "surname": "Khristo",
+        "id": 1
+      },
       "id": 1
     },
     {
@@ -278,6 +365,13 @@
       "title": "Till Lindemann on Java",
       "timestamp": 1546590394479,
       "type": "interview",
+      "interviewer": {
+        "email": "qwe@qwe",
+        "password": "qwe123",
+        "name": "Eugene",
+        "surname": "Khristo",
+        "id": 1
+      },
       "id": 3
     }
   ]

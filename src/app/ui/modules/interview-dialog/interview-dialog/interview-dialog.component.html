@@ -184,7 +184,7 @@
           required
         />
         <mat-error *ngIf="candidateInput.hasError('required'); else customError2">
-          Vacancy is <strong>required</strong>
+          Candidate is <strong>required</strong>
         </mat-error>
         <ng-template #customError2>
           <mat-error *ngIf="candidateInput.hasError('notChoosen')">
@@ -206,6 +206,41 @@
             <img [src]="candidate.photo" class="mat-option-candidate__img" />
           </figure>
           <span>{{ candidate.name }} {{ candidate.surname }}</span>
+        </mat-option>
+      </mat-autocomplete>
+      <!------------------------------- interviewer ---------------------------------->
+      <mat-form-field fxFlex="100%">
+        <input
+          placeholder="Interviewer"
+          type="text"
+          matInput
+          [matAutocomplete]="autoInterviewer"
+          (input)="interviewerSearchTerm$.next($event.target.value)"
+          (focus)="interviewerSearchTerm$.next($event.target.value)"
+          name="interviewer"
+          [(ngModel)]="interviewer"
+          #interviewerInput="ngModel"
+          required
+        />
+        <mat-error *ngIf="interviewerInput.hasError('required'); else customError3">
+          Interviewer is <strong>required</strong>
+        </mat-error>
+        <ng-template #customError3>
+          <mat-error *ngIf="interviewerInput.hasError('notChoosen')">
+            You have to <strong>choose</strong> an Interviewer from the list below when
+            typing</mat-error
+          >
+        </ng-template>
+      </mat-form-field>
+      <mat-autocomplete
+        #autoInterviewer="matAutocomplete"
+        [displayWith]="matDisplayInterviewerFn"
+      >
+        <mat-option
+          *ngFor="let i of interviewers"
+          [value]="i"
+        >
+          <span>{{ i.name }} {{ i.surname }}</span>
         </mat-option>
       </mat-autocomplete>
       <!------------------------------- title ---------------------------------->

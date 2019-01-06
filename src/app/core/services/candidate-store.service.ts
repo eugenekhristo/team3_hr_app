@@ -60,19 +60,11 @@ export class CandidatesStore {
 
   addFeedback(feedback: Feedback): Observable<Candidate>  {
     const candidate = this._candidate.getValue();
+    console.log(candidate);
     const updatedTimelineClient = [...candidate.timeline, feedback];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
-  addInterview(interview: InterviewClient): Observable<Interview> {
-    const obs$ = this.interviewService.addInterview(interview);
-    obs$.subscribe(res => {
-      const candidate = this._candidate.getValue();
-      candidate.timeline.push(interview);
-      this._candidate.next(candidate);
-    });
-    return obs$;
-  }
 
   updateFeedback(feedback: Feedback): Observable<Candidate> {
     const candidate = this._candidate.getValue();
@@ -84,6 +76,16 @@ export class CandidatesStore {
       }
     });
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
+  addInterview(interview: InterviewClient): Observable<Interview> {
+    const obs$ = this.interviewService.addInterview(interview);
+    obs$.subscribe(res => {
+      const candidate = this._candidate.getValue();
+      candidate.timeline.push(interview);
+      this._candidate.next(candidate);
+    });
+    return obs$;
   }
 
   private processTimelineInteraction(candidate: Candidate, updatedTimelineClient?: object[]) {

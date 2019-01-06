@@ -48,6 +48,7 @@ export class InterviewService {
                 interview.title,
                 interview.timestamp,
                 interview.type,
+                interview.interviewer,
                 interview.id
               )
           )
@@ -75,6 +76,7 @@ export class InterviewService {
                 interview.title,
                 interview.timestamp,
                 interview.type,
+                interview.interviewer,
                 interview.id
               )
           )
@@ -112,7 +114,8 @@ export class InterviewService {
       interview.place,
       interview.title,
       interview.timestamp,
-      interview.type
+      interview.type,
+      interview.interviewer
     );
   }
 }

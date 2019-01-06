@@ -135,7 +135,7 @@ export class InterviewComponent implements OnInit, OnDestroy {
   }
 
   private getInterviewClientFromEvent(e: CustomEvent): InterviewClient {
-    const { id, candidate, vacancy, start, end, title, place, timestamp, type } = e.detail.event;
+    const { id, candidate, vacancy, start, end, title, place, timestamp, type, interviewer} = e.detail.event;
     const newStart = start.format('YYYY-MM-DD HH:mm:ss');
     const newEnd = end.format('YYYY-MM-DD HH:mm:ss');
 
@@ -148,6 +148,7 @@ export class InterviewComponent implements OnInit, OnDestroy {
       title,
       timestamp,
       type,
+      interviewer,
       id
     );
 
