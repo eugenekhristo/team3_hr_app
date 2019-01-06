@@ -11,7 +11,7 @@ p {
   background-color: #fafafa;
   position: relative;
   margin-bottom: 1.5rem;
-  padding: 0 3rem 2rem;
+  padding: 0 3rem 4rem;
 
   &__header {
     margin-bottom: 1.5rem;
@@ -59,13 +59,12 @@ p {
     top: .5rem;
     right: 0;
   }
-}
 
-.by_vac {
-  font-size: 1.4rem;
-  margin-top: 2.5rem;
-  &--special {
-    font-size: 1.8rem;
-    font-style: italic;
+  &__subscription {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 2rem;
+    font-size: 1.4rem;
+    color: grey;
   }
 }

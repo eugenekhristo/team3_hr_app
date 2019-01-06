@@ -6,16 +6,9 @@
     </h2>
     <p class="card__timestamp">
       {{ feedback.timestamp | date }} at
-      {{ feedback.timestamp | date: 'HH:mm' }}
+      {{ feedback.timestamp | date: 'HH:mm' }} <br>
     </p>
   </header>
-
-  <p class="by_vac">Written by
-    <span class="by_vac--special">{{feedback.interviewer.name}} {{feedback.interviewer.surname}}</span>
-    for
-    <span class="by_vac--special">{{feedback.vacancy.title}} </span>
-    vacancy:
-  </p>
 
   <section class="card__content">
     <ul class="card__list">
@@ -49,5 +42,9 @@
     <mat-menu #menu="matMenu" xPosition="before">
       <a mat-menu-item (click)="onOpenDialog()"> <span>Edit</span> </a>
     </mat-menu>
+  </div>
+
+  <div class="card__subscription" matTooltip="Interviewer and Vacancy" matTooltipPosition="above">
+      &mdash; by {{feedback.interviewer.name}} {{feedback.interviewer.surname}} for {{feedback.vacancy.title}}
   </div>
 </div>

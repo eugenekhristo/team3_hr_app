@@ -117,6 +117,7 @@ export class CandidatesStore {
       )
       .subscribe(candidate => {
         this._candidate.next(candidate);
+        console.log('HEY', candidate);
         resolve();
       });
     });
