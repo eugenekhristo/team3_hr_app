@@ -1,15 +1,20 @@
 <div *ngIf="candidates$ | async; else loader">
   <section class="candidates-board" fxLayout *ngIf="candidates.length !== 0; else empty">
     <section class="candidate mat-big-card" *ngFor="let candidate of candidates">
-      <div class="controls">
-        <button
-          mat-mini-fab
-          matTooltip="Delete candidate"
-          (click)="onDeleteCandidate(candidate.id)"
-          color="warn"
-        >
-          <mat-icon>delete</mat-icon>
+      <div class="controls-delete">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <a mat-menu-item (click)="onDeleteCandidate(candidate.id)">
+        <span
+          style="color: var(--color-warn);"
+        >
+          Delete
+        </span>
+          </a>
+        </mat-menu>
+
       </div>
       <figure
         class="candidate__figure"
@@ -45,12 +50,19 @@
   </section>
 
   <ng-template #empty>
-    <p>У вас нет ни одного кандидата</p>
+    <p>You have no candidates</p>
   </ng-template>
-</div>
 
-<div>
-
+  <div>
+    <button
+    mat-mini-fab
+    color="primary"
+    matTooltip="Add new candidate"
+    (click)="onAddCandidate()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>
 
 <ng-template #loader>

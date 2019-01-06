@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidateService } from '../../../../../core/services/candidate.service';
-import { Candidate } from '../../../../../core/models/candidate.model';
+import {Candidate, TimelineNote} from '../../../../../core/models/candidate.model';
 import { Observable } from 'rxjs';
 import {MatConfirmService} from '../../../../../ui/modules/reusable-mat-confirm/mat-confirm-service';
 import {Router} from '@angular/router';
+import {AddCandidateDialogComponent} from '../../presentationals/add-candidate-dialog/add-candidate-dialog.component';
+import {MatDialog} from '@angular/material';
 
 
 @Component({
@@ -18,7 +20,8 @@ export class CandidatesComponent implements OnInit {
   constructor(
     private router: Router,
     private candidateService: CandidateService,
-    private confirm: MatConfirmService
+    private confirm: MatConfirmService,
+    private matDialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -29,7 +32,6 @@ export class CandidatesComponent implements OnInit {
   }
 
   onDeleteCandidate(candidateId: number) {
-    console.log(candidateId);
     const confirmRef = this.confirm.open(
       'Are you really wanna delete this candidate? 😱'
     );
@@ -46,5 +48,10 @@ export class CandidatesComponent implements OnInit {
           });
       }
     });
+  }
+
+  onAddCandidate() {
+    const candidateDialogRef = this.matDialog.open(AddCandidateDialogComponent);
+    candidateDialogRef.afterClosed().subscribe();
   }
 }
