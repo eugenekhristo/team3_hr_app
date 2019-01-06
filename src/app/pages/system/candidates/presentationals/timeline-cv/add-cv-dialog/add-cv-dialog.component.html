@@ -1,0 +1,54 @@
+<div class="dialog">
+  <h2 mat-dialog-title>Add CV</h2>
+
+  <div class="file">
+    <form fxLayout="column" #form="ngForm">
+      <button
+        mat-mini-fab
+        matTooltip="Upload a CV file"
+        matTooltipPosition="above"
+        color="primary"
+        class="upload_cv"
+      >
+        <mat-icon>cloud_upload</mat-icon>
+        <label for="upload_cv"></label>
+      </button>
+      <input
+        id="upload_cv"
+        type="file"
+        accept=".doc,.docx,.txt,.pdf"
+        name="input-file"
+        (change)="addCV($event)"
+        required
+      />
+    </form>
+
+    <span>{{ chosenFile.name }}</span>
+  </div>
+
+  <div
+    mat-dialog-actions
+    fxLayout="row nowrap"
+    fxLayoutGap="10px"
+    class="actions"
+  >
+    <button
+      mat-raised-button
+      color="warn"
+      [mat-dialog-close]="false"
+      fxFlex="50"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="chosenFile"
+      cdkFocusInitial
+      fxFlex="50"
+      [disabled]="!chosenFile"
+    >
+      Save
+    </button>
+  </div>
+</div>

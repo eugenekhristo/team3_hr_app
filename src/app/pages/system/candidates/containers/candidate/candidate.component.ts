@@ -11,6 +11,8 @@ import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/inte
 import { ActivatedRoute } from '@angular/router';
 import { Feedback } from 'src/app/core/models/feedback.model';
 import { Subscription } from 'rxjs';
+import { CV } from 'src/app/core/models/cv.model';
+import { AddCvDialogComponent } from '../../presentationals/timeline-cv/add-cv-dialog/add-cv-dialog.component';
 
 @Component({
   selector: 'hr-candidate',
@@ -33,7 +35,11 @@ export class CandidateComponent implements OnInit, OnDestroy {
     this.candidateStore.bootstrapCandidate(+this.route.snapshot.params['id']);
 
     if (this.route.snapshot.queryParams['feedbackAdded']) {
-      window.setTimeout(() => this.matSnack.openSnackBar('Feedback for the candidate is added 🤘'), 0);
+      window.setTimeout(
+        () =>
+          this.matSnack.openSnackBar('Feedback for the candidate is added 🤘'),
+        0
+      );
     }
   }
 
@@ -63,10 +69,12 @@ export class CandidateComponent implements OnInit, OnDestroy {
   }
 
   onChangeNote(note: TimelineNote) {
-    const dialogRef = this.matDialog.open(AddNoteDialogComponent, {data: note});
+    const dialogRef = this.matDialog.open(AddNoteDialogComponent, {
+      data: note
+    });
     dialogRef.afterClosed().subscribe(body => {
       if (body) {
-        note = {...note, body};
+        note = { ...note, body };
         this.candidateStore
           .updateNote(note)
           .subscribe(() => this.matSnack.openSnackBar('The note was updated!'));
@@ -82,6 +90,34 @@ export class CandidateComponent implements OnInit, OnDestroy {
         this.candidateStore
           .addNote(note)
           .subscribe(() => this.matSnack.openSnackBar('The note was added!'));
+      }
+    });
+  }
+
+  onDeleteCV(cv: CV) {
+    this.matConfirm
+      .open('Are you sure you wanna delete this CV file? 😱')
+      .afterClosed()
+      .subscribe(res => {
+        if (res) {
+          this.candidateStore
+            .deleteCV(cv)
+            .subscribe(() =>
+              this.matSnack.openSnackBar(
+                'The CV file was successfully deleted! 👌'
+              )
+            );
+        }
+      });
+  }
+
+  onAddCV() {
+    const dialogRef = this.matDialog.open(AddCvDialogComponent);
+    dialogRef.afterClosed().subscribe(cv => {
+      if (cv) {
+        this.candidateStore
+          .addCv(cv)
+          .subscribe(() => this.matSnack.openSnackBar('The CV file was added! 👍'));
       }
     });
   }

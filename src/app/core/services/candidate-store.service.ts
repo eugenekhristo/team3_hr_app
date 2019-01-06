@@ -6,6 +6,7 @@ import { map, tap, share } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
 import { InterviewClient, Interview } from '../models/interview.model';
 import { Feedback } from '../models/feedback.model';
+import { CV } from '../models/cv.model';
 
 @Injectable()
 export class CandidatesStore {
@@ -43,6 +44,18 @@ export class CandidatesStore {
   addNote(note: TimelineNote): Observable<Candidate>  {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = [...candidate.timeline, note];
+    return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
+  deleteCV(cv: CV): Observable<Candidate> {
+    const candidate = this._candidate.getValue();
+    const updatedTimelineClient = candidate.timeline.filter(item => item['timestamp'] !== cv.timestamp);
+    return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
+  addCv(cv: CV): Observable<Candidate>  {
+    const candidate = this._candidate.getValue();
+    const updatedTimelineClient = [...candidate.timeline, cv];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
@@ -117,7 +130,6 @@ export class CandidatesStore {
       )
       .subscribe(candidate => {
         this._candidate.next(candidate);
-        console.log('HEY', candidate);
         resolve();
       });
     });

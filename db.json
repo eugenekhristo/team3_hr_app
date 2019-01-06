@@ -103,9 +103,7 @@
           "preferred": true
         }
       ],
-      "timeline": [
-
-      ]
+      "timeline": []
     },
     {
       "id": 3,
@@ -225,6 +223,14 @@
           "body": "IDK what to write!!!!",
           "type": "note",
           "timestamp": 1545979905615
+        },
+        {
+          "name": "CV-Millie.txt",
+          "size": 14,
+          "data": "data:text/plain;base64,SnVzdCBhIGdpcmwhDQo=",
+          "mime": "text/plain",
+          "timestamp": 1546783560654,
+          "type": "cv"
         }
       ]
     },

@@ -7,7 +7,8 @@ export enum CONTACT_TYPES {
 export enum TIMELINE_ITEM_TYPE {
   note = 'note',
   interview = 'interview',
-  feedback = 'feedback'
+  feedback = 'feedback',
+  cv = 'cv',
 }
 
 export interface TimelineItem {
