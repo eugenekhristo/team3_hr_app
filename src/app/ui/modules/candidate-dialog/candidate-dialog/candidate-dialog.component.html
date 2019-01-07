@@ -37,53 +37,53 @@
         [(ngModel)]="data.candidate.surname"
       />
     </mat-form-field>
-    <!--<div>-->
-    <!--<form [formGroup]="this.form">-->
-    <!--<div-->
-    <!--formArrayName="contacts"-->
-    <!--*ngFor="let c of contacts.controls; let i = index"-->
-    <!--&gt;-->
-    <!--<div-->
-    <!--fxLayout-->
-    <!--fxLayoutGap="7px"-->
-    <!--fxLayoutAlign="space-between center"-->
-    <!--class="form_group"-->
-    <!--[formGroupName]="i"-->
-    <!--&gt;-->
-    <!--<mat-form-field fxFlex="20">-->
-    <!--<mat-select placeholder="Type" formControlName="type">-->
-    <!--<mat-option *ngFor="let type of contactTypes" [value]="type">-->
-    <!--{{ type | titlecase }}-->
-    <!--</mat-option>-->
-    <!--</mat-select>-->
-    <!--</mat-form-field>-->
+    <div>
+      <form [formGroup]="this.form">
+        <div
+          formArrayName="contacts"
+          *ngFor="let c of contacts.controls; let i = index"
+        >
+          <div
+            fxLayout
+            fxLayoutGap="7px"
+            fxLayoutAlign="space-between center"
+            class="form_group"
+            [formGroupName]="i"
+          >
+            <mat-form-field fxFlex="20">
+              <mat-select placeholder="Type" formControlName="type">
+                <mat-option *ngFor="let type of contactTypes" [value]="type">
+                  {{ type | titlecase }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-    <!--<mat-form-field fxFlex="1 1 auto" style="min-width: 20rem;">-->
-    <!--<input matInput placeholder="Value" formControlName="value" />-->
-    <!--</mat-form-field>-->
+            <mat-form-field fxFlex="1 1 auto" style="min-width: 20rem;">
+              <input matInput placeholder="Value" formControlName="value"/>
+            </mat-form-field>
 
-    <!--<mat-checkbox-->
-    <!--matTooltip="Preferred?"-->
-    <!--matTooltipPosition="above"-->
-    <!--formControlName="preferred"-->
-    <!--&gt;-->
-    <!--</mat-checkbox>-->
+            <mat-checkbox
+              matTooltip="Preferred?"
+              matTooltipPosition="above"
+              formControlName="preferred"
+            >
+            </mat-checkbox>
 
-    <!--<mat-icon-->
-    <!--class="contact_delete"-->
-    <!--matTooltip="Delete?"-->
-    <!--matTooltipPosition="above"-->
-    <!--(click)="deleteContact(i)"-->
-    <!--&gt;delete-->
-    <!--</mat-icon>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
-    <!--</div>-->
+            <mat-icon
+              class="contact_delete"
+              matTooltip="Delete?"
+              matTooltipPosition="above"
+              (click)="deleteContact(i)"
+            >delete
+            </mat-icon>
+          </div>
+        </div>
+      </form>
+    </div>
 
-    <!--<button mat-button color="primary" class="add_contact" (click)="addContact()">-->
-      <!--Add Contact-->
-    <!--</button>-->
+    <button mat-button color="primary" class="add_contact" (click)="addContact()">
+      Add Contact
+    </button>
 
     <div
       mat-dialog-actions
