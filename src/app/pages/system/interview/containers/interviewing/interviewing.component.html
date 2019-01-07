@@ -64,8 +64,9 @@
     </table>
   </section>
 
-  <section class="candidate mat-big-card">
-    <figure
+  <section class="candidate-wrapper mat-big-card">
+    <div class="candidate">
+      <figure
       class="candidate__figure"
       [matTooltip]="'Go to ' + interview.candidate['name'] + '\'s page'"
       matTooltipPosition="right"
@@ -139,6 +140,12 @@
           </td>
         </tr>
       </table>
+    </div>
+    </div>
+
+    <div class="candidate__bottom">
+      <hr-candidate-assets-inter [interview]="interview">
+      </hr-candidate-assets-inter>
     </div>
   </section>
 

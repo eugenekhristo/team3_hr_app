@@ -54,7 +54,6 @@ export class InterviewingComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => (this.interviewId = +params['id']));
     const interviewSub = this.interviewStore.interview$.subscribe(interview => {
       this.interview = interview;
-
       this.candidateStore.bootstrapCandidate(this.interview.candidate.id);
 
       this.interview.candidate.contacts.forEach(contact => {

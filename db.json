@@ -36,6 +36,20 @@
       "photo": "https://pbs.twimg.com/profile_images/802744294553636864/IlFm3UwO_400x400.jpg",
       "timeline": [
         {
+          "body": "Hello New Cruel World!",
+          "author": "Eugene Khristo",
+          "type": "note",
+          "timestamp": 1546871503075
+        },
+        {
+          "name": "CV-Lindemann.txt",
+          "size": 12,
+          "data": "data:text/plain;base64,SnVzdCBUaWxsIQ0K",
+          "mime": "text/plain",
+          "timestamp": 1546865350103,
+          "type": "cv"
+        },
+        {
           "notReqPub": [
             {
               "requirement": "Sociable",
@@ -82,11 +96,6 @@
             "surname": "Khristo",
             "id": 1
           }
-        },
-        {
-          "type": "note",
-          "timestamp": 1545829233397,
-          "body": "Hello New Cruel World!"
         }
       ]
     },
@@ -162,9 +171,18 @@
       ],
       "timeline": [
         {
+          "name": "CV-Millie.txt",
+          "size": 14,
+          "data": "data:text/plain;base64,SnVzdCBhIGdpcmwhDQo=",
+          "mime": "text/plain",
+          "timestamp": 1546783560654,
+          "type": "cv"
+        },
+        {
           "body": "I've seen her today. I guess this is a pretty good applicant for UI/UX designer position.",
           "type": "note",
-          "timestamp": 1546503464945
+          "timestamp": 1546503464945,
+          "author": "Eugene Khristo"
         },
         {
           "notReqPub": [
@@ -217,20 +235,14 @@
         {
           "body": "Я умею писать на русском! Я могу писать на русском! Oh jeez, this is incredible!\n",
           "type": "note",
-          "timestamp": 1545979932950
+          "timestamp": 1545979932950,
+          "author": "Eugene Khristo"
         },
         {
           "body": "IDK what to write!!!!",
           "type": "note",
-          "timestamp": 1545979905615
-        },
-        {
-          "name": "CV-Millie.txt",
-          "size": 14,
-          "data": "data:text/plain;base64,SnVzdCBhIGdpcmwhDQo=",
-          "mime": "text/plain",
-          "timestamp": 1546783560654,
-          "type": "cv"
+          "timestamp": 1545979905615,
+          "author": "Eugene Khristo"
         }
       ]
     },

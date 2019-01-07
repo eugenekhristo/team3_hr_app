@@ -9,6 +9,7 @@ export enum TIMELINE_ITEM_TYPE {
   interview = 'interview',
   feedback = 'feedback',
   cv = 'cv',
+  experience = 'experience',
 }
 
 export interface TimelineItem {
@@ -19,6 +20,7 @@ export interface TimelineItem {
 export class TimelineNote implements TimelineItem {
   constructor(
     public body: string,
+    public author?: string,
     public type?: TIMELINE_ITEM_TYPE,
     public timestamp?: number
   ) {

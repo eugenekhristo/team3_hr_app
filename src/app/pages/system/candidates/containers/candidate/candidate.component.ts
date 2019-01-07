@@ -13,6 +13,8 @@ import { Feedback } from 'src/app/core/models/feedback.model';
 import { Subscription } from 'rxjs';
 import { CV } from 'src/app/core/models/cv.model';
 import { AddCvDialogComponent } from '../../presentationals/timeline-cv/add-cv-dialog/add-cv-dialog.component';
+import { UserService } from 'src/app/core/services/user.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'hr-candidate',
@@ -28,7 +30,8 @@ export class CandidateComponent implements OnInit, OnDestroy {
     private matConfirm: MatConfirmService,
     private matDialog: MatDialog,
     private interviewDialog: InterviewDialogService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: AuthService
   ) {}
 
   ngOnInit() {
@@ -83,10 +86,12 @@ export class CandidateComponent implements OnInit, OnDestroy {
   }
 
   onAddNote() {
+    const userFullName = `${this.userService.getAuthUser().name} ${this.userService.getAuthUser().surname}` ;
+
     const dialogRef = this.matDialog.open(AddNoteDialogComponent);
     dialogRef.afterClosed().subscribe(body => {
       if (body) {
-        const note = new TimelineNote(body);
+        const note = new TimelineNote(body, userFullName);
         this.candidateStore
           .addNote(note)
           .subscribe(() => this.matSnack.openSnackBar('The note was added!'));

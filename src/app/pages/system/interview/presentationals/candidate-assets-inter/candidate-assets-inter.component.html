@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <div class="item card" *ngFor="let item of timeline">
+    <header class="card__header">
+      <h2 class="card__heading" [ngSwitch]="item?.type">
+        <span *ngSwitchCase="TYPE.cv">CV</span>
+        <span *ngSwitchCase="TYPE.feedback">Feedback</span>
+        <span *ngSwitchCase="TYPE.note">Note</span>
+        <span *ngSwitchDefault>Empty Doc</span>
+      </h2>
+      <p class="card__timestamp" *ngIf="item">
+        {{ item?.timestamp | date }} at {{ item?.timestamp | date: 'HH:mm' }}
+      </p>
+    </header>
+
+    <ng-container [ngSwitch]="item?.type">
+      <hr-inter-assets-cv *ngSwitchCase="TYPE.cv" [cv]="item">
+      </hr-inter-assets-cv>
+
+      <hr-inter-assets-note *ngSwitchCase="TYPE.note" [note]="item">
+      </hr-inter-assets-note>
+    </ng-container>
+
+    <div class="card__empty" *ngIf="!item">
+      😟
+    </div>
+  </div>
+</div>
+
+<!-- <span [ngSwitch]="">
+<p *ngSwitchCase="true">
+
+</p>
+<p *ngSwitchCase="false">
+
+</p>
+<p *ngSwitchDefault>
+
+</p>
+</span>> -->
+

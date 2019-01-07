@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: SystemShellComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'interview',

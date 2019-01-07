@@ -11,7 +11,7 @@ p {
   background-color: #fafafa;
   position: relative;
   margin-bottom: 1.5rem;
-  padding: 0 3rem 2rem;
+  padding: 0 3rem 4.5rem;
 
   &__header {
     margin-bottom: 1.5rem;
@@ -40,5 +40,14 @@ p {
     position: absolute;
     top: .5rem;
     right: 0;
+  }
+
+  &__subscription {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 2rem;
+    font-size: 1.4rem;
+    color: grey;
+    font-style: italic;
   }
 }
