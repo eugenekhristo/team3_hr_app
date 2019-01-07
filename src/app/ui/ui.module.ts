@@ -13,7 +13,10 @@ import { InterviewDialogComponent } from './modules/interview-dialog/interview-d
 import { InterviewDialogService } from './modules/interview-dialog/interview-dialog.service';
 import { PasteProfileImgDirective } from './directives/paste_profile_img.directive';
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CandidateDialogModule } from './modules/candidate-dialog/candidate-dialog.module';
+import { CandidateDialogService } from './modules/candidate-dialog/candidate-dialog.service';
+import { CandidateDialogComponent } from './modules/candidate-dialog/candidate-dialog/candidate-dialog.component';
 
 @NgModule({
   declarations: [SnackMessageComponent, PasteProfileImgDirective, QuestionnaireComponent],
@@ -23,19 +26,23 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     ReusableMatConfirmModule,
     InterviewDialogModule,
+    CandidateDialogModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [
     SnackMessagePbService,
     SnackMessageService,
-    InterviewDialogService
+    InterviewDialogService,
+    CandidateDialogService
   ],
-  entryComponents: [SnackMessageComponent, InterviewDialogComponent],
+  entryComponents: [SnackMessageComponent, InterviewDialogComponent, CandidateDialogComponent],
   exports: [
     MaterialModule,
     ReusableMatConfirmModule,
     FlexLayoutModule,
     InterviewDialogModule,
+    CandidateDialogModule,
     PasteProfileImgDirective,
     QuestionnaireComponent
   ]

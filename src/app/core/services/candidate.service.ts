@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Candidate} from '../models/candidate.model';
 import {debounceTime, distinctUntilChanged, switchMap, share} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
@@ -7,6 +7,9 @@ import {BASE_URL} from '../constants/base-url';
 
 @Injectable()
 export class CandidateService {
+
+  newCandidateAdded$ = new Subject<Candidate>();
+
   constructor(private http: HttpClient) {}
 
   getAllCandidates(): Observable<Candidate[]> {
@@ -31,5 +34,9 @@ export class CandidateService {
 
   deleteCandidate(id: number): Observable<any> {
     return this.http.delete(`${BASE_URL}/candidates/${id}`);
+  }
+
+  addCandidate(candidate: Candidate) {
+    return this.http.post(`${BASE_URL}/candidates`, candidate);
   }
 }
