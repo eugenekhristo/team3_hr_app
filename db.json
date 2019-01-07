@@ -349,8 +349,8 @@
     {
       "candidateId": 5,
       "vacancyId": 6,
-      "start": "2019-01-10 10:00:00",
-      "end": "2019-01-10 12:00:00",
+      "start": "2019-01-17 10:00:00",
+      "end": "2019-01-17 12:00:00",
       "place": "Minsk, Pobeditelei street, 6",
       "title": "Millie Bobby Brown on UI/UX Designer",
       "timestamp": 1545829233396,
@@ -367,8 +367,8 @@
     {
       "candidateId": 1,
       "vacancyId": 1,
-      "start": "2019-01-08 12:00",
-      "end": "2019-01-08 13:00",
+      "start": "2019-01-15 12:00:00",
+      "end": "2019-01-15 13:00:00",
       "place": "Belarus",
       "title": "Till Lindemann on Java",
       "timestamp": 1546590394479,

@@ -8,7 +8,6 @@ import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/inte
 import { InterviewService } from '../../../shared/services/interview.service';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { InterviewStore } from '../../../shared/services/interview-store.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -27,7 +26,6 @@ export class InterviewComponent implements OnInit, OnDestroy {
   constructor(
     private interviewDialog: InterviewDialogService,
     private interviewService: InterviewService,
-    private interviewStore: InterviewStore,
     private matSnack: SnackMessageService,
     private router: Router,
     private route: ActivatedRoute
