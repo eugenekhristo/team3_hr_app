@@ -1,0 +1,18 @@
+<button
+  *ngIf="!isReading"
+  (click)="readNote(); isReading = true"
+  mat-stroked-button color="primary"
+  class="item"
+>
+  Read Note
+</button>
+
+<div *ngIf="isReading" class="item">
+  <hr-animated-reading></hr-animated-reading>
+</div>
+
+<div class="author" matTooltip="Author" matTooltipPosition="above">
+  &mdash; {{note.author}}
+</div>
+
+

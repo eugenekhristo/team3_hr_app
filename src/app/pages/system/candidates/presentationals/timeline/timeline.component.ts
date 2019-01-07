@@ -6,6 +6,7 @@ import {
   TimelineNote
 } from 'src/app/core/models/candidate.model';
 import { Feedback } from 'src/app/core/models/feedback.model';
+import { CV } from 'src/app/core/models/cv.model';
 
 @Component({
   selector: 'hr-timeline',
@@ -14,11 +15,18 @@ import { Feedback } from 'src/app/core/models/feedback.model';
 })
 export class TimelineComponent implements OnInit, OnDestroy {
   @Input() candidate$: Observable<Candidate>;
+
+  @Output() addNote = new EventEmitter<void>();
   @Output() deleteNote = new EventEmitter<TimelineNote>();
   @Output() changeNote = new EventEmitter<TimelineNote>();
-  @Output() addNote = new EventEmitter<void>();
+
+  @Output() deleteCV = new EventEmitter<CV>();
+  @Output() addCV = new EventEmitter<CV>();
+
   @Output() addInterview = new EventEmitter<Candidate>();
+
   @Output() changeFeedback = new EventEmitter<Feedback>();
+
   subscriptionContainer = new Subscription();
 
   timeline: object[];

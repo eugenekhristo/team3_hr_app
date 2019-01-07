@@ -54,12 +54,15 @@ export class InterviewingComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => (this.interviewId = +params['id']));
     const interviewSub = this.interviewStore.interview$.subscribe(interview => {
       this.interview = interview;
+      this.candidateStore.bootstrapCandidate(this.interview.candidate.id);
+
       this.interview.candidate.contacts.forEach(contact => {
         if (contact.value) {
           this.contacts[contact.type].push(contact);
         }
       });
     });
+
     this.subscriptionContainer.add(interviewSub);
   }
 
@@ -108,6 +111,7 @@ export class InterviewingComponent implements OnInit, OnDestroy {
   }
 
   onAddFeedback(feedback: Feedback) {
+    console.log(feedback);
     this.candidateStore.addFeedback(feedback).subscribe(candidate => {
       this.interviewService.deleteInterview(this.interviewId).subscribe(() => {
         this.router.navigate(['/candidates', candidate.id], {

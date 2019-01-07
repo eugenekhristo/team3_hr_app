@@ -32,7 +32,7 @@
 
     <table class="table description__table">
       <tr>
-        <td>{{ 'Name' | translate }}:</td>
+        <td>{{ 'Vacancy' | translate }}:</td>
         <td>
           <a
             [routerLink]="['/vacancies', interview.vacancy.id]"
@@ -48,7 +48,7 @@
         <td>{{ interview.place }}</td>
       </tr>
       <tr>
-        <td>{{ 'Date' | translate }}:</td>
+        <td>{{ 'When' | translate }}:</td>
         <td>
           {{ interview.start | date }}. {{ 'From' | translate }}
           <span class="description__time"
@@ -57,11 +57,16 @@
           >
         </td>
       </tr>
+      <tr>
+        <td>{{ 'Interviewer' | translate }}:</td>
+        <td>{{ interview.interviewer.name }} {{ interview.interviewer.surname }}</td>
+      </tr>
     </table>
   </section>
 
-  <section class="candidate mat-big-card">
-    <figure
+  <section class="candidate-wrapper mat-big-card">
+    <div class="candidate">
+      <figure
       class="candidate__figure"
       [matTooltip]="'Go to ' + interview.candidate['name'] + '\'s page'"
       matTooltipPosition="right"
@@ -136,11 +141,21 @@
         </tr>
       </table>
     </div>
+    </div>
+
+    <div class="candidate__bottom">
+      <hr-candidate-assets-inter [interview]="interview">
+      </hr-candidate-assets-inter>
+    </div>
   </section>
 
   <section class="questionnaire mat-big-card">
     <h2 class="questionnaire__heading"><mat-icon>question_answer</mat-icon> Questionnaire</h2>
-    <hr-questionnaire (feedbackCreated)="onAddFeedback($event)">
+    <hr-questionnaire
+      [vacancy]="interview.vacancy"
+      [interviewer]="interview.interviewer"
+      (feedbackCreated)="onAddFeedback($event)"
+    >
     </hr-questionnaire>
   </section>
 </ng-container>

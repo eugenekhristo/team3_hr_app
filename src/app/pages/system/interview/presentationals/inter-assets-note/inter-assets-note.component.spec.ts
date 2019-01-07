@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterComponent } from './register.component';
+import { InterAssetsNoteComponent } from './inter-assets-note.component';
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe('InterAssetsNoteComponent', () => {
+  let component: InterAssetsNoteComponent;
+  let fixture: ComponentFixture<InterAssetsNoteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ]
+      declarations: [ InterAssetsNoteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(InterAssetsNoteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

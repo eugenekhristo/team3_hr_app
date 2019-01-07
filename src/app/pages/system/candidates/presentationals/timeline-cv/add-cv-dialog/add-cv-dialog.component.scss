@@ -1,0 +1,45 @@
+h2 {
+  text-align: center;
+}
+
+.dialog {
+  padding-bottom: 3rem;
+  min-width: 22vw;
+  max-width: 50rem;
+  overflow: hidden;
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+
+  form {
+    margin-right: 1rem;;
+  }
+}
+
+input#upload_cv {
+  display: none;
+}
+
+button.upload_cv {
+  transform: scale(0.8);
+  position: relative;
+  overflow: hidden;
+
+  label {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+

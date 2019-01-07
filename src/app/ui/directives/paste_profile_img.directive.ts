@@ -23,7 +23,7 @@ export class PasteProfileImgDirective implements OnInit, OnDestroy {
   ngOnInit() {
     let mouseOverImg = false;
     this.mouseoverHandler = e => {
-      if (e.target['classList'].contains('short__img')) {
+      if (e.target['classList'].contains('short__img') || (e.target['classList'].contains('short__uploader'))) {
         mouseOverImg = true;
       } else {
         mouseOverImg = false;
@@ -37,7 +37,6 @@ export class PasteProfileImgDirective implements OnInit, OnDestroy {
       if (mouseOverImg) {
         const newSrc = e['clipboardData'].getData('Text');
         this.hrPasteImg.photo = newSrc;
-        console.log(this.hrPasteImg);
         const updCanSub = this.candidateStore.updateCandidate(this.hrPasteImg).subscribe(() => {
           targetImg.src = newSrc;
           this.matSNack.openSnackBar('Profile picture is updated!');

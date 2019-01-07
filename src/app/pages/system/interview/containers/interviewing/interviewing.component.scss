@@ -108,6 +108,10 @@ a:hover {
   &__contacts {
     border-bottom: 1px solid #e0e0e0;
   }
+
+  &__bottom {
+    margin-top: 2rem;
+  }
 }
 
 .short-info__table tr:first-child th,
@@ -175,3 +179,5 @@ a:hover {
     margin-bottom: 3rem;
   }
 }
+
+

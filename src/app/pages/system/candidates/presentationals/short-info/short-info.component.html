@@ -1,8 +1,27 @@
 <div class="short">
   <div class="short__info mat-big-card ">
-    <figure class="short__figure">
+    <figure
+      class="short__figure"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      matRipple
+      [matRippleColor]="'rgba(255,255,255,.2)'"
+    >
       <img [src]="candidate?.photo" class="short__img" [hrPasteImg]="candidate" />
+      <div class="short__tip">
+        <span>Click the picture</span> <br>
+        <span>or Paste an image URL</span> <br>
+        <span>to update the picture</span>
+      </div>
+      <input
+        type="file"
+        id="img-uploader"
+        style="display:none;"
+        (change)="onFileUpload($event)"
+      />
+      <label for="img-uploader" class="short__uploader"></label>
     </figure>
+
     <div class="short__biography">
       <table class="table table__biography">
         <tr>

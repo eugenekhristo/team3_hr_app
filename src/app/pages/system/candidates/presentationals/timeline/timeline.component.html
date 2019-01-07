@@ -7,9 +7,15 @@
   >
     <mat-icon>calendar_today</mat-icon>
   </button>
-  <button mat-mini-fab matTooltip="Add a cv" color="primary">
+
+  <button
+    mat-mini-fab matTooltip="Add a CV"
+    color="primary"
+    (click)="addCV.emit()"
+  >
     <mat-icon>assignment</mat-icon>
   </button>
+
   <button mat-mini-fab color="primary" matTooltip="Add an experience">
     <mat-icon>contacts</mat-icon>
   </button>
@@ -34,6 +40,13 @@
     >
     </hr-timeline-note>
 
+    <hr-timeline-cv
+      *ngSwitchCase="TIMELINE_ITEM_TYPE.cv"
+      [cv]="item"
+      (deleteCV)="deleteCV.emit($event)"
+    >
+    </hr-timeline-cv>
+
     <hr-timeline-interview
       *ngSwitchCase="TIMELINE_ITEM_TYPE.interview"
       [interview]="item"
@@ -46,5 +59,6 @@
       (feedbackChanged)="changeFeedback.emit($event)"
     >
     </hr-timeline-feedback>
+
   </div>
 </div>

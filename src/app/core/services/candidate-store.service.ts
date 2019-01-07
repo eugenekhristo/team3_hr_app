@@ -6,6 +6,7 @@ import { map, tap, share } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
 import { InterviewClient, Interview } from '../models/interview.model';
 import { Feedback } from '../models/feedback.model';
+import { CV } from '../models/cv.model';
 
 @Injectable()
 export class CandidatesStore {
@@ -46,6 +47,18 @@ export class CandidatesStore {
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
+  deleteCV(cv: CV): Observable<Candidate> {
+    const candidate = this._candidate.getValue();
+    const updatedTimelineClient = candidate.timeline.filter(item => item['timestamp'] !== cv.timestamp);
+    return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
+  addCv(cv: CV): Observable<Candidate>  {
+    const candidate = this._candidate.getValue();
+    const updatedTimelineClient = [...candidate.timeline, cv];
+    return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
   updateNote(note: TimelineNote): Observable<Candidate>  {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = candidate.timeline.map(item => {
@@ -60,19 +73,11 @@ export class CandidatesStore {
 
   addFeedback(feedback: Feedback): Observable<Candidate>  {
     const candidate = this._candidate.getValue();
+    console.log(candidate);
     const updatedTimelineClient = [...candidate.timeline, feedback];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
-  addInterview(interview: InterviewClient): Observable<Interview> {
-    const obs$ = this.interviewService.addInterview(interview);
-    obs$.subscribe(res => {
-      const candidate = this._candidate.getValue();
-      candidate.timeline.push(interview);
-      this._candidate.next(candidate);
-    });
-    return obs$;
-  }
 
   updateFeedback(feedback: Feedback): Observable<Candidate> {
     const candidate = this._candidate.getValue();
@@ -84,6 +89,16 @@ export class CandidatesStore {
       }
     });
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
+  }
+
+  addInterview(interview: InterviewClient): Observable<Interview> {
+    const obs$ = this.interviewService.addInterview(interview);
+    obs$.subscribe(res => {
+      const candidate = this._candidate.getValue();
+      candidate.timeline.push(interview);
+      this._candidate.next(candidate);
+    });
+    return obs$;
   }
 
   private processTimelineInteraction(candidate: Candidate, updatedTimelineClient?: object[]) {

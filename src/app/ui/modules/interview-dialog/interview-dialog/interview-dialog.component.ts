@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { Subject } from 'rxjs';
 import { CandidateService } from 'src/app/core/services/candidate.service';
@@ -8,19 +8,36 @@ import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { InterviewClient } from 'src/app/core/models/interview.model';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { INTERVIEW_DIALOG_TYPES } from '../interview-dialog-types';
+import { NgModel, AbstractControl } from '@angular/forms';
+import { User } from 'src/app/core/models/user.model';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'hr-interview-dialog',
   templateUrl: './interview-dialog.component.html',
-  styleUrls: ['./interview-dialog.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./interview-dialog.component.scss']
 })
 export class InterviewDialogComponent implements OnInit {
   INTERVIEW_DIALOG_TYPES = INTERVIEW_DIALOG_TYPES;
   candidates: Candidate[];
   vacancies: Vacancy[];
+  interviewers: User[];
   candidateSearchTerm$ = new Subject<string>();
   vacancySearchTerm$ = new Subject<string>();
+  interviewerSearchTerm$ = new Subject<string>();
+  @ViewChild('vacanyInput') vacanyInput: NgModel;
+  @ViewChild('candidateInput') candidateInput: NgModel;
+  @ViewChild('interviewerInput') interviewerInput: NgModel;
+  @ViewChild('timeStart') timeStartInpit: NgModel;
+  @ViewChild('timeEnd') timeEndInput: NgModel;
+
+  // DATEPICKER staff validation
+  minDate = new Date();
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  }
 
   get interview() {
     return this.data.interview;
@@ -33,6 +50,14 @@ export class InterviewDialogComponent implements OnInit {
   set candidate(candidate: Candidate) {
     this.data.interview.candidate = candidate;
     this.predictTitle();
+  }
+
+  get interviewer() {
+    return this.data.interview.interviewer;
+  }
+
+  set interviewer(interviewer: User) {
+    this.data.interview.interviewer = interviewer;
   }
 
   get vacancy() {
@@ -96,6 +121,7 @@ export class InterviewDialogComponent implements OnInit {
   constructor(
     private candidateService: CandidateService,
     private vacancyService: VacancyService,
+    private userService: UserService,
     @Inject(MAT_DIALOG_DATA)
     public data: { interview: InterviewClient; type: INTERVIEW_DIALOG_TYPES }
   ) {}
@@ -105,24 +131,66 @@ export class InterviewDialogComponent implements OnInit {
       .search(this.candidateSearchTerm$)
       .subscribe(candidates => (this.candidates = candidates));
 
-    this.vacancyService
-      .search(this.vacancySearchTerm$)
-      .subscribe(vacancies => (this.vacancies = vacancies));
+    this.vacancyService.search(this.vacancySearchTerm$).subscribe(vacancies => {
+      this.vacancies = vacancies;
+    });
+
+    this.userService.search(this.interviewerSearchTerm$).subscribe(interviewers => {
+      this.interviewers = interviewers;
+    });
+
+    this.setCustomValidator(this.vacanyInput);
+    this.setCustomValidator(this.candidateInput);
+    this.setCustomValidator(this.interviewerInput);
+    this.setEndTimeValidator();
   }
 
   matDisplayCandidateFn(candidate?: Candidate): string | undefined {
     return candidate ? `${candidate.name} ${candidate.surname}` : undefined;
   }
 
+  matDisplayInterviewerFn(interviewer?: User): string | undefined {
+    return interviewer ? `${interviewer.name} ${interviewer.surname}` : undefined;
+  }
+
   matDisplayVacancyFn(vacancy?: Vacancy): string | undefined {
     return vacancy ? vacancy.title : undefined;
+  }
+
+  private setCustomValidator(inp: NgModel) {
+    const input = inp.control;
+    input.setValidators(
+      (control: AbstractControl): { [key: string]: any } | null => {
+        if (control.value && control.value.id) {
+          return null;
+        } else {
+          return { notChoosen: true };
+        }
+      }
+    );
+  }
+
+  private setEndTimeValidator() {
+    const endInput = this.timeEndInput.control;
+
+    endInput.setValidators(
+      (control: AbstractControl): { [key: string]: any } | null => {
+        if (this.timeStartInpit.value < control.value) {
+          return null;
+        } else {
+          return { wrongEndTime: true };
+        }
+      }
+    );
   }
 
   private predictTitle() {
     const titleArr = [];
 
     if (this.interview.candidate && this.interview.candidate.name) {
-      titleArr[0] = `${this.interview.candidate.name} ${this.interview.candidate.surname}`;
+      titleArr[0] = `${this.interview.candidate.name} ${
+        this.interview.candidate.surname
+      }`;
     }
 
     if (this.interview.vacancy && this.interview.vacancy.title) {
@@ -132,6 +200,5 @@ export class InterviewDialogComponent implements OnInit {
     const title = titleArr.join(' ');
 
     this.interview.title = title;
-
   }
 }

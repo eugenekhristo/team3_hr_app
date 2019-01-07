@@ -1,0 +1,35 @@
+<div class="card">
+  <header class="card__header">
+    <h2 class="card__heading">
+      <mat-icon class="card__icon">note</mat-icon>
+      CV
+    </h2>
+    <p class="card__timestamp">
+      {{ cv.timestamp | date }} at {{ cv.timestamp | date: 'HH:mm' }}
+    </p>
+  </header>
+
+  <div class="card__download">
+    <button
+      mat-mini-fab
+      matTooltip="Download the CV file"
+      color="primary"
+      (click)="downloadCv(cv)"
+    >
+      <mat-icon>cloud_download</mat-icon>
+    </button>
+
+    <span>{{ cv.name }}</span>
+  </div>
+
+  <div class="card__action">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <a mat-menu-item (click)="onDelete()">
+        <span style="color: var(--color-warn);"> Delete </span>
+      </a>
+    </mat-menu>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="download">
+  <button
+    mat-mini-fab
+    matTooltip="Download the CV file"
+    color="primary"
+    (click)="downloadCv(cv)"
+  >
+    <mat-icon>cloud_download</mat-icon>
+  </button>
+
+  <span>{{ cv.name }}</span>
+</div>

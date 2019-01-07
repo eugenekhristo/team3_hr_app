@@ -1,10 +1,18 @@
 {
   "users": [
     {
-      "email": "test@test",
+      "email": "qwe@qwe",
       "password": "qwe123",
       "name": "Eugene",
+      "surname": "Khristo",
       "id": 1
+    },
+    {
+      "email": "test@test",
+      "password": "qwe123",
+      "name": "John",
+      "surname": "Doe",
+      "id": 2
     }
   ],
   "candidates": [
@@ -27,6 +35,20 @@
       ],
       "photo": "https://pbs.twimg.com/profile_images/802744294553636864/IlFm3UwO_400x400.jpg",
       "timeline": [
+        {
+          "body": "Hello New Cruel World!",
+          "author": "Eugene Khristo",
+          "type": "note",
+          "timestamp": 1546871503075
+        },
+        {
+          "name": "CV-Lindemann.txt",
+          "size": 12,
+          "data": "data:text/plain;base64,SnVzdCBUaWxsIQ0K",
+          "mime": "text/plain",
+          "timestamp": 1546865350103,
+          "type": "cv"
+        },
         {
           "notReqPub": [
             {
@@ -61,12 +83,19 @@
             }
           ],
           "timestamp": 1546162377348,
-          "type": "feedback"
-        },
-        {
-          "type": "note",
-          "timestamp": 1545829233397,
-          "body": "Hello New Cruel World!"
+          "type": "feedback",
+          "vacancy": {
+            "id": 1,
+            "title": "Java",
+            "status": "closed"
+          },
+          "interviewer": {
+            "email": "qwe@qwe",
+            "password": "qwe123",
+            "name": "Eugene",
+            "surname": "Khristo",
+            "id": 1
+          }
         }
       ]
     },
@@ -75,7 +104,7 @@
       "name": "Lilliya",
       "surname": "Scarlett",
       "position": "Frontend developer",
-      "photo": "https://assets.capitalfm.com/2018/23/lilliya-scarlett-instagram-1528814125-custom-0.png",
+      "photo": "https://data.whicdn.com/images/294923922/large.jpg",
       "contacts": [
         {
           "type": "phone",
@@ -143,9 +172,18 @@
       ],
       "timeline": [
         {
+          "name": "CV-Millie.txt",
+          "size": 14,
+          "data": "data:text/plain;base64,SnVzdCBhIGdpcmwhDQo=",
+          "mime": "text/plain",
+          "timestamp": 1546783560654,
+          "type": "cv"
+        },
+        {
           "body": "I've seen her today. I guess this is a pretty good applicant for UI/UX designer position.",
           "type": "note",
-          "timestamp": 1546503464945
+          "timestamp": 1546503464945,
+          "author": "Eugene Khristo"
         },
         {
           "notReqPub": [
@@ -181,17 +219,31 @@
             }
           ],
           "timestamp": 1546166314226,
-          "type": "feedback"
+          "type": "feedback",
+          "vacancy": {
+            "id": 1,
+            "title": "Java",
+            "status": "closed"
+          },
+          "interviewer": {
+            "email": "qwe@qwe",
+            "password": "qwe123",
+            "name": "Eugene",
+            "surname": "Khristo",
+            "id": 1
+          }
         },
         {
           "body": "Я умею писать на русском! Я могу писать на русском! Oh jeez, this is incredible!\n",
           "type": "note",
-          "timestamp": 1545979932950
+          "timestamp": 1545979932950,
+          "author": "Eugene Khristo"
         },
         {
           "body": "IDK what to write!!!!",
           "type": "note",
-          "timestamp": 1545979905615
+          "timestamp": 1545979905615,
+          "author": "Eugene Khristo"
         }
       ]
     },
@@ -207,7 +259,56 @@
           "preferred": true
         }
       ],
-      "timeline": []
+      "timeline": [
+        {
+          "notReqPub": [
+            {
+              "requirement": "Sociable",
+              "response": "",
+              "require": false,
+              "public_": true
+            }
+          ],
+          "notReqPriv": [
+            {
+              "requirement": "Children under 3 y.o.",
+              "response": "",
+              "require": false,
+              "public_": false
+            }
+          ],
+          "reqPub": [
+            {
+              "requirement": "Responsible",
+              "response": "dfgdfg",
+              "require": true,
+              "public_": true
+            }
+          ],
+          "reqPriv": [
+            {
+              "requirement": "Not pregnant",
+              "response": "dfgdfg",
+              "require": true,
+              "public_": false
+            }
+          ],
+          "timestamp": 1546762188957,
+          "type": "feedback",
+          "vacancy": {
+            "id": 1,
+            "title": "Java",
+            "status": "closed"
+          },
+          "interviewer": {
+            "email": "qwe@qwe",
+            "password": "qwe123",
+            "name": "Eugene",
+            "surname": "Khristo",
+            "id": 1
+          }
+        }
+      ]
     },
     {
       "id": 7,
@@ -261,23 +362,37 @@
     {
       "candidateId": 5,
       "vacancyId": 6,
-      "start": "2019-01-10 10:00:00",
-      "end": "2019-01-10 12:00:00",
+      "start": "2019-01-17 10:00:00",
+      "end": "2019-01-17 12:00:00",
       "place": "Minsk, Pobeditelei street, 6",
       "title": "Millie Bobby Brown on UI/UX Designer",
       "timestamp": 1545829233396,
       "type": "interview",
+      "interviewer": {
+        "email": "qwe@qwe",
+        "password": "qwe123",
+        "name": "Eugene",
+        "surname": "Khristo",
+        "id": 1
+      },
       "id": 1
     },
     {
       "candidateId": 1,
       "vacancyId": 1,
-      "start": "2019-01-08 12:00",
-      "end": "2019-01-08 13:00",
+      "start": "2019-01-15 12:00:00",
+      "end": "2019-01-15 13:00:00",
       "place": "Belarus",
       "title": "Till Lindemann on Java",
       "timestamp": 1546590394479,
       "type": "interview",
+      "interviewer": {
+        "email": "qwe@qwe",
+        "password": "qwe123",
+        "name": "Eugene",
+        "surname": "Khristo",
+        "id": 1
+      },
       "id": 3
     }
   ]

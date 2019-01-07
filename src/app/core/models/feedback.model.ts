@@ -1,4 +1,6 @@
 import { TimelineItem, TIMELINE_ITEM_TYPE } from './candidate.model';
+import { User } from './user.model';
+import { Vacancy } from './vacancy.model';
 
 export class FeedbackItem {
   constructor(
@@ -16,6 +18,8 @@ export class Feedback implements TimelineItem {
     public reqPub: FeedbackItem[],
     public reqPriv: FeedbackItem[],
     public timestamp: number,
-    public type: TIMELINE_ITEM_TYPE.feedback
+    public type: TIMELINE_ITEM_TYPE.feedback,
+    public interviewer: User,
+    public vacancy: Vacancy
   ) {}
 }

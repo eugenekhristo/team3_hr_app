@@ -16,12 +16,20 @@ import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { InterviewingComponent } from './interview/containers/interviewing/interviewing.component';
 import { InterviewStore } from './shared/services/interview-store.service';
+import { CandidateAssetsInterComponent } from './interview/presentationals/candidate-assets-inter/candidate-assets-inter.component';
+import { InterAssetsCvComponent } from './interview/presentationals/inter-assets-cv/inter-assets-cv.component';
+import { InterAssetsNoteComponent } from './interview/presentationals/inter-assets-note/inter-assets-note.component';
+import { ReadNoteDialogComponent } from './interview/presentationals/inter-assets-note/read-note-dialog/read-note-dialog.component';
 
 @NgModule({
   declarations: [
     SystemShellComponent,
     InterviewComponent,
-    InterviewingComponent
+    InterviewingComponent,
+    CandidateAssetsInterComponent,
+    InterAssetsCvComponent,
+    InterAssetsNoteComponent,
+    ReadNoteDialogComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +48,6 @@ import { InterviewStore } from './shared/services/interview-store.service';
   ],
   exports: [SystemShellComponent],
   providers: [InterviewService, InterviewStore],
-  entryComponents: []
+  entryComponents: [ReadNoteDialogComponent]
 })
 export class SystemPageModule {}

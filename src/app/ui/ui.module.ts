@@ -17,9 +17,16 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CandidateDialogModule } from './modules/candidate-dialog/candidate-dialog.module';
 import { CandidateDialogService } from './modules/candidate-dialog/candidate-dialog.service';
 import { CandidateDialogComponent } from './modules/candidate-dialog/candidate-dialog/candidate-dialog.component';
+import { AnimatedReadingComponent } from './components/animated-reading/animated-reading.component';
+
 
 @NgModule({
-  declarations: [SnackMessageComponent, PasteProfileImgDirective, QuestionnaireComponent],
+  declarations: [
+    SnackMessageComponent,
+    PasteProfileImgDirective,
+    QuestionnaireComponent,
+    AnimatedReadingComponent
+  ],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -44,7 +51,8 @@ import { CandidateDialogComponent } from './modules/candidate-dialog/candidate-d
     InterviewDialogModule,
     CandidateDialogModule,
     PasteProfileImgDirective,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    AnimatedReadingComponent
   ]
 })
 export class UiModule {}

@@ -59,6 +59,22 @@ export class ShortInfoComponent implements OnInit, OnDestroy {
     this.subscriptionContainer.unsubscribe();
   }
 
+  onFileUpload(e: Event) {
+    const inputElement = e.target as HTMLInputElement;
+    const file = inputElement.files[0];
+    this.handleFileUpload(file);
+  }
+
+  private handleFileUpload(file: File) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      // this.candidate.photo = reader.result as string;
+      const candidate = <Candidate>{...this.candidate, photo: reader.result};
+      this.candidateChanged.emit(candidate);
+    };
+  }
+
   editContacts() {
     const dialogRef = this.matDialog.open(EditContactsDialogComponent, {
       data: this.candidate.contacts
