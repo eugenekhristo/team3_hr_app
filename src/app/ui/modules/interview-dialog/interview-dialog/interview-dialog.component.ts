@@ -31,6 +31,14 @@ export class InterviewDialogComponent implements OnInit {
   @ViewChild('timeStart') timeStartInpit: NgModel;
   @ViewChild('timeEnd') timeEndInput: NgModel;
 
+  // DATEPICKER staff validation
+  minDate = new Date();
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  }
+
   get interview() {
     return this.data.interview;
   }

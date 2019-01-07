@@ -67,6 +67,8 @@
           placeholder="Date"
           [(ngModel)]="date"
           required
+          [min]="minDate"
+          [matDatepickerFilter]="myFilter"
         />
         <mat-datepicker-toggle
           matSuffix
