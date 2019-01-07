@@ -1,0 +1,113 @@
+<div class="dialog">
+  <h2>Add Candidate</h2>
+
+  <form fxLayout="column">
+    <figure
+      class="add-candidate-figure"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      matRipple
+    >
+      <img class="candidate-img" [src]="data.candidate.photo"/>
+      <div class="overflow">Click to update the image</div>
+      <input
+        type="file"
+        accept=".jpg"
+        id="img-uploader"
+        style="display:none;"
+        (change)="onFileUpload($event)"
+      />
+      <label for="img-uploader" class="img-uploader"></label>
+    </figure>
+    <mat-form-field fxFlex="100%">
+      <input
+        placeholder="Name"
+        type="text"
+        matInput
+        name="name"
+        [(ngModel)]="data.candidate.name"
+      />
+    </mat-form-field>
+    <mat-form-field fxFlex="100%">
+      <input
+        placeholder="Surname"
+        type="text"
+        matInput
+        name="surname"
+        [(ngModel)]="data.candidate.surname"
+      />
+    </mat-form-field>
+    <!--<div>-->
+    <!--<form [formGroup]="this.form">-->
+    <!--<div-->
+    <!--formArrayName="contacts"-->
+    <!--*ngFor="let c of contacts.controls; let i = index"-->
+    <!--&gt;-->
+    <!--<div-->
+    <!--fxLayout-->
+    <!--fxLayoutGap="7px"-->
+    <!--fxLayoutAlign="space-between center"-->
+    <!--class="form_group"-->
+    <!--[formGroupName]="i"-->
+    <!--&gt;-->
+    <!--<mat-form-field fxFlex="20">-->
+    <!--<mat-select placeholder="Type" formControlName="type">-->
+    <!--<mat-option *ngFor="let type of contactTypes" [value]="type">-->
+    <!--{{ type | titlecase }}-->
+    <!--</mat-option>-->
+    <!--</mat-select>-->
+    <!--</mat-form-field>-->
+
+    <!--<mat-form-field fxFlex="1 1 auto" style="min-width: 20rem;">-->
+    <!--<input matInput placeholder="Value" formControlName="value" />-->
+    <!--</mat-form-field>-->
+
+    <!--<mat-checkbox-->
+    <!--matTooltip="Preferred?"-->
+    <!--matTooltipPosition="above"-->
+    <!--formControlName="preferred"-->
+    <!--&gt;-->
+    <!--</mat-checkbox>-->
+
+    <!--<mat-icon-->
+    <!--class="contact_delete"-->
+    <!--matTooltip="Delete?"-->
+    <!--matTooltipPosition="above"-->
+    <!--(click)="deleteContact(i)"-->
+    <!--&gt;delete-->
+    <!--</mat-icon>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</form>-->
+    <!--</div>-->
+
+    <!--<button mat-button color="primary" class="add_contact" (click)="addContact()">-->
+      <!--Add Contact-->
+    <!--</button>-->
+
+    <div
+      mat-dialog-actions
+      fxLayout="row nowrap"
+      fxLayoutGap="10px"
+      class="actions"
+    >
+      <button
+        mat-raised-button
+        color="warn"
+        [mat-dialog-close]="false"
+        fxFlex="50"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [mat-dialog-close]="data.candidate"
+        cdkFocusInitial
+        fxFlex="50"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
