@@ -10,7 +10,7 @@ export class VacancyService {
   constructor(private http: HttpClient) {
   }
 
-  fetch(): Observable<Vacancy[]> {
+  getAllVacancies(): Observable<Vacancy[]> {
     return this.http.get<Vacancy[]>(`${BASE_URL}/vacancies`);
   }
 

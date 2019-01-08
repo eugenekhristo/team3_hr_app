@@ -8,6 +8,7 @@ import { AuthPageModule } from '../pages/auth/auth-page.module';
 import { CandidateService } from './services/candidate.service';
 import { VacancyService } from './services/vacancy.service';
 import { CandidatesStore } from './services/candidate-store.service';
+import { VacancyStore } from './services/vacancy-store.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { CandidatesStore } from './services/candidate-store.service';
     AuthPageModule
   ],
   exports: [FormsModule, ReactiveFormsModule, AuthPageModule],
-  providers: [UserService, AuthService, CandidateService, CandidatesStore, VacancyService]
+  providers: [UserService, AuthService, CandidateService, CandidatesStore, VacancyService, VacancyStore]
 })
 export class CoreModule {}

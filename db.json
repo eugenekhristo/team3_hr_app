@@ -333,28 +333,260 @@
     {
       "id": 1,
       "title": "Java",
-      "status": "closed"
+      "status": "opened",
+      "description": "Hello world Lorem Ipsum ROCKS!",
+      "requirements": [
+        {
+          "name": "Children under 3 y.o.",
+          "require": false,
+          "public_": false,
+          "id": 1
+        },
+        {
+          "requirement": "Sociable",
+          "require": false,
+          "public_": true,
+          "id": 2
+        },
+        {
+          "requirement": "Responsible",
+          "require": true,
+          "public_": true,
+          "id": 3
+        },
+        {
+          "requirement": "Not pregnant",
+          "require": true,
+          "public_": false,
+          "id": 4
+        }
+      ],
+      "candidatesID": [
+        {
+          "id": 1,
+          "timestamp": 1546925968316
+        },
+        {
+          "id": 5,
+          "timestamp": 1546926019779
+        }
+      ],
+      "timestamp": 1546925968316
     },
     {
       "id": 2,
       "title": "JS",
-      "status": "opened"
+      "status": "opened",
+      "description": "Hello world Lorem Ipsum ROCKS!",
+      "requirements": [
+        {
+          "name": "Children under 3 y.o.",
+          "require": false,
+          "public_": false,
+          "id": 1
+        },
+        {
+          "requirement": "Sociable",
+          "require": false,
+          "public_": true,
+          "id": 2
+        },
+        {
+          "requirement": "Responsible",
+          "require": true,
+          "public_": true,
+          "id": 3
+        },
+        {
+          "requirement": "Not pregnant",
+          "require": true,
+          "public_": false,
+          "id": 4
+        }
+      ],
+      "candidatesID": [
+        {
+          "id": 1,
+          "timestamp": 1546925968316
+        },
+        {
+          "id": 5,
+          "timestamp": 1546926019779
+        }
+      ],
+      "timestamp": 1546925968316
     },
     {
       "id": 3,
-      "title": "SQL"
+      "title": "SQL",
+      "status": "opened",
+      "description": "Hello world Lorem Ipsum ROCKS!",
+      "requirements": [
+        {
+          "name": "Children under 3 y.o.",
+          "require": false,
+          "public_": false,
+          "id": 1
+        },
+        {
+          "requirement": "Sociable",
+          "require": false,
+          "public_": true,
+          "id": 2
+        },
+        {
+          "requirement": "Responsible",
+          "require": true,
+          "public_": true,
+          "id": 3
+        },
+        {
+          "requirement": "Not pregnant",
+          "require": true,
+          "public_": false,
+          "id": 4
+        }
+      ],
+      "candidatesID": [
+        {
+          "id": 1,
+          "timestamp": 1546925968316
+        },
+        {
+          "id": 5,
+          "timestamp": 1546926019779
+        }
+      ],
+      "timestamp": 1546925968316
     },
     {
       "id": 4,
-      "title": "No-SQL"
+      "title": "No-SQL",
+      "status": "opened",
+      "description": "Hello world Lorem Ipsum ROCKS!",
+      "requirements": [
+        {
+          "name": "Children under 3 y.o.",
+          "require": false,
+          "public_": false,
+          "id": 1
+        },
+        {
+          "requirement": "Sociable",
+          "require": false,
+          "public_": true,
+          "id": 2
+        },
+        {
+          "requirement": "Responsible",
+          "require": true,
+          "public_": true,
+          "id": 3
+        },
+        {
+          "requirement": "Not pregnant",
+          "require": true,
+          "public_": false,
+          "id": 4
+        }
+      ],
+      "candidatesID": [
+        {
+          "id": 1,
+          "timestamp": 1546925968316
+        },
+        {
+          "id": 5,
+          "timestamp": 1546926019779
+        }
+      ],
+      "timestamp": 1546925968316
     },
     {
       "id": 5,
-      "title": "NodeJS"
+      "title": "NodeJS",
+      "status": "opened",
+      "description": "Hello world Lorem Ipsum ROCKS!",
+      "requirements": [
+        {
+          "name": "Children under 3 y.o.",
+          "require": false,
+          "public_": false,
+          "id": 1
+        },
+        {
+          "requirement": "Sociable",
+          "require": false,
+          "public_": true,
+          "id": 2
+        },
+        {
+          "requirement": "Responsible",
+          "require": true,
+          "public_": true,
+          "id": 3
+        },
+        {
+          "requirement": "Not pregnant",
+          "require": true,
+          "public_": false,
+          "id": 4
+        }
+      ],
+      "candidatesID": [
+        {
+          "id": 1,
+          "timestamp": 1546925968316
+        },
+        {
+          "id": 5,
+          "timestamp": 1546926019779
+        }
+      ],
+      "timestamp": 1546925968316
     },
     {
       "id": 6,
-      "title": "UI/UX Designer"
+      "title": "UI/UX Designer",
+      "status": "opened",
+      "description": "Hello world Lorem Ipsum ROCKS!",
+      "requirements": [
+        {
+          "name": "Children under 3 y.o.",
+          "require": false,
+          "public_": false,
+          "id": 1
+        },
+        {
+          "requirement": "Sociable",
+          "require": false,
+          "public_": true,
+          "id": 2
+        },
+        {
+          "requirement": "Responsible",
+          "require": true,
+          "public_": true,
+          "id": 3
+        },
+        {
+          "requirement": "Not pregnant",
+          "require": true,
+          "public_": false,
+          "id": 4
+        }
+      ],
+      "candidatesID": [
+        {
+          "id": 1,
+          "timestamp": 1546925968316
+        },
+        {
+          "id": 5,
+          "timestamp": 1546926019779
+        }
+      ],
+      "timestamp": 1546925968316
     }
   ],
   "interviews": [
