@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
 import { Candidate, TimelineNote } from '../models/candidate.model';
 import { CandidateService } from './candidate.service';
-import { map, tap, share } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
 import { InterviewClient, Interview } from '../models/interview.model';
 import { Feedback } from '../models/feedback.model';
@@ -23,11 +23,31 @@ export class CandidatesStore {
     );
   }
 
+  private _candidates$ = new BehaviorSubject<Candidate[]>([]);
+
+  get candidates$() {
+    return this._candidates$.asObservable();
+  }
+
+  get candidates() {
+    return this._candidates$.getValue();
+  }
+
   constructor(
     private candidateService: CandidateService,
     private interviewSerivce: InterviewService,
     private interviewService: InterviewService
-  ) {}
+  ) {
+    this.bootstrapCandidates();
+  }
+
+  bootstrapCandidates() {
+    this.candidateService.getAllCandidates().subscribe(candidates => this._candidates$.next(candidates));
+  }
+
+  getLocalCandidatesByIds(ids: number[]): Candidate[] {
+    return this.candidates.filter(candidate => ids.includes(candidate.id));
+  }
 
   updateCandidate(candidate: Candidate) {
     const _candidate = this._candidate.getValue();

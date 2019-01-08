@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 enum VACANCY_STATUS {
   opend = 'opened',
   suspended = 'suspended',
@@ -10,12 +12,15 @@ export class Requirement {
     public name: string,
     public require: boolean,
     public public_: boolean,
-    public id?: number
+    public id: string = uuid()
   ) {}
 }
 
 export class CandidateForVacancy {
-  constructor(public id: number, public timestamp?: number) {}
+  constructor(
+    public id: number,
+    public timestamp: number = Date.now()
+  ) {}
 }
 
 export class Vacancy {
@@ -24,8 +29,8 @@ export class Vacancy {
     public status?: VACANCY_STATUS,
     public description?: string,
     public requirements?: Requirement[],
-    public candidatesID?: CandidateForVacancy[],
-    public timestamp?: number,
+    public candidatesBlobs?: CandidateForVacancy[],
+    public timestamp: number = Date.now(),
     public id?: number
   ) {}
 }
