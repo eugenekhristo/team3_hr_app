@@ -15,13 +15,15 @@ import { PasteProfileImgDirective } from './directives/paste_profile_img.directi
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AnimatedReadingComponent } from './components/animated-reading/animated-reading.component';
+import { SmallCardComponent } from './components/small-card/small-card.component';
 
 @NgModule({
   declarations: [
     SnackMessageComponent,
     PasteProfileImgDirective,
     QuestionnaireComponent,
-    AnimatedReadingComponent
+    AnimatedReadingComponent,
+    SmallCardComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { AnimatedReadingComponent } from './components/animated-reading/animated
     InterviewDialogModule,
     PasteProfileImgDirective,
     QuestionnaireComponent,
-    AnimatedReadingComponent
+    AnimatedReadingComponent,
+    SmallCardComponent
   ]
 })
 export class UiModule {}

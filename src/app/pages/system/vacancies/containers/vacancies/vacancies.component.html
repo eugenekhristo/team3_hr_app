@@ -1,4 +1,28 @@
-<p *ngFor="let vacancy of vacancies$ | async">
-  {{vacancy | json}}
-  <a [routerLink]="vacancy.id">{{vacancy.title}}</a>
-</p>
+<div class="wrapper">
+
+  <ng-container *ngFor="let vacancy of (vacancies$ | async)">
+    <hr-small-card>
+      <div class="vacancy">
+        <h2 class="vacancy__heading">
+          {{ vacancy.title }}
+          <span class="vacancy__status"></span>
+        </h2>
+
+        <div class="vacancy__action">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <a mat-menu-item [routerLink]="vacancy.id">
+              <span>More info</span>
+            </a>
+          </mat-menu>
+        </div>
+
+      </div>
+    </hr-small-card>
+  </ng-container>
+
+</div>
+
+

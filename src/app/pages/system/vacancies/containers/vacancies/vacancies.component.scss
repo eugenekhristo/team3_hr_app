@@ -1,0 +1,59 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  & > * {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+
+hr-small-card {
+  margin-bottom: 2rem;
+
+  &:nth-child(odd) {
+    margin-right: 2rem;
+  }
+}
+
+.vacancy {
+  position: relative;
+
+  &__heading {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    font: 500 2rem/3.2rem Roboto,"Helvetica Neue",sans-serif;
+  }
+
+  &__action {
+    position: absolute;
+    top: -1.5rem;
+    right: -2rem;
+  }
+
+  &__status {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -1.5rem;
+    width: .7rem;
+    height: .7rem;
+    border-radius: 50%;
+    background-color: green;
+  }
+}
+
+
+
+@media only screen and (max-width: 48em) {
+  .wrapper {
+    & > * {
+      flex: 1 1 100%;
+    }
+  }
+
+  hr-small-card {
+    margin-right: 2rem;
+  }
+}
