@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-enum VACANCY_STATUS {
+export enum VACANCY_STATUS {
   opend = 'opened',
   suspended = 'suspended',
   canceled = 'canceled',
@@ -29,7 +29,7 @@ export class Vacancy {
     public status?: VACANCY_STATUS,
     public description?: string,
     public requirements?: Requirement[],
-    public candidatesBlobs?: CandidateForVacancy[],
+    public candidatesBlobs: CandidateForVacancy[] = [],
     public timestamp: number = Date.now(),
     public id?: number
   ) {}

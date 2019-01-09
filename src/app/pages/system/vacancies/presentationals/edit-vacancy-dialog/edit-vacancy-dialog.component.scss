@@ -1,0 +1,32 @@
+h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.dialog {
+  padding-bottom: 3rem;
+  min-width: 22vw;
+}
+
+.add_contact {
+  width: 100%;
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+
+
+.contact_delete {
+  opacity: 0;
+  cursor: pointer;
+  transition: .25s ease-out;
+}
+
+
+.form_group:hover .contact_delete {
+  opacity: 1;
+}

@@ -22,6 +22,14 @@ export class VacancyService {
     return this.http.put<Vacancy>(`${BASE_URL}/vacancies/${vacancy.id}`, vacancy).pipe(share());
   }
 
+  addVacancy(vacancy: Vacancy): Observable<Vacancy> {
+    return this.http.post<Vacancy>(`${BASE_URL}/vacancies`, vacancy).pipe(share());
+  }
+
+  deleteVacancy(id: number): Observable<Object> {
+    return this.http.delete(`${BASE_URL}/vacancies/${id}`).pipe(share());
+  }
+
   search(searchTerm: Observable<string>): Observable<Vacancy[]> {
     return searchTerm.pipe(
       debounceTime(100),

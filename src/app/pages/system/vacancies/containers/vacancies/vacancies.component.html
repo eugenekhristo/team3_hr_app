@@ -1,3 +1,39 @@
+<div
+  class="toggle"
+  [matTooltip]="toolbarMessage"
+  (click)="toggleToolbar()"
+>
+  <mat-icon class="toggle__icon">
+    {{!isToolbarShown ? 'arrow_drop_down' : 'arrow_drop_up'}}
+  </mat-icon>
+</div>
+
+<div class="toolbar" [hidden]="!isToolbarShown">
+  <button
+    mat-mini-fab
+    color="primary"
+    matTooltip="Add a vacancy"
+    matTooltipPosition="right"
+    (click)="onAddVacancy()"
+  >
+    <mat-icon>add_circle_outline</mat-icon>
+  </button>
+
+  <input type="text" (input)="filterText$.next($event.target.value)">
+
+  <label
+    *ngFor="let status of vacancyStatuses"
+    style="margin-left: 10px;"
+  >
+    {{status | titlecase}}
+    <mat-checkbox
+      [checked]="ststusIncluded(status)"
+    >
+    </mat-checkbox>
+  </label>
+
+</div>
+
 <div class="wrapper">
 
   <ng-container *ngFor="let vacancy of (vacancies$ | async)">
@@ -5,8 +41,18 @@
       <div class="vacancy">
         <h2 class="vacancy__heading">
           {{ vacancy.title }}
-          <span class="vacancy__status"></span>
         </h2>
+
+        <p class="vacancy__candidates-count">
+          Total candidates: {{vacancy.candidatesBlobs.length}}
+        </p>
+
+        <span
+          [ngClass]="['vacancy__status', getClassForStatus(vacancy.status)]"
+          [matTooltip]="vacancy.status"
+          matTooltipPosition="left"
+        >
+        </span>
 
         <div class="vacancy__action">
           <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -15,6 +61,19 @@
           <mat-menu #menu="matMenu" xPosition="before">
             <a mat-menu-item [routerLink]="vacancy.id">
               <span>More info</span>
+            </a>
+            <a
+              mat-menu-item
+              (click)="onUpdateVacancy(makeDeepCopy(vacancy))"
+            >
+              <span>Edit</span>
+            </a>
+            <a
+              mat-menu-item
+              style="color: var(--color-warn)"
+              (click)="onDeleteVacancy(vacancy.id)"
+            >
+              <span>Delete</span>
             </a>
           </mat-menu>
         </div>

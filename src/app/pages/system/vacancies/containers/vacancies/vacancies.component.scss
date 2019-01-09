@@ -1,10 +1,35 @@
+.toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.5rem;
+  border-radius: 5px;
+  background-color: rgba(107, 107, 107, 0.5);
+  margin-bottom: 2.5rem;
+  cursor: pointer;
+  transition: .2s;
+
+  &:hover {
+    background-color: rgba(107, 107, 107, 0.7);
+  }
+
+  &__icon {
+    color: white;
+    font-size: 2rem;
+  }
+}
+
+.toolbar {
+  margin: 1rem 0 3rem;
+}
+
 .wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
   & > * {
-    flex: 1 1 calc(50% - 2rem);
+    flex: 0 1 calc(50% - 2rem);
   }
 }
 
@@ -26,6 +51,12 @@ hr-small-card {
     font: 500 2rem/3.2rem Roboto,"Helvetica Neue",sans-serif;
   }
 
+  &__candidates-count {
+    font-size: 1.4rem;
+    color: grey;
+    margin-bottom: 0;
+  }
+
   &__action {
     position: absolute;
     top: -1.5rem;
@@ -35,12 +66,27 @@ hr-small-card {
   &__status {
     display: block;
     position: absolute;
-    top: 0;
-    right: -1.5rem;
-    width: .7rem;
-    height: .7rem;
+    bottom: 0;
+    right: -5px;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
-    background-color: green;
+
+    &.vacancy__status--opened {
+      background-color: rgb(24, 185, 137);
+    }
+
+    &.vacancy__status--suspended {
+      background-color: goldenrod;
+    }
+
+    &.vacancy__status--canceled {
+      background-color: grey;
+    }
+
+    &.vacancy__status--closed {
+      background-color: var(--color-warn);
+    }
   }
 }
 
