@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { EditVacancyDialogComponent } from '../../presentationals/edit-vacancy-dialog/edit-vacancy-dialog.component';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
+import { FilterVacanciesService } from 'src/app/core/services/filter-vacancies.service';
 
 @Component({
   selector: 'hr-vacancies',
@@ -17,41 +18,17 @@ export class VacanciesComponent implements OnInit {
   isToolbarShown = true;
   toolbarMessage = '';
   vacancyStatuses = Object.values(VACANCY_STATUS);
-  filterText$ = new BehaviorSubject<string>('');
-  filterStatuses$ = new BehaviorSubject<VACANCY_STATUS[]>(this.vacancyStatuses);
 
   constructor(
+    public filterService: FilterVacanciesService,
     public vacancyStore: VacancyStore,
     private matDialog: MatDialog,
     private matSnack: SnackMessageService,
-    private matConfirm: MatConfirmService
+    private matConfirm: MatConfirmService,
   ) {}
 
   ngOnInit() {
     this.vacancies$ = this.vacancyStore.filteredVacancies$;
-    this.vacancyStore.filterVacancies(this.filterText$, this.filterStatuses$);
-  }
-
-  toggleStatusFilteres(statusName: string, isIncluded: boolean): void {
-    const curFilter = this.filterStatuses$.getValue();
-    let newFilter: VACANCY_STATUS[];
-
-    if (isIncluded) {
-      newFilter = [...curFilter, statusName] as VACANCY_STATUS[];
-    } else {
-      newFilter = curFilter.filter(status => status !== statusName);
-    }
-
-    this.filterStatuses$.next(newFilter);
-  }
-
-  getClassForStatus(status: VACANCY_STATUS): string {
-    return `vacancy__status--${status}`;
-  }
-
-  toggleToolbar() {
-    this.isToolbarShown = !this.isToolbarShown;
-    this.toolbarMessage = `${this.isToolbarShown ? 'Close' : 'Open'} toolbar`;
   }
 
   onAddVacancy(): void {
@@ -65,7 +42,7 @@ export class VacanciesComponent implements OnInit {
           description,
           requirements
         );
-        this.vacancyStore.addVacancy(newVacancy).subscribe(vacancy => {
+        this.vacancyStore.addVacancy(newVacancy).subscribe(() => {
           this.openSnackAndCallBS('Vacancy was successfully created! ✨');
         });
       }
@@ -98,20 +75,21 @@ export class VacanciesComponent implements OnInit {
     });
   }
 
-  ststusIncluded(status: string): boolean {
-    return this.vacancyStatuses.includes(status);
+  toggleToolbar() {
+    this.isToolbarShown = !this.isToolbarShown;
+    this.toolbarMessage = `${this.isToolbarShown ? 'Close' : 'Open'} toolbar`;
+  }
+
+  getClassForStatus(status: VACANCY_STATUS): string {
+    return `vacancy__status--${status}`;
   }
 
   makeDeepCopy(vacancy: Vacancy): Vacancy {
     return JSON.parse(JSON.stringify(vacancy));
   }
 
-  private callAllbehaviorSubjects() {
-    this.filterText$.next(this.filterText$.getValue());
-  }
-
-  private openSnackAndCallBS(msg: string): void {
+  openSnackAndCallBS(msg: string): void {
     this.matSnack.openSnackBar(msg);
-    this.callAllbehaviorSubjects();
+    this.filterService.callAllbehaviorSubjects();
   }
 }

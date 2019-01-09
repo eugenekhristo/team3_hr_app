@@ -9,15 +9,19 @@ import { CandidateService } from './services/candidate.service';
 import { VacancyService } from './services/vacancy.service';
 import { CandidatesStore } from './services/candidate-store.service';
 import { VacancyStore } from './services/vacancy-store.service';
+import { FilterVacanciesService } from './services/filter-vacancies.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AuthPageModule
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, AuthPageModule],
   exports: [FormsModule, ReactiveFormsModule, AuthPageModule],
-  providers: [UserService, AuthService, CandidateService, CandidatesStore, VacancyService, VacancyStore]
+  providers: [
+    UserService,
+    AuthService,
+    CandidateService,
+    CandidatesStore,
+    VacancyService,
+    VacancyStore,
+    FilterVacanciesService
+  ]
 })
 export class CoreModule {}

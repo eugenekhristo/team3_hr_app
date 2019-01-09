@@ -19,7 +19,11 @@
     <mat-icon>add_circle_outline</mat-icon>
   </button>
 
-  <input type="text" (input)="filterText$.next($event.target.value)">
+  <input
+    type="text"
+    (input)="filterService.filterText$.next($event.target.value)"
+    [value]="filterService.curFilterText"
+  >
 
   <label
     *ngFor="let status of vacancyStatuses"
@@ -27,9 +31,9 @@
   >
     {{status | titlecase}}
     <mat-checkbox
-      [checked]="ststusIncluded(status)"
+      [checked]="filterService.isStatusIncluded(status)"
       [name]="status"
-      (change)="toggleStatusFilteres($event.source.name, $event.checked)"
+      (change)="filterService.toggleStatusFilteres($event.source.name, $event.checked)"
     >
     </mat-checkbox>
   </label>
