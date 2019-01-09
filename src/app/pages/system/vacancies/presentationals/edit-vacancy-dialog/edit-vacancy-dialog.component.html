@@ -1,78 +1,97 @@
 <div class="dialog">
   <h2>Add Vacancy</h2>
 
-    <form [formGroup]="form">
-      <mat-form-field style="width: 100%">
-        <input matInput placeholder="Vacancy title" formControlName="title" />
-      </mat-form-field>
+  <form [formGroup]="form">
+    <mat-form-field style="width: 100%">
+      <input matInput placeholder="Vacancy title" formControlName="title" />
+    </mat-form-field>
 
-      <mat-form-field style="width: 100%">
-        <mat-select
-          placeholder="Status"
-          formControlName="status"
-        >
-          <mat-option *ngFor="let status of statusTypes" [value]="status">
-            {{ status | titlecase }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-select placeholder="Status" formControlName="status">
+        <mat-option *ngFor="let status of statusTypes" [value]="status">
+          {{ status | titlecase }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <mat-form-field style="width: 100%">
-        <textarea matInput placeholder="Description" formControlName="description">
-        </textarea>
-      </mat-form-field>
-
-      <p
-        *ngIf="requirements.length === 0; else vacancy_requirements"
-        style="text-align: center; font-style: italic;"
+    <mat-form-field style="width: 100%">
+      <textarea
+        matInput
+        placeholder="Description"
+        formControlName="description"
       >
-        No Requirements Provided!
-      </p>
+      </textarea>
+    </mat-form-field>
 
-      <div
-        #vacancy_requirements
-        formArrayName="requirements"
-        *ngFor="let c of requirements.controls; let i = index"
-      >
+    <p
+      *ngIf="requirements.length === 0; else vacancy_requirements"
+      style="text-align: center; font-style: italic;"
+    >
+      No Requirements Provided!
+    </p>
+
+    <ng-template #vacancy_requirements>
+      <div class="requirements">
         <div
+          class="requirements_title"
           fxLayout
           fxLayoutGap="7px"
           fxLayoutAlign="space-between center"
-          class="form_group"
-          [formGroupName]="i"
         >
-          <mat-form-field fxFlex="1 1 auto">
-            <input matInput placeholder="Name" formControlName="name" />
-          </mat-form-field>
-
-          <mat-checkbox
-            matTooltip="Required?"
-            matTooltipPosition="above"
-            formControlName="require"
-          >
-          </mat-checkbox>
-
-          <mat-checkbox
-            matTooltip="Public?"
-            matTooltipPosition="above"
-            formControlName="_public"
-          >
-          </mat-checkbox>
-
-          <mat-icon
-            class="contact_delete"
-            matTooltip="Delete?"
-            matTooltipPosition="above"
-            (click)="deleteRequirement(i)"
-          >
-            delete
-          </mat-icon>
+          <span fxFlex="1 1 auto">Requirement</span> <span>Required</span>
+          <span>Public</span> <span> </span>
         </div>
 
-      </div>
-    </form>
+        <div
+          formArrayName="requirements"
+          *ngFor="let c of requirements.controls; let i = index"
+        >
+          <div
+            fxLayout
+            fxLayoutGap="7px"
+            fxLayoutAlign="space-between center"
+            class="form_group"
+            [formGroupName]="i"
+          >
+            <mat-form-field fxFlex="1 1 auto" style="margin-right: 1.5rem">
+              <input matInput placeholder="Name" formControlName="name" />
+            </mat-form-field>
 
-  <button mat-button color="primary" class="add_contact" (click)="addRequirement()">
+            <mat-checkbox
+              matTooltip="Required?"
+              matTooltipPosition="above"
+              formControlName="require"
+              style="margin-right: 3rem"
+            >
+            </mat-checkbox>
+
+            <mat-checkbox
+              matTooltip="Public?"
+              matTooltipPosition="above"
+              formControlName="_public"
+            >
+            </mat-checkbox>
+
+            <mat-icon
+              class="contact_delete"
+              matTooltip="Delete?"
+              matTooltipPosition="above"
+              (click)="deleteRequirement(i)"
+            >
+              delete
+            </mat-icon>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </form>
+
+  <button
+    mat-button
+    color="primary"
+    class="add_contact"
+    (click)="addRequirement()"
+  >
     Add Requirement
   </button>
 

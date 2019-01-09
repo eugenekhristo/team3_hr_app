@@ -19,11 +19,29 @@ h2 {
 }
 
 
+.requirements_title {
+  margin-bottom: 1.5rem;
+  span {
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: bold;
+  }
+}
 
 .contact_delete {
   opacity: 0;
   cursor: pointer;
   transition: .25s ease-out;
+}
+
+.form_group {
+  mat-form-field {
+    margin-right: 2rem !important;
+  }
+
+//   mat-checkbox:first-of-type {
+//     margin-right: 3rem !important;
+//   }
 }
 
 
