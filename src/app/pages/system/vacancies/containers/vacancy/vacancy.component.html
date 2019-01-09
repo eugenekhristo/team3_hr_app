@@ -1,59 +1,118 @@
-<ng-container *ngIf="vacancy$ | async; let vacancy">
-    <section class="description mat-big-card">
-        <a
-          mat-icon-button
-          matTooltip="Go back"
-          class="go_back"
-          routerLink="/vacancies"
-        >
-          <mat-icon>arrow_back_ios</mat-icon>
-        </a>
-        <div class="controls">
-          <button
-            mat-mini-fab
-            color="primary"
-            matTooltip="Edit the vacancy"
-            (click)="onEditVacancy(vacancy)"
-          >
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button
-            mat-mini-fab
-            matTooltip="Delete the vacancy"
-            color="warn"
-            style="margin-left: 1rem;"
-            (click)="onDeleteVacancy(vacancy.id)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
+<ng-container *ngIf="vacancy">
+  <section class="description mat-big-card">
+    <a
+      mat-icon-button
+      matTooltip="Go back"
+      class="go_back"
+      routerLink="/vacancies"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+    </a>
+    <div class="controls">
+      <button
+        mat-mini-fab
+        color="primary"
+        matTooltip="Edit the vacancy"
+        (click)="onEditVacancy(vacancy)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-mini-fab
+        matTooltip="Delete the vacancy"
+        color="warn"
+        style="margin-left: 1rem;"
+        (click)="onDeleteVacancy(vacancy.id)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
 
-        <h1>{{ vacancy.title }}</h1>
+    <h1>
+      {{ vacancy.title }}
+      <span
+        [ngClass]="['vacancy__status', getClassForStatus(vacancy.status)]"
+        [matTooltip]="vacancy.status"
+        matTooltipPosition="right"
+      >
+      </span>
+    </h1>
 
-        <table class="table description__table">
-          <tr>
-            <td>Description: </td>
-            <td>
-              {{vacancy.description}}
-            </td>
-          </tr>
-          <tr>
-            <td>Requirements:</td>
-            <td>
-               <!-- TODO: requirements here! -->
-               s
-            </td>
-          </tr>
-        </table>
-      </section>
+    <table class="table description__table">
+      <tr>
+        <td class="table__placeholder">Description:</td>
+        <td class="table__content">{{ vacancy.description }}</td>
+      </tr>
+      <tr>
+        <td class="table__placeholder">Requirements:</td>
+        <td class="table__content">
+          <table class="requriements">
+            <tr>
+              <td colspan="2" class="requriements__title">Required</td>
+              <td colspan="2" class="requriements__title">Not Requried</td>
+            </tr>
+            <tr>
+              <td class="requriements__subtitle">Public</td>
+              <td class="requriements__subtitle">Private</td>
+              <td class="requriements__subtitle">Public</td>
+              <td class="requriements__subtitle">Private</td>
+            </tr>
+            <tr>
+              <td>
+                <ng-container *ngIf="reqPub.length > 0; else noreqPub">
+                  <ul>
+                    <li *ngFor="let requirement of reqPub">
+                      {{ requirement.name }}
+                    </li>
+                  </ul>
+                </ng-container>
+                <ng-template #noreqPub> &mdash; </ng-template>
+              </td>
+
+              <td>
+                <ng-container *ngIf="reqPriv.length > 0; else noreqPriv">
+                  <ul>
+                    <li *ngFor="let requirement of reqPriv">
+                      {{ requirement.name }}
+                    </li>
+                  </ul>
+                </ng-container>
+                <ng-template #noreqPriv> &mdash; </ng-template>
+              </td>
+
+              <td>
+                <ng-container *ngIf="notReqPub.length > 0; else nonotReqPub">
+                  <ul>
+                    <li *ngFor="let requirement of notReqPub">
+                      {{ requirement.name }}
+                    </li>
+                  </ul>
+                </ng-container>
+                <ng-template #nonotReqPub> &mdash; </ng-template>
+              </td>
+
+              <td>
+                <ng-container *ngIf="notReqPriv.length > 0; else nonotReqPriv">
+                  <ul>
+                    <li *ngFor="let requirement of notReqPriv">
+                      {{ requirement.name }}
+                    </li>
+                  </ul>
+                </ng-container>
+                <ng-template #nonotReqPriv> &mdash; </ng-template>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </section>
 </ng-container>
 
 <!-- <p>
   {{vacancy$ | async | json}}
 </p> -->
 
-
 <!-- <p>
   {{possibleCandidates$ | async | json}}
 </p> -->
-

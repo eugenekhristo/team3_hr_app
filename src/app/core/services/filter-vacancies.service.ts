@@ -1,11 +1,11 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { VACANCY_STATUS } from '../models/vacancy.model';
 import { VacancyStore } from './vacancy-store.service';
 
 @Injectable()
 export class FilterVacanciesService {
-  isToolbarShown = true;
+  isToolbarShown = false;
   vacancyStatuses = Object.values(VACANCY_STATUS);
   filterText$ = new BehaviorSubject<string>('');
   filterStatuses$: BehaviorSubject<VACANCY_STATUS[]>;

@@ -4,7 +4,9 @@ import { VacancyStore } from 'src/app/core/services/vacancy-store.service';
 import { Observable } from 'rxjs';
 import {
   Vacancy,
-  CandidateForVacancy
+  CandidateForVacancy,
+  VACANCY_STATUS,
+  Requirement
 } from 'src/app/core/models/vacancy.model';
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
@@ -19,8 +21,13 @@ import { FilterVacanciesService } from 'src/app/core/services/filter-vacancies.s
   styleUrls: ['./vacancy.component.scss']
 })
 export class VacancyComponent implements OnInit {
-  vacancy$: Observable<Vacancy>;
+  vacancy: Vacancy;
   possibleCandidates$: Observable<Candidate[]>;
+
+  reqPub: Requirement[] = [];
+  reqPriv: Requirement[] = [];
+  notReqPub: Requirement[] = [];
+  notReqPriv: Requirement[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -33,10 +40,14 @@ export class VacancyComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // TODO: two subscriptions - UBSIBSCRIBE!!!!
     this.vacancyStore
       .bootstrapVacancy(this.route.snapshot.params['id'])
       .subscribe(() => {
-        this.vacancy$ = this.vacancyStore.vacancy$;
+        this.vacancyStore.vacancy$.subscribe(vacancy => {
+          this.vacancy = vacancy;
+          this.createRequirementsArrForRendering();
+        }) ;
         this.possibleCandidates$ = this.vacancyStore.possibleCandidates$;
       });
   }
@@ -83,5 +94,28 @@ export class VacancyComponent implements OnInit {
     console.log('how many times running?');
     this.matSnack.openSnackBar(msg);
     this.filterService.callAllbehaviorSubjects();
+  }
+
+  private createRequirementsArrForRendering(): void {
+    this.reqPub = [];
+    this.reqPriv = [];
+    this.notReqPub = [];
+    this.notReqPriv = [];
+
+    for (const requirement of this.vacancy.requirements) {
+      if (requirement.require && requirement._public) {
+        this.reqPub.push(requirement);
+      } else if (requirement.require && !requirement._public) {
+        this.reqPriv.push(requirement);
+      } else if (!requirement.require && requirement._public) {
+        this.notReqPub.push(requirement);
+      } else {
+        this.notReqPriv.push(requirement);
+      }
+    }
+  }
+
+  getClassForStatus(status: VACANCY_STATUS): string {
+    return `vacancy__status--${status}`;
   }
 }

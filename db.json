@@ -339,25 +339,25 @@
         {
           "name": "Children under 3 y.o.",
           "require": false,
-          "public_": false,
+          "_public": false,
           "id": 1
         },
         {
           "name": "Sociable",
           "require": false,
-          "public_": true,
+          "_public": true,
           "id": 2
         },
         {
           "name": "Responsible",
           "require": true,
-          "public_": true,
+          "_public": true,
           "id": 3
         },
         {
           "name": "Not pregnant",
           "require": true,
-          "public_": false,
+          "_public": false,
           "id": 4
         }
       ],
@@ -403,7 +403,7 @@
         },
         {
           "name": "Not pregnant",
-          "require": true,
+          "require": false,
           "_public": false,
           "id": 4
         }
@@ -429,25 +429,25 @@
         {
           "name": "Children under 3 y.o.",
           "require": false,
-          "public_": false,
+          "_public": false,
           "id": 1
         },
         {
           "name": "Sociable",
           "require": false,
-          "public_": true,
+          "_public": false,
           "id": 2
         },
         {
           "name": "Responsible",
           "require": true,
-          "public_": true,
+          "_public": false,
           "id": 3
         },
         {
           "name": "Not pregnant",
           "require": true,
-          "public_": false,
+          "_public": false,
           "id": 4
         }
       ],
@@ -472,26 +472,26 @@
         {
           "name": "Children under 3 y.o.",
           "require": false,
-          "public_": false,
+          "_public": false,
           "id": 1
         },
         {
           "name": "Sociable",
           "require": false,
-          "public_": true,
+          "_public": true,
           "id": 2
         },
         {
           "name": "Responsible",
           "require": true,
-          "public_": true,
+          "_public": true,
           "id": 3
         },
         {
-          "name": "Not pregnant",
+          "name": "Intelligent",
           "require": true,
-          "public_": false,
-          "id": 4
+          "_public": false,
+          "id": "2afde471-cdcf-4522-9841-d29bcff22450"
         }
       ],
       "candidatesBlobs": [
@@ -515,25 +515,25 @@
         {
           "name": "Children under 3 y.o.",
           "require": false,
-          "public_": false,
+          "_public": false,
           "id": 1
         },
         {
           "name": "Sociable",
           "require": false,
-          "public_": true,
+          "_public": true,
           "id": 2
         },
         {
           "name": "Responsible",
           "require": true,
-          "public_": true,
+          "_public": true,
           "id": 3
         },
         {
           "name": "Not pregnant",
           "require": true,
-          "public_": false,
+          "_public": false,
           "id": 4
         }
       ],
@@ -558,25 +558,25 @@
         {
           "name": "Children under 3 y.o.",
           "require": false,
-          "public_": false,
+          "_public": false,
           "id": 1
         },
         {
           "name": "Sociable",
           "require": false,
-          "public_": true,
+          "_public": true,
           "id": 2
         },
         {
           "name": "Responsible",
           "require": true,
-          "public_": true,
+          "_public": true,
           "id": 3
         },
         {
           "name": "Not pregnant",
           "require": true,
-          "public_": false,
+          "_public": false,
           "id": 4
         }
       ],
@@ -594,12 +594,12 @@
     },
     {
       "title": "HR Manager",
-      "status": "opened",
+      "status": "suspended",
       "description": "Just a description!",
       "requirements": [
         {
           "name": "Pretty",
-          "require": true,
+          "require": false,
           "_public": false,
           "id": "91622103-34ec-46d0-b403-bb7138a67588"
         },
@@ -617,7 +617,7 @@
         },
         {
           "name": "English B2+",
-          "require": true,
+          "require": false,
           "_public": true,
           "id": "b9c0ddce-30e8-4918-a2a3-4c1d3520c7c3"
         }
