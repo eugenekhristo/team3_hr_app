@@ -11,7 +11,7 @@ export class Requirement {
   constructor(
     public name: string,
     public require: boolean,
-    public public_: boolean,
+    public _public: boolean,
     public id: string = uuid()
   ) {}
 }

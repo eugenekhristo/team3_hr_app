@@ -73,6 +73,7 @@ export class VacanciesComponent implements OnInit {
 
   onUpdateVacancy(vacancy: Vacancy): void {
     const ref = this.matDialog.open(EditVacancyDialogComponent, {data: vacancy});
+
     ref.afterClosed().subscribe(res => {
       if (res) {
         const updatedVacancy = {...vacancy, ...res};

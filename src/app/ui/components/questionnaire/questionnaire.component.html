@@ -1,64 +1,79 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h3>Not Required</h3>
-    <h4>Public</h4>
-    <div
-      formArrayName="notReqPub"
-      *ngFor="let f of notReqPub.controls; let i = index"
-    >
-      <div [formGroupName]="i">
-        <mat-form-field style="width: 100%">
-          <textarea
-            matInput
-            [placeholder]="f.get('requirement').value"
-            formControlName="response"
-          ></textarea>
-        </mat-form-field>
-      </div>
-    </div>
 
-    <h4>Private</h4>
-    <div
-      formArrayName="notReqPriv"
-      *ngFor="let f of notReqPriv.controls; let i = index"
-    >
-      <div [formGroupName]="i">
-        <mat-form-field style="width: 100%">
-          <textarea
-            matInput
-            [placeholder]="f.get('requirement').value"
-            formControlName="response"
-          ></textarea>
-        </mat-form-field>
+
+    <h3>Not Required</h3>
+    <ng-container *ngIf="notReqPub.controls.length > 0 || notReqPriv.controls.length > 0; else no_NOT_Required">
+      <h4 *ngIf="notReqPub.controls.length > 0">Public</h4>
+      <div
+        formArrayName="notReqPub"
+        *ngFor="let f of notReqPub.controls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <mat-form-field style="width: 100%">
+            <textarea
+              matInput
+              [placeholder]="f.get('requirement').value"
+              formControlName="response"
+            ></textarea>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
+
+      <h4 *ngIf="notReqPriv.controls.length > 0">Private</h4>
+      <div
+        formArrayName="notReqPriv"
+        *ngFor="let f of notReqPriv.controls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <mat-form-field style="width: 100%">
+            <textarea
+              matInput
+              [placeholder]="f.get('requirement').value"
+              formControlName="response"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #no_NOT_Required> &mdash; </ng-template>
+
+
+
     <h3>Required</h3>
-    <h4>Public</h4>
-    <div formArrayName="reqPub" *ngFor="let f of reqPub.controls; let i = index">
-      <div [formGroupName]="i">
-        <mat-form-field style="width: 100%">
-          <textarea
-            matInput
-            [placeholder]="f.get('requirement').value"
-            formControlName="response"
-          ></textarea>
-        </mat-form-field>
+    <ng-container *ngIf="reqPub.controls.length > 0 || reqPriv.controls.length > 0; else noRequired">
+      <h4 *ngIf="reqPub.controls.length > 0">Public</h4>
+      <div formArrayName="reqPub" *ngFor="let f of reqPub.controls; let i = index">
+        <div [formGroupName]="i">
+          <mat-form-field style="width: 100%">
+            <textarea
+              matInput
+              [placeholder]="f.get('requirement').value"
+              formControlName="response"
+            ></textarea>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-    <h4>Private</h4>
-    <div
-      formArrayName="reqPriv"
-      *ngFor="let f of reqPriv.controls; let i = index"
-    >
-      <div [formGroupName]="i">
-        <mat-form-field style="width: 100%">
-          <textarea
-            matInput
-            [placeholder]="f.get('requirement').value"
-            formControlName="response"
-          ></textarea>
-        </mat-form-field>
+      <h4 *ngIf="reqPriv.controls.length > 0">Private</h4>
+      <div
+        formArrayName="reqPriv"
+        *ngFor="let f of reqPriv.controls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <mat-form-field style="width: 100%">
+            <textarea
+              matInput
+              [placeholder]="f.get('requirement').value"
+              formControlName="response"
+            ></textarea>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
+    </ng-container>
+
+    <ng-template #noRequired> &mdash; </ng-template>
+
+
 
     <button mat-raised-button color="primary" [disabled]="form.invalid">
       Publish

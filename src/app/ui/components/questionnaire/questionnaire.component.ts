@@ -13,19 +13,13 @@ import { User } from 'src/app/core/models/user.model';
   styleUrls: ['./questionnaire.component.scss']
 })
 export class QuestionnaireComponent implements OnInit {
-  // @Input() requirements: Requirement [] = [];
   @Input() feedback: Feedback;
   @Input() vacancy: Vacancy;
   @Input() interviewer: User;
   @Output() feedbackCreated = new EventEmitter<Feedback>();
 
   // FIXME: supposed to be as @Input()
-  requirements: Requirement[] = [
-    new Requirement('Responsible', true, true),
-    new Requirement('Sociable', false, true),
-    new Requirement('Not pregnant', true, false),
-    new Requirement('Children under 3 y.o.', false, false)
-  ];
+  requirements: Requirement[] = [];
   feedbacksArray: FeedbackItem[] = [];
 
   form: FormGroup;
@@ -49,6 +43,8 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.requirements = this.vacancy.requirements;
+
     this.form = this.fb.group({
       notReqPub: this.fb.array([]),
       notReqPriv: this.fb.array([]),
@@ -76,7 +72,7 @@ export class QuestionnaireComponent implements OnInit {
             requirement.name,
             '',
             requirement.require,
-            requirement.public_
+            requirement._public
           )
         )
       );

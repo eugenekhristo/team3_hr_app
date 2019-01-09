@@ -385,26 +385,26 @@
       "requirements": [
         {
           "name": "Children under 3 y.o.",
-          "require": false,
-          "public_": false,
+          "require": true,
+          "_public": false,
           "id": 1
         },
         {
           "name": "Sociable",
           "require": false,
-          "public_": true,
+          "_public": true,
           "id": 2
         },
         {
           "name": "Responsible",
           "require": true,
-          "public_": true,
+          "_public": true,
           "id": 3
         },
         {
           "name": "Not pregnant",
           "require": true,
-          "public_": false,
+          "_public": false,
           "id": 4
         }
       ],
@@ -593,31 +593,37 @@
       "timestamp": 1546925968316
     },
     {
-      "title": "HR manager",
+      "title": "HR Manager",
       "status": "opened",
-      "description": "Just a description",
+      "description": "Just a description!",
       "requirements": [
         {
-          "name": "Experience 5+",
-          "require": true,
-          "_public": false,
-          "id": "be8220fe-8d86-467c-bb18-7956e75b7c6e"
-        },
-        {
           "name": "Pretty",
-          "require": false,
-          "_public": false,
-          "id": "4641e700-c1fa-4d62-a0bd-d45bc91481eb"
-        },
-        {
-          "name": "Max age is 30",
           "require": true,
           "_public": false,
-          "id": "841c511d-af0b-4767-8d3c-03ea5bb3b522"
+          "id": "91622103-34ec-46d0-b403-bb7138a67588"
+        },
+        {
+          "name": "Experience 5+ years",
+          "require": true,
+          "_public": true,
+          "id": "81d66b28-0e3d-4091-9572-23be1c1fa490"
+        },
+        {
+          "name": "Children under 3 y. o.",
+          "require": true,
+          "_public": false,
+          "id": "fa95ac54-cb5d-4ece-b441-9d9b97a5c78e"
+        },
+        {
+          "name": "English B2+",
+          "require": true,
+          "_public": true,
+          "id": "b9c0ddce-30e8-4918-a2a3-4c1d3520c7c3"
         }
       ],
       "candidatesBlobs": [],
-      "timestamp": 1547011469746,
+      "timestamp": 1547016523422,
       "id": 7
     }
   ],
@@ -664,8 +670,8 @@
       "start": "2019-01-18 08:00",
       "end": "2019-01-18 09:00",
       "place": "Minsk",
-      "title": "Lilliya Scarlett on HR manager",
-      "timestamp": 1547013885064,
+      "title": "Lilliya Scarlett on HR Manager",
+      "timestamp": 1547016529475,
       "type": "interview",
       "interviewer": {
         "email": "qwe@qwe",

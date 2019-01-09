@@ -25,6 +25,8 @@ export class EditVacancyDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // console.log(this.data.requirements);
+
     this.statusTypes = Object.values(VACANCY_STATUS);
 
     this.form = this.fb.group({
@@ -39,7 +41,7 @@ export class EditVacancyDialogComponent implements OnInit {
         this.addRequirement(
           requirement.name,
           requirement.require,
-          requirement.public_,
+          requirement._public,
           requirement.id
         );
       });
