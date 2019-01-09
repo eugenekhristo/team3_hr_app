@@ -5,6 +5,7 @@ import { VacancyStore } from './vacancy-store.service';
 
 @Injectable()
 export class FilterVacanciesService {
+  isToolbarShown = true;
   vacancyStatuses = Object.values(VACANCY_STATUS);
   filterText$ = new BehaviorSubject<string>('');
   filterStatuses$: BehaviorSubject<VACANCY_STATUS[]>;

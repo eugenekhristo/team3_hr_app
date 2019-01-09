@@ -4,11 +4,11 @@
   (click)="toggleToolbar()"
 >
   <mat-icon class="toggle__icon">
-    {{!isToolbarShown ? 'arrow_drop_down' : 'arrow_drop_up'}}
+    {{!filterService.isToolbarShown ? 'arrow_drop_down' : 'arrow_drop_up'}}
   </mat-icon>
 </div>
 
-  <div class="toolbar toolbar_card" [hidden]="!isToolbarShown">
+  <div class="toolbar toolbar_card" [hidden]="!filterService.isToolbarShown">
 
     <button
       class="add_vacancy_btn"

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { VacancyStore } from 'src/app/core/services/vacancy-store.service';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Vacancy, VACANCY_STATUS } from 'src/app/core/models/vacancy.model';
 import { MatDialog } from '@angular/material';
 import { EditVacancyDialogComponent } from '../../presentationals/edit-vacancy-dialog/edit-vacancy-dialog.component';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
 import { FilterVacanciesService } from 'src/app/core/services/filter-vacancies.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'hr-vacancies',
@@ -15,7 +16,7 @@ import { FilterVacanciesService } from 'src/app/core/services/filter-vacancies.s
 })
 export class VacanciesComponent implements OnInit {
   vacancies$: Observable<Vacancy[]>;
-  isToolbarShown = true;
+
   toolbarMessage = '';
   vacancyStatuses = Object.values(VACANCY_STATUS);
 
@@ -25,10 +26,15 @@ export class VacanciesComponent implements OnInit {
     private matDialog: MatDialog,
     private matSnack: SnackMessageService,
     private matConfirm: MatConfirmService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.vacancies$ = this.vacancyStore.filteredVacancies$;
+
+    if (this.route.snapshot.queryParams['isDeleted']) {
+      this.openSnackAndCallBS('Vacancy was successfully deleted! 👍');
+    }
   }
 
   onAddVacancy(): void {
@@ -76,8 +82,8 @@ export class VacanciesComponent implements OnInit {
   }
 
   toggleToolbar() {
-    this.isToolbarShown = !this.isToolbarShown;
-    this.toolbarMessage = `${this.isToolbarShown ? 'Close' : 'Open'} toolbar`;
+    this.filterService.isToolbarShown = !this.filterService.isToolbarShown;
+    this.toolbarMessage = `${this.filterService.isToolbarShown ? 'Close' : 'Open'} toolbar`;
   }
 
   getClassForStatus(status: VACANCY_STATUS): string {
