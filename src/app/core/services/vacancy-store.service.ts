@@ -100,18 +100,28 @@ export class VacancyStore {
     return this.updateVacancy(vacancy);
   }
 
-  filterVacancies(text: Observable<string>) {
+  filterVacancies(text: BehaviorSubject<string>, statusesFilter: BehaviorSubject<string[]>) {
     text
       .pipe(
-        tap(value =>  this._filteredVacancies$.next(this._filterVacancies(value))
+        tap(value =>  this._filteredVacancies$.next(this._filterVacancies(value, statusesFilter.getValue()))
+        )
+      )
+      .subscribe();
+
+    statusesFilter
+      .pipe(
+        tap(statuses =>  this._filteredVacancies$.next(this._filterVacancies(text.getValue(), statuses))
         )
       )
       .subscribe();
   }
 
-  private _filterVacancies(text: string): Vacancy[] {
+  private _filterVacancies(text: string, statusesFilter: string[]): Vacancy[] {
     const value = text.toLowerCase();
-    return this._vacancies$.getValue().filter(vacancy => vacancy.title.toLowerCase().includes(value));
+    return this._vacancies$.getValue().filter(vacancy => {
+      return vacancy.title.toLowerCase().includes(value) &&
+      statusesFilter.includes(vacancy.status);
+    });
   }
 
   private processPossibleCandidatesUpdating(vacancy: Vacancy) {

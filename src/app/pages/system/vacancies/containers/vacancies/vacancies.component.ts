@@ -18,6 +18,7 @@ export class VacanciesComponent implements OnInit {
   toolbarMessage = '';
   vacancyStatuses = Object.values(VACANCY_STATUS);
   filterText$ = new BehaviorSubject<string>('');
+  filterStatuses$ = new BehaviorSubject<VACANCY_STATUS[]>(this.vacancyStatuses);
 
   constructor(
     public vacancyStore: VacancyStore,
@@ -28,7 +29,20 @@ export class VacanciesComponent implements OnInit {
 
   ngOnInit() {
     this.vacancies$ = this.vacancyStore.filteredVacancies$;
-    this.vacancyStore.filterVacancies(this.filterText$);
+    this.vacancyStore.filterVacancies(this.filterText$, this.filterStatuses$);
+  }
+
+  toggleStatusFilteres(statusName: string, isIncluded: boolean): void {
+    const curFilter = this.filterStatuses$.getValue();
+    let newFilter: VACANCY_STATUS[];
+
+    if (isIncluded) {
+      newFilter = [...curFilter, statusName] as VACANCY_STATUS[];
+    } else {
+      newFilter = curFilter.filter(status => status !== statusName);
+    }
+
+    this.filterStatuses$.next(newFilter);
   }
 
   getClassForStatus(status: VACANCY_STATUS): string {

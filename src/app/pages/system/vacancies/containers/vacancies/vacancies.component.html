@@ -28,6 +28,8 @@
     {{status | titlecase}}
     <mat-checkbox
       [checked]="ststusIncluded(status)"
+      [name]="status"
+      (change)="toggleStatusFilteres($event.source.name, $event.checked)"
     >
     </mat-checkbox>
   </label>
