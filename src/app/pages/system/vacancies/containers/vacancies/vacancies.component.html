@@ -8,37 +8,47 @@
   </mat-icon>
 </div>
 
-<div class="toolbar" [hidden]="!isToolbarShown">
-  <button
-    mat-mini-fab
-    color="primary"
-    matTooltip="Add a vacancy"
-    matTooltipPosition="right"
-    (click)="onAddVacancy()"
-  >
-    <mat-icon>add_circle_outline</mat-icon>
-  </button>
+  <div class="toolbar toolbar_card" [hidden]="!isToolbarShown">
 
-  <input
-    type="text"
-    (input)="filterService.filterText$.next($event.target.value)"
-    [value]="filterService.curFilterText"
-  >
-
-  <label
-    *ngFor="let status of vacancyStatuses"
-    style="margin-left: 10px;"
-  >
-    {{status | titlecase}}
-    <mat-checkbox
-      [checked]="filterService.isStatusIncluded(status)"
-      [name]="status"
-      (change)="filterService.toggleStatusFilteres($event.source.name, $event.checked)"
+    <button
+      class="add_vacancy_btn"
+      mat-raised-button
+      color="primary"
+      (click)="onAddVacancy()"
     >
-    </mat-checkbox>
-  </label>
+      Add Vacancy
+    </button>
 
-</div>
+    <div class="toolbar_filters">
+
+      <mat-form-field>
+        <input
+         type="text"
+          matInput placeholder="Filter by title"
+          [value]="filterService.curFilterText"
+          (input)="filterService.filterText$.next($event.target.value)"
+        >
+      </mat-form-field>
+
+      <div class="right_part">
+        <label
+          class="status_filter_label"
+          *ngFor="let status of vacancyStatuses"
+          style="margin-left: 10px;"
+        >
+          <span>{{status | titlecase}}</span>
+          <mat-checkbox
+            [checked]="filterService.isStatusIncluded(status)"
+            [name]="status"
+            (change)="filterService.toggleStatusFilteres($event.source.name, $event.checked)"
+          >
+          </mat-checkbox>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
 
 <div class="wrapper">
 
