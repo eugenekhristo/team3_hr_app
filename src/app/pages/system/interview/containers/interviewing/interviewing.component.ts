@@ -7,10 +7,10 @@ import { InterviewClient } from 'src/app/core/models/interview.model';
 import { InterviewDialogService } from 'src/app/ui/modules/interview-dialog/interview-dialog.service';
 import { INTERVIEW_DIALOG_TYPES } from 'src/app/ui/modules/interview-dialog/interview-dialog-types';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
-import { Contact } from 'src/app/core/models/contact.model';
 import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 import { Feedback } from 'src/app/core/models/feedback.model';
 import { Subscription } from 'rxjs';
+import { Contact } from 'src/app/core/models/candidate.model';
 
 interface ContactsHash {
   phone: Contact[];

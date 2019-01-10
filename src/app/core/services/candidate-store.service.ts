@@ -10,7 +10,9 @@ import { CV } from '../models/cv.model';
 
 @Injectable()
 export class CandidatesStore {
-  private _candidate: BehaviorSubject<Candidate> = new BehaviorSubject<Candidate>(null);
+  private _candidate: BehaviorSubject<Candidate> = new BehaviorSubject<
+    Candidate
+  >(null);
   get candidate$() {
     return this._candidate.asObservable().pipe(
       tap(candidate => {
@@ -24,9 +26,18 @@ export class CandidatesStore {
   }
 
   private _candidates$ = new BehaviorSubject<Candidate[]>([]);
+  private _filteredCandidates$ = new BehaviorSubject<Candidate[]>([]);
 
   get candidates$() {
     return this._candidates$.asObservable();
+  }
+
+  get filteredCandidates$() {
+    return this._filteredCandidates$
+      .asObservable()
+      .pipe(
+        tap(candidates => candidates.sort((a, b) => (a.id > b.id ? -1 : 1)))
+      );
   }
 
   get candidates() {
@@ -42,7 +53,12 @@ export class CandidatesStore {
   }
 
   bootstrapCandidates() {
-    this.candidateService.getAllCandidates().subscribe(candidates => this._candidates$.next(candidates));
+    this.candidateService
+      .getAllCandidates()
+      .subscribe(candidates => {
+        this._candidates$.next(candidates);
+        this._filteredCandidates$.next(candidates);
+      });
   }
 
   getLocalCandidatesByIds(ids: number[]): Candidate[] {
@@ -57,11 +73,13 @@ export class CandidatesStore {
 
   deleteNote(note: TimelineNote): Observable<Candidate> {
     const candidate = this._candidate.getValue();
-    const updatedTimelineClient = candidate.timeline.filter(item => item['timestamp'] !== note.timestamp);
+    const updatedTimelineClient = candidate.timeline.filter(
+      item => item['timestamp'] !== note.timestamp
+    );
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
-  addNote(note: TimelineNote): Observable<Candidate>  {
+  addNote(note: TimelineNote): Observable<Candidate> {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = [...candidate.timeline, note];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
@@ -69,17 +87,19 @@ export class CandidatesStore {
 
   deleteCV(cv: CV): Observable<Candidate> {
     const candidate = this._candidate.getValue();
-    const updatedTimelineClient = candidate.timeline.filter(item => item['timestamp'] !== cv.timestamp);
+    const updatedTimelineClient = candidate.timeline.filter(
+      item => item['timestamp'] !== cv.timestamp
+    );
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
-  addCv(cv: CV): Observable<Candidate>  {
+  addCv(cv: CV): Observable<Candidate> {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = [...candidate.timeline, cv];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
-  updateNote(note: TimelineNote): Observable<Candidate>  {
+  updateNote(note: TimelineNote): Observable<Candidate> {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = candidate.timeline.map(item => {
       if (item['type'] === note.type && note.timestamp === item['timestamp']) {
@@ -91,18 +111,20 @@ export class CandidatesStore {
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
-  addFeedback(feedback: Feedback): Observable<Candidate>  {
+  addFeedback(feedback: Feedback): Observable<Candidate> {
     const candidate = this._candidate.getValue();
     console.log(candidate);
     const updatedTimelineClient = [...candidate.timeline, feedback];
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
-
   updateFeedback(feedback: Feedback): Observable<Candidate> {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = candidate.timeline.map(item => {
-      if (item['type'] === feedback.type && feedback.timestamp === item['timestamp']) {
+      if (
+        item['type'] === feedback.type &&
+        feedback.timestamp === item['timestamp']
+      ) {
         return feedback;
       } else {
         return item;
@@ -121,10 +143,21 @@ export class CandidatesStore {
     return obs$;
   }
 
-  private processTimelineInteraction(candidate: Candidate, updatedTimelineClient?: object[]) {
-    const updatedTimelineBack = updatedTimelineClient.filter(item => item['type'] !== 'interview');
-    const updateadCandidateBack = { ...candidate, timeline: updatedTimelineBack };
-    const updateadCandidateClient = { ...candidate, timeline: updatedTimelineClient };
+  private processTimelineInteraction(
+    candidate: Candidate,
+    updatedTimelineClient?: object[]
+  ) {
+    const updatedTimelineBack = updatedTimelineClient.filter(
+      item => item['type'] !== 'interview'
+    );
+    const updateadCandidateBack = {
+      ...candidate,
+      timeline: updatedTimelineBack
+    };
+    const updateadCandidateClient = {
+      ...candidate,
+      timeline: updatedTimelineClient
+    };
     const obs$ = this.candidateService.updateCandidate(updateadCandidateBack);
     obs$.subscribe(() => {
       this._candidate.next(updateadCandidateClient);
@@ -139,20 +172,50 @@ export class CandidatesStore {
         this.candidateService.getCandidate(id),
         this.interviewSerivce.getAllInterviews()
       )
-      .pipe(
-        map(resArr => {
-          const candidate: Candidate = resArr[0];
-          const allInterviews = resArr[1];
-          const filteredInterviews: InterviewClient[] = allInterviews.filter(interview => interview.candidate.id === id);
-          const newTimeline = [...candidate.timeline, ...filteredInterviews];
-          return { ...candidate, timeline: newTimeline };
-        })
-      )
-      .subscribe(candidate => {
-        this._candidate.next(candidate);
-        resolve();
-      });
+        .pipe(
+          map(resArr => {
+            const candidate: Candidate = resArr[0];
+            const allInterviews = resArr[1];
+            const filteredInterviews: InterviewClient[] = allInterviews.filter(
+              interview => interview.candidate.id === id
+            );
+            const newTimeline = [...candidate.timeline, ...filteredInterviews];
+            return { ...candidate, timeline: newTimeline };
+          })
+        )
+        .subscribe(candidate => {
+          this._candidate.next(candidate);
+          resolve();
+        });
     });
   }
 
+  filterCandidates(text: BehaviorSubject<string>) {
+    text
+      .pipe(
+        tap(value =>
+          this._filteredCandidates$.next(this._filterCandidates(value))
+        )
+      )
+      .subscribe();
+  }
+
+  private _filterCandidates(text: string): Candidate[] {
+    const value = text.toLowerCase();
+    return this._candidates$
+      .getValue()
+      .filter(
+        candidate =>
+          this._getFullName(candidate).includes(value) ||
+          this._extractContactsAsSingleString(candidate).includes(text)
+      );
+  }
+
+  private _getFullName(candidate: Candidate): string {
+    return `${candidate.name.toLocaleLowerCase()} ${candidate.surname.toLocaleLowerCase()}`;
+  }
+
+  private _extractContactsAsSingleString(candidate: Candidate): string {
+    return candidate.contacts.map(contact => contact.value).join('');
+  }
 }

@@ -12,7 +12,7 @@ export class FilterCandidatesService {
   }
 
   constructor(private candidateStore: CandidatesStore) {
-    // this.candidateStore.filterVacancies(this.filterText$);
+    this.candidateStore.filterCandidates(this.filterText$);
   }
 
   callAllbehaviorSubjects() {

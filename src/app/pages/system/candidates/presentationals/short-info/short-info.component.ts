@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Candidate } from 'src/app/core/models/candidate.model';
-import { Contact } from 'src/app/core/models/contact.model';
+import { Candidate, Contact } from 'src/app/core/models/candidate.model';
 import { MatDialog } from '@angular/material';
 import { EditContactsDialogComponent } from '../edit-contacts-dialog/edit-contacts-dialog.component';
 

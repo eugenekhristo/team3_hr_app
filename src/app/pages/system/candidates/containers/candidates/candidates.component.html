@@ -23,7 +23,7 @@
 </div>
 
 <hr-candidates-list
-  [candidates$]="candidateStore.candidates$"
+  [candidates$]="candidateStore.filteredCandidates$"
   (goToCandidatePage)="goToCandidatePage($event)"
 >
 </hr-candidates-list>
