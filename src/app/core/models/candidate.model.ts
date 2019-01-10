@@ -1,3 +1,5 @@
+import { takeRandomProfilePic } from '../fun/pick-random-profile-img';
+
 export enum CONTACT_TYPES {
   phone = 'phone',
   email = 'email',
@@ -41,12 +43,12 @@ export class Candidate {
   constructor(
     public name: string,
     public surname?: string,
-    public photo: string = 'https://static.boredpanda.com/blog/wp-content/uploads/2016/09/animals-' +
-    'dressed-like-humans-zoo-porraits-yago-partal-100-57d65dad6f9d8__880.jpg',
+    public photo: string = takeRandomProfilePic(),
     public contacts: Contact[] = [],
     public timeline: object[] = [],
     public id?: number
   ) {
-    // TODO: if no photo - make random array which will assign one of irls
   }
 }
+
+
