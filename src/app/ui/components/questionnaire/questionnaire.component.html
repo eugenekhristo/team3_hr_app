@@ -74,12 +74,23 @@
     <ng-template #noRequired> &mdash; </ng-template>
 
 
+    <ng-container *ngIf="this.vacancy; else editFeedback">
+      <button
+        mat-raised-button color="primary"
+        [disabled]="form.invalid"
+      >
+        Publish
+      </button>
+    </ng-container>
 
-    <button
-      mat-raised-button color="primary"
-      [disabled]="form.invalid"
-      [mat-dialog-close]="form.value"
-    >
+    <ng-template #editFeedback>
+      <button
+        mat-raised-button color="primary"
+        [disabled]="form.invalid"
+        [mat-dialog-close]="form.value"
+      >
       Publish
     </button>
+    </ng-template>
+
   </form>

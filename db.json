@@ -271,7 +271,7 @@
           "notReqPriv": [
             {
               "requirement": "Children under 3 y.o.",
-              "response": "Nope. No any children at all",
+              "response": "Nope! No any children at all",
               "require": false,
               "public_": false
             }
@@ -326,10 +326,11 @@
           "preferred": false
         }
       ],
-      "timeline": []
+      "timeline": [
+      ]
     },
     {
-      "name": "Eugene2",
+      "name": "Eugene",
       "surname": "Khristo",
       "photo": "https://static.boredpanda.com/blog/wp-content/uploads/2016/09/animals-dressed-like-humans-zoo-porraits-yago-partal-100-57d65dad6f9d8__880.jpg",
       "contacts": [
@@ -346,20 +347,6 @@
       ],
       "timeline": [],
       "id": 8
-    },
-    {
-      "name": "Norm",
-      "surname": "sdfsdf",
-      "photo": "https://static.boredpanda.com/blog/wp-content/uploads/2016/09/animals-dressed-like-humans-zoo-porraits-yago-partal-45-57d65d1fb7565__880.jpg",
-      "contacts": [
-        {
-          "type": "phone",
-          "value": "234234234234",
-          "preferred": true
-        }
-      ],
-      "timeline": [],
-      "id": 9
     }
   ],
   "vacancies": [

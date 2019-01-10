@@ -16,7 +16,7 @@ const defaultImages: string[] = ['https://static.boredpanda.com/blog/wp-content/
 
 
 function getRandomNumber(max: number): number {
-  return Math.ceil(Math.random() * max);
+  return Math.floor(Math.random() * max);
 }
 
 export function takeRandomProfilePic(): string {
