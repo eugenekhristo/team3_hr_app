@@ -3,6 +3,8 @@ import { Observable, Subscription } from 'rxjs';
 import { Candidate, Contact } from 'src/app/core/models/candidate.model';
 import { MatDialog } from '@angular/material';
 import { EditContactsDialogComponent } from '../edit-contacts-dialog/edit-contacts-dialog.component';
+import { EditShortInfoDialogComponent } from '../edit-short-info-dialog/edit-short-info-dialog.component';
+import { stringify } from '@angular/core/src/render3/util';
 
 interface ContactsHash {
   phone: Contact[];
@@ -68,7 +70,6 @@ export class ShortInfoComponent implements OnInit, OnDestroy {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      // this.candidate.photo = reader.result as string;
       const candidate = <Candidate>{...this.candidate, photo: reader.result};
       this.candidateChanged.emit(candidate);
     };
@@ -86,6 +87,24 @@ export class ShortInfoComponent implements OnInit, OnDestroy {
       }
 
       this.subscriptionContainer.add(afSub);
+    });
+  }
+
+  editShortInfo() {
+    const dialogRef = this.matDialog.open(EditShortInfoDialogComponent, {
+      data: {
+        name: this.candidate.name,
+        surname: this.candidate.surname
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((res: {name: string, surname: string}) => {
+      if (res) {
+        const {name, surname} = res;
+        this.candidate = { ...this.candidate, name, surname};
+        console.log(this.candidate);
+        this.candidateChanged.emit(this.candidate);
+      }
     });
   }
 }

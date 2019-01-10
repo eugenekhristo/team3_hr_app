@@ -1,0 +1,52 @@
+<div class="dialog">
+  <h2 mat-dialog-title>Edit Short Info</h2>
+
+  <form #form="ngForm">
+    <mat-form-field class="full_width">
+      <input
+        type="text"
+        matInput
+        placeholder="Name"
+        name="name"
+        [(ngModel)]="data.name"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full_width">
+      <input
+        type="text"
+        matInput
+        placeholder="Surname"
+        name="surname"
+        [(ngModel)]="data.surname"
+      />
+    </mat-form-field>
+
+    <div
+      mat-dialog-actions
+      fxLayout="row nowrap"
+      fxLayoutGap="10px"
+      class="actions"
+    >
+      <button
+        mat-raised-button
+        color="warn"
+        [mat-dialog-close]="false"
+        fxFlex="50"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [mat-dialog-close]="form.value"
+        fxFlex="50"
+        [disabled]="form.invalid"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

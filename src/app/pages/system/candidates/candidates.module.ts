@@ -24,6 +24,7 @@ import { CandidatesListComponent } from './presentationals/candidates-list/candi
 import { CandidateCardComponent } from './presentationals/candidate-card/candidate-card.component';
 import { CandidateContactsComponent } from './presentationals/candidate-contacts/candidate-contacts.component';
 import { AddCandidateDialogComponent } from './presentationals/add-candidate-dialog/add-candidate-dialog.component';
+import { EditShortInfoDialogComponent } from './presentationals/edit-short-info-dialog/edit-short-info-dialog.component';
 
 @NgModule({
   imports: [
@@ -56,14 +57,16 @@ import { AddCandidateDialogComponent } from './presentationals/add-candidate-dia
     CandidatesListComponent,
     CandidateCardComponent,
     CandidateContactsComponent,
-    AddCandidateDialogComponent
+    AddCandidateDialogComponent,
+    EditShortInfoDialogComponent
   ],
   entryComponents: [
     EditContactsDialogComponent,
     AddNoteDialogComponent,
     FeedbackEditDialogComponent,
     AddCvDialogComponent,
-    AddCandidateDialogComponent
+    AddCandidateDialogComponent,
+    EditShortInfoDialogComponent
   ]
 })
 export class CandidatesModule {}

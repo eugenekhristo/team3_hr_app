@@ -64,6 +64,16 @@
     font-style: italic;
     font-size: 1.6rem;
   }
+
+  &__biography {
+    position: relative;
+  }
+
+  &__action {
+    position: absolute;
+    top: 0;
+    right: -.7rem;
+  }
 }
 
 .table  {

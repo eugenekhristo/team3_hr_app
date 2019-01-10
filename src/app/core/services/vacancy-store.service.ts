@@ -36,7 +36,10 @@ export class VacancyStore {
     private candidateStore: CandidatesStore
   ) {
     this.bootstrapVacancies();
-    this.candidateStore.bootstrapCandidates();
+
+    if (!this.candidateStore.candidates) {
+      this.candidateStore.bootstrapCandidates();
+    }
   }
 
   bootstrapVacancy(id: number): Observable<Vacancy> {
