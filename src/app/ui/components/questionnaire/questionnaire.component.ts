@@ -18,7 +18,6 @@ export class QuestionnaireComponent implements OnInit {
   @Input() interviewer: User;
   @Output() feedbackCreated = new EventEmitter<Feedback>();
 
-  // FIXME: supposed to be as @Input()
   requirements: Requirement[] = [];
   feedbacksArray: FeedbackItem[] = [];
 
@@ -43,7 +42,13 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.requirements = this.vacancy.requirements;
+
+    if (this.vacancy) {
+      this.requirements = this.vacancy.requirements;
+    } else {
+      this.feedbacksArray = this.feedbackIntoSingleArray(this.feedback);
+    }
+
 
     this.form = this.fb.group({
       notReqPub: this.fb.array([]),
@@ -53,8 +58,6 @@ export class QuestionnaireComponent implements OnInit {
     });
 
     if (this.feedback) {
-      this.feedbacksArray = this.feedbackIntoSingleArray(this.feedback);
-
       this.feedbacksArray.forEach(requirement =>
         this.addFeedbackItem(
           this.createFeedbackItem(

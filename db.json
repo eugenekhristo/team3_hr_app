@@ -263,7 +263,7 @@
           "notReqPub": [
             {
               "requirement": "Sociable",
-              "response": "",
+              "response": "Only when he took a lot of patience!",
               "require": false,
               "public_": true
             }
@@ -271,7 +271,7 @@
           "notReqPriv": [
             {
               "requirement": "Children under 3 y.o.",
-              "response": "",
+              "response": "Nope. No any children at all",
               "require": false,
               "public_": false
             }
@@ -279,7 +279,7 @@
           "reqPub": [
             {
               "requirement": "Responsible",
-              "response": "dfgdfg",
+              "response": "It's really hard to say for sure",
               "require": true,
               "public_": true
             }
@@ -287,7 +287,7 @@
           "reqPriv": [
             {
               "requirement": "Not pregnant",
-              "response": "dfgdfg",
+              "response": "😂",
               "require": true,
               "public_": false
             }

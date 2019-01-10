@@ -75,7 +75,11 @@
 
 
 
-    <button mat-raised-button color="primary" [disabled]="form.invalid">
+    <button
+      mat-raised-button color="primary"
+      [disabled]="form.invalid"
+      [mat-dialog-close]="form.value"
+    >
       Publish
     </button>
   </form>

@@ -111,7 +111,6 @@ export class InterviewingComponent implements OnInit, OnDestroy {
   }
 
   onAddFeedback(feedback: Feedback) {
-    console.log(feedback);
     this.candidateStore.addFeedback(feedback).subscribe(candidate => {
       this.interviewService.deleteInterview(this.interviewId).subscribe(() => {
         this.router.navigate(['/candidates', candidate.id], {

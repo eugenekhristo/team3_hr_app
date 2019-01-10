@@ -26,7 +26,9 @@ export class TimelineFeedbackComponent implements OnInit {
         this.feedbackChanged.emit({
           ...res,
           timestamp: this.feedback.timestamp,
-          type: this.feedback.type
+          type: this.feedback.type,
+          vacancy: this.feedback.vacancy,
+          interviewer: this.feedback.interviewer
         });
       }
     });
