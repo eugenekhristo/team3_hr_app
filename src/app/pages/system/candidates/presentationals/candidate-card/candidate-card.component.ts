@@ -9,6 +9,7 @@ import { Candidate } from 'src/app/core/models/candidate.model';
 export class CandidateCardComponent implements OnInit {
   @Input() candidate: Candidate;
   @Output() goToCandidatePage = new EventEmitter<number>();
+  @Output() deleteCandidate = new EventEmitter<number>();
 
   constructor() { }
 

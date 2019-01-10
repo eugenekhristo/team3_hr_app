@@ -8,6 +8,7 @@ import { AddCandidateDialogComponent } from '../../presentationals/add-candidate
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
 
 @Component({
   selector: 'hr-candidates',
@@ -23,7 +24,8 @@ export class CandidatesComponent implements OnInit, OnDestroy {
     private router: Router,
     public filterService: FilterCandidatesService,
     private matSnack: SnackMessageService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private matConfirm: MatConfirmService
   ) {}
 
   ngOnInit() {}
@@ -33,19 +35,30 @@ export class CandidatesComponent implements OnInit, OnDestroy {
     this._destroyed$.complete();
   }
 
-  onAddCandidate() {
+  onAddCandidate(): void {
     const ref = this.matDialog.open(AddCandidateDialogComponent);
     ref.afterClosed().subscribe((res: { name: string; surname: string }) => {
       if (res) {
         const { name, surname } = res;
         const newCandidate = new Candidate(name, surname);
-        console.log(newCandidate);
         this.candidateStore
           .addCandidate(newCandidate)
           .pipe(takeUntil(this._destroyed$))
           .subscribe(() =>
             this.openSnackAndCallBS('Candidate is successfully created! 🙌')
           );
+      }
+    });
+  }
+
+  onDeleteCandidate(id: number): void {
+    this.matConfirm.open('Are you sure you wanna delete the candidate? 😲')
+    .afterClosed()
+    .subscribe((res: boolean) => {
+      if (res) {
+        this.candidateStore.deleteCandidate(id).pipe(takeUntil(this._destroyed$)).subscribe(
+          () => this.openSnackAndCallBS('Candidate was successfully deleted! 💀')
+        );
       }
     });
   }

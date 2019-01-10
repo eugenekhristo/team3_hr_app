@@ -10,6 +10,7 @@ import { Candidate } from 'src/app/core/models/candidate.model';
 export class CandidatesListComponent implements OnInit {
   @Input() candidates$: Observable<Candidate[]>;
   @Output() goToCandidatePage = new EventEmitter<number>();
+  @Output() deleteCandidate = new EventEmitter<number>();
 
   constructor() { }
 

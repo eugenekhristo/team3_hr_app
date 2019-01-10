@@ -4,7 +4,7 @@ import { CandidatesStore } from './candidate-store.service';
 
 @Injectable()
 export class FilterCandidatesService {
-  isToolbarShown = true;
+  isToolbarShown = false;
   filterText$ = new BehaviorSubject<string>('');
 
   get curFilterText() {
