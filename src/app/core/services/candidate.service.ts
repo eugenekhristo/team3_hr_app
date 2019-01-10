@@ -22,6 +22,10 @@ export class CandidateService {
     return this.http.put<Candidate>(`${BASE_URL}/candidates/${candidate.id}`, candidate).pipe(share());
   }
 
+  addCandidate(candidate: Candidate): Observable<Candidate> {
+    return this.http.post<Candidate>(`${BASE_URL}/candidates`, candidate).pipe(share());
+  }
+
   search(searchTerm: Observable<string>): Observable<Candidate[]> {
     return searchTerm.pipe(
       debounceTime(100),

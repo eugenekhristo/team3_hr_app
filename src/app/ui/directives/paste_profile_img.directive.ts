@@ -3,6 +3,7 @@ import { Candidate } from 'src/app/core/models/candidate.model';
 import { SnackMessageService } from '../services/snack-messgae.service';
 import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 import { Subscription } from 'rxjs';
+import { FilterCandidatesService } from 'src/app/core/services/filter-candidates.service';
 
 @Directive({
   selector: '[hrPasteImg]'
@@ -17,7 +18,8 @@ export class PasteProfileImgDirective implements OnInit, OnDestroy {
   constructor(
     private elementRef: ElementRef,
     private candidateStore: CandidatesStore,
-    private matSNack: SnackMessageService
+    private matSnack: SnackMessageService,
+    private filterService: FilterCandidatesService
   ) {}
 
   ngOnInit() {
@@ -39,7 +41,7 @@ export class PasteProfileImgDirective implements OnInit, OnDestroy {
         this.hrPasteImg.photo = newSrc;
         const updCanSub = this.candidateStore.updateCandidate(this.hrPasteImg).subscribe(() => {
           targetImg.src = newSrc;
-          this.matSNack.openSnackBar('Profile picture is updated!');
+          this._openSnackAndCallBS('Profile picture is updated! 📷');
           this.subscriptionContainer.add(updCanSub);
         });
       }
@@ -52,5 +54,10 @@ export class PasteProfileImgDirective implements OnInit, OnDestroy {
     this.subscriptionContainer.unsubscribe();
     window.removeEventListener('mouseover', this.mouseoverHandler);
     window.removeEventListener('paste', this.pasteImgHandler);
+  }
+
+  private _openSnackAndCallBS(msg: string): void {
+    this.matSnack.openSnackBar(msg);
+    this.filterService.callAllbehaviorSubjects();
   }
 }

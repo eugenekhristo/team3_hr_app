@@ -91,7 +91,6 @@ export class VacancyComponent implements OnInit {
   }
 
   openSnackAndCallBS(msg: string): void {
-    console.log('how many times running?');
     this.matSnack.openSnackBar(msg);
     this.filterService.callAllbehaviorSubjects();
   }

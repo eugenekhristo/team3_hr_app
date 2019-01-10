@@ -9,7 +9,7 @@ export enum TIMELINE_ITEM_TYPE {
   interview = 'interview',
   feedback = 'feedback',
   cv = 'cv',
-  experience = 'experience',
+  experience = 'experience'
 }
 
 export interface TimelineItem {
@@ -41,9 +41,12 @@ export class Candidate {
   constructor(
     public name: string,
     public surname?: string,
-    public photo?: string,
-    public contacts?: Contact[],
-    public timeline?: object[],
+    public photo: string = 'https://static.boredpanda.com/blog/wp-content/uploads/2016/09/animals-' +
+    'dressed-like-humans-zoo-porraits-yago-partal-100-57d65dad6f9d8__880.jpg',
+    public contacts: Contact[] = [],
+    public timeline: object[] = [],
     public id?: number
-  ) {}
+  ) {
+    // TODO: if no photo - make random array which will assign one of irls
+  }
 }

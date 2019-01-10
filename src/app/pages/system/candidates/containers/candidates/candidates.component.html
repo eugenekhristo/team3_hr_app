@@ -5,7 +5,11 @@
 </div>
 
 <div class="toolbar toolbar_card" [hidden]="!filterService.isToolbarShown">
-  <button class="add_vacancy_btn" mat-raised-button color="primary">
+  <button
+    class="add_vacancy_btn"
+    mat-raised-button color="primary"
+    (click)="onAddCandidate()"
+  >
     Add Candidate
   </button>
 

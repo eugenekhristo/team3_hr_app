@@ -71,6 +71,17 @@ export class CandidatesStore {
     return this.processTimelineInteraction(candidate, updatedTimelineClient);
   }
 
+  addCandidate(candidate: Candidate): Observable<Candidate> {
+    const obs$ = this.candidateService.addCandidate(candidate);
+    const curCandidates =  this._candidates$.getValue();
+
+    obs$.subscribe(returnedCandidate => {
+      const updatedCandidates = [...curCandidates, returnedCandidate];
+      this._candidates$.next(updatedCandidates);
+    });
+    return obs$;
+  }
+
   deleteNote(note: TimelineNote): Observable<Candidate> {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = candidate.timeline.filter(
@@ -146,7 +157,7 @@ export class CandidatesStore {
   private processTimelineInteraction(
     candidate: Candidate,
     updatedTimelineClient?: object[]
-  ) {
+  ): Observable<Candidate> {
     const updatedTimelineBack = updatedTimelineClient.filter(
       item => item['type'] !== 'interview'
     );
@@ -161,6 +172,16 @@ export class CandidatesStore {
     const obs$ = this.candidateService.updateCandidate(updateadCandidateBack);
     obs$.subscribe(() => {
       this._candidate.next(updateadCandidateClient);
+      // NOT TIME TO REFACTOR 🤦‍♂ but next lines to sychronize current local _candidates$ with updated _candidate$
+      const currentCandidates = this._candidates$.getValue();
+      const updatedCandidates = currentCandidates.map(item => {
+        if (item.id === candidate.id) {
+          return candidate;
+        } else {
+          return item;
+        }
+      });
+      this._candidates$.next(updatedCandidates);
     });
 
     return obs$;

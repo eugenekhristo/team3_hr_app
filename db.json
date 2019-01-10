@@ -28,8 +28,8 @@
           "preferred": true
         },
         {
-          "type": "email",
-          "value": "till@gmail.com",
+          "type": "other",
+          "value": "(twitter) /reallindemann",
           "preferred": false
         }
       ],
@@ -108,7 +108,7 @@
       "contacts": [
         {
           "type": "phone",
-          "value": "+375293569686",
+          "value": "+375293342593",
           "preferred": true
         }
       ],
@@ -327,6 +327,25 @@
         }
       ],
       "timeline": []
+    },
+    {
+      "name": "Eugene",
+      "surname": "Khristo",
+      "photo": "https://static.boredpanda.com/blog/wp-content/uploads/2016/09/animals-dressed-like-humans-zoo-porraits-yago-partal-100-57d65dad6f9d8__880.jpg",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+375295680956",
+          "preferred": true
+        },
+        {
+          "type": "other",
+          "value": "(instagram) /eugenekhristo",
+          "preferred": false
+        }
+      ],
+      "timeline": [],
+      "id": 8
     }
   ],
   "vacancies": [

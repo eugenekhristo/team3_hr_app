@@ -13,8 +13,8 @@ import { Feedback } from 'src/app/core/models/feedback.model';
 import { Subscription } from 'rxjs';
 import { CV } from 'src/app/core/models/cv.model';
 import { AddCvDialogComponent } from '../../presentationals/timeline-cv/add-cv-dialog/add-cv-dialog.component';
-import { UserService } from 'src/app/core/services/user.service';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { FilterCandidatesService } from 'src/app/core/services/filter-candidates.service';
 
 @Component({
   selector: 'hr-candidate',
@@ -31,7 +31,8 @@ export class CandidateComponent implements OnInit, OnDestroy {
     private matDialog: MatDialog,
     private interviewDialog: InterviewDialogService,
     private route: ActivatedRoute,
-    private userService: AuthService
+    private userService: AuthService,
+    private filterService: FilterCandidatesService
   ) {}
 
   ngOnInit() {
@@ -55,7 +56,7 @@ export class CandidateComponent implements OnInit, OnDestroy {
   onCandidateChanged(candidate: Candidate): void {
     this.candidateStore
       .updateCandidate(candidate)
-      .subscribe(() => this.matSnack.openSnackBar('Candidate is updated!'));
+      .subscribe(() => this._openSnackAndCallBS('Candidate is updated! 😃'));
   }
 
   onDeleteNote(note: TimelineNote) {
@@ -150,5 +151,10 @@ export class CandidateComponent implements OnInit, OnDestroy {
     this.candidateStore
       .updateFeedback(feedback)
       .subscribe(() => this.matSnack.openSnackBar('Feedback is updated!'));
+  }
+
+  private _openSnackAndCallBS(msg: string): void {
+    this.matSnack.openSnackBar(msg);
+    this.filterService.callAllbehaviorSubjects();
   }
 }
