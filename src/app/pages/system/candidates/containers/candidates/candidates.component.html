@@ -29,5 +29,6 @@
 <hr-candidates-list
   [candidates$]="candidateStore.filteredCandidates$"
   (goToCandidatePage)="goToCandidatePage($event)"
+  (deleteCandidate)="onDeleteCandidate($event)"
 >
 </hr-candidates-list>

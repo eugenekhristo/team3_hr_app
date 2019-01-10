@@ -13,6 +13,7 @@
   flex: 1;
   margin: 0 .8rem 0;
   height: 100%;
+  overflow: hidden;
 
   &__figure {
     height: 20rem;
@@ -42,7 +43,33 @@
       font-size: 1.3rem;
       padding-right: .3rem;
     }
+  }
 
+  &__delete {
+    color: white;
+    background-color: var(--color-warn);
+    position: absolute;
+    top: -4.5rem;
+    right: -6rem;
+    padding: 0 2rem .3rem;
+    height: 5rem;
+    transform: rotate(45deg);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    font-size: 1.2rem;
+    transition: .2s ease-out .5s;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__delete {
+    top: -1.5rem;
+    right: -3rem;
   }
 }
 

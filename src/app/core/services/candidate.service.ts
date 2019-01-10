@@ -10,6 +10,10 @@ export class CandidateService {
   constructor(private http: HttpClient) {
   }
 
+  addCandidate(candidate: Candidate): Observable<Candidate> {
+    return this.http.post<Candidate>(`${BASE_URL}/candidates`, candidate).pipe(share());
+  }
+
   getAllCandidates(): Observable<Candidate[]> {
     return this.http.get<Candidate[]>(`${BASE_URL}/candidates`);
   }
@@ -22,9 +26,10 @@ export class CandidateService {
     return this.http.put<Candidate>(`${BASE_URL}/candidates/${candidate.id}`, candidate).pipe(share());
   }
 
-  addCandidate(candidate: Candidate): Observable<Candidate> {
-    return this.http.post<Candidate>(`${BASE_URL}/candidates`, candidate).pipe(share());
+  deleteCandidate(id: number): Observable<null> {
+    return this.http.delete<null>(`${BASE_URL}/candidates/${id}`).pipe(share());
   }
+
 
   search(searchTerm: Observable<string>): Observable<Candidate[]> {
     return searchTerm.pipe(

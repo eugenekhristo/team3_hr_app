@@ -82,6 +82,17 @@ export class CandidatesStore {
     return obs$;
   }
 
+  deleteCandidate(id: number): Observable<null> {
+    const obs$ = this.candidateService.deleteCandidate(id);
+    const curCandidates =  this._candidates$.getValue();
+
+    obs$.subscribe(() => {
+      const updatedCandidates = curCandidates.filter(candidate => candidate.id !== id);
+      this._candidates$.next(updatedCandidates);
+    });
+    return obs$;
+  }
+
   deleteNote(note: TimelineNote): Observable<Candidate> {
     const candidate = this._candidate.getValue();
     const updatedTimelineClient = candidate.timeline.filter(
