@@ -20,6 +20,9 @@ import { TimelineFeedbackComponent } from './presentationals/timeline-feedback/t
 import { FeedbackEditDialogComponent } from './presentationals/timeline-feedback/feedback-edit-dialog/feedback-edit-dialog.component';
 import { TimelineCvComponent } from './presentationals/timeline-cv/timeline-cv.component';
 import { AddCvDialogComponent } from './presentationals/timeline-cv/add-cv-dialog/add-cv-dialog.component';
+import { CandidatesListComponent } from './presentationals/candidates-list/candidates-list.component';
+import { CandidateCardComponent } from './presentationals/candidate-card/candidate-card.component';
+import { CandidateContactsComponent } from './presentationals/candidate-contacts/candidate-contacts.component';
 
 @NgModule({
   imports: [
@@ -48,7 +51,10 @@ import { AddCvDialogComponent } from './presentationals/timeline-cv/add-cv-dialo
     TimelineFeedbackComponent,
     FeedbackEditDialogComponent,
     TimelineCvComponent,
-    AddCvDialogComponent
+    AddCvDialogComponent,
+    CandidatesListComponent,
+    CandidateCardComponent,
+    CandidateContactsComponent
   ],
   entryComponents: [
     EditContactsDialogComponent,

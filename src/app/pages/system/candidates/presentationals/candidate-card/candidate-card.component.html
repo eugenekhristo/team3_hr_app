@@ -1,0 +1,29 @@
+<div class="card">
+  <figure
+    class="card__figure"
+    [matTooltip]="'Go to ' + candidate.name + '\'s page'"
+    matTooltipPosition="above"
+    matRipple
+    [matRippleColor]="'rgba(255,255,255,.2)'"
+  >
+    <a (click)="goToCandidatePage.next(candidate.id)">
+      <img [src]="candidate.photo" class="card__img" />
+    </a>
+  </figure>
+
+  <div class="card__content">
+    <table class="table">
+      <tr>
+        <td>{{ 'Name' | translate }}:</td>
+        <td>{{ candidate?.name }}</td>
+      </tr>
+      <tr>
+        <td>{{ 'Surname' | translate }}:</td>
+        <td>{{ candidate?.surname }}</td>
+      </tr>
+    </table>
+
+    <hr-candidate-contacts [contactsArr]="candidate.contacts">
+    </hr-candidate-contacts>
+  </div>
+</div>

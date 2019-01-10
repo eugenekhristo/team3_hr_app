@@ -1,0 +1,30 @@
+.short__contacts {
+  position: relative;
+}
+
+.short__heading {
+  margin: 1rem 0 .5rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+
+.table__contacts td:first-child {
+  vertical-align: top;
+  font-size: 1.3rem;
+  color: #828282;
+}
+
+.table__contacts td:last-child {
+  font-size: 1.2rem;
+
+  span {
+    margin-bottom: .5rem;
+    display: inline-block;
+  }
+}
+
+.table__contacts .preferred {
+  position: relative;
+}

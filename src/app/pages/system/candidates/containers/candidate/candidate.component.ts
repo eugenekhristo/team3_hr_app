@@ -35,6 +35,8 @@ export class CandidateComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    window.scrollTo(0, 0);
+
     this.candidateStore.bootstrapCandidate(+this.route.snapshot.params['id']);
 
     if (this.route.snapshot.queryParams['feedbackAdded']) {

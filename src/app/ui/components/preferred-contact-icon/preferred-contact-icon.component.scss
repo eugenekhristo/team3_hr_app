@@ -26,6 +26,7 @@
   opacity: 0;
   transform-origin: 0 100%;
   backface-visibility: hidden;
+  z-index: 5;
 }
 
 .preferred:hover::after {

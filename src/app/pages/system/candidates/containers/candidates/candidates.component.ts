@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
+import { Router } from '@angular/router';
+import { FilterCandidatesService } from 'src/app/core/services/filter-candidates.service';
 
 @Component({
   selector: 'hr-candidates',
@@ -6,10 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./candidates.component.scss']
 })
 export class CandidatesComponent implements OnInit {
+  toolbarMessage = '';
 
-  constructor() { }
+  constructor(
+    public candidateStore: CandidatesStore,
+    private router: Router,
+    public filterService: FilterCandidatesService
+    ) { }
 
   ngOnInit() {
   }
 
+  goToCandidatePage(id: number): void {
+    this.candidateStore
+      .bootstrapCandidate(id)
+      .then(() => this.router.navigate(['/candidates', id]));
+  }
+
+  toggleToolbar() {
+    this.filterService.isToolbarShown = !this.filterService.isToolbarShown;
+    this.toolbarMessage = `${this.filterService.isToolbarShown ? 'Close' : 'Open'} toolbar`;
+  }
 }

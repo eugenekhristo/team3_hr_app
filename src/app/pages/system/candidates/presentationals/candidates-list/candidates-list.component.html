@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <div class="candidates">
+    <hr-candidate-card
+      *ngFor="let candidate of (candidates$ | async)"
+      [candidate]="candidate"
+      (goToCandidatePage)="goToCandidatePage.next($event)"
+      style="margin-bottom: 1.5rem"
+    >
+    </hr-candidate-card>
+  </div>
+</div>

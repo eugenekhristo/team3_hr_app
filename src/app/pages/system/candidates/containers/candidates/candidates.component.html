@@ -1,3 +1,29 @@
-<p>
-  candidates works!
-</p>
+<div class="toggle" [matTooltip]="toolbarMessage" (click)="toggleToolbar()">
+  <mat-icon class="toggle__icon">
+    {{ !filterService.isToolbarShown ? 'arrow_drop_down' : 'arrow_drop_up' }}
+  </mat-icon>
+</div>
+
+<div class="toolbar toolbar_card" [hidden]="!filterService.isToolbarShown">
+  <button class="add_vacancy_btn" mat-raised-button color="primary">
+    Add Candidate
+  </button>
+
+  <div class="toolbar_filters">
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="Filter by fullname or contacts"
+        [value]="filterService.curFilterText"
+        (input)="filterService.filterText$.next($event.target.value)"
+      />
+    </mat-form-field>
+  </div>
+</div>
+
+<hr-candidates-list
+  [candidates$]="candidateStore.candidates$"
+  (goToCandidatePage)="goToCandidatePage($event)"
+>
+</hr-candidates-list>

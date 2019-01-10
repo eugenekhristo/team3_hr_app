@@ -1,0 +1,64 @@
+<div class="short__contacts">
+  <h3 class="short__heading">Contacts:</h3>
+  <p
+    class="no-contacts"
+    *ngIf="
+      contactsArr && contactsArr.length === 0;
+      else contacts_table
+    "
+  >
+    No contacts!
+  </p>
+  <ng-template #contacts_table>
+    <table class="table table__contacts">
+      <tr *ngIf="contacts.phone.length > 0">
+        <td>Phone:</td>
+        <td>
+          <ng-container *ngFor="let c of contacts.phone">
+            <span class="preferred">
+              <hr-preferred-contact-icon *ngIf="c.preferred">
+              </hr-preferred-contact-icon>
+              {{ c.value }} </span
+            ><br />
+          </ng-container>
+        </td>
+      </tr>
+      <tr *ngIf="contacts.email.length > 0">
+        <td>Email:</td>
+        <td>
+          <ng-container *ngFor="let c of contacts.email">
+            <span class="preferred">
+              <hr-preferred-contact-icon *ngIf="c.preferred">
+              </hr-preferred-contact-icon>
+              {{ c.value }} </span
+            ><br />
+          </ng-container>
+        </td>
+      </tr>
+      <tr *ngIf="contacts.skype.length > 0">
+        <td>Skype:</td>
+        <td>
+          <ng-container *ngFor="let c of contacts.skype">
+            <span class="preferred">
+              <hr-preferred-contact-icon *ngIf="c.preferred">
+              </hr-preferred-contact-icon>
+              {{ c.value }} </span
+            ><br />
+          </ng-container>
+        </td>
+      </tr>
+      <tr *ngIf="contacts.other.length > 0">
+        <td>Other:</td>
+        <td>
+          <ng-container *ngFor="let c of contacts.other">
+            <span class="preferred">
+              <hr-preferred-contact-icon *ngIf="c.preferred">
+              </hr-preferred-contact-icon>
+              {{ c.value }} </span
+            ><br />
+          </ng-container>
+        </td>
+      </tr>
+    </table>
+  </ng-template>
+</div>
