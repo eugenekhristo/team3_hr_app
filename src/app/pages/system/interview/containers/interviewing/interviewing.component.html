@@ -99,9 +99,11 @@
           <td>Phone:</td>
           <td>
             <span
+              class="preferred"
               *ngFor="let c of contacts.phone"
-              [ngClass]="{ preferred: c.preferred }"
             >
+              <hr-preferred-contact-icon *ngIf="c.preferred">
+              </hr-preferred-contact-icon>
               {{ c.value }} <br />
             </span>
           </td>
@@ -110,9 +112,11 @@
           <td>Email:</td>
           <td>
             <span
+              class="preferred"
               *ngFor="let c of contacts.email"
-              [ngClass]="{ preferred: c.preferred }"
             >
+              <hr-preferred-contact-icon *ngIf="c.preferred">
+              </hr-preferred-contact-icon>
               {{ c.value }} <br />
             </span>
           </td>
@@ -121,9 +125,11 @@
           <td>Skype:</td>
           <td>
             <span
+              class="preferred"
               *ngFor="let c of contacts.skype"
-              [ngClass]="{ preferred: c.preferred }"
             >
+              <hr-preferred-contact-icon *ngIf="c.preferred">
+              </hr-preferred-contact-icon>
               {{ c.value }} <br />
             </span>
           </td>
@@ -132,9 +138,11 @@
           <td>Other:</td>
           <td>
             <span
+              class="preferred"
               *ngFor="let c of contacts.other"
-              [ngClass]="{ preferred: c.preferred }"
             >
+              <hr-preferred-contact-icon *ngIf="c.preferred">
+              </hr-preferred-contact-icon>
               {{ c.value }} <br />
             </span>
           </td>

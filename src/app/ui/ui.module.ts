@@ -16,6 +16,7 @@ import { QuestionnaireComponent } from './components/questionnaire/questionnaire
 import { ReactiveFormsModule } from '@angular/forms';
 import { AnimatedReadingComponent } from './components/animated-reading/animated-reading.component';
 import { SmallCardComponent } from './components/small-card/small-card.component';
+import { PreferredContactIconComponent } from './components/preferred-contact-icon/preferred-contact-icon.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SmallCardComponent } from './components/small-card/small-card.component
     PasteProfileImgDirective,
     QuestionnaireComponent,
     AnimatedReadingComponent,
-    SmallCardComponent
+    SmallCardComponent,
+    PreferredContactIconComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { SmallCardComponent } from './components/small-card/small-card.component
     PasteProfileImgDirective,
     QuestionnaireComponent,
     AnimatedReadingComponent,
-    SmallCardComponent
+    SmallCardComponent,
+    PreferredContactIconComponent
   ]
 })
 export class UiModule {}

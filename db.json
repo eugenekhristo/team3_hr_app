@@ -161,7 +161,7 @@
         {
           "type": "skype",
           "value": "millie17",
-          "preferred": false
+          "preferred": true
         },
         {
           "type": "phone",
@@ -508,7 +508,7 @@
     },
     {
       "id": 5,
-      "title": "NodeJS",
+      "title": "NodeJS 💻",
       "status": "opened",
       "description": "Hello world Lorem Ipsum ROCKS!",
       "requirements": [
@@ -551,7 +551,7 @@
     },
     {
       "id": 6,
-      "title": "UI/UX Designer",
+      "title": "UI/UX Designer 💃",
       "status": "closed",
       "description": "Hello world Lorem Ipsum ROCKS!",
       "requirements": [
@@ -593,8 +593,8 @@
       "timestamp": 1546925968316
     },
     {
-      "title": "HR Manager",
-      "status": "suspended",
+      "title": "HR Manager 👧",
+      "status": "opened",
       "description": "Just a description!",
       "requirements": [
         {

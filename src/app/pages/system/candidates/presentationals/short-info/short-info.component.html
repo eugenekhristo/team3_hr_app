@@ -7,10 +7,14 @@
       matRipple
       [matRippleColor]="'rgba(255,255,255,.2)'"
     >
-      <img [src]="candidate?.photo" class="short__img" [hrPasteImg]="candidate" />
+      <img
+        [src]="candidate?.photo"
+        class="short__img"
+        [hrPasteImg]="candidate"
+      />
       <div class="short__tip">
-        <span>Click the picture</span> <br>
-        <span>or Paste an image URL</span> <br>
+        <span>Click the picture</span> <br />
+        <span>or Paste an image URL</span> <br />
         <span>to update the picture</span>
       </div>
       <input
@@ -25,11 +29,11 @@
     <div class="short__biography">
       <table class="table table__biography">
         <tr>
-          <td>{{'Name' | translate}}:</td>
+          <td>{{ 'Name' | translate }}:</td>
           <td>{{ candidate?.name }}</td>
         </tr>
         <tr>
-          <td>{{'Surname' | translate}}:</td>
+          <td>{{ 'Surname' | translate }}:</td>
           <td>{{ candidate?.surname }}</td>
         </tr>
       </table>
@@ -53,11 +57,11 @@
           <td>Phone:</td>
           <td>
             <ng-container *ngFor="let c of contacts.phone">
-              <span
-                [ngClass]="{ preferred: c.preferred }"
-              >
-                {{ c.value }}
-              </span><br>
+              <span class="preferred">
+                <hr-preferred-contact-icon *ngIf="c.preferred">
+                </hr-preferred-contact-icon>
+                {{ c.value }} </span
+              ><br />
             </ng-container>
           </td>
         </tr>
@@ -65,11 +69,11 @@
           <td>Email:</td>
           <td>
             <ng-container *ngFor="let c of contacts.email">
-              <span
-                [ngClass]="{ preferred: c.preferred }"
-              >
-                {{ c.value }}
-              </span><br>
+              <span class="preferred">
+                <hr-preferred-contact-icon *ngIf="c.preferred">
+                </hr-preferred-contact-icon>
+                {{ c.value }} </span
+              ><br />
             </ng-container>
           </td>
         </tr>
@@ -77,11 +81,11 @@
           <td>Skype:</td>
           <td>
             <ng-container *ngFor="let c of contacts.skype">
-              <span
-                [ngClass]="{ preferred: c.preferred }"
-              >
-                {{ c.value }}
-              </span><br>
+              <span class="preferred">
+                <hr-preferred-contact-icon *ngIf="c.preferred">
+                </hr-preferred-contact-icon>
+                {{ c.value }} </span
+              ><br />
             </ng-container>
           </td>
         </tr>
@@ -89,11 +93,11 @@
           <td>Other:</td>
           <td>
             <ng-container *ngFor="let c of contacts.other">
-              <span
-                [ngClass]="{ preferred: c.preferred }"
-              >
-                {{ c.value }}
-              </span><br>
+              <span class="preferred">
+                <hr-preferred-contact-icon *ngIf="c.preferred">
+                </hr-preferred-contact-icon>
+                {{ c.value }} </span
+              ><br />
             </ng-container>
           </td>
         </tr>
