@@ -4,7 +4,6 @@ import { VacancyStore } from 'src/app/core/services/vacancy-store.service';
 import { Observable } from 'rxjs';
 import {
   Vacancy,
-  CandidateForVacancy,
   VACANCY_STATUS,
   Requirement
 } from 'src/app/core/models/vacancy.model';
@@ -49,7 +48,7 @@ export class VacancyComponent implements OnInit {
         this.vacancyStore.vacancy$.subscribe(vacancy => {
           this.vacancy = vacancy;
           this.createRequirementsArrForRendering();
-        }) ;
+        });
         this.possibleCandidates$ = this.vacancyStore.possibleCandidates$;
       });
   }
@@ -61,20 +60,24 @@ export class VacancyComponent implements OnInit {
       .subscribe(res => {
         if (res) {
           this.vacancyStore.deleteVacancy(id).subscribe(() => {
-            this.router.navigate(['/vacancies'], {queryParams: {
-              isDeleted: true
-            }});
+            this.router.navigate(['/vacancies'], {
+              queryParams: {
+                isDeleted: true
+              }
+            });
           });
         }
       });
   }
 
   onEditVacancy(vacancy: Vacancy): void {
-    const ref = this.matDialog.open(EditVacancyDialogComponent, {data: vacancy});
+    const ref = this.matDialog.open(EditVacancyDialogComponent, {
+      data: vacancy
+    });
 
     ref.afterClosed().subscribe(res => {
       if (res) {
-        const updatedVacancy = {...vacancy, ...res};
+        const updatedVacancy = { ...vacancy, ...res };
         this.vacancyStore.updateVacancy(updatedVacancy).subscribe(() => {
           this.openSnackAndCallBS('Vacancy was successfully updated! 👌');
         });
@@ -86,7 +89,6 @@ export class VacancyComponent implements OnInit {
   // create CandidateForVacancy[] and pass to vacancyStore.addPossibleCandidates()
   onAddPossibleCandidate() {
     // const candidate = new CandidateForVacancy(2);
-
     // this.vacancyStore
     //   .addPossibleCandidate(candidate)
     //   .subscribe(() =>
@@ -123,7 +125,6 @@ export class VacancyComponent implements OnInit {
       }
     }
   }
-
 
   getClassForStatus(status: VACANCY_STATUS): string {
     return `vacancy__status--${status}`;

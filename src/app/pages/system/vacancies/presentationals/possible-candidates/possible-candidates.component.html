@@ -1,6 +1,29 @@
 <div class="wrapper">
   <h2>Possible Applicants 👩‍💼🤵</h2>
 
+  <!-- FIXME: DRAFT -->
+
+  Candidates picked: {{pickedIds.length}} <br>
+
+  {{pickedPossibleCandidates | json}} <br>
+
+  <input
+    type="text"
+    (input)="filterService.filterText$.next($event.target.value)"
+    (focus)="filterService.filterText$.next($event.target.value)"
+  />
+  <br />
+
+  <hr-candidates-list
+    [candidates$]="filterService.filteredCandidatesForVacancy$"
+    [shouldShowImage]="false"
+    [shouldShowDeleteTooltip]="false"
+    [styleForVacancy]="true"
+    [pickedIds]="pickedIds"
+    (candidatesIdPicked)="onTogglePossibleCandidate($event)"
+  >
+  </hr-candidates-list>
+
   <hr-candidates-list
     [candidates$]="possibleCandidates$"
     (goToCandidatePage)="goToCandidatePage.emit($event)"

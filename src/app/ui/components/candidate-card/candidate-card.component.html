@@ -1,5 +1,23 @@
-<div class="card">
+<div
+  class="card"
+  (click)="candidatesIdPicked.next(candidate.id); toggleCardIsChoosen()"
+  [ngClass]="{
+    'for_vacancy': styleForVacancy,
+    'for_vacancy__picked': isCardChoosen
+  }"
+>
   <div
+    *ngIf="styleForVacancy"
+    [ngClass]="{
+      'for_vacancy__label': isCardChoosen,
+      'for_vacancy__label--unpicked': !isCardChoosen
+    }"
+  >
+    Picked
+  </div>
+
+  <div
+    *ngIf="shouldShowDeleteTooltip"
     class="card__delete"
     (click)="deleteCandidate.next(candidate.id)"
     matRipple
@@ -9,6 +27,7 @@
   </div>
 
   <figure
+    *ngIf="shouldShowImage"
     class="card__figure"
     [matTooltip]="'Go to ' + candidate.name + '\'s page'"
     matTooltipPosition="above"

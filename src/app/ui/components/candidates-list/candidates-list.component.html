@@ -4,8 +4,13 @@
       style="margin-bottom: 1.5rem"
       *ngFor="let candidate of (candidates$ | async)"
       [candidate]="candidate"
+      [isCardChoosen]="getIfTheCardChoosen(candidate.id)"
+      [shouldShowImage]="shouldShowImage"
+      [shouldShowDeleteTooltip]="shouldShowDeleteTooltip"
+      [styleForVacancy]="styleForVacancy"
       (goToCandidatePage)="goToCandidatePage.next($event)"
       (deleteCandidate)="deleteCandidate.next($event)"
+      (candidatesIdPicked)="candidatesIdPicked.next($event)"
     >
     </hr-candidate-card>
   </div>

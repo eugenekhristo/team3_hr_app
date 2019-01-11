@@ -31,6 +31,7 @@ export class VacancyStore {
     return this._possibleCandidates$.asObservable();
   }
 
+
   constructor(
     private vacancyService: VacancyService,
     private candidateStore: CandidatesStore
@@ -129,7 +130,7 @@ export class VacancyStore {
   }
 
   private processPossibleCandidatesUpdating(vacancy: Vacancy) {
-    const candidatesIds = this.getCandidatesIds();
+    const candidatesIds = this.getPossibleCandidatesIds();
     const possibleCandidates = this.candidateStore.getLocalCandidatesByIds(
       candidatesIds
     );
@@ -138,7 +139,7 @@ export class VacancyStore {
 /**
  * Because in app it's easier to work with possible candidates as with id[]
  */
-  getCandidatesIds(): number[] {
+  getPossibleCandidatesIds(): number[] {
     const possibleCandidatesBlobs = this._vacancy$.getValue().candidatesBlobs;
     const result = [];
 

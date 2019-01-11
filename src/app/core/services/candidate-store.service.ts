@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, forkJoin, BehaviorSubject } from 'rxjs';
 import { Candidate, TimelineNote } from '../models/candidate.model';
 import { CandidateService } from './candidate.service';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, startWith } from 'rxjs/operators';
 import { InterviewService } from 'src/app/pages/system/shared/services/interview.service';
 import { InterviewClient, Interview } from '../models/interview.model';
 import { Feedback } from '../models/feedback.model';
@@ -26,6 +26,7 @@ export class CandidatesStore {
   private _candidates$ = new BehaviorSubject<Candidate[]>([]);
   private _filteredCandidates$ = new BehaviorSubject<Candidate[]>([]);
 
+
   get candidates$() {
     return this._candidates$.asObservable();
   }
@@ -45,7 +46,7 @@ export class CandidatesStore {
   constructor(
     private candidateService: CandidateService,
     private interviewSerivce: InterviewService,
-    private interviewService: InterviewService
+    private interviewService: InterviewService,
   ) {
     this.bootstrapCandidates();
   }
