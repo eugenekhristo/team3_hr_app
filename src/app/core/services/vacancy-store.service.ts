@@ -97,9 +97,10 @@ export class VacancyStore {
     return obs$;
   }
 
-  addPossibleCandidate(candidate: CandidateForVacancy): Observable<Vacancy> {
+  // TODO: Make onAddPossibleCandidates
+  addPossibleCandidates(candidates: CandidateForVacancy[]): Observable<Vacancy> {
     const vacancy = this._vacancy$.getValue();
-    vacancy.candidatesBlobs = [...vacancy.candidatesBlobs, candidate];
+    vacancy.candidatesBlobs = [...vacancy.candidatesBlobs, ...candidates];
     return this.updateVacancy(vacancy);
   }
 
@@ -128,17 +129,20 @@ export class VacancyStore {
   }
 
   private processPossibleCandidatesUpdating(vacancy: Vacancy) {
-    const candidatesIds = this.getCandidatesIds(vacancy.candidatesBlobs);
+    const candidatesIds = this.getCandidatesIds();
     const possibleCandidates = this.candidateStore.getLocalCandidatesByIds(
       candidatesIds
     );
     this._possibleCandidates$.next(possibleCandidates);
   }
-
-  private getCandidatesIds(dirtyArr: CandidateForVacancy[]): number[] {
+/**
+ * Because in app it's easier to work with possible candidates as with id[]
+ */
+  getCandidatesIds(): number[] {
+    const possibleCandidatesBlobs = this._vacancy$.getValue().candidatesBlobs;
     const result = [];
 
-    for (const item of dirtyArr) {
+    for (const item of possibleCandidatesBlobs) {
       result.push(item.id);
     }
 

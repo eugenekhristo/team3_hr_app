@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material';
 import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
 import { EditVacancyDialogComponent } from '../../presentationals/edit-vacancy-dialog/edit-vacancy-dialog.component';
 import { FilterVacanciesService } from 'src/app/core/services/filter-vacancies.service';
+import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 
 @Component({
   selector: 'hr-vacancy',
@@ -36,7 +37,8 @@ export class VacancyComponent implements OnInit {
     private matSnack: SnackMessageService,
     private matConfirm: MatConfirmService,
     private router: Router,
-    public filterService: FilterVacanciesService
+    public filterService: FilterVacanciesService,
+    private candidateStore: CandidatesStore
   ) {}
 
   ngOnInit() {
@@ -80,14 +82,22 @@ export class VacancyComponent implements OnInit {
     });
   }
 
+  // TODO: Make onAddPossibleCandidates
+  // create CandidateForVacancy[] and pass to vacancyStore.addPossibleCandidates()
   onAddPossibleCandidate() {
-    const candidate = new CandidateForVacancy(2);
+    // const candidate = new CandidateForVacancy(2);
 
-    this.vacancyStore
-      .addPossibleCandidate(candidate)
-      .subscribe(() =>
-        this.matSnack.openSnackBar('New possible candidate was added! 🐱')
-      );
+    // this.vacancyStore
+    //   .addPossibleCandidate(candidate)
+    //   .subscribe(() =>
+    //     this.matSnack.openSnackBar('New possible candidate was added! 🐱')
+    //   );
+  }
+
+  goToCandidatePage(id: number): void {
+    this.candidateStore
+      .bootstrapCandidate(id)
+      .then(() => this.router.navigate(['/candidates', id]));
   }
 
   openSnackAndCallBS(msg: string): void {
@@ -113,6 +123,7 @@ export class VacancyComponent implements OnInit {
       }
     }
   }
+
 
   getClassForStatus(status: VACANCY_STATUS): string {
     return `vacancy__status--${status}`;

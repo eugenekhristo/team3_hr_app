@@ -10,9 +10,7 @@ import { CV } from '../models/cv.model';
 
 @Injectable()
 export class CandidatesStore {
-  private _candidate: BehaviorSubject<Candidate> = new BehaviorSubject<
-    Candidate
-  >(null);
+  private _candidate = new BehaviorSubject<Candidate>(null);
   get candidate$() {
     return this._candidate.asObservable().pipe(
       tap(candidate => {

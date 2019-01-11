@@ -17,6 +17,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AnimatedReadingComponent } from './components/animated-reading/animated-reading.component';
 import { SmallCardComponent } from './components/small-card/small-card.component';
 import { PreferredContactIconComponent } from './components/preferred-contact-icon/preferred-contact-icon.component';
+import { CandidatesListComponent } from './components/candidates-list/candidates-list.component';
+import { CandidateCardComponent } from './components/candidate-card/candidate-card.component';
+import { CandidateContactsComponent } from './components/candidate-contacts/candidate-contacts.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../app.module';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,10 @@ import { PreferredContactIconComponent } from './components/preferred-contact-ic
     QuestionnaireComponent,
     AnimatedReadingComponent,
     SmallCardComponent,
-    PreferredContactIconComponent
+    PreferredContactIconComponent,
+    CandidatesListComponent,
+    CandidateCardComponent,
+    CandidateContactsComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +42,14 @@ import { PreferredContactIconComponent } from './components/preferred-contact-ic
     MaterialModule,
     ReusableMatConfirmModule,
     InterviewDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     SnackMessagePbService,
@@ -50,7 +66,10 @@ import { PreferredContactIconComponent } from './components/preferred-contact-ic
     QuestionnaireComponent,
     AnimatedReadingComponent,
     SmallCardComponent,
-    PreferredContactIconComponent
+    PreferredContactIconComponent,
+    CandidatesListComponent,
+    CandidateCardComponent,
+    CandidateContactsComponent
   ]
 })
 export class UiModule {}

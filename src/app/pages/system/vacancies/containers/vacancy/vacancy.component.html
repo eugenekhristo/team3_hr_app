@@ -109,10 +109,8 @@
   </section>
 </ng-container>
 
-<!-- <p>
-  {{vacancy$ | async | json}}
-</p> -->
-
-<!-- <p>
-  {{possibleCandidates$ | async | json}}
-</p> -->
+<hr-possible-candidates
+  [possibleCandidates$]="possibleCandidates$"
+  (goToCandidatePage)="goToCandidatePage($event)"
+>
+</hr-possible-candidates>

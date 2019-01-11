@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <h2>Possible Applicants 👩‍💼🤵</h2>
+
+  <hr-candidates-list
+    [candidates$]="possibleCandidates$"
+    (goToCandidatePage)="goToCandidatePage.emit($event)"
+  >
+  </hr-candidates-list>
+</div>

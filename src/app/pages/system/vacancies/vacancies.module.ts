@@ -9,6 +9,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { EditVacancyDialogComponent } from './presentationals/edit-vacancy-dialog/edit-vacancy-dialog.component';
+import { PossibleCandidatesComponent } from './presentationals/possible-candidates/possible-candidates.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { EditVacancyDialogComponent } from './presentationals/edit-vacancy-dialo
       }
     })
   ],
-  declarations: [VacancyComponent, VacanciesComponent, EditVacancyDialogComponent],
+  declarations: [VacancyComponent, VacanciesComponent, EditVacancyDialogComponent, PossibleCandidatesComponent],
   entryComponents: [EditVacancyDialogComponent]
 })
 export class VacanciesModule {}
