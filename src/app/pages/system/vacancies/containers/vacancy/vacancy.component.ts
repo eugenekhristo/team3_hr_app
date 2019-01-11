@@ -6,9 +6,9 @@ import {
   Vacancy,
   VACANCY_STATUS,
   Requirement,
-  CandidateForVacancy
+  CandidateForVacancy,
+  CandidateForVacancyFull
 } from 'src/app/core/models/vacancy.model';
-import { Candidate } from 'src/app/core/models/candidate.model';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { MatDialog } from '@angular/material';
 import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
@@ -24,7 +24,7 @@ import { AddPossibleCandidatesDialogComponent } from '../../presentationals/add-
 })
 export class VacancyComponent implements OnInit {
   vacancy: Vacancy;
-  possibleCandidates$: Observable<Candidate[]>;
+  possibleCandidates$: Observable<CandidateForVacancyFull[]>;
 
   reqPub: Requirement[] = [];
   reqPriv: Requirement[] = [];
@@ -87,18 +87,40 @@ export class VacancyComponent implements OnInit {
     });
   }
 
-
   onAddPossibleCandidates() {
     const ref = this.matDialog.open(AddPossibleCandidatesDialogComponent);
     ref.afterClosed().subscribe((res: CandidateForVacancy[]) => {
       if (res) {
-      this.vacancyStore
-        .addPossibleCandidates(res)
-        .subscribe(response =>
-          this.openSnackAndCallBS(`${res.length} possible candidates are added! 🐱`)
-        );
+        this.vacancyStore
+          .addPossibleCandidates(res)
+          .subscribe(() =>
+            this.openSnackAndCallBS(
+              `${res.length} possible candidate(s) is(are) added! 🐱`
+            )
+          );
       }
     });
+  }
+
+  onDeletePossibleCandidate(candidateId: number) {
+    this.matConfirm
+      .open(
+        `Are you sure you wanna delete this candidate from ${
+          this.vacancy.title
+        } ?`
+      )
+      .afterClosed()
+      .subscribe(res => {
+        if (res) {
+          this.vacancyStore
+            .deletePossibleCandidate(candidateId)
+            .subscribe(() =>
+              this.openSnackAndCallBS(
+                `Possible candidate was removed from ${this.vacancy.title}! 😎`
+              )
+            );
+        }
+      });
   }
 
   goToCandidatePage(id: number): void {

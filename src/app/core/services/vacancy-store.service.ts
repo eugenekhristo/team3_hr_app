@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { VacancyService } from './vacancy.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Vacancy, CandidateForVacancy } from '../models/vacancy.model';
+import { Vacancy, CandidateForVacancy, CandidateForVacancyFull } from '../models/vacancy.model';
 import { tap } from 'rxjs/operators';
 import { CandidatesStore } from './candidate-store.service';
 import { Candidate } from '../models/candidate.model';
@@ -11,7 +11,7 @@ export class VacancyStore {
   private _vacancies$ = new BehaviorSubject<Vacancy[]>([]);
   private _filteredVacancies$ = new BehaviorSubject<Vacancy[]>([]);
   private _vacancy$ = new BehaviorSubject<Vacancy>(null);
-  private _possibleCandidates$ = new BehaviorSubject<Candidate[]>([]);
+  private _possibleCandidates$ = new BehaviorSubject<CandidateForVacancyFull[]>([]);
 
   get vacancy$() {
     return this._vacancy$.asObservable();
@@ -28,7 +28,9 @@ export class VacancyStore {
   }
 
   get possibleCandidates$() {
-    return this._possibleCandidates$.asObservable();
+    return this._possibleCandidates$.asObservable().pipe(
+      tap(items => items.sort((a, b) => a.timestamp < b.timestamp ? 1 : -1))
+    );
   }
 
 
@@ -104,6 +106,12 @@ export class VacancyStore {
     return this.updateVacancy(vacancy);
   }
 
+  deletePossibleCandidate(id: number): Observable<Vacancy> {
+    const vacancy = this._vacancy$.getValue();
+    vacancy.candidatesBlobs = vacancy.candidatesBlobs.filter(item => item.id !== id);
+    return this.updateVacancy(vacancy);
+  }
+
   filterVacancies(text: BehaviorSubject<string>, statusesFilter: BehaviorSubject<string[]>) {
     text
       .pipe(
@@ -133,7 +141,9 @@ export class VacancyStore {
     const possibleCandidates = this.candidateStore.getLocalCandidatesByIds(
       candidatesIds
     );
-    this._possibleCandidates$.next(possibleCandidates);
+    const possibleCandidatesFull: CandidateForVacancyFull[] =
+    this.transformCandidatesToVacancyCandidates(possibleCandidates);
+    this._possibleCandidates$.next(possibleCandidatesFull);
   }
 /**
  * Because in app it's easier to work with possible candidates as with id[]
@@ -145,6 +155,24 @@ export class VacancyStore {
     for (const item of possibleCandidatesBlobs) {
       result.push(item.id);
     }
+
+    return result;
+  }
+
+  // make new interface CandidateForVacancy
+  private transformCandidatesToVacancyCandidates(candidates: Candidate[]): CandidateForVacancyFull[] {
+    const candidateBlobs = this._vacancy$.getValue().candidatesBlobs;
+    const result: CandidateForVacancyFull[] = [];
+
+    candidates.forEach(item => {
+      for (const blob of candidateBlobs) {
+        if (item.id === blob.id) {
+          item['timestamp'] = blob.timestamp;
+           result.push(item as CandidateForVacancyFull);
+           return;
+        }
+      }
+    });
 
     return result;
   }

@@ -346,6 +346,14 @@
       ],
       "timeline": [],
       "id": 8
+    },
+    {
+      "name": "Hello",
+      "surname": "World",
+      "photo": "https://static.boredpanda.com/blog/wp-content/uploads/2016/09/animals-dressed-like-humans-zoo-porraits-yago-partal-99-57d65dab6a931__880.jpg",
+      "contacts": [],
+      "timeline": [],
+      "id": 9
     }
   ],
   "vacancies": [
@@ -649,7 +657,12 @@
           "id": "b9c0ddce-30e8-4918-a2a3-4c1d3520c7c3"
         }
       ],
-      "candidatesBlobs": [],
+      "candidatesBlobs": [
+        {
+          "id": 2,
+          "timestamp": 1547202175905
+        }
+      ],
       "timestamp": 1547016523422,
       "id": 7
     }

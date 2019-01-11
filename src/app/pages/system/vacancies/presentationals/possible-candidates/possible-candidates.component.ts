@@ -12,6 +12,7 @@ export class PossibleCandidatesComponent implements OnInit {
 
   @Output() goToCandidatePage = new EventEmitter<number>();
   @Output() addPossibleCandidates = new EventEmitter<void>();
+  @Output() deletePossibleCandidate = new EventEmitter<void>();
 
 
   constructor() {}

@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+import { Contact } from './candidate.model';
 
 export enum VACANCY_STATUS {
   opend = 'opened',
@@ -21,6 +22,16 @@ export class CandidateForVacancy {
     public id: number,
     public timestamp: number = Date.now()
   ) {}
+}
+
+export interface CandidateForVacancyFull {
+  name: string;
+  surname?: string;
+  photo?: string;
+  contacts: Contact[];
+  timeline: object[];
+  timestamp: number;
+  id?: number;
 }
 
 export class Vacancy {

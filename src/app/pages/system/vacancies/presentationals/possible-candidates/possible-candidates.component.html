@@ -16,6 +16,7 @@
     [candidates$]="possibleCandidates$"
     [deleteTooltipMessage]="'Delete this Candidate from this Vacancy'"
     (goToCandidatePage)="goToCandidatePage.emit($event)"
+    (deleteCandidate)="deletePossibleCandidate.emit($event)"
   >
   </hr-candidates-list>
 </div>
