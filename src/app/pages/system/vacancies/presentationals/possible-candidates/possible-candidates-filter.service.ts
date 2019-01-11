@@ -16,8 +16,12 @@ export class PossibleCandidatesFilterService implements OnDestroy {
       .asObservable();
   }
 
+  get filteredCandidatesForVacancy() {
+    return this._filteredCandidatesForVacancy$.getValue();
+  }
+
   constructor(private vacancyStore: VacancyStore, private candidateStore: CandidatesStore) {
-    this.filterText$.next('sd8fs8df8s8df89s89df89s89df89s8df89sdYou~will~~never-find-ME!!!');
+    // this.filterText$.next('sd8fs8df8s8df89s89df89s89df89s8df89sdYou~will~~never-find-ME!!!');
     this.filterCandidatesForVacancy(this.filterText$);
   }
 

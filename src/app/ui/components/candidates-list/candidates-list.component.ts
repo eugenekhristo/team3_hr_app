@@ -13,6 +13,7 @@ export class CandidatesListComponent implements OnInit {
   @Input() shouldShowImage = true;
   @Input() shouldShowDeleteTooltip = true;
   @Input() styleForVacancy = false;
+  @Input() deleteTooltipMessage = '';
 
   @Output() goToCandidatePage = new EventEmitter<number>();
   @Output() deleteCandidate = new EventEmitter<number>();

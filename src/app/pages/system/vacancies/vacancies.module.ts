@@ -10,6 +10,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { EditVacancyDialogComponent } from './presentationals/edit-vacancy-dialog/edit-vacancy-dialog.component';
 import { PossibleCandidatesComponent } from './presentationals/possible-candidates/possible-candidates.component';
+import { AddPossibleCandidatesDialogComponent } from './presentationals/add-possible-candidates-dialog/add-possible-candidates-dialog.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,16 @@ import { PossibleCandidatesComponent } from './presentationals/possible-candidat
       }
     })
   ],
-  declarations: [VacancyComponent, VacanciesComponent, EditVacancyDialogComponent, PossibleCandidatesComponent],
-  entryComponents: [EditVacancyDialogComponent]
+  declarations: [
+    VacancyComponent,
+    VacanciesComponent,
+    EditVacancyDialogComponent,
+    PossibleCandidatesComponent,
+    AddPossibleCandidatesDialogComponent
+  ],
+  entryComponents: [
+    EditVacancyDialogComponent,
+    AddPossibleCandidatesDialogComponent
+  ]
 })
 export class VacanciesModule {}

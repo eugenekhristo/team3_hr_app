@@ -1,0 +1,35 @@
+h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.dialog {
+  padding-bottom: 3rem;
+  min-width: 50vw;
+  max-width: 80rem;
+  max-height: 90vh;
+
+  &__main {
+
+  }
+
+  &__candidates-list {
+    margin: 2rem 0;
+    height: 23rem;
+    overflow: auto;
+    position: relative;
+  }
+
+  &__no-candidates-fond {
+    font-size: 1.8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
+}
+
+.full_width {
+  width: 100%;
+}

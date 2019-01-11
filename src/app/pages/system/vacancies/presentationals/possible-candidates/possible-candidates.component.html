@@ -1,31 +1,20 @@
 <div class="wrapper">
   <h2>Possible Applicants 👩‍💼🤵</h2>
 
-  <!-- FIXME: DRAFT -->
-
-  Candidates picked: {{pickedIds.length}} <br>
-
-  {{pickedPossibleCandidates | json}} <br>
-
-  <input
-    type="text"
-    (input)="filterService.filterText$.next($event.target.value)"
-    (focus)="filterService.filterText$.next($event.target.value)"
-  />
-  <br />
-
-  <hr-candidates-list
-    [candidates$]="filterService.filteredCandidatesForVacancy$"
-    [shouldShowImage]="false"
-    [shouldShowDeleteTooltip]="false"
-    [styleForVacancy]="true"
-    [pickedIds]="pickedIds"
-    (candidatesIdPicked)="onTogglePossibleCandidate($event)"
+  <button
+    (click)="addPossibleCandidates.next()"
+    mat-raised-button
+    color="primary"
+    matTooltip="Add possible applicants for this position"
+    matTooltipPosition="right"
   >
-  </hr-candidates-list>
+    <mat-icon style="margin-right: .7rem">group_add</mat-icon>
+    Add Candidates
+  </button>
 
   <hr-candidates-list
     [candidates$]="possibleCandidates$"
+    [deleteTooltipMessage]="'Delete this Candidate from this Vacancy'"
     (goToCandidatePage)="goToCandidatePage.emit($event)"
   >
   </hr-candidates-list>

@@ -98,7 +98,6 @@ export class VacancyStore {
     return obs$;
   }
 
-  // TODO: Make onAddPossibleCandidates
   addPossibleCandidates(candidates: CandidateForVacancy[]): Observable<Vacancy> {
     const vacancy = this._vacancy$.getValue();
     vacancy.candidatesBlobs = [...vacancy.candidatesBlobs, ...candidates];

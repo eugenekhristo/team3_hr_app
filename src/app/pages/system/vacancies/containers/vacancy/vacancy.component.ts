@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import {
   Vacancy,
   VACANCY_STATUS,
-  Requirement
+  Requirement,
+  CandidateForVacancy
 } from 'src/app/core/models/vacancy.model';
 import { Candidate } from 'src/app/core/models/candidate.model';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
@@ -14,6 +15,7 @@ import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-c
 import { EditVacancyDialogComponent } from '../../presentationals/edit-vacancy-dialog/edit-vacancy-dialog.component';
 import { FilterVacanciesService } from 'src/app/core/services/filter-vacancies.service';
 import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
+import { AddPossibleCandidatesDialogComponent } from '../../presentationals/add-possible-candidates-dialog/add-possible-candidates-dialog.component';
 
 @Component({
   selector: 'hr-vacancy',
@@ -85,15 +87,18 @@ export class VacancyComponent implements OnInit {
     });
   }
 
-  // TODO: Make onAddPossibleCandidates
-  // create CandidateForVacancy[] and pass to vacancyStore.addPossibleCandidates()
-  onAddPossibleCandidate() {
-    // const candidate = new CandidateForVacancy(2);
-    // this.vacancyStore
-    //   .addPossibleCandidate(candidate)
-    //   .subscribe(() =>
-    //     this.matSnack.openSnackBar('New possible candidate was added! 🐱')
-    //   );
+
+  onAddPossibleCandidates() {
+    const ref = this.matDialog.open(AddPossibleCandidatesDialogComponent);
+    ref.afterClosed().subscribe((res: CandidateForVacancy[]) => {
+      if (res) {
+      this.vacancyStore
+        .addPossibleCandidates(res)
+        .subscribe(response =>
+          this.openSnackAndCallBS(`${res.length} possible candidates are added! 🐱`)
+        );
+      }
+    });
   }
 
   goToCandidatePage(id: number): void {

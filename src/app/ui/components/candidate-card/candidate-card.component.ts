@@ -11,6 +11,7 @@ export class CandidateCardComponent implements OnInit {
   @Input() isCardChoosen = false;
   @Input() shouldShowImage = true;
   @Input() shouldShowDeleteTooltip = true;
+  @Input() deleteTooltipMessage = '';
   @Input() styleForVacancy = false;
 
   @Output() goToCandidatePage = new EventEmitter<number>();
@@ -20,8 +21,7 @@ export class CandidateCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   toggleCardIsChoosen() {
     if (this.styleForVacancy) {

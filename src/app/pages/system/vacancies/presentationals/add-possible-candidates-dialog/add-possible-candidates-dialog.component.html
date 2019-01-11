@@ -1,0 +1,60 @@
+<div class="dialog">
+  <h2 mat-dialog-title>Add Possible Candidates</h2>
+
+  <div class="dialog__main">
+    <!-- FIXME: DRAFT -->
+
+    Total hoosen: {{ pickedIds.length }} <br />
+
+    <input
+      type="text"
+      (input)="filterService.filterText$.next($event.target.value)"
+      (focus)="filterService.filterText$.next($event.target.value)"
+    />
+    <br />
+
+    <div class="dialog__candidates-list">
+      <hr-candidates-list
+        [candidates$]="filterService.filteredCandidatesForVacancy$"
+        [shouldShowImage]="false"
+        [shouldShowDeleteTooltip]="false"
+        [styleForVacancy]="true"
+        [pickedIds]="pickedIds"
+        (candidatesIdPicked)="onTogglePossibleCandidate($event)"
+      >
+      </hr-candidates-list>
+      <div
+        class="dialog__no-candidates-fond"
+        *ngIf="filterService.filteredCandidatesForVacancy.length === 0"
+      >
+        No such candidates 😟
+      </div>
+    </div>
+  </div>
+
+  <div
+    mat-dialog-actions
+    fxLayout="row nowrap"
+    fxLayoutGap="10px"
+    class="actions"
+  >
+    <button
+      mat-raised-button
+      color="warn"
+      [mat-dialog-close]="false"
+      fxFlex="50"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="pickedPossibleCandidates"
+      fxFlex="50"
+      type="submit"
+    >
+      Add
+    </button>
+  </div>
+</div>

@@ -22,6 +22,8 @@
     (click)="deleteCandidate.next(candidate.id)"
     matRipple
     [matRippleColor]="'rgba(255,255,255,.2)'"
+    [matTooltip]="deleteTooltipMessage"
+    matTooltipPosition="left"
   >
     Delete
   </div>
