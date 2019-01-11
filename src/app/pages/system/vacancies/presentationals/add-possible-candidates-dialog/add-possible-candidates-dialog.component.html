@@ -4,13 +4,15 @@
   <div class="dialog__main">
     <!-- FIXME: DRAFT -->
 
-    Total hoosen: {{ pickedIds.length }} <br />
-
-    <input
-      type="text"
-      (input)="filterService.filterText$.next($event.target.value)"
-      (focus)="filterService.filterText$.next($event.target.value)"
-    />
+    <mat-form-field class="full_width">
+      <input
+        matInput
+        placeholder="Search for candidates by Full Name or Contacts"
+        type="text"
+        (input)="filterService.filterText$.next($event.target.value)"
+        (focus)="filterService.filterText$.next($event.target.value)"
+      >
+    </mat-form-field>
     <br />
 
     <div class="dialog__candidates-list">
@@ -30,6 +32,10 @@
         No such candidates 😟
       </div>
     </div>
+
+    <h4 style="margin-top: 3rem">
+      Total choosen: {{ pickedIds.length }}
+    </h4>
   </div>
 
   <div

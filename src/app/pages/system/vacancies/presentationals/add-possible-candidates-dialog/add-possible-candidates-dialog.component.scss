@@ -18,6 +18,8 @@ h2 {
     height: 23rem;
     overflow: auto;
     position: relative;
+    background-image: url(/assets/images/pattern.svg);
+    background-size: 45rem;
   }
 
   &__no-candidates-fond {
