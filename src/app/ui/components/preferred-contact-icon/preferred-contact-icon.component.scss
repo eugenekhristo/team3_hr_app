@@ -17,14 +17,15 @@
   display: block;
   white-space: nowrap;
   background-color: rgba(0, 0, 0, 0.6);
-  right: -1rem;
+  right: 5rem;
+  top: -1rem;
   color: white;
   padding: 5px 8px;
   border-radius: 4px;
   font-size: 1rem;
   transform: translate(100%, -100%) scale(0.4);
   opacity: 0;
-  transform-origin: 0 100%;
+  transform-origin: 50% 100%;
   backface-visibility: hidden;
   z-index: 5;
 }
