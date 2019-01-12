@@ -23,6 +23,8 @@ import { CandidateContactsComponent } from './components/candidate-contacts/cand
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
 import { HttpClient } from '@angular/common/http';
+import { SmartGoBackBtnComponent } from './components/smart-go-back-btn/smart-go-back-btn.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { HttpClient } from '@angular/common/http';
     PreferredContactIconComponent,
     CandidatesListComponent,
     CandidateCardComponent,
-    CandidateContactsComponent
+    CandidateContactsComponent,
+    SmartGoBackBtnComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +52,8 @@ import { HttpClient } from '@angular/common/http';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    RouterModule
   ],
   providers: [
     SnackMessagePbService,
@@ -69,7 +73,8 @@ import { HttpClient } from '@angular/common/http';
     PreferredContactIconComponent,
     CandidatesListComponent,
     CandidateCardComponent,
-    CandidateContactsComponent
+    CandidateContactsComponent,
+    SmartGoBackBtnComponent
   ]
 })
 export class UiModule {}

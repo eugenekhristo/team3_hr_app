@@ -162,11 +162,6 @@
           "type": "skype",
           "value": "millie17",
           "preferred": true
-        },
-        {
-          "type": "phone",
-          "value": "+375295680957",
-          "preferred": false
         }
       ],
       "timeline": [
@@ -647,6 +642,12 @@
           "require": false,
           "_public": true,
           "id": "b9c0ddce-30e8-4918-a2a3-4c1d3520c7c3"
+        },
+        {
+          "name": "Less than 35 y.o",
+          "require": true,
+          "_public": false,
+          "id": "baa2aa6a-bb22-4234-a7eb-a2cf51aef64a"
         }
       ],
       "candidatesBlobs": [

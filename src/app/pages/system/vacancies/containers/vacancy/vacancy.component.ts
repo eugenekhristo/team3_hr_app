@@ -16,6 +16,7 @@ import { EditVacancyDialogComponent } from '../../presentationals/edit-vacancy-d
 import { FilterVacanciesService } from 'src/app/core/services/filter-vacancies.service';
 import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 import { AddPossibleCandidatesDialogComponent } from '../../presentationals/add-possible-candidates-dialog/add-possible-candidates-dialog.component';
+import { UrlWatcherService } from 'src/app/core/services/url-watcher.service';
 
 @Component({
   selector: 'hr-vacancy',
@@ -39,7 +40,9 @@ export class VacancyComponent implements OnInit {
     private matConfirm: MatConfirmService,
     private router: Router,
     public filterService: FilterVacanciesService,
-    private candidateStore: CandidatesStore
+    private candidateStore: CandidatesStore,
+
+    public routesWatcher: UrlWatcherService
   ) {}
 
   ngOnInit() {
@@ -53,6 +56,8 @@ export class VacancyComponent implements OnInit {
         });
         this.possibleCandidates$ = this.vacancyStore.possibleCandidates$;
       });
+
+      this.routesWatcher.setWatchedRoute();
   }
 
   onDeleteVacancy(id: number): void {

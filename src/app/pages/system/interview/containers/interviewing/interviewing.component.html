@@ -1,13 +1,9 @@
 <ng-container *ngIf="interview">
   <section class="description mat-big-card">
-    <a
-      mat-icon-button
-      matTooltip="Go back"
-      class="go_back"
-      routerLink="/interview"
-    >
-      <mat-icon>arrow_back_ios</mat-icon>
-    </a>
+
+    <hr-smart-go-back-btn [defaultUrl]="['/interview']">
+    </hr-smart-go-back-btn>
+
     <div class="controls">
       <button
         mat-mini-fab

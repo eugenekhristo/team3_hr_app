@@ -15,6 +15,7 @@ import { CV } from 'src/app/core/models/cv.model';
 import { AddCvDialogComponent } from '../../presentationals/timeline-cv/add-cv-dialog/add-cv-dialog.component';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { FilterCandidatesService } from 'src/app/core/services/filter-candidates.service';
+import { UrlWatcherService } from 'src/app/core/services/url-watcher.service';
 
 @Component({
   selector: 'hr-candidate',
@@ -32,7 +33,9 @@ export class CandidateComponent implements OnInit, OnDestroy {
     private interviewDialog: InterviewDialogService,
     private route: ActivatedRoute,
     private userService: AuthService,
-    private filterService: FilterCandidatesService
+    private filterService: FilterCandidatesService,
+
+    public routesWatcher: UrlWatcherService
   ) {}
 
   ngOnInit() {
@@ -47,6 +50,9 @@ export class CandidateComponent implements OnInit, OnDestroy {
         0
       );
     }
+
+    this.routesWatcher.setWatchedRoute();
+    console.log(this.routesWatcher.prevRoute);
   }
 
   ngOnDestroy() {

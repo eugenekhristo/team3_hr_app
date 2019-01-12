@@ -9,6 +9,7 @@ import { Candidate } from 'src/app/core/models/candidate.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
+import { UrlWatcherService } from 'src/app/core/services/url-watcher.service';
 
 @Component({
   selector: 'hr-candidates',
@@ -25,10 +26,14 @@ export class CandidatesComponent implements OnInit, OnDestroy {
     public filterService: FilterCandidatesService,
     private matSnack: SnackMessageService,
     private matDialog: MatDialog,
-    private matConfirm: MatConfirmService
+    private matConfirm: MatConfirmService,
+
+    public routesWatcher: UrlWatcherService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.routesWatcher.setWatchedRoute();
+  }
 
   ngOnDestroy() {
     this._destroyed$.next();

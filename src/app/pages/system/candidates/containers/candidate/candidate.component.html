@@ -1,17 +1,22 @@
-<hr-short-info
-  [candidate$]="candidateStore.candidate$"
-  (candidateChanged)="onCandidateChanged($event)"
-></hr-short-info>
-<div class="timeline">
-  <hr-timeline
+<div class="wrapper">
+ <hr-smart-go-back-btn [defaultUrl]="['/candidates']">
+</hr-smart-go-back-btn>
+
+  <hr-short-info
     [candidate$]="candidateStore.candidate$"
-    (deleteNote)="onDeleteNote($event)"
-    (changeNote)="onChangeNote($event)"
-    (addNote)="onAddNote()"
-    (addInterview)="onAddInterview($event)"
-    (changeFeedback)="onChangeFeedback($event)"
-    (deleteCV)="onDeleteCV($event)"
-    (addCV)="onAddCV()"
-  >
-  </hr-timeline>
+    (candidateChanged)="onCandidateChanged($event)"
+  ></hr-short-info>
+  <div class="timeline">
+    <hr-timeline
+      [candidate$]="candidateStore.candidate$"
+      (deleteNote)="onDeleteNote($event)"
+      (changeNote)="onChangeNote($event)"
+      (addNote)="onAddNote()"
+      (addInterview)="onAddInterview($event)"
+      (changeFeedback)="onChangeFeedback($event)"
+      (deleteCV)="onDeleteCV($event)"
+      (addCV)="onAddCV()"
+    >
+    </hr-timeline>
+  </div>
 </div>

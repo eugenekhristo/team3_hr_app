@@ -8,6 +8,7 @@ import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
 import { FilterVacanciesService } from 'src/app/core/services/filter-vacancies.service';
 import { ActivatedRoute } from '@angular/router';
+import { UrlWatcherService } from 'src/app/core/services/url-watcher.service';
 
 @Component({
   selector: 'hr-vacancies',
@@ -26,7 +27,9 @@ export class VacanciesComponent implements OnInit {
     private matDialog: MatDialog,
     private matSnack: SnackMessageService,
     private matConfirm: MatConfirmService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
+    private routesWatcher: UrlWatcherService
   ) {}
 
   ngOnInit() {
@@ -35,6 +38,8 @@ export class VacanciesComponent implements OnInit {
     if (this.route.snapshot.queryParams['isDeleted']) {
       this.openSnackAndCallBS('Vacancy was successfully deleted! 👍');
     }
+
+    this.routesWatcher.setWatchedRoute();
   }
 
   onAddVacancy(): void {

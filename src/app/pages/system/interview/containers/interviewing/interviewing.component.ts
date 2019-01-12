@@ -11,6 +11,7 @@ import { CandidatesStore } from 'src/app/core/services/candidate-store.service';
 import { Feedback } from 'src/app/core/models/feedback.model';
 import { Subscription } from 'rxjs';
 import { Contact } from 'src/app/core/models/candidate.model';
+import { UrlWatcherService } from 'src/app/core/services/url-watcher.service';
 
 interface ContactsHash {
   phone: Contact[];
@@ -45,7 +46,9 @@ export class InterviewingComponent implements OnInit, OnDestroy {
     private interviewStore: InterviewStore,
     private interviewDialog: InterviewDialogService,
     private matSnack: SnackMessageService,
-    private candidateStore: CandidatesStore
+    private candidateStore: CandidatesStore,
+
+    public routesWatcher: UrlWatcherService
   ) {}
 
   ngOnInit() {
@@ -64,6 +67,8 @@ export class InterviewingComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptionContainer.add(interviewSub);
+
+    this.routesWatcher.setWatchedRoute();
   }
 
   ngOnDestroy() {

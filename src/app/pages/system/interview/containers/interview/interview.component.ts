@@ -9,6 +9,7 @@ import { InterviewService } from '../../../shared/services/interview.service';
 import { SnackMessageService } from 'src/app/ui/services/snack-messgae.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { UrlWatcherService } from 'src/app/core/services/url-watcher.service';
 
 @Component({
   selector: 'hr-interview',
@@ -28,7 +29,9 @@ export class InterviewComponent implements OnInit, OnDestroy {
     private interviewService: InterviewService,
     private matSnack: SnackMessageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
+    public routesWatcher: UrlWatcherService
   ) {}
 
   ngOnInit() {
@@ -54,6 +57,8 @@ export class InterviewComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.routesWatcher.setWatchedRoute();
   }
 
   ngOnDestroy() {
