@@ -20,6 +20,8 @@ import { CandidateAssetsInterComponent } from './interview/presentationals/candi
 import { InterAssetsCvComponent } from './interview/presentationals/inter-assets-cv/inter-assets-cv.component';
 import { InterAssetsNoteComponent } from './interview/presentationals/inter-assets-note/inter-assets-note.component';
 import { ReadNoteDialogComponent } from './interview/presentationals/inter-assets-note/read-note-dialog/read-note-dialog.component';
+import { InterAssetsFeedbackComponent } from './interview/presentationals/inter-assets-feedback/inter-assets-feedback.component';
+import { ReadFeedbackDialogComponent } from './interview/presentationals/inter-assets-feedback/read-feedback-dialog/read-feedback-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ReadNoteDialogComponent } from './interview/presentationals/inter-asset
     CandidateAssetsInterComponent,
     InterAssetsCvComponent,
     InterAssetsNoteComponent,
-    ReadNoteDialogComponent
+    ReadNoteDialogComponent,
+    InterAssetsFeedbackComponent,
+    ReadFeedbackDialogComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +52,6 @@ import { ReadNoteDialogComponent } from './interview/presentationals/inter-asset
   ],
   exports: [SystemShellComponent],
   providers: [InterviewService, InterviewStore],
-  entryComponents: [ReadNoteDialogComponent]
+  entryComponents: [ReadNoteDialogComponent, ReadFeedbackDialogComponent]
 })
 export class SystemPageModule {}

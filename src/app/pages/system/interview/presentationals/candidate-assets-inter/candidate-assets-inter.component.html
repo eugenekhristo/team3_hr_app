@@ -18,6 +18,9 @@
 
       <hr-inter-assets-note *ngSwitchCase="TYPE.note" [note]="item">
       </hr-inter-assets-note>
+
+      <hr-inter-assets-feedback *ngSwitchCase="TYPE.feedback" [feedback]="item">
+      </hr-inter-assets-feedback>
     </ng-container>
 
     <div class="card__empty" *ngIf="!item">
@@ -26,15 +29,4 @@
   </div>
 </div>
 
-<!-- <span [ngSwitch]="">
-<p *ngSwitchCase="true">
-
-</p>
-<p *ngSwitchCase="false">
-
-</p>
-<p *ngSwitchDefault>
-
-</p>
-</span>> -->
 

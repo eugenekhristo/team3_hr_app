@@ -9,5 +9,8 @@
   "When": "When",
   "From": "From",
   "Name": "Name",
-  "Surname": "Surname"
+  "Surname": "Surname",
+  "English": "English",
+  "Russian": "Russian",
+  "Logout": "Logout"
 }

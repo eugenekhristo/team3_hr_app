@@ -18,8 +18,6 @@ export class CandidateAssetsInterComponent implements OnInit {
 
   ngOnInit() {
     this.timeline = this.service.processTimeline(this.interview.candidate.timeline);
-    console.log(this.timeline);
-
   }
 
 }

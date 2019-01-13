@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { CONTACT_TYPES, Contact } from 'src/app/core/models/candidate.model';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { MatConfirmService } from 'src/app/ui/modules/reusable-mat-confirm/mat-confirm-service';
 
 @Component({
@@ -41,8 +41,8 @@ export class EditContactsDialogComponent implements OnInit {
     preferred: boolean = false
   ): FormGroup {
     return this.fb.group({
-      type,
-      value,
+      type: [type, Validators.required],
+      value: [value, Validators.required],
       preferred
     });
   }

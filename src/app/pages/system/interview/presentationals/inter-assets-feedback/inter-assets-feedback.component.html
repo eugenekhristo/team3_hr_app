@@ -1,0 +1,18 @@
+<button
+  *ngIf="!isReading"
+  (click)="readFeedback(); isReading = true"
+  mat-stroked-button color="primary"
+  class="item"
+>
+  Read Feedback
+</button>
+
+<div *ngIf="isReading" class="item">
+  <hr-animated-reading></hr-animated-reading>
+</div>
+
+<div class="author" matTooltip="Author" matTooltipPosition="above">
+  &mdash; by {{feedback.interviewer.name}} {{feedback.interviewer.surname}} for {{feedback.vacancy.title}}
+</div>
+
+

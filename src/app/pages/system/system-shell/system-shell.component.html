@@ -39,11 +39,11 @@
         <mat-icon>arrow_drop_down</mat-icon>
       </a>
       <mat-menu #menu="matMenu" xPosition="before">
-        <a mat-menu-item (click)="switchLang('en')"> <span>English</span> </a>
-        <a mat-menu-item (click)="switchLang('ru')"> <span>Russian</span> </a>
+        <a mat-menu-item (click)="switchLang('en')"> <span>{{'English' | translate}}</span> </a>
+        <a mat-menu-item (click)="switchLang('ru')"> <span>{{'Russian' | translate}}</span> </a>
       </mat-menu>
     </div>
-    <a (click)="logout()" mat-button class="nav-item"> Logout </a>
+    <a (click)="logout()" mat-button class="nav-item"> {{'Logout' | translate}} </a>
   </div>
 
 </nav>

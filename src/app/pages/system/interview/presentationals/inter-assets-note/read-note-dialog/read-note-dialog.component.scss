@@ -1,4 +1,23 @@
-p {
-  min-width: 50rem;
-  // max-width: 70rem;
+.card {
+  position: relative;
+  padding-bottom: 2.5rem;
+
+  h2 {
+    font: 500 20px/32px Roboto,"Helvetica Neue",sans-serif;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  p {
+    min-width: 50rem;
+  }
+
+  .author {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 1.2rem;
+    color: grey;
+    font-style: italic;
+  }
 }

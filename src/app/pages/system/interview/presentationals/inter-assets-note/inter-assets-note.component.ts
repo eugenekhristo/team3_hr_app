@@ -18,7 +18,7 @@ export class InterAssetsNoteComponent implements OnInit {
 
   readNote() {
     this.dialog
-      .open(ReadNoteDialogComponent, { data: this.note.body })
+      .open(ReadNoteDialogComponent, { data: this.note })
       .afterClosed()
       .subscribe(() => this.isReading = false);
   }

@@ -1,0 +1,33 @@
+<div class="card">
+  <h2>Feedback</h2>
+
+  <section class="card__content">
+    <ul class="card__list">
+      <li *ngFor="let f of data.reqPub">
+        <span class="card__requirement ">{{ f.requirement }} </span> &mdash;
+        <span class="card__response">{{ f.response }}</span
+        >;
+      </li>
+      <li *ngFor="let f of data.reqPriv">
+        <span class="card__requirement">{{ f.requirement }} </span> &mdash;
+        <span class="card__response">{{ f.response }}</span
+        >;
+      </li>
+      <li *ngFor="let f of data.notReqPub">
+        <span class="card__requirement">{{ f.requirement }} </span> &mdash;
+        <span class="card__response">{{ f.response }}</span
+        >;
+      </li>
+      <li *ngFor="let f of data.notReqPriv">
+        <span class="card__requirement">{{ f.requirement }} </span> &mdash;
+        <span class="card__response">{{ f.response }}</span
+        >;
+      </li>
+    </ul>
+  </section>
+
+  <div class="author" matTooltip="Author" matTooltipPosition="above">
+    &mdash; by {{data.interviewer.name}} {{data.interviewer.surname}} for {{data.vacancy.title}}
+  </div>
+
+</div>

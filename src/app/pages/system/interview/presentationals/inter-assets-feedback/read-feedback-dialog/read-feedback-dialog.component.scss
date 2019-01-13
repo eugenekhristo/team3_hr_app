@@ -1,0 +1,39 @@
+.card {
+  position: relative;
+  padding-bottom: 2.5rem;
+
+  h2 {
+    font: 500 20px/32px Roboto,"Helvetica Neue",sans-serif;
+    margin-top: 0;
+  }
+
+  &__content {
+    min-width: 50rem;
+  }
+
+  &__list {
+    padding-left: 2rem;
+    margin-bottom: 0;
+    li {
+      padding: 7px 0;
+    }
+  }
+
+  &__requirement {
+    font-size: 1.4rem;
+    color: grey;
+  }
+
+  &__response {
+    font-style: italic;
+  }
+}
+
+.author {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 1.2rem;
+  color: grey;
+  font-style: italic;
+}

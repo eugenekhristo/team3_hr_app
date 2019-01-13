@@ -8,6 +8,7 @@ h2 {
 .dialog {
   padding-bottom: 3rem;
   min-width: 22vw;
+  max-height: 90vh;
 }
 
 .add_contact {
@@ -47,4 +48,9 @@ h2 {
 
 .form_group:hover .contact_delete {
   opacity: 1;
+}
+
+form {
+  max-height: 80%s;
+  overflow: auto;
 }
